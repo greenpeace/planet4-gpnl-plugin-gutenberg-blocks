@@ -9,7 +9,7 @@ export class CoversBlock {
       registerBlockType( 'planet4-blocks/covers', {
         title: 'Covers',
         icon: CoversIcon,
-        category: 'planet4-blocks',
+        category: 'planet4-gpnl-blocks',
 
         // Transform the shortcode into a Gutenberg block
         // this is used when a user clicks "Convert to blocks"

@@ -93,7 +93,10 @@ final class Loader {
 		// Load Blocks.
 		$this->blocks = [
 			new Blocks\Covers(),
+			new Blocks\HeroImage(),
 			new Blocks\SubMenu(),
+			new Blocks\Test(),
+			new Blocks\Quote(),
 		];
 	}
 
@@ -388,8 +391,8 @@ final class Loader {
 			$categories,
 			[
 				[
-					'slug'  => 'planet4-blocks',
-					'title' => __( 'Planet4 Blocks', 'planet4-blocks' ),
+					'slug'  => 'planet4-gpnl-blocks',
+					'title' => __( 'GPNL Blocks', 'planet4-gpnl-blocks' ),
 				],
 			]
 		);

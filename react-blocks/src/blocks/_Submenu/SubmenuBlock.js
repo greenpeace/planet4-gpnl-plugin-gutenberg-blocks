@@ -9,7 +9,7 @@ export class SubmenuBlock {
         registerBlockType( 'planet4-blocks/submenu', {
             title: 'Submenu',
             icon: SubmenuIcon,
-						category: 'planet4-blocks',
+			category: 'planet4-gpnl-blocks',
 						transforms: {
 							from: [
 								{
