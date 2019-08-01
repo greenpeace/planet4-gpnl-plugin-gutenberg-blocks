@@ -1,3 +1,5 @@
 /vendor
 /node_modules
 /react-blocks/src/styles/styleguide
+
+react-blocks/src/blocks/test\.js

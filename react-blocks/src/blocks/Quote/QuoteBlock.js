@@ -1,42 +1,50 @@
+import BaseBlock from "../BaseBlock.js";
+
 import { Icon } from './QuoteIcon.js';
-import { Quote } from "./Quote.js";
+import { QuoteTest } from "./QuoteTest";
 
-export class QuoteBlock {
+export class QuoteBlock extends BaseBlock {
 
-    constructor() {
+	constructor() {
+		super();
 
 		// Setup references to external functions
-		const { __ } = wp.i18n;
+		const {__} = wp.i18n;
 		const { registerBlockType } = wp.blocks;
 
-		// Getting the name of the class and of the block
-		const ClassName = this.constructor.name;
-		const ClassNameLowerCase = ClassName.toLowerCase();
-		const BlockName = ClassName.split("Block")[0];
-		const BlockNameLowerCase  = BlockName.toLowerCase();
 
 		// Register the block
-        registerBlockType( 'planet4-blocks/'+BlockNameLowerCase, {
-            title: BlockName,
-            icon: Icon,
+		registerBlockType('planet4-blocks/' + this.blockNameLowerCase, {
+			title: this.blockName,
+			icon: Icon,
 			category: 'planet4-gpnl-blocks',
 			keywords: [
-				__( BlockName ),
-				__( 'Another keyword' ),
+				__(this.blockName),
+				__('Another keyword'),
 			],
-
-			// Markup in editor
-			edit: () => {
-				return < Quote />
+			attributes: {
+				title: {
+					type: 'string',
+				},
 			},
 
-			// This should return null because it is done server side (in PHP)
-            save() {
-            	return null;
-            }
-        } );
+			edit({
+					 attributes, 		// - The block's attributes
+					 setAttributes,    	// - Method to set the attributes
+					 isSelected        	// - Handy flag to toggle the edit view
+				 }) {
+				function onTitleChange(value) {
+					setAttributes({title: value});
+				}
 
-    }
+				return <QuoteTest
+					{...attributes}
+					isSelected={isSelected}
+					title={attributes.title}
+					onTitleChange={onTitleChange}/>;
+			},
 
+			save: () => null,
+		});
+	};
 }
-

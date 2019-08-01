@@ -39,7 +39,9 @@ export class Quote extends Component {
 				}
 					<ServerSideRender
 						block={ 'planet4-blocks/'+this.getLowerCaseClassName()}
-						attributes={{ }}>
+						attributes={{
+							title: this.props.title,
+						}}>
 					</ServerSideRender>
 			</div>
 		);
