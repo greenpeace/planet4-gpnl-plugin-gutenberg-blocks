@@ -22,8 +22,8 @@ class HeroImage extends Base_Block {
 	const BLOCK_NAME = 'hero-image';
 
 	public function __construct() {
-		register_block_type( 'planet4-blocks/hero-image', [
-			'editor_script'   => 'planet4-blocks',           //   in the PHP side.
+		register_block_type( 'planet4-gpnl-blocks/hero-image', [
+			'editor_script'   => 'planet4-gpnl-blocks',           //   in the PHP side.
 			'render_callback' => [ $this, 'render' ]
 		] );
 	}

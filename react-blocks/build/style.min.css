@@ -189,7 +189,7 @@ and so on...
 .load-more-covers-button-div {
   margin-top: 32px; }
 
-#editor .editor-writing-flow > div > div > div > .editor-block-list__layout > div[data-type="planet4-blocks/submenu"] {
+#editor .editor-writing-flow > div > div > div > .editor-block-list__layout > div[data-type="planet4-gpnl-blocks/submenu"] {
   max-width: unset;
   width: 100%; }
 

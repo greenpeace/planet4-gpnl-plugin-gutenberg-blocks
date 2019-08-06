@@ -9,7 +9,7 @@ export class TestBlock {
 		const { registerBlockType } = wp.blocks;
 
 		// PART 3: Register the block!
-        registerBlockType( 'planet4-blocks/test', {
+        registerBlockType( 'planet4-gpnl-blocks/test', {
             title: 'Test',
             icon: TestIcon,
 			category: 'planet4-gpnl-blocks',

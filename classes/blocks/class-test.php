@@ -26,9 +26,9 @@ class Test extends Base_Block {
 		// - Register the block for the editor
 		// in the PHP side.
 		register_block_type(
-			'planet4-blocks/'.self::BLOCK_NAME,
+			'planet4-gpnl-blocks/'.self::BLOCK_NAME,
 			[
-				'editor_script'   => 'planet4-blocks',
+				'editor_script'   => 'planet4-gpnl-blocks',
 				'render_callback' => [ $this, 'render' ],
 			]
 		);

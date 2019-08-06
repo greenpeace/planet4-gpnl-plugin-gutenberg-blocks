@@ -92,9 +92,7 @@ final class Loader {
 
 		// Load Blocks.
 		$this->blocks = [
-			new Blocks\Covers(),
 			new Blocks\HeroImage(),
-			new Blocks\SubMenu(),
 			new Blocks\Test(),
 			new Blocks\Quote(),
 		];
@@ -200,15 +198,15 @@ final class Loader {
 					deactivate_plugins( P4NL_GB_BKS_PLUGIN_BASENAME );
 					$count   = 0;
 					$message = '<div class="error fade">' .
-							'<u>' . esc_html( P4NL_GB_BKS_PLUGIN_NAME ) . ' > ' . esc_html__( 'Requirements Error(s)', 'planet4-blocks-backend' ) . '</u><br /><br />';
+							'<u>' . esc_html( P4NL_GB_BKS_PLUGIN_NAME ) . ' > ' . esc_html__( 'Requirements Error(s)', 'planet4-gpnl-blocks-backend' ) . '</u><br /><br />';
 
 					foreach ( $plugins['not_found'] as $plugin ) {
-						$message .= '<br/><strong>' . ( ++ $count ) . '. ' . esc_html( $plugin['Name'] ) . '</strong> ' . esc_html__( 'plugin needs to be installed and activated.', 'planet4-blocks-backend' ) . '<br />';
+						$message .= '<br/><strong>' . ( ++ $count ) . '. ' . esc_html( $plugin['Name'] ) . '</strong> ' . esc_html__( 'plugin needs to be installed and activated.', 'planet4-gpnl-blocks-backend' ) . '<br />';
 					}
 					foreach ( $plugins['not_updated'] as $plugin ) {
 						$message .= '<br/><strong>' . ( ++ $count ) . '. ' . esc_html( $plugin['Name'] ) . '</strong><br />' .
-									esc_html__( 'Minimum version ', 'planet4-blocks-backend' ) . '<strong>' . esc_html( $plugin['min_version'] ) . '</strong>' .
-									'<br/>' . esc_html__( 'Current version ', 'planet4-blocks-backend' ) . '<strong>' . esc_html( $plugin['Version'] ) . '</strong><br />';
+									esc_html__( 'Minimum version ', 'planet4-gpnl-blocks-backend' ) . '<strong>' . esc_html( $plugin['min_version'] ) . '</strong>' .
+									'<br/>' . esc_html__( 'Current version ', 'planet4-gpnl-blocks-backend' ) . '<strong>' . esc_html( $plugin['Version'] ) . '</strong><br />';
 					}
 
 					$message .= '</div><br />';
@@ -225,9 +223,9 @@ final class Loader {
 				deactivate_plugins( P4NL_GB_BKS_PLUGIN_BASENAME );
 				wp_die( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					'<div class="error fade">' .
-					'<strong>' . esc_html__( 'PHP Requirements Error', 'planet4-blocks-backend' ) . '</strong><br /><br />' . esc_html( P4NL_GB_BKS_PLUGIN_NAME . __( ' requires a newer version of PHP.', 'planet4-blocks-backend' ) ) . '<br />' .
-					'<br/>' . esc_html__( 'Minimum required version of PHP: ', 'planet4-blocks-backend' ) . '<strong>' . esc_html( $this->required_php ) . '</strong>' .
-					'<br/>' . esc_html__( 'Running version of PHP: ', 'planet4-blocks-backend' ) . '<strong>' . esc_html( phpversion() ) . '</strong>' .
+					'<strong>' . esc_html__( 'PHP Requirements Error', 'planet4-gpnl-blocks-backend' ) . '</strong><br /><br />' . esc_html( P4NL_GB_BKS_PLUGIN_NAME . __( ' requires a newer version of PHP.', 'planet4-gpnl-blocks-backend' ) ) . '<br />' .
+					'<br/>' . esc_html__( 'Minimum required version of PHP: ', 'planet4-gpnl-blocks-backend' ) . '<strong>' . esc_html( $this->required_php ) . '</strong>' .
+					'<br/>' . esc_html__( 'Running version of PHP: ', 'planet4-gpnl-blocks-backend' ) . '<strong>' . esc_html( phpversion() ) . '</strong>' .
 					'</div>',
 					'Plugin Requirements Error',
 					[
@@ -306,7 +304,7 @@ final class Loader {
 
 		// Enqueue editor script for all Blocks in this Plugin.
 		wp_enqueue_script(
-			'planet4-blocks-script',                       // - Script handler
+			'planet4-gpnl-blocks-script',                       // - Script handler
 			P4NL_GB_BKS_PLUGIN_URL . 'react-blocks/build/editorIndex.js',                                     // - Bundled JS for the editor
 			[
 				'wp-blocks',      // - Helpers for registering blocks
@@ -324,7 +322,7 @@ final class Loader {
 		$reflection_vars = [
 			'home' => P4NL_GB_BKS_PLUGIN_URL . '/public/',
 		];
-		wp_localize_script( 'planet4-blocks-script', 'p4ge_vars', $reflection_vars );
+		wp_localize_script( 'planet4-gpnl-blocks-script', 'p4ge_vars', $reflection_vars );
 	}
 
 	/**
@@ -375,8 +373,8 @@ final class Loader {
 	 * References: http://codex.wordpress.org/I18n_for_WordPress_Developers
 	 */
 	public function load_i18n() {
-		load_plugin_textdomain( 'planet4-blocks', false, P4NL_GB_BKS_PLUGIN_DIRNAME . '/languages/' );
-		load_plugin_textdomain( 'planet4-blocks-backend', false, P4NL_GB_BKS_PLUGIN_DIRNAME . '/languages/' );
+		load_plugin_textdomain( 'planet4-gpnl-blocks', false, P4NL_GB_BKS_PLUGIN_DIRNAME . '/languages/' );
+		load_plugin_textdomain( 'planet4-gpnl-blocks-backend', false, P4NL_GB_BKS_PLUGIN_DIRNAME . '/languages/' );
 	}
 
 	/**

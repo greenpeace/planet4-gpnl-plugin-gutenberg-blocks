@@ -30,7 +30,7 @@ export class Test extends Component {
 						: null
 				}
 					<ServerSideRender
-						block={ 'planet4-blocks/test' }
+						block={ 'planet4-gpnl-blocks/test' }
 						attributes={{ }}>
 					</ServerSideRender>
 			</div>

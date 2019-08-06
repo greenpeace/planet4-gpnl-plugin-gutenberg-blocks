@@ -8,7 +8,7 @@ export class HeroImageBlock {
                                             //   the `wp.blocks` object.
 
   // - Add the `arctic-sunrise` block to the `planet4-gutenberg-experiments` namespace
-	  registerBlockType( 'planet4-blocks/hero-image', {
+	  registerBlockType( 'planet4-gpnl-blocks/hero-image', {
 
 	  title: __('Hero Image'),                      // - Sets the block title
 	  icon: HeroImageIcon,                      // - The icon is a React component

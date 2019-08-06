@@ -24,13 +24,25 @@ class Quote extends Base_Block {
 		// - Register the block for the editor
 		// in the PHP side.
 		register_block_type(
-			'planet4-blocks/' . self::BLOCK_NAME,
+			'planet4-gpnl-blocks/' . self::BLOCK_NAME,
 			[
-				'editor_script' => 'planet4-blocks',
+				'editor_script' => 'planet4-gpnl-blocks',
 				'render_callback' => [$this, 'render'],
 				'attributes' => [
-					'title' => [
+					'quote' => [
 						'type' => 'string',
+						'default' => '',
+					],
+					'quotee' => [
+						'type' => 'string',
+						'default' => '',
+					],
+					'imageUrl' => [
+						'type' => 'string',
+						'default' => '',
+					],
+					'imageId' => [
+						'type' => 'number',
 						'default' => '',
 					]
 				]
@@ -40,39 +52,32 @@ class Quote extends Base_Block {
 		);
 	}
 
+
 	/**
 	 * Get all the data that will be needed to render the block correctly.
 	 *
 	 * @param array $fields This is the array of fields of this block.
-	 * @param string $content This is the post content.
-	 * @param string $shortcode_tag The shortcode tag of this block.
 	 *
 	 * @return array The data to be passed in the View.
 	 */
 	public function prepare_data( $fields ): array {
-		$title = $fields['title'] ?? '';
+
+
+		// If an image is selected
+		if ( isset( $fields['imageId'] ) && $image = wp_get_attachment_image_src( $fields['imageId'], 'full' ) ) {
+			// load the image from the library
+			$fields['imageUrl']        = $image[0];
+			$fields['alt_text']     = get_post_meta( $fields['imageId'], '_wp_attachment_image_alt', true );
+			$fields['image_srcset'] = wp_get_attachment_image_srcset( $fields['imageId'], 'full', wp_get_attachment_metadata( $fields['imageId'] ) );
+			$fields['image_sizes']  = wp_calculate_image_sizes( 'full', null, null, $fields['imageId'] );
+		}
 
 		$data = [
-			'title' => $title,
+			'fields' => $fields,
 		];
 
 		return $data;
 	}
-
-
-//	/**
-//	 * Get all the data that will be needed to render the block correctly.
-//	 *
-//	 * @return array The data to be passed in the View.
-//	 */
-//	public function prepare_data( $attributes )  {
-//
-//		$block_data = [
-//			'title' => $attributes['title'] ?? '',
-//		];
-//
-//		return $block_data;
-//	}
 
 }
 

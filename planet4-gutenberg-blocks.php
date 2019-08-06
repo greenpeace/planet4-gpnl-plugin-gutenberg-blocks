@@ -8,7 +8,7 @@
  *
  * Author: Greenpeace Netherlands
  * Author URI: http://www.greenpeace.org/
- * Text Domain: planet4-blocks
+ * Text Domain: planet4-gpnl-blocks
  *
  * License:     GPLv3
  * Copyright (C) 2019 Greenpeace Netherlands

@@ -40,7 +40,7 @@ export class QuoteTest extends Component {
 						: this.renderView()
 				}
 					<ServerSideRender
-						block={'planet4-blocks/quote'}
+						block={'planet4-gpnl-blocks/quote'}
 						attributes={{
 							title: this.props.title,
 						}}

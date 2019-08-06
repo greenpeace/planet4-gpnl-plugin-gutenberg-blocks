@@ -42,7 +42,7 @@ class Base_Block {
 			\Timber::render(
 				P4NL_GB_BKS_PLUGIN_DIR . 'templates/block-error-message.twig',
 				array(
-					'category' => __( 'Error', 'planet4-blocks' ),
+					'category' => __( 'Error', 'planet4-gpnl-blocks' ),
 					'message'  => $message,
 				)
 			);
