@@ -1,7 +1,7 @@
-import {React, Component } from 'react';
-
+import { React, Component } from 'react';
 import { ServerSideRender } from '@wordpress/components';
 const { RichText, MediaUpload , MediaUploadCheck } = wp.editor;
+const { Button } = wp.components;
 
 export class Quote extends Component {
 
@@ -10,44 +10,59 @@ export class Quote extends Component {
 	}
 
 	renderEdit() {
-
+    const getImageOrButton = (openEvent) => {
+      if(this.props.imageUrl) {
+        return (
+          <img
+            src={ this.props.imageUrl }
+            onClick={ openEvent }
+            className="quote__img"
+          />
+        );
+      }
+      else {
+        return (
+          <div className="button-container">
+            <Button
+              onClick={ openEvent }
+              className="button">
+              image
+            </Button>
+          </div>
+        );
+      }
+    };
 		return (
-			<div>
-				<p>
-					<em>This bit is show when editing</em>
-				</p>
-
-				<MediaUploadCheck>
-					<MediaUpload
-						type="image"
-						onSelect={ this.props.onSelectImage }
-						value={ this.props.imageId }
-						render={({ open }) => (
-							<button onClick={open}>
-								Add image (optional)
-							</button>
-						)}
-					/>
-				</MediaUploadCheck>
-
-				<RichText
-					onChange={this.props.onQuoteChange}
-					value={this.props.quote}
-					tagName="p"
-					className="quote__text"
-					placeholder="enter a quote"
-				/>
-
-				<RichText
-					onChange={this.props.onQuoteeChange}
-					value={this.props.quotee}
-					tagName="p"
-					className="quote__author"
-					placeholder="enter an author"
-				/>
-
-
-			</div>
+		  <div className="container">
+					<div className="row quote quote--dark">
+						<div className="col-2">
+							<MediaUploadCheck>
+								<MediaUpload
+									type="image"
+									onSelect={this.props.onSelectImage}
+									value={this.props.imageId}
+                  render={ ({ open }) => getImageOrButton(open) }
+								/>
+							</MediaUploadCheck>
+						</div>
+						<div class="col-10">
+							<RichText
+								onChange={this.props.onQuoteChange}
+								value={this.props.quote}
+								tagName="p"
+								className="quote__text"
+								placeholder="enter a quote"
+							/>
+							<RichText
+								onChange={this.props.onQuoteeChange}
+								value={this.props.quotee}
+								tagName="p"
+								className="quote__author"
+								placeholder="enter an author"
+							/>
+						</div>
+					</div>
+				</div>
 		);
 	}
 

@@ -1,9 +1,7 @@
 import BaseBlock from "../BaseBlock";
+import { Hero } from "./Hero";
 
-import { Icon } from './QuoteIcon';
-import { Quote } from "./Quote";
-
-export class QuoteBlock extends BaseBlock {
+export class HeroBlock extends BaseBlock {
 
 	constructor() {
 		super();
@@ -12,22 +10,22 @@ export class QuoteBlock extends BaseBlock {
 		const {__} = wp.i18n;
 		const { registerBlockType } = wp.blocks;
 
-
 		// Register the block
 		registerBlockType('planet4-gpnl-blocks/' + this.blockNameLowerCase, {
 			title: this.blockName,
-			icon: Icon,
+			icon: 'format-image',
 			category: 'planet4-gpnl-blocks',
 			keywords: [
 				__(this.blockName),
-        __('citation'),
-        __('cite'),
+        __('hero'),
+        __('header'),
+        __('image'),
 			],
 			attributes: {
-				quote: {
+				title: {
 					type: 'string',
 				},
-				quotee: {
+				description: {
 					type: 'string',
 				},
 				imageId: {
@@ -35,10 +33,6 @@ export class QuoteBlock extends BaseBlock {
 				},
 				imageUrl: {
 					type: 'string',
-					source: 'attribute',
-					selector: 'img',
-					attribute: 'src',
-					default: null, // no image by default!
 				},
 			},
 
@@ -49,11 +43,11 @@ export class QuoteBlock extends BaseBlock {
 				 }
 
 				 ) {
-				function onQuoteChange(value) {
-					setAttributes({quote: value});
+				function onTitleChange(value) {
+					setAttributes({title: value});
 				}
-				function onQuoteeChange(value) {
-					setAttributes({quotee: value});
+				function onDescriptionChange(value) {
+					setAttributes({description: value});
 				}
 				function onSelectImage(media) {
 					setAttributes({
@@ -62,18 +56,12 @@ export class QuoteBlock extends BaseBlock {
 					});
 				}
 
-				return <Quote
+				return <Hero
 					{...attributes}
 					isSelected={isSelected}
-					quote={attributes.quote}
-					onQuoteChange={onQuoteChange}
-					quotee={attributes.quotee}
-					onQuoteeChange={onQuoteeChange}
-					imageUrl={attributes.imageUrl}
-					imageId={attributes.imageId}
+					onTitleChange={onTitleChange}
+					onDescriptionChange={onDescriptionChange}
 					onSelectImage={onSelectImage}
-
-
 				/>;
 			},
 

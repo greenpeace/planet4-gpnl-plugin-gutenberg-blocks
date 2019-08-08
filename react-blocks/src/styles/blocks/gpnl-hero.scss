@@ -1,0 +1,78 @@
+@import "base";
+
+.page-header, .page-header-title, .page-header-subtitle, .page-header-content {
+
+  /*display: none;*/
+  visibility: hidden;
+  height: 0;
+  padding: 0;
+}
+
+.hero {
+  height: 500px;
+  overflow: hidden;
+  width: 100vw;
+  background-size: cover;
+  margin: 54px 0 0 $sm;
+  border-bottom: 3px solid $light-green;
+
+  &.hero__small {
+    height: 250px;
+
+    .hero__description {
+      display: none;
+    }
+  }
+
+  // TODO add option for hero with only title white on green
+  .hero__wrapper {
+    .hero__text {
+      top: 0;
+      margin: 0 -15px;
+      max-width: 100%;
+
+      @include medium-and-up {
+        //left: $xlrg;
+      }
+
+      @include x-large-and-up {
+        //left: 100px;
+      }
+
+      .hero__title {
+        margin: 15px 0 10px 0;
+
+        span {
+          padding: 15px;
+          background-color: $white;
+          line-height: 2.5;
+          color: $black;
+          box-decoration-break: clone;
+        }
+      }
+
+      .hero__description {
+        background: $dark-green;
+        color: $white;
+        padding: $norm;
+        @include small-and-up {
+          max-width: 80%;
+        }
+        @include medium-and-up {
+          max-width: 60%;
+        }
+      }
+
+      .hero__button {
+        margin: 20px 0 0 0;
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+@include medium-and-up {
+  .hero {
+    margin-top: 60px;
+  }
+}

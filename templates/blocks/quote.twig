@@ -8,10 +8,9 @@
 {#	{% endif %}#}
 
 {#</blockquote>#}
-<pre>
-
-{{ dump() }}
-</pre>
+{#<pre>#}
+{#{{ dump() }}#}
+{#</pre>#}
 
 {% block gpnl_quote %}
 
@@ -29,8 +28,8 @@
 					>
 				</div>
 				<div class="col-10">
-					<p class="quote__text">“{{ fields.quote|e('wp_kses_post')|raw }}”</p>
-					<p class="quote__author">- {{ fields.quotee | default}}</p>
+					<p class="quote__text">{{ fields.quote|e('wp_kses_post')|raw }}</p>
+					<p class="quote__author">{{ fields.quotee | default}}</p>
 				</div>
 			</div>
 		</div>

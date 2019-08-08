@@ -15,10 +15,10 @@ namespace P4NL_GB_BKS\Blocks;
  * @package P4BKS\Controllers\Blocks
  * @since 0.1
  */
-class Quote extends Base_Block {
+class Hero extends Base_Block {
 
 	/** @const string BLOCK_NAME */
-	const BLOCK_NAME = 'quote';
+	const BLOCK_NAME = 'hero';
 
 	public function __construct() {
 		// - Register the block for the editor
@@ -29,12 +29,16 @@ class Quote extends Base_Block {
 				'editor_script' => 'planet4-gpnl-blocks',
 				'render_callback' => [$this, 'render'],
 				'attributes' => [
-					'quote' => [
+					'title' => [
 						'type' => 'string',
 						'default' => '',
 					],
-					'quotee' => [
-						'type' => 'string',
+					'description' => [
+						'type' => 'text',
+						'default' => '',
+					],
+					'is_small' => [
+						'type' => 'boolean',
 						'default' => '',
 					],
 					'imageUrl' => [
@@ -61,6 +65,7 @@ class Quote extends Base_Block {
 	 * @return array The data to be passed in the View.
 	 */
 	public function prepare_data( $fields ): array {
+
 
 
 		// If an image is selected

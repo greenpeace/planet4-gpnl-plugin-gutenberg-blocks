@@ -86,6 +86,17 @@
 		}
 	}
 
+	.quote__text::before {
+		content: "“";
+	}
+	.quote__text::after {
+		content: "”";
+	}
+	.quote__author::before {
+		content: "- ";
+	}
+
+
 	.quote__author {
 		font-size: 0.6875rem !important;
 
@@ -96,5 +107,9 @@
 		@include large-and-up {
 			font-size: 1rem !important;
 		}
+	}
+
+	.button {
+		margin-top: 30px;
 	}
 }

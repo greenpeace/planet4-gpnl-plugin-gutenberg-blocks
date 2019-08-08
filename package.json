@@ -13,6 +13,7 @@
 		"lint:css": "wp-scripts lint-style"
 	},
 	"devDependencies": {
+		"@wordpress/eslint-plugin": "^2.4.0",
 		"@wordpress/scripts": "3.3.0",
 		"css-loader": "^3.1.0",
 		"eslint": "^5.16.0",
