@@ -469,7 +469,7 @@ function (_Component) {
     key: "renderView",
     value: function renderView() {
       return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["ServerSideRender"], {
-        block: 'planet4-gpnl-blocks/hero',
+        block: 'planet4-gpnl-blocks/' + this.props.blockNameLowerCase,
         attributes: {
           title: this.props.title,
           description: this.props.description,
@@ -539,9 +539,10 @@ function (_BaseBlock) {
     _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default()(HeroBlock).call(this)); // Setup references to external functions
 
     var __ = wp.i18n.__;
-    var registerBlockType = wp.blocks.registerBlockType; // Register the block
+    var registerBlockType = wp.blocks.registerBlockType;
+    var blockNameLowerCase = _this.blockNameLowerCase; // Register the block
 
-    registerBlockType('planet4-gpnl-blocks/' + _this.blockNameLowerCase, {
+    registerBlockType('planet4-gpnl-blocks/' + blockNameLowerCase, {
       title: _this.blockName,
       icon: 'format-image',
       category: 'planet4-gpnl-blocks',
@@ -612,6 +613,7 @@ function (_BaseBlock) {
         }
 
         return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_Hero__WEBPACK_IMPORTED_MODULE_7__["Hero"], _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({}, attributes, {
+          blockNameLowerCase: blockNameLowerCase,
           isSelected: isSelected,
           onTitleChange: onTitleChange,
           onDescriptionChange: onDescriptionChange,

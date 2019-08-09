@@ -125,7 +125,7 @@ export class Hero extends Component {
 	renderView() {
 		return (
 			<ServerSideRender
-				block={'planet4-gpnl-blocks/hero'}
+				block={'planet4-gpnl-blocks/' + this.props.blockNameLowerCase}
 				attributes={{
 					title: this.props.title,
 					description: this.props.description,

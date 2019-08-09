@@ -10,9 +10,11 @@ export class HeroBlock extends BaseBlock {
 		// Setup references to external functions
 		const {__} = wp.i18n;
 		const { registerBlockType } = wp.blocks;
+		const blockNameLowerCase = this.blockNameLowerCase;
 
 		// Register the block
-		registerBlockType('planet4-gpnl-blocks/' + this.blockNameLowerCase, {
+		registerBlockType('planet4-gpnl-blocks/' + blockNameLowerCase, {
+
 			title: this.blockName,
 			icon: 'format-image',
 			category: 'planet4-gpnl-blocks',
@@ -50,9 +52,8 @@ export class HeroBlock extends BaseBlock {
 					 attributes, 		// - The block's attributes
 					 setAttributes,    	// - Method to set the attributes
 					 isSelected        	// - Handy flag to toggle the edit view
-				 }
-
-				 ) {
+				 })
+			{
 				function onTitleChange(value) {
 					setAttributes({title: value});
 				}
@@ -78,6 +79,7 @@ export class HeroBlock extends BaseBlock {
 
 				return <Hero
 					{...attributes}
+					blockNameLowerCase={blockNameLowerCase}
 					isSelected={isSelected}
 					onTitleChange={onTitleChange}
 					onDescriptionChange={onDescriptionChange}
