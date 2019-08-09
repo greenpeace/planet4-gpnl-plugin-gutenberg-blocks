@@ -28,11 +28,20 @@ export class HeroBlock extends BaseBlock {
 				description: {
 					type: 'string',
 				},
-				imageId: {
+				image_id: {
 					type: 'number'
 				},
-				imageUrl: {
+				image_url: {
 					type: 'string',
+				},
+				link_text: {
+					type: 'string'
+				},
+				link_url: {
+					type: 'string',
+				},
+				is_small: {
+					type: 'boolean',
 				},
 			},
 
@@ -51,9 +60,19 @@ export class HeroBlock extends BaseBlock {
 				}
 				function onSelectImage(media) {
 					setAttributes({
-						imageUrl: media.url,
-						imageId: media.id
+						image_url: media.url,
+						image_id: media.id
 					});
+				}
+				function onLinkTextChange(value) {
+					setAttributes({link_text: value});
+				}
+				function onLinkUrlChange(value) {
+					setAttributes({link_url: value});
+				}
+
+				function onIsSmall( value ) {
+					setAttributes( { is_small: value } );
 				}
 
 				return <Hero
@@ -62,6 +81,9 @@ export class HeroBlock extends BaseBlock {
 					onTitleChange={onTitleChange}
 					onDescriptionChange={onDescriptionChange}
 					onSelectImage={onSelectImage}
+					onLinkTextChange={onLinkTextChange}
+					onLinkUrlChange={onLinkUrlChange}
+					onIsSmall={onIsSmall}
 				/>;
 			},
 

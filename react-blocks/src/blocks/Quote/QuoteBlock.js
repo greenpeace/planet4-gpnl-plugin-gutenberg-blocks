@@ -30,15 +30,11 @@ export class QuoteBlock extends BaseBlock {
 				quotee: {
 					type: 'string',
 				},
-				imageId: {
+				image_id: {
 					type: 'number'
 				},
-				imageUrl: {
+				image_url: {
 					type: 'string',
-					source: 'attribute',
-					selector: 'img',
-					attribute: 'src',
-					default: null, // no image by default!
 				},
 			},
 
@@ -57,20 +53,16 @@ export class QuoteBlock extends BaseBlock {
 				}
 				function onSelectImage(media) {
 					setAttributes({
-						imageUrl: media.url,
-						imageId: media.id
+						image_url: media.url,
+						image_id: media.id
 					});
 				}
 
 				return <Quote
 					{...attributes}
 					isSelected={isSelected}
-					quote={attributes.quote}
 					onQuoteChange={onQuoteChange}
-					quotee={attributes.quotee}
 					onQuoteeChange={onQuoteeChange}
-					imageUrl={attributes.imageUrl}
-					imageId={attributes.imageId}
 					onSelectImage={onSelectImage}
 
 

@@ -1,8 +1,7 @@
-import { React, Component } from 'react';
-import { ServerSideRender } from '@wordpress/components';
-const { RichText, MediaUpload , MediaUploadCheck } = wp.editor;
-import { MediaPlaceholder, InspectorControls } from "@wordpress/editor";
-const { Button } = wp.components;
+import {React, Component} from 'react';
+import {ServerSideRender} from '@wordpress/components';
+import { PlainText, RichText, MediaUpload, MediaUploadCheck, InspectorControls} from "@wordpress/editor";
+import {Button, PanelBody, ToggleControl} from '@wordpress/components';
 
 export class Hero extends Component {
 
@@ -16,76 +15,103 @@ export class Hero extends Component {
 
 
 		const fields =
-		<div className="page-template hero__wrapper ">
-			<div className="hero__text">
-				<h2 className="hero__title">
+			<div className="page-template hero__wrapper ">
+				<div className="hero__text">
+					<h2 className="hero__title">
+						<RichText
+							onChange={this.props.onTitleChange}
+							value={this.props.title}
+							tagName={'span'}
+							className={'hero__title'}
+							placeholder={'enter a title (optional)'}
+						/>
+					</h2>
 					<RichText
-						onChange={this.props.onTitleChange}
-						value={this.props.title}
-						tagName={'span'}
-						className={'hero__title'}
-						placeholder="enter a title (optional)"
+						onChange={this.props.onDescriptionChange}
+						value={this.props.description}
+						tagName={'p'}
+						className={'hero__description'}
+						placeholder={'enter an abstract / description (optional)'}
 					/>
-				</h2>
-				<RichText
-					onChange={this.props.onDescriptionChange}
-					value={this.props.description}
-					tagName="p"
-					className="hero__description"
-					placeholder="enter a description (optional)"
-				/>
+					<RichText
+						onChange={this.props.onLinkTextChange}
+						value={this.props.link_text}
+						tagName={'button'}
+						className={'btn btn-small btn-medium btn-primary hero__button'}
+						placeholder={'button text (optional)'}
+					/>
+					<RichText
+						onChange={this.props.onLinkUrlChange}
+						value={this.props.link_url}
+						tagName={'p'}
+						className={''}
+						placeholder={'button url (optional unless button text is used)'}
+						style={{backgroundColor: 'white'}}
+					/>
+				</div>
 			</div>
-		</div>
 		;
 
 
-    const getImageOrButton = (openEvent) => {
-      if(this.props.imageId) {
-        return (
-			<div style={{ height: "100%", overflow: "hidden", backgroundImage: `url(${this.props.imageUrl})`, backgroundSize: "cover"}}>
-				{fields}
-				<Button
-					onClick={ openEvent }
-					className="btn btn-small btn-primary"
-					style={{position: "absolute", bottom: "15px", left: "50%"}}
-				>
-					{/*the style of the button somehow shifts the parent container which will create (seems like) a margin on top*/}
-					change image
-				</Button>
-			</div>
-        );
-      }
-      else {
-        return (
-            <Button
-              onClick={ openEvent }
-			  style={{position: "absolute", top: "50%", left: "50%"}}
-			  className="btn btn-large btn-primary">
-              select an image
-            </Button>
-        );
-      }
-    };
+		const getImageOrButton = (openEvent) => {
+			if (this.props.image_id) {
+				return (
+					<div style={{
+						height: "100%",
+						overflow: "hidden",
+						backgroundImage: `url(${this.props.image_url})`,
+						backgroundSize: "cover"
+					}}>
+						{fields}
+						<div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+							<Button
+								onClick={openEvent}
+								className="btn btn-small btn-primary"
+								style={{position: "absolute", bottom: "15px", left: "50%", transform: 'translateX(-50%)'}}
+							>
+								change image
+							</Button>
+						</div>
+					</div>
+				);
+			} else {
+				return (
+					<div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+						<Button
+							onClick={openEvent}
+							style={{position: "absolute", top: "50%", left: "50%", transform: 'translateX(-50%) translateY(-50%)'}}
+							className="btn btn-large btn-primary">
+							select an image
+						</Button>
+					</div>
+				);
+			}
+		};
 		return (
-		  <div className="hero" style={{backgroundColor: "#f4f4f4"}}>
-			<MediaUploadCheck>
-				<MediaUpload
-					type="image"
-					onSelect={this.props.onSelectImage}
-					value={this.props.imageId}
-				render={ ({ open }) => getImageOrButton(open) }
-				/>
-			</MediaUploadCheck>
+			<div className="hero" style={{backgroundColor: "#f4f4f4", maxWidth: "100%", margin: "0"}}>
+				<MediaUploadCheck>
+					<MediaUpload
+						type="image"
+						onSelect={this.props.onSelectImage}
+						value={this.props.image_id}
+						render={({open}) => getImageOrButton(open)}
+					/>
+				</MediaUploadCheck>
 
-			  {/*<MediaPlaceholder*/}
-				{/*  icon="format-image"*/}
-				{/*  onSelect={this.props.onSelectImage}*/}
-				{/*  onSelectURL={this.props.onSelectURL}*/}
-				{/*  onError={this.props.onUploadError}*/}
-				{/*  accept="image/*"*/}
-				{/*  allowedTypes={["image"]}*/}
-			  {/*/>*/}
-		  </div>
+				{/* TODO: when toggling a re-render is not happening.*/}
+				<InspectorControls>
+					<PanelBody title={'Height'}>
+						<ToggleControl
+							label={'small header'}
+							help={'When selected the header height will be smaller than normal. Also, the abstract / description text will no longer appear!'}
+							value={this.props.is_small}
+							checked={this.props.is_small}
+							onChange={this.props.onIsSmall}
+						/>
+					</PanelBody>
+				</InspectorControls>
+
+			</div>
 		);
 	}
 
@@ -96,8 +122,11 @@ export class Hero extends Component {
 				attributes={{
 					title: this.props.title,
 					description: this.props.description,
-					imageUrl: this.props.imageUrl,
-					imageId: this.props.imageId,
+					image_url: this.props.image_url,
+					image_id: this.props.image_id,
+					link_text: this.props.link_text,
+					link_url: this.props.link_url,
+					is_small: this.props.is_small,
 				}}
 			>
 			</ServerSideRender>

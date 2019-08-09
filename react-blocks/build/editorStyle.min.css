@@ -37,5 +37,8 @@ and so on...
   font-style: italic;
   padding: 12px; }
 
+.wp-block {
+  max-width: 1140px; }
+
 
 /*# sourceMappingURL=editorStyle.min.css.map*/

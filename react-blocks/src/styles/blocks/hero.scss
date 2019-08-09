@@ -28,6 +28,17 @@
 	// TODO add option for hero with only title white on green
 	.hero__wrapper {
 
+		.hero__title {
+			margin: 15px 0 10px 0;
+
+			span {
+				padding: 15px;
+				background-color: $white;
+				line-height: 2.5;
+				color: $black;
+				box-decoration-break: clone;
+			}
+		}
 
 		.hero__description {
 			background: $dark-green;
@@ -41,9 +52,6 @@
 			}
 		}
 
-
-
-
 		.hero__text {
 			top: 0;
 			margin: 0 -15px;
@@ -56,20 +64,6 @@
 			@include x-large-and-up {
 				//left: 100px;
 			}
-
-			.hero__title {
-				margin: 15px 0 10px 0;
-
-				span {
-					padding: 15px;
-					background-color: $white;
-					line-height: 2.5;
-					color: $black;
-					box-decoration-break: clone;
-				}
-			}
-
-
 
 			.hero__button {
 				margin: 20px 0 0 0;
@@ -87,7 +81,18 @@
 	}
 }
 
-.hero-button {
-	margin: 15px;
-	background-color: #dadbdc;
+
+// This is for the editor
+div[data-type="planet4-gpnl-blocks/hero"] {
+	max-width: unset;
+	width: 100%;
+}
+.block-editor-rich-text {
+	//display: inline-block !important;
+}
+
+
+.block-attribute-wrapper {
+	//display: inline-block;
+	//margin-right: 20px;
 }

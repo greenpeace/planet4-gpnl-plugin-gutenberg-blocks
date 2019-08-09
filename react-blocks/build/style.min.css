@@ -302,6 +302,14 @@ and so on...
     height: 250px; }
     .hero.hero__small .hero__description {
       display: none; }
+  .hero .hero__wrapper .hero__title {
+    margin: 15px 0 10px 0; }
+    .hero .hero__wrapper .hero__title span {
+      padding: 15px;
+      background-color: #ffffff;
+      line-height: 2.5;
+      color: #000000;
+      box-decoration-break: clone; }
   .hero .hero__wrapper .hero__description {
     background: #003300;
     color: #ffffff;
@@ -316,14 +324,6 @@ and so on...
     top: 0;
     margin: 0 -15px;
     max-width: 100%; }
-    .hero .hero__wrapper .hero__text .hero__title {
-      margin: 15px 0 10px 0; }
-      .hero .hero__wrapper .hero__text .hero__title span {
-        padding: 15px;
-        background-color: #ffffff;
-        line-height: 2.5;
-        color: #000000;
-        box-decoration-break: clone; }
     .hero .hero__wrapper .hero__text .hero__button {
       margin: 20px 0 0 0;
       box-shadow: none; }
@@ -332,9 +332,9 @@ and so on...
   .hero {
     margin-top: 60px; } }
 
-.hero-button {
-  margin: 15px;
-  background-color: #dadbdc; }
+div[data-type="planet4-gpnl-blocks/hero"] {
+  max-width: unset;
+  width: 100%; }
 
 
 /*# sourceMappingURL=style.min.css.map*/

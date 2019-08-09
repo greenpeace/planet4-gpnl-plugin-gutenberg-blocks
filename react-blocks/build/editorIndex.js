@@ -344,12 +344,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _wp$editor = wp.editor,
-    RichText = _wp$editor.RichText,
-    MediaUpload = _wp$editor.MediaUpload,
-    MediaUploadCheck = _wp$editor.MediaUploadCheck;
 
-var Button = wp.components.Button;
+
 var Hero =
 /*#__PURE__*/
 function (_Component) {
@@ -373,65 +369,104 @@ function (_Component) {
         className: "hero__text"
       }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("h2", {
         className: "hero__title"
-      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(RichText, {
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_editor__WEBPACK_IMPORTED_MODULE_8__["RichText"], {
         onChange: this.props.onTitleChange,
         value: this.props.title,
         tagName: 'span',
         className: 'hero__title',
-        placeholder: "enter a title (optional)"
-      })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(RichText, {
+        placeholder: 'enter a title (optional)'
+      })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_editor__WEBPACK_IMPORTED_MODULE_8__["RichText"], {
         onChange: this.props.onDescriptionChange,
         value: this.props.description,
-        tagName: "p",
-        className: "hero__description",
-        placeholder: "enter a description (optional)"
+        tagName: 'p',
+        className: 'hero__description',
+        placeholder: 'enter an abstract / description (optional)'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_editor__WEBPACK_IMPORTED_MODULE_8__["RichText"], {
+        onChange: this.props.onLinkTextChange,
+        value: this.props.link_text,
+        tagName: 'button',
+        className: 'btn btn-small btn-medium btn-primary hero__button',
+        placeholder: 'button text (optional)'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_editor__WEBPACK_IMPORTED_MODULE_8__["RichText"], {
+        onChange: this.props.onLinkUrlChange,
+        value: this.props.link_url,
+        tagName: 'p',
+        className: '',
+        placeholder: 'button url (optional unless button text is used)',
+        style: {
+          backgroundColor: 'white'
+        }
       })));
 
       var getImageOrButton = function getImageOrButton(openEvent) {
-        if (_this.props.imageId) {
+        if (_this.props.image_id) {
           return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
             style: {
               height: "100%",
               overflow: "hidden",
-              backgroundImage: "url(".concat(_this.props.imageUrl, ")"),
+              backgroundImage: "url(".concat(_this.props.image_url, ")"),
               backgroundSize: "cover"
             }
-          }, fields, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(Button, {
+          }, fields, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
+            style: {
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }
+          }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["Button"], {
             onClick: openEvent,
             className: "btn btn-small btn-primary",
             style: {
               position: "absolute",
               bottom: "15px",
-              left: "50%"
+              left: "50%",
+              transform: 'translateX(-50%)'
             }
-          }, "change image"));
+          }, "change image")));
         } else {
-          return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(Button, {
+          return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
+            style: {
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }
+          }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["Button"], {
             onClick: openEvent,
             style: {
               position: "absolute",
               top: "50%",
-              left: "50%"
+              left: "50%",
+              transform: 'translateX(-50%) translateY(-50%)'
             },
             className: "btn btn-large btn-primary"
-          }, "select an image");
+          }, "select an image"));
         }
       };
 
       return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
         className: "hero",
         style: {
-          backgroundColor: "#f4f4f4"
+          backgroundColor: "#f4f4f4",
+          maxWidth: "100%",
+          margin: "0"
         }
-      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(MediaUploadCheck, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(MediaUpload, {
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_editor__WEBPACK_IMPORTED_MODULE_8__["MediaUploadCheck"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_editor__WEBPACK_IMPORTED_MODULE_8__["MediaUpload"], {
         type: "image",
         onSelect: this.props.onSelectImage,
-        value: this.props.imageId,
+        value: this.props.image_id,
         render: function render(_ref) {
           var open = _ref.open;
           return getImageOrButton(open);
         }
-      })));
+      })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_editor__WEBPACK_IMPORTED_MODULE_8__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["PanelBody"], {
+        title: 'Height'
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["ToggleControl"], {
+        label: 'small header',
+        help: 'When selected the header height will be smaller than normal. Also, the abstract / description text will no longer appear!',
+        value: this.props.is_small,
+        checked: this.props.is_small,
+        onChange: this.props.onIsSmall
+      }))));
     }
   }, {
     key: "renderView",
@@ -441,8 +476,11 @@ function (_Component) {
         attributes: {
           title: this.props.title,
           description: this.props.description,
-          imageUrl: this.props.imageUrl,
-          imageId: this.props.imageId
+          image_url: this.props.image_url,
+          image_id: this.props.image_id,
+          link_text: this.props.link_text,
+          link_url: this.props.link_url,
+          is_small: this.props.is_small
         }
       });
     }
@@ -517,11 +555,20 @@ function (_BaseBlock) {
         description: {
           type: 'string'
         },
-        imageId: {
+        image_id: {
           type: 'number'
         },
-        imageUrl: {
+        image_url: {
           type: 'string'
+        },
+        link_text: {
+          type: 'string'
+        },
+        link_url: {
+          type: 'string'
+        },
+        is_small: {
+          type: 'boolean'
         }
       },
       edit: function edit(_ref) {
@@ -543,8 +590,26 @@ function (_BaseBlock) {
 
         function onSelectImage(media) {
           setAttributes({
-            imageUrl: media.url,
-            imageId: media.id
+            image_url: media.url,
+            image_id: media.id
+          });
+        }
+
+        function onLinkTextChange(value) {
+          setAttributes({
+            link_text: value
+          });
+        }
+
+        function onLinkUrlChange(value) {
+          setAttributes({
+            link_url: value
+          });
+        }
+
+        function onIsSmall(value) {
+          setAttributes({
+            is_small: value
           });
         }
 
@@ -552,7 +617,10 @@ function (_BaseBlock) {
           isSelected: isSelected,
           onTitleChange: onTitleChange,
           onDescriptionChange: onDescriptionChange,
-          onSelectImage: onSelectImage
+          onSelectImage: onSelectImage,
+          onLinkTextChange: onLinkTextChange,
+          onLinkUrlChange: onLinkUrlChange,
+          onIsSmall: onIsSmall
         }));
       },
       save: function save() {
@@ -623,9 +691,9 @@ function (_Component) {
       var _this = this;
 
       var getImageOrButton = function getImageOrButton(openEvent) {
-        if (_this.props.imageUrl) {
+        if (_this.props.image_id) {
           return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("img", {
-            src: _this.props.imageUrl,
+            src: _this.props.image_url,
             onClick: openEvent,
             className: "quote__img"
           });
@@ -635,7 +703,7 @@ function (_Component) {
           }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(Button, {
             onClick: openEvent,
             className: "button"
-          }, "image"));
+          }, "+ image"));
         }
       };
 
@@ -648,7 +716,7 @@ function (_Component) {
       }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(MediaUploadCheck, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(MediaUpload, {
         type: "image",
         onSelect: this.props.onSelectImage,
-        value: this.props.imageId,
+        value: this.props.image_id,
         render: function render(_ref) {
           var open = _ref.open;
           return getImageOrButton(open);
@@ -677,8 +745,8 @@ function (_Component) {
         attributes: {
           quote: this.props.quote,
           quotee: this.props.quotee,
-          imageUrl: this.props.imageUrl,
-          imageId: this.props.imageId
+          image_url: this.props.image_url,
+          image_id: this.props.image_id
         }
       });
     }
@@ -755,16 +823,11 @@ function (_BaseBlock) {
         quotee: {
           type: 'string'
         },
-        imageId: {
+        image_id: {
           type: 'number'
         },
-        imageUrl: {
-          type: 'string',
-          source: 'attribute',
-          selector: 'img',
-          attribute: 'src',
-          default: null // no image by default!
-
+        image_url: {
+          type: 'string'
         }
       },
       edit: function edit(_ref) {
@@ -786,19 +849,15 @@ function (_BaseBlock) {
 
         function onSelectImage(media) {
           setAttributes({
-            imageUrl: media.url,
-            imageId: media.id
+            image_url: media.url,
+            image_id: media.id
           });
         }
 
         return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_Quote__WEBPACK_IMPORTED_MODULE_8__["Quote"], _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({}, attributes, {
           isSelected: isSelected,
-          quote: attributes.quote,
           onQuoteChange: onQuoteChange,
-          quotee: attributes.quotee,
           onQuoteeChange: onQuoteeChange,
-          imageUrl: attributes.imageUrl,
-          imageId: attributes.imageId,
           onSelectImage: onSelectImage
         }));
       },

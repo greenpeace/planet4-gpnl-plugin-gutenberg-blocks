@@ -41,12 +41,20 @@ class Hero extends Base_Block {
 						'type' => 'boolean',
 						'default' => '',
 					],
-					'imageUrl' => [
+					'image_url' => [
 						'type' => 'string',
 						'default' => '',
 					],
-					'imageId' => [
+					'image_id' => [
 						'type' => 'number',
+						'default' => '',
+					],
+					'link_text' => [
+						'type' => 'string',
+						'default' => '',
+					],
+					'link_url' => [
+						'type' => 'string',
 						'default' => '',
 					]
 				]
@@ -69,12 +77,12 @@ class Hero extends Base_Block {
 
 
 		// If an image is selected
-		if ( isset( $fields['imageId'] ) && $image = wp_get_attachment_image_src( $fields['imageId'], 'full' ) ) {
+		if ( isset( $fields['image_id'] ) && $image = wp_get_attachment_image_src( $fields['image_id'], 'full' ) ) {
 			// load the image from the library
-			$fields['imageUrl']        = $image[0];
-			$fields['alt_text']     = get_post_meta( $fields['imageId'], '_wp_attachment_image_alt', true );
-			$fields['image_srcset'] = wp_get_attachment_image_srcset( $fields['imageId'], 'full', wp_get_attachment_metadata( $fields['imageId'] ) );
-			$fields['image_sizes']  = wp_calculate_image_sizes( 'full', null, null, $fields['imageId'] );
+			$fields['image_url']    = $image[0];
+			$fields['alt_text']     = get_post_meta( $fields['image_id'], '_wp_attachment_image_alt', true );
+			$fields['image_srcset'] = wp_get_attachment_image_srcset( $fields['image_id'], 'full', wp_get_attachment_metadata( $fields['image_id'] ) );
+			$fields['image_sizes']  = wp_calculate_image_sizes( 'full', null, null, $fields['image_id'] );
 		}
 
 		$data = [

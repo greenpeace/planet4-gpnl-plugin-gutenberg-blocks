@@ -11,10 +11,10 @@ export class Quote extends Component {
 
 	renderEdit() {
     const getImageOrButton = (openEvent) => {
-      if(this.props.imageUrl) {
+      if(this.props.image_id) {
         return (
           <img
-            src={ this.props.imageUrl }
+            src={ this.props.image_url }
             onClick={ openEvent }
             className="quote__img"
           />
@@ -26,7 +26,7 @@ export class Quote extends Component {
             <Button
               onClick={ openEvent }
               className="button">
-              image
+              + image
             </Button>
           </div>
         );
@@ -40,7 +40,7 @@ export class Quote extends Component {
 								<MediaUpload
 									type="image"
 									onSelect={this.props.onSelectImage}
-									value={this.props.imageId}
+									value={this.props.image_id}
                   render={ ({ open }) => getImageOrButton(open) }
 								/>
 							</MediaUploadCheck>
@@ -73,8 +73,8 @@ export class Quote extends Component {
 				attributes={{
 					quote: this.props.quote,
 					quotee: this.props.quotee,
-					imageUrl: this.props.imageUrl,
-					imageId: this.props.imageId,
+					image_url: this.props.image_url,
+					image_id: this.props.image_id,
 				}}
 			>
 			</ServerSideRender>
