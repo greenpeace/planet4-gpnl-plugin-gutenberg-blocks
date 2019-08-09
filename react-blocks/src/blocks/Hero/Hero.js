@@ -1,6 +1,7 @@
+import { Fragment } from "@wordpress/element";
 import {React, Component} from 'react';
 import {ServerSideRender} from '@wordpress/components';
-import { PlainText, RichText, MediaUpload, MediaUploadCheck, InspectorControls} from "@wordpress/editor";
+import { PlainText, RichText, MediaUpload, MediaUploadCheck, InspectorControls, BlockControls} from "@wordpress/editor";
 import {Button, PanelBody, ToggleControl} from '@wordpress/components';
 
 export class Hero extends Component {
@@ -56,22 +57,22 @@ export class Hero extends Component {
 		const getImageOrButton = (openEvent) => {
 			if (this.props.image_id) {
 				return (
+
 					<div style={{
 						height: "100%",
 						overflow: "hidden",
 						backgroundImage: `url(${this.props.image_url})`,
 						backgroundSize: "cover"
 					}}>
+						{
+							<BlockControls>
+								<div className={'components-toolbar'}>
+									<button onClick={openEvent}>change hero image</button>
+								</div>
+							</BlockControls>
+						}
 						{fields}
-						<div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-							<Button
-								onClick={openEvent}
-								className="btn btn-small btn-primary"
-								style={{position: "absolute", bottom: "15px", left: "50%", transform: 'translateX(-50%)'}}
-							>
-								change image
-							</Button>
-						</div>
+
 					</div>
 				);
 			} else {
@@ -87,8 +88,14 @@ export class Hero extends Component {
 				);
 			}
 		};
-		return (
-			<div className="hero" style={{backgroundColor: "#f4f4f4", maxWidth: "100%", margin: "0"}}>
+			let heroClass = "hero";
+			if (this.props.is_small === true) {
+				heroClass = "hero hero__small"
+			}
+				return ([
+			<div className={heroClass}
+				 style={
+				 	{backgroundColor: "#f4f4f4", maxWidth: "100%", margin: "0"}}>
 				<MediaUploadCheck>
 					<MediaUpload
 						type="image"
@@ -97,8 +104,9 @@ export class Hero extends Component {
 						render={({open}) => getImageOrButton(open)}
 					/>
 				</MediaUploadCheck>
-
-				{/* TODO: when toggling a re-render is not happening.*/}
+			</div>,
+			// TODO: when toggling a re-render is not happening.
+			<Fragment>
 				<InspectorControls>
 					<PanelBody title={'Height'}>
 						<ToggleControl
@@ -110,9 +118,8 @@ export class Hero extends Component {
 						/>
 					</PanelBody>
 				</InspectorControls>
-
-			</div>
-		);
+			</Fragment>
+		])
 	}
 
 	renderView() {

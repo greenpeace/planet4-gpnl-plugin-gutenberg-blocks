@@ -1,5 +1,6 @@
 import BaseBlock from "../BaseBlock";
 import { Hero } from "./Hero";
+// import registerBlockType from '@wordpress/blocks'
 
 export class HeroBlock extends BaseBlock {
 
@@ -17,9 +18,9 @@ export class HeroBlock extends BaseBlock {
 			category: 'planet4-gpnl-blocks',
 			keywords: [
 				__(this.blockName),
-        __('hero'),
-        __('header'),
-        __('image'),
+				__('hero'),
+				__('header'),
+				__('image'),
 			],
 			attributes: {
 				title: {

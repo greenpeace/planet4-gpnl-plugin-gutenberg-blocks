@@ -346,6 +346,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var Hero =
 /*#__PURE__*/
 function (_Component) {
@@ -407,22 +408,11 @@ function (_Component) {
               backgroundImage: "url(".concat(_this.props.image_url, ")"),
               backgroundSize: "cover"
             }
-          }, fields, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
-            style: {
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }
-          }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["Button"], {
-            onClick: openEvent,
-            className: "btn btn-small btn-primary",
-            style: {
-              position: "absolute",
-              bottom: "15px",
-              left: "50%",
-              transform: 'translateX(-50%)'
-            }
-          }, "change image")));
+          }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_editor__WEBPACK_IMPORTED_MODULE_8__["BlockControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
+            className: 'components-toolbar'
+          }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("button", {
+            onClick: openEvent
+          }, "change hero image"))), fields);
         } else {
           return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
             style: {
@@ -443,8 +433,14 @@ function (_Component) {
         }
       };
 
-      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
-        className: "hero",
+      var heroClass = "hero";
+
+      if (this.props.is_small === true) {
+        heroClass = "hero hero__small";
+      }
+
+      return [Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
+        className: heroClass,
         style: {
           backgroundColor: "#f4f4f4",
           maxWidth: "100%",
@@ -458,7 +454,8 @@ function (_Component) {
           var open = _ref.open;
           return getImageOrButton(open);
         }
-      })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_editor__WEBPACK_IMPORTED_MODULE_8__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["PanelBody"], {
+      }))), // TODO: when toggling a re-render is not happening.
+      Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_editor__WEBPACK_IMPORTED_MODULE_8__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["PanelBody"], {
         title: 'Height'
       }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["ToggleControl"], {
         label: 'small header',
@@ -466,7 +463,7 @@ function (_Component) {
         value: this.props.is_small,
         checked: this.props.is_small,
         onChange: this.props.onIsSmall
-      }))));
+      }))))];
     }
   }, {
     key: "renderView",
@@ -527,6 +524,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ // import registerBlockType from '@wordpress/blocks'
 
 var HeroBlock =
 /*#__PURE__*/
