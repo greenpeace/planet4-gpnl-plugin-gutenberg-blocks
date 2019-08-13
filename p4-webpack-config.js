@@ -9,7 +9,12 @@ module.exports = {
     editorIndex: './react-blocks/src/editorIndex.js',
     frontendIndex: './react-blocks/src/frontendIndex.js',
     style: './react-blocks/src/styles/style.scss',
-    editorStyle: './react-blocks/src/styles/editorStyle.scss'
+    editorStyle: './react-blocks/src/styles/editorStyle.scss',
+
+	// GPNL blocks
+    heroImage: './react-blocks/src/styles/blocks/hero-image.scss',
+    quote: './react-blocks/src/styles/blocks/quote.scss',
+    newsletter: './react-blocks/src/styles/blocks/newsletter.scss'
   },
   output: {
     filename: '[name].js',

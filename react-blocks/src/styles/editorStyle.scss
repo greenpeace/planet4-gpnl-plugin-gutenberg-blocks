@@ -1,4 +1,4 @@
-// Global
+// Global styles
 @import "styleguide/src/base/variables";
 @import "styleguide/src/base/colors";
 @import "styleguide/src/base/functions";
@@ -7,6 +7,15 @@
 @import "components/LayoutSelector";
 @import "components/Preview";
 
+
+// importing all gpnl-blocks because in the editor you want to be able to access the styles of all blocks.
+@import "blocks/quote";
+@import "blocks/hero-image";
+
+
+// general styles for the editor
+
+// setting the width of the editor to the width seen on the public pages.
 .wp-block {
 	max-width: 1140px;
 }

@@ -93,7 +93,8 @@ final class Loader {
 		// Load Blocks.
 		$this->blocks = [
 			new Blocks\Quote(),
-			new Blocks\Hero(),
+			new Blocks\Heroimage(),
+			new Blocks\Newsletter(),
 		];
 	}
 

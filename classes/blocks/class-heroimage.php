@@ -15,10 +15,10 @@ namespace P4NL_GB_BKS\Blocks;
  * @package P4BKS\Controllers\Blocks
  * @since 0.1
  */
-class Quote extends Base_Block {
+class Heroimage extends Base_Block {
 
 	/** @const string BLOCK_NAME */
-	const BLOCK_NAME = 'quote';
+	const BLOCK_NAME = 'heroimage';
 
 	public function __construct() {
 		// - Register the block for the editor
@@ -29,12 +29,16 @@ class Quote extends Base_Block {
 				'editor_script' => 'planet4-gpnl-blocks',
 				'render_callback' => [$this, 'render'],
 				'attributes' => [
-					'quote' => [
+					'title' => [
 						'type' => 'string',
 						'default' => '',
 					],
-					'quotee' => [
-						'type' => 'string',
+					'description' => [
+						'type' => 'text',
+						'default' => '',
+					],
+					'is_small' => [
+						'type' => 'boolean',
 						'default' => '',
 					],
 					'image_url' => [
@@ -43,6 +47,14 @@ class Quote extends Base_Block {
 					],
 					'image_id' => [
 						'type' => 'number',
+						'default' => '',
+					],
+					'link_text' => [
+						'type' => 'string',
+						'default' => '',
+					],
+					'link_url' => [
+						'type' => 'string',
 						'default' => '',
 					]
 				]
@@ -62,11 +74,10 @@ class Quote extends Base_Block {
 	 */
 	public function prepare_data( $fields ): array {
 
-
 		// If an image is selected
 		if ( isset( $fields['image_id'] ) && $image = wp_get_attachment_image_src( $fields['image_id'], 'full' ) ) {
 			// load the image from the library
-			$fields['image_url'] 	= $image[0];
+			$fields['image_url']    = $image[0];
 			$fields['alt_text']     = get_post_meta( $fields['image_id'], '_wp_attachment_image_alt', true );
 			$fields['image_srcset'] = wp_get_attachment_image_srcset( $fields['image_id'], 'full', wp_get_attachment_metadata( $fields['image_id'] ) );
 			$fields['image_sizes']  = wp_calculate_image_sizes( 'full', null, null, $fields['image_id'] );
@@ -76,7 +87,7 @@ class Quote extends Base_Block {
 			'fields' => $fields,
 		];
 
-		wp_enqueue_style( 'hero-image', P4NL_GB_BKS_PLUGIN_URL . '/react-blocks/build/quote.min.css', null, '0.1' );
+		wp_enqueue_style( 'hero-image', P4NL_GB_BKS_PLUGIN_URL . '/react-blocks/build/heroImage.min.css', null, '0.1' );
 
 		return $data;
 	}

@@ -8,7 +8,7 @@ export class ArcticSunriseBlock {
 
   // - Add the `arctic-sunrise` block to the `planet4-gutenberg-experiments` namespace
   registerBlockType( 'planet4-gutenberg-experiments/arctic-sunrise', {
-    title: 'Hero Image',                      // - Sets the block title
+    title: 'HeroImage Image',                      // - Sets the block title
     icon: ArcticSunriseIcon,                      // - The icon is a React component
     category: 'GPNL Blocks',    // - Adds it to our custom category
     edit() {

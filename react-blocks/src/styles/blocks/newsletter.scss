@@ -1,0 +1,50 @@
+@import "../base/base.scss";
+
+.gpnl-newsletter__wrapper {
+	margin: 48px 0 32px;
+	padding: 0 !important;
+}
+
+.happy-point-block-wrap {
+	height: unset;
+
+	div.form-group {
+		margin-bottom: 0;
+	}
+
+	input.form-control {
+		margin-bottom: 15px;
+	}
+
+	.gpnl-newsletter__text {
+		margin-top: 20px;
+
+		h2 {
+			margin-bottom: 15px;
+			padding: 15px;
+			background-color: white;
+			width: max-content;
+			max-width: 100%;
+		}
+
+		p {
+			line-height: unset;
+			font-size: unset;
+			color: white;
+			width: max-content;
+			padding: 15px;
+			background-color: $dark-green;
+			max-width: 100%;
+			text-align: left;
+		}
+	}
+
+	.gpnl-newsletter__form {
+		margin: 15px 15px 15px 0;
+
+		.submit-button-newsletter {
+			line-height: 2;
+			margin: 0;
+		}
+	}
+}
