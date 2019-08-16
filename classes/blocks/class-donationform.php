@@ -140,7 +140,7 @@ class Donationform extends Base_Block {
 		];
 
 		// TODO: split up the css per block
-//		wp_enqueue_style( 'style', P4NL_GB_BKS_PLUGIN_URL . '/react-blocks/build/style.min.css', null, '0.1' );
+//		wp_enqueue_style( 'style', P4NL_GB_BKS_PLUGIN_URL . '/assets/build/style.min.css', null, '0.1' );
 
 		return $data;
 	}

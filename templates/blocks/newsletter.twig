@@ -1,9 +1,6 @@
 {% block newsletter %}
 	{% if ( fields ) %}
-		<section class="block
-
-		happy-point-block-wrap block-wide
-		newsletter__block">
+		<section class="gpnl-newsletter__block happy-point-block-wrap block-wide">
 			<picture>
 				<img src="{{ fields.backgroundimage_url | default }}"
 					 style="object-position:{{ fields.focus_image }};opacity:{{ fields.opacity }};"

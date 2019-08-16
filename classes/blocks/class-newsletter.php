@@ -17,14 +17,11 @@ namespace P4NL_GB_BKS\Blocks;
  */
 class Newsletter extends Base_Block {
 
-	/** @const string BLOCK_NAME */
-	const BLOCK_NAME = 'newsletter';
-
 	public function __construct() {
 		// - Register the block for the editor
 		// in the PHP side.
 		register_block_type(
-			'planet4-gpnl-blocks/' . self::BLOCK_NAME,
+			'planet4-gpnl-blocks/' . $this->getKebabClassName(),
 			[
 				'editor_script' => 'planet4-gpnl-blocks',
 				'render_callback' => [$this, 'render'],
@@ -89,7 +86,8 @@ class Newsletter extends Base_Block {
 			'fields' => $fields,
 		];
 
-		wp_enqueue_style( 'newsletter', P4NL_GB_BKS_PLUGIN_URL . '/react-blocks/build/newsletter.min.css', null, '0.1' );
+		wp_enqueue_script( 'newsletterFormSubmit', P4NL_GB_BKS_PLUGIN_URL . 'assets/build/newsletterFormSubmit.js', [ 'jquery' ], '0.1', true );
+		wp_enqueue_style( 'newsletter', P4NL_GB_BKS_PLUGIN_URL . 'assets/build/newsletter.min.css', null, '0.1' );
 
 		return $data;
 	}

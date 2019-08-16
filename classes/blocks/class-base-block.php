@@ -14,6 +14,15 @@ namespace P4NL_GB_BKS\Blocks;
  */
 class Base_Block {
 
+	protected function getClassName() {
+		$array = explode('\\', get_class($this));
+		return end($array);
+	}
+
+	protected function getKebabClassName(){
+		return strtolower(preg_replace('%([a-z])([A-Z])%', '\1-\2', $this->getClassName()));
+	}
+
 	/**
 	 * @param $attributes
 	 *
@@ -25,10 +34,13 @@ class Base_Block {
 
 		\Timber::$locations = P4NL_GB_BKS_PLUGIN_DIR . '/templates/blocks';
 
-		$coversBlock = \Timber::compile( static::BLOCK_NAME. '.twig', $data );
+		// underscore name for twig files
+		$underscoreBlockName = str_replace("-", "_", $this->getKebabClassName());
+
+		$block = \Timber::compile( $underscoreBlockName. '.twig', $data );
 
 		// Return empty string if rendered output contains only whitespace or new lines.
-		return ctype_space( $coversBlock ) ? '' : $coversBlock;
+		return ctype_space( $block ) ? '' : $block;
 	}
 
 	/**
@@ -48,4 +60,6 @@ class Base_Block {
 			);
 		}
 	}
+
+
 }

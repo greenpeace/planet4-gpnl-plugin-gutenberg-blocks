@@ -15,16 +15,13 @@ namespace P4NL_GB_BKS\Blocks;
  * @package P4BKS\Controllers\Blocks
  * @since 0.1
  */
-class Heroimage extends Base_Block {
-
-	/** @const string BLOCK_NAME */
-	const BLOCK_NAME = 'heroimage';
+class HeroImage extends Base_Block {
 
 	public function __construct() {
 		// - Register the block for the editor
 		// in the PHP side.
 		register_block_type(
-			'planet4-gpnl-blocks/' . self::BLOCK_NAME,
+			'planet4-gpnl-blocks/' . $this->getKebabClassName(),
 			[
 				'editor_script' => 'planet4-gpnl-blocks',
 				'render_callback' => [$this, 'render'],
@@ -83,13 +80,14 @@ class Heroimage extends Base_Block {
 			$fields['image_sizes']  = wp_calculate_image_sizes( 'full', null, null, $fields['image_id'] );
 		}
 
+		wp_enqueue_style( 'hero-image', P4NL_GB_BKS_PLUGIN_URL . '/assets/build/heroImage.min.css', null, '0.1' );
+
 		$data = [
 			'fields' => $fields,
 		];
 
-		wp_enqueue_style( 'hero-image', P4NL_GB_BKS_PLUGIN_URL . '/react-blocks/build/heroImage.min.css', null, '0.1' );
-
 		return $data;
+
 	}
 
 }

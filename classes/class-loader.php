@@ -93,8 +93,10 @@ final class Loader {
 		// Load Blocks.
 		$this->blocks = [
 			new Blocks\Quote(),
-			new Blocks\Heroimage(),
+			new Blocks\HeroImage(),
+			new Blocks\MediaVideo(),
 			new Blocks\Newsletter(),
+			new Blocks\Liveblogitem(),
 		];
 	}
 
@@ -290,14 +292,14 @@ final class Loader {
 
 		wp_enqueue_style(
 			'P4NL_GB_BKS_admin_style',
-			P4NL_GB_BKS_PLUGIN_URL . 'react-blocks/build/editorStyle.min.css', // - Bundled CSS for the blocks
+			P4NL_GB_BKS_PLUGIN_URL . 'assets/build/editorStyle.min.css', // - Bundled CSS for the blocks
 			[  ],
 			'0.1'
 		);
 
 		wp_enqueue_style(
 			'P4NL_GB_BKS_style',
-			P4NL_GB_BKS_PLUGIN_URL . 'react-blocks/build/style.min.css', // - Bundled CSS for the blocks
+			P4NL_GB_BKS_PLUGIN_URL . 'assets/build/style.min.css', // - Bundled CSS for the blocks
 			[  ],
 			'0.1'
 		);
@@ -305,7 +307,7 @@ final class Loader {
 		// Enqueue editor script for all Blocks in this Plugin.
 		wp_enqueue_script(
 			'planet4-gpnl-blocks-script',                       // - Script handler
-			P4NL_GB_BKS_PLUGIN_URL . 'react-blocks/build/editorIndex.js',                                     // - Bundled JS for the editor
+			P4NL_GB_BKS_PLUGIN_URL . 'assets/build/editorIndex.js',                                     // - Bundled JS for the editor
 			[
 				'wp-blocks',      // - Helpers for registering blocks
 				'wp-components',  // - Wordpress components

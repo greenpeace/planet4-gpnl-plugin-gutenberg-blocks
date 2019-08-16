@@ -17,14 +17,11 @@ namespace P4NL_GB_BKS\Blocks;
  */
 class Quote extends Base_Block {
 
-	/** @const string BLOCK_NAME */
-	const BLOCK_NAME = 'quote';
-
 	public function __construct() {
 		// - Register the block for the editor
 		// in the PHP side.
 		register_block_type(
-			'planet4-gpnl-blocks/' . self::BLOCK_NAME,
+			'planet4-gpnl-blocks/' . $this->getKebabClassName(),
 			[
 				'editor_script' => 'planet4-gpnl-blocks',
 				'render_callback' => [$this, 'render'],
@@ -76,7 +73,7 @@ class Quote extends Base_Block {
 			'fields' => $fields,
 		];
 
-		wp_enqueue_style( 'hero-image', P4NL_GB_BKS_PLUGIN_URL . '/react-blocks/build/quote.min.css', null, '0.1' );
+		wp_enqueue_style( 'hero-image', P4NL_GB_BKS_PLUGIN_URL . '/assets/build/quote.min.css', null, '0.1' );
 
 		return $data;
 	}

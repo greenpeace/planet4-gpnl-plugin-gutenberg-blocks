@@ -6,19 +6,22 @@ const TerserJSPlugin = require('terser-webpack-plugin');
 module.exports = {
   ...defaultConfig,
   entry: {
-    editorIndex: './react-blocks/src/editorIndex.js',
-    frontendIndex: './react-blocks/src/frontendIndex.js',
-    style: './react-blocks/src/styles/style.scss',
-    editorStyle: './react-blocks/src/styles/editorStyle.scss',
+    editorIndex: './assets/src/editor/js/editorIndex.js',
+	editorStyle: './assets/src/editor/scss/editor-styles.scss',
 
-	// GPNL blocks
-    heroImage: './react-blocks/src/styles/blocks/hero-image.scss',
-    quote: './react-blocks/src/styles/blocks/quote.scss',
-    newsletter: './react-blocks/src/styles/blocks/newsletter.scss'
+	// Separate css files are generated for the blocks so they can be used only when required on public pages.
+    heroImage: './assets/src/blocks/HeroImage/scss/hero-image.scss',
+    quote: './assets/src/blocks/Quote/scss/quote.scss',
+	newsletter: './assets/src/blocks/Newsletter/scss/newsletter.scss',
+	test: './assets/src/blocks/Test/scss/test.scss',
+	  // media: './assets/src/blocks/Media/scss/media.scss',
+
+	newsletterFormSubmit: './assets/src/blocks/Newsletter/js/NewsletterFormSubmit.js',
+
   },
   output: {
     filename: '[name].js',
-    path: __dirname + '/react-blocks/build'
+    path: __dirname + '/assets/build'
   },
   module: {
     ...defaultConfig.module,
