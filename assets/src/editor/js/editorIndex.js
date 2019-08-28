@@ -16,4 +16,8 @@ const newsletterBlock = new NewsletterBlock();
 import { TestBlock } from "../../blocks/Test/js/TestBlock";
 const testBlock = new TestBlock();
 
+import { PetitionBlock } from "../../blocks/Petition/js/PetitionBlock";
+const petitionBlock = new PetitionBlock();
+
+
 

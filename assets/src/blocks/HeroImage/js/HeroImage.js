@@ -6,11 +6,7 @@ import { Button, PanelBody, ToggleControl } from '@wordpress/components';
 
 export class HeroImage extends Component {
 
-	constructor(props) {
-		super(props);
-	}
-
-	renderEdit() {
+  renderEdit() {
 
 		const fields =
 			<div className="page-template hero__wrapper ">
@@ -141,7 +137,7 @@ export class HeroImage extends Component {
 	}
 
 	render() {
-		return (
+	  return (
 			<div>
 				{
 					this.props.isSelected
@@ -151,4 +147,6 @@ export class HeroImage extends Component {
 			</div>
 		)
 	}
+
 }
+
