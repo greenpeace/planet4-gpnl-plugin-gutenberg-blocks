@@ -6,22 +6,41 @@ import { Button, PanelBody, ToggleControl } from '@wordpress/components';
 
 export class HeroImage extends Component {
 
-  renderEdit() {
+  constructor(props) {
+    super(props);
+    // console.log(this);
+    }
+
+    renderEdit() {
+
+      const {
+        blockNameKebabCase,
+        title,
+        description,
+        link_text,
+        link_url,
+        onValueChange,
+        image_id,
+        onSelectImage
+      } = this.props;
 
 		const fields =
 			<div className="page-template hero__wrapper ">
 				<div className="hero__text">
 					<h2>
-						<RichText
-							onChange={this.props.onTitleChange}
-							value={this.props.title}
-							tagName={'span'}
-							className={'hero__title'}
-							placeholder={'enter a title (optional)'}
-						/>
+          <RichText
+            // this works :)
+            // onChange={ title => setAttributes( { title } ) }
+            // onChange={(value) => onValueChange('title', value)}
+            onChange={onValueChange.bind('title')}
+            value={title}
+            tagName={'span'}
+            className={'hero__title'}
+            placeholder={'enter a title (optional)'}
+          />
 					</h2>
 					<RichText
-						onChange={this.props.onDescriptionChange}
+            onChange={onValueChange.bind('description')}
 						value={this.props.description}
 						tagName={'p'}
 						className={'hero__description'}
@@ -29,7 +48,7 @@ export class HeroImage extends Component {
 					/>
 					<div style={{width: '280px'}}>
 					<RichText
-						onChange={this.props.onLinkTextChange}
+            onChange={onValueChange.bind('link_text')}
 						value={this.props.link_text}
 						tagName={'button'}
 						className={'btn btn-small btn-medium btn-primary hero__button'}
@@ -38,7 +57,7 @@ export class HeroImage extends Component {
 					</div>
 					<div style={{width: '400px'}}>
 					<RichText
-						onChange={this.props.onLinkUrlChange}
+            onChange={onValueChange.bind('link_url')}
 						value={this.props.link_url}
 						tagName={'p'}
 						className={''}
@@ -110,7 +129,7 @@ export class HeroImage extends Component {
 							help={'When selected the header height will be smaller than normal. Also, the abstract / description text will no longer appear!'}
 							value={this.props.is_small}
 							checked={this.props.is_small}
-							onChange={this.props.onIsSmall}
+              onChange={onValueChange.bind('is_small')}
 						/>
 					</PanelBody>
 				</InspectorControls>
@@ -147,6 +166,5 @@ export class HeroImage extends Component {
 			</div>
 		)
 	}
-
 }
 

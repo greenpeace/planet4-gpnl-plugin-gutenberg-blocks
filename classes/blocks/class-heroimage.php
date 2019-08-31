@@ -18,10 +18,9 @@ namespace P4NL_GB_BKS\Blocks;
 class HeroImage extends Base_Block {
 
 	public function __construct() {
-		// - Register the block for the editor
-		// in the PHP side.
+		// - Register the block for the editor in the PHP side.
 		register_block_type(
-			'planet4-gpnl-blocks/' . $this->getKebabClassName(),
+			'planet4-gpnl-blocks/' . $this->getKebabCaseClassName(),
 			[
 				'editor_script' => 'planet4-gpnl-blocks',
 				'render_callback' => [$this, 'render'],
@@ -60,6 +59,8 @@ class HeroImage extends Base_Block {
 
 		);
 	}
+
+
 
 
 	/**

@@ -19,7 +19,7 @@ class Base_Block {
 		return end($array);
 	}
 
-	protected function getKebabClassName(){
+	protected function getKebabCaseClassName(){
 		return strtolower(preg_replace('%([a-z])([A-Z])%', '\1-\2', $this->getClassName()));
 	}
 
@@ -35,7 +35,7 @@ class Base_Block {
 		\Timber::$locations = P4NL_GB_BKS_PLUGIN_DIR . '/templates/blocks';
 
 		// underscore name for twig files
-		$underscoreBlockName = str_replace("-", "_", $this->getKebabClassName());
+		$underscoreBlockName = str_replace("-", "_", $this->getKebabCaseClassName());
 
 		$block = \Timber::compile( $underscoreBlockName. '.twig', $data );
 

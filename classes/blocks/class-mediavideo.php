@@ -22,7 +22,7 @@ class MediaVideo extends Base_Block {
 	public function __construct() {
 
 		register_block_type(
-			'planet4-gpnl-blocks/' . $this->getKebabClassName(),
+			'planet4-gpnl-blocks/' . $this->getKebabCaseClassName(),
 			[
 				'editor_script'   => 'planet4-gpnl-blocks',
 				'render_callback' => [ $this, 'render' ],

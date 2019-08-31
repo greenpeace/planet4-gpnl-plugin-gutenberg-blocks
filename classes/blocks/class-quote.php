@@ -21,7 +21,7 @@ class Quote extends Base_Block {
 		// - Register the block for the editor
 		// in the PHP side.
 		register_block_type(
-			'planet4-gpnl-blocks/' . $this->getKebabClassName(),
+			'planet4-gpnl-blocks/' . $this->getKebabCaseClassName(),
 			[
 				'editor_script' => 'planet4-gpnl-blocks',
 				'render_callback' => [$this, 'render'],

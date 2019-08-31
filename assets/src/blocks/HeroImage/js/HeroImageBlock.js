@@ -1,5 +1,7 @@
+import React from 'react';
 import BaseBlock from "../../BaseBlock";
-import {HeroImage} from "./HeroImage";
+import { ServerSideRender } from "@wordpress/components";
+import HeroImageSelected from "./HeroImageSelected";
 
 export class HeroImageBlock extends BaseBlock {
 
@@ -7,8 +9,8 @@ export class HeroImageBlock extends BaseBlock {
     super();
 
     // Setup references to external functions
-    const {__} = wp.i18n;
-    const {registerBlockType} = wp.blocks;
+    const { __ } = wp.i18n;
+    const { registerBlockType } = wp.blocks;
 
     // Register the block
     registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
@@ -45,20 +47,12 @@ export class HeroImageBlock extends BaseBlock {
         },
       },
 
-      edit: ({
-               attributes, 		// - The block's attributes
-               setAttributes,    	// - Method to set the attributes
-               isSelected        	// - Handy flag to toggle the edit view
-             }) => {
+      edit: ({ attributes, setAttributes, isSelected }) => {
 
-        function onTitleChange(value) {
-          setAttributes({title: value});
+        // Functions we want to call while editing to change attributes.
+        function onValueChange(value) {
+          setAttributes({[this]: value});
         }
-
-        function onDescriptionChange(value) {
-          setAttributes({description: value});
-        }
-
         function onSelectImage(media) {
           setAttributes({
             image_url: media.url,
@@ -66,32 +60,26 @@ export class HeroImageBlock extends BaseBlock {
           });
         }
 
-        function onLinkTextChange(value) {
-          setAttributes({link_text: value});
+        // if the block is selected, the block-editor is rendered, otherwise the block is rendered server-side.
+        if (isSelected){
+          return (
+            <HeroImageSelected
+              {...attributes}
+              onValueChange={onValueChange}
+              onSelectImage={onSelectImage}
+            />
+          )
+        } else {
+          return (
+            <ServerSideRender
+              block={'planet4-gpnl-blocks/' + this.blockNameKebabCase}
+              attributes={attributes}
+            />
+          )
         }
-
-        function onLinkUrlChange(value) {
-          setAttributes({link_url: value});
-        }
-
-        function onIsSmall(value) {
-          setAttributes({is_small: value});
-        }
-
-        return <HeroImage
-          {...attributes}
-          blockNameKebabCase={this.blockNameKebabCase}
-          isSelected={isSelected}
-          onTitleChange={onTitleChange}
-          onDescriptionChange={onDescriptionChange}
-          onSelectImage={onSelectImage}
-          onLinkTextChange={onLinkTextChange}
-          onLinkUrlChange={onLinkUrlChange}
-          onIsSmall={onIsSmall}
-        />;
-
       },
 
+      // This is not used, because rendering is done server-side. The method has to be defined though for wordpress.
       save: () => null,
 
     });
