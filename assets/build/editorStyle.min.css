@@ -110,7 +110,7 @@ and so on...
 */
 /* stylelint-disable value-keyword-case*/
 .page-header, .page-header-title, .page-header-subtitle, .page-header-content {
-  /*display: none;*/
+  display: none;
   visibility: hidden;
   height: 0;
   padding: 0; }
@@ -119,7 +119,7 @@ and so on...
   height: 500px;
   overflow: hidden;
   background-size: cover;
-  margin: 54px calc(50% - 50vw) 32px;
+  margin: 0 calc(50% - 50vw) 32px;
   border-bottom: 3px solid #66cc00;
   max-width: 100vw;
   width: 100vw; }
@@ -151,10 +151,6 @@ and so on...
       .hero .hero__wrapper .hero__text .hero__button {
         margin: 20px 0 0 0;
         box-shadow: none; }
-
-@media (min-width: 768px) {
-  .hero {
-    margin-top: 60px; } }
 
 div[data-type="planet4-gpnl-blocks/hero"] {
   max-width: unset;
@@ -214,6 +210,17 @@ and so on...
 
 .wp-block {
   max-width: 1140px; }
+
+.components-toolbar-text-button {
+  border-radius: 4px;
+  margin: 3px;
+  padding: 5px;
+  font-size: 13px;
+  line-height: 1.5; }
+  .components-toolbar-text-button:hover {
+    color: #555d66;
+    box-shadow: inset 0 0 0 1px #555d66, inset 0 0 0 2px #fff;
+    cursor: pointer; }
 
 
 /*# sourceMappingURL=editorStyle.min.css.map*/
