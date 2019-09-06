@@ -1,279 +1,158 @@
-import {React, Component, Fragment} from 'react';
-import {Preview} from '../../../components/Preview/js/Preview';
-import {
-  FormTokenField,
-  CheckboxControl,
-  TextControl,
-  TextareaControl,
-  ServerSideRender
-} from '@wordpress/components';
+import React, {Component, Fragment} from 'react';
+import {RichText, MediaUpload, MediaUploadCheck, InspectorControls, BlockControls} from "@wordpress/editor";
+import {TextControl, TextareaControl, SelectControl, CheckboxControl, Button, PanelBody, ToggleControl, FocalPointPicker} from '@wordpress/components';
 
 
-const {apiFetch} = wp;
-const {addQueryArgs} = wp.url;
-
-export class Petition extends Component {
-  constructor(props) {
-    super(props);
-
-    // Populate tag tokens for saved tags.
-    let tagTokens = props.tagsList.filter(tag => props.tags.includes(tag.id)).map(tag => tag.name);
-    // Populate post types tokens for saved post types.
-    let postTypeTokens = props.postTypesList.filter(post_type => props.post_types.includes(post_type.id)).map(post_type => post_type.name);
-
-    this.state = {
-      tagTokens: tagTokens,
-      postTypeTokens: postTypeTokens,
-      selectedPosts: [],
-    };
-
-    this.populatePostsToken();
-  }
-
-  /**
-   * Set component's state for existing blocks.
-   */
-  populatePostsToken() {
-
-    if (this.props.posts.length > 0) {
-
-      apiFetch(
-        {
-          path: addQueryArgs('/wp/v2/posts', {
-            per_page: 50,
-            page: 1,
-            include: this.props.posts
-          })
-        }
-      ).then(posts => {
-        const postsTokens = posts.map(post => post.title.rendered);
-        const postsSuggestions = posts.map(post => post.title.rendered);
-        this.setState({
-            postsTokens: postsTokens,
-            postsList: posts,
-            postsSuggestions: postsSuggestions,
-            selectedPosts: posts,
-          }
-        );
-      });
-    } else {
-      this.setState(
-        {
-          postsTokens: [],
-          postsList: [],
-          postsSuggestions: [],
-          selectedPosts: [],
-        }
-      );
-    }
-  }
-
-  /**
-   * Search posts using wp api.
-   *
-   * @param tokens
-   */
-  onPostsSearch(tokens) {
-
-    apiFetch(
-      {
-        path: addQueryArgs('/wp/v2/posts', {
-          per_page: 50,
-          page: 1,
-          search: tokens,
-          orderby: 'title',
-          post_status: 'publish',
-
-        })
-      }
-    ).then(posts => {
-      let postsSuggestions = posts.map(post => post.title.rendered);
-      this.setState({postsSuggestions: postsSuggestions, postsList: posts})
-    });
-  }
-
-  onSelectedTagsChange(tokens) {
-    const tagIds = tokens.map(token => {
-      return this.props.tagsList.filter(tag => tag.name === token)[0].id;
-    });
-    this.props.onSelectedTagsChange(tagIds);
-    this.setState({tagTokens: tokens})
-  }
-
-  onSelectedPostTypesChange(tokens) {
-    const postTypeIds = tokens.map(token => {
-      return this.props.postTypesList.filter(postType => postType.name === token)[0].id;
-    });
-    this.props.onSelectedPostTypesChange(postTypeIds);
-    this.setState({postTypeTokens: tokens})
-  }
-
-  onSelectedPostsChange(tokens) {
-    // Array to hold references to selected posts objects.
-    let currentSelectedPosts = [];
-    tokens.forEach(token => {
-      let f = this.state.postsList.filter(post => post.title.rendered === token);
-      if (f.length > 0) {
-        currentSelectedPosts.push(f[0]);
-      }
-      f = this.state.selectedPosts.filter(post => post.title.rendered === token);
-      if (f.length > 0) {
-        currentSelectedPosts.push(f[0]);
-      }
-    });
-
-    const postIds = currentSelectedPosts.map(post => post.id);
-    this.props.onSelectedPostsChange(postIds);
-    this.setState({postsTokens: tokens, selectedPosts: currentSelectedPosts});
-  }
-
-  renderEdit() {
-    const {__} = wp.i18n;
-
-    const tagSuggestions = this.props.tagsList.map(tag => tag.name);
-    const postTypeSuggestions = this.props.postTypesList.map(postType => postType.name);
-
-    return (
-      <Fragment>
-        <div>
-          <TextControl
-            label={__('Title', 'p4ge')}
-            placeholder={__('Enter title', 'p4ge')}
-            help={__('Your default is set to [ Related Articles ]', 'p4ge')}
-            value={this.props.title}
-            onChange={this.props.onTitleChange}
-          />
-        </div>
-
-
-        <div>
-          <TextareaControl
-            label={__('Description', 'p4ge')}
-            placeholder={__('Enter description', 'p4ge')}
-            value={this.props.description}
-            onChange={this.props.onDescriptionChange}
-          />
-        </div>
-
-        <div>
-          <TextControl
-            label={__('Button Text', 'p4ge')}
-            placeholder={__('Override button text', 'p4ge')}
-            help={__('Your default is set to [ Load More ]', 'p4ge')}
-            value={this.props.read_more_text}
-            onChange={this.props.onReadmoretextChange}
-          />
-        </div>
-
-
-        <div>
-          <TextControl
-            label={__('Button Link', 'p4ge')}
-            placeholder={__('Add read more button link', 'p4ge')}
-            value={this.props.read_more_link}
-            onChange={this.props.onReadmorelinkChange}
-          />
-        </div>
-
-        <div>
-          <CheckboxControl
-            label={__('Open in a new Tab', 'p4ge')}
-            help={__('Open button link in new tab', 'p4ge')}
-            value={this.props.button_link_new_tab}
-            onChange={this.props.onButtonLinkTabChange}
-          />
-        </div>
-
-        {
-          this.props.posts !== 'undefined' && this.props.posts.length === 0
-            ?
-            <Fragment>
-              <div>
-                <TextControl
-                  label={__('Articles count', 'p4ge')}
-                  help={__('Number of articles', 'p4ge')}
-                  type="number"
-                  value={this.props.count}
-                  onChange={this.props.onCountChange}
-                />
-              </div>
-              <div>
-                <FormTokenField
-                  value={this.state.tagTokens}
-                  suggestions={tagSuggestions}
-                  label={__('Select Tags', 'p4ge')}
-                  onChange={tokens => this.onSelectedTagsChange(tokens)}
-                />
-                <p className='FieldHelp'>Associate this block with Actions that have specific Tags</p>
-              </div>
-              <div>
-                <FormTokenField
-                  value={this.state.postTypeTokens}
-                  suggestions={postTypeSuggestions}
-                  label={__('Post Types', 'p4ge')}
-                  onChange={tokens => this.onSelectedPostTypesChange(tokens)}
-                />
-              </div>
-              <div className="ignore-categories-wrapper">
-                <CheckboxControl
-                  label={__('Ignore categories', 'p4ge')}
-                  help={__('Ignore categories when filtering posts to populate the content of this block', 'p4ge')}
-                  value={this.props.ignore_categories}
-                  onChange={this.props.onIgnoreCategoriesChange}
-                />
-              </div>
-            </Fragment>
-            : null
-        }
-
-        {
-          (this.props.tags.length === 0 && this.props.post_types.length === 0)
-            ? <div>
-              <hr/>
-              <label>{__('Manual override', 'p4ge')}</label>
-              <FormTokenField
-                value={this.state.postsTokens}
-                suggestions={this.state.postsSuggestions}
-                label={__('CAUTION: Adding articles individually will override the automatic functionality of this block. For good user experience, please include at least three articles so that spacing and alignment of the design remains in tact.', 'p4ge')}
-                onChange={tokens => this.onSelectedPostsChange(tokens)}
-                onInputChange={tokens => this.onPostsSearch(tokens)}
-                placeholder="Select Posts"
-                maxLength="10"
-                maxSuggestions="20"
-              />
-            </div>
-            : null
-        }
-
-      </Fragment>
-    );
-  }
+export default class HeroImage extends Component {
 
   render() {
-    return (
-      <div>
-        {
-          this.props.isSelected
-            ? this.renderEdit()
-            : null
-        }
-        <Preview showBar={this.props.isSelected}>
-          <ServerSideRender
-            block={'planet4-blocks/articles'}
-            attributes={{
-              read_more_text: this.props.read_more_text,
-              read_more_link: this.props.read_more_link,
-              tags: this.props.tags,
-              post_types: this.props.post_types,
-              posts: this.props.posts,
-              title: this.props.title,
-              description: this.props.description,
-              count: this.props.count,
-              ignore_categories: this.props.ignore_categories,
-            }}>
-          </ServerSideRender>
-        </Preview>
-      </div>
-    );
+
+    const {
+      title,
+      subtitle,
+      image,
+      consent,
+      sign,
+      campaignpolicy,
+      thanktitle,
+      thanktext,
+      donatebuttontext,
+      donatebuttonlink,
+      hidesharingbuttons,
+      twittertext,
+      whatsapptext,
+      marketingcode,
+      literaturecode,
+      campaigncode,
+      countermin,
+      countermax,
+      countertext,
+      ga_action,
+      ad_campaign,
+      apref,
+      jalt_track,
+      form_id,
+      image_url,
+      onSelectImage,
+      onValueChange,
+    } = this.props;
+
+
+    return ([
+      <Fragment>
+          <TextControl
+            label={'Titel'}
+            onChange={onValueChange.bind('title')}
+            value={title}
+            placeholder={'Vul een titel in'}
+          />
+        <TextControl
+          label={'Ondertitel'}
+          onChange={onValueChange.bind('subtitle')}
+          value={subtitle}
+          placeholder={'Ondertitel'}
+        />
+        <TextareaControl
+          label={'Opt in tekst'}
+          onChange={onValueChange.bind('consent')}
+          value={consent}
+          placeholder={'Opt in tekst'}
+        />
+        <TextControl
+          label={'Teken knop'}
+          onChange={onValueChange.bind('sign')}
+          value={sign}
+          placeholder={'Teken knop'}
+        />
+        <TextControl
+          label={'Link naar actievoorwaarden'}
+          onChange={onValueChange.bind('campaignpolicy')}
+          value={campaignpolicy}
+          placeholder={'Link naar actievoorwaarden'}
+        />
+        <TextControl
+          label={'Bedankt titel'}
+          onChange={onValueChange.bind('thanktitle')}
+          value={thanktitle}
+          placeholder={'Bedankt titel'}
+        />
+        <TextareaControl
+          label={'Bedankt tekst'}
+          onChange={onValueChange.bind('thanktext')}
+          value={thanktext}
+          placeholder={'Bedankt tekst'}
+          help={'Deze tekst wordt getoond nadat iemand de petitie tekent.'}
+        />
+        <TextControl
+          label={'Doneerknop bij bedankttekst'}
+          onChange={onValueChange.bind('donatebuttontext')}
+          value={donatebuttontext}
+          placeholder={'Doneerknop bij bedankttekst'}
+          help={'Nadat iemand de petitie tekent wordt een doneerknop getoond waarin we vragen om financiële steun. De tekst op de knop kun je hier instellen.'}
+        />
+        <TextControl
+          label={'Link van doneerknop'}
+          onChange={onValueChange.bind('donatebuttonlink')}
+          value={donatebuttonlink}
+          placeholder={'Link van doneerknop'}
+          help={'Hiernaartoe verwijst de doneerknop. "/doneren" is de standaardpagina voor Greenpeace Nederland.'}
+        />
+        <CheckboxControl
+          label={'Verberg sharing button?'}
+          onChange={onValueChange.bind('hidesharingbuttons')}
+          value={hidesharingbuttons}
+          help={'Als dit aangevinkt is worden de sharing buttons niet getoond.'}
+        />
+        <TextControl
+          label={'Twitter tekst'}
+          onChange={onValueChange.bind('twittertext')}
+          value={twittertext}
+          placeholder={''}
+          help={'Deze tekst wordt getoond wanneer iemand na het tekenen de pagina deelt op twitter.'}
+        />
+        <TextControl
+          label={'Whatsapp text'}
+          onChange={onValueChange.bind('whatsapptext')}
+          value={whatsapptext}
+          placeholder={''}
+          help={'Deze tekst wordt getoond wanneer iemand na het tekenen de pagina deelt op whatsapp.'}
+        />
+        <TextControl
+          label={'Marketingcode'}
+          onChange={onValueChange.bind('marketingcode')}
+          value={marketingcode}
+          placeholder={''}
+          help={'Marketingcode.'}
+        />
+        <TextControl
+          label={'Literaturecode'}
+          onChange={onValueChange.bind('literaturecode')}
+          value={literaturecode}
+          placeholder={''}
+          help={'Literaturecode.'}
+        />
+        <TextControl
+          label={'Campaigncode'}
+          onChange={onValueChange.bind('campaigncode')}
+          value={campaigncode}
+          placeholder={''}
+          help={'Campaigncode.'}
+        />
+
+
+
+        <SelectControl
+          label={'Advertentiecampagne?'}
+          onChange={onValueChange.bind('ad_campaign')}
+          value={ad_campaign}
+          options={ [
+            { label: 'Greenpeace', value: 'GP' },
+            { label: 'Social Blue', value: 'SB' },
+            { label: 'Jalt', value: 'JA' },
+          ] }
+        />
+
+      </Fragment>
+    ])
   }
 }

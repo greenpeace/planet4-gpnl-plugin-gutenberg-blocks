@@ -97,6 +97,7 @@ final class Loader {
 			new Blocks\MediaVideo(),
 			new Blocks\Newsletter(),
 			new Blocks\Liveblogitem(),
+			new Blocks\Petition(),
 		];
 	}
 

@@ -1,168 +1,170 @@
-import {Petition} from './Petition.js';
+import React from 'react';
 import BaseBlock from "../../BaseBlock";
+import { ServerSideRender } from "@wordpress/components";
+import { Preview } from '../../../components/Preview/js/Preview';
+const { withSelect } = wp.data;
+import Petition from "./Petition";
 
-export class PetitionBlock extends BaseBlock  {
+
+export class PetitionBlock extends BaseBlock {
+
   constructor() {
     super();
 
     // Setup references to external functions
-    const {__} = wp.i18n;
-    const {registerBlockType} = wp.blocks;
-    const {withSelect} = wp.data;
-
+    const { __ } = wp.i18n;
+    const { registerBlockType } = wp.blocks;
 
     // Register the block
     registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
       title: this.blockName,
-      icon: 'format-image',
+      icon: 'welcome-widgets-menus',
       category: 'planet4-gpnl-blocks',
       keywords: [
         __(this.blockName),
-        __('hero'),
-        __('header'),
-        __('image'),
+        __('petitie'),
       ],
-      // This attributes definition mimics the one in the PHP side.
       attributes: {
         title: {
           type: 'string',
         },
-        description: {
+        subtitle: {
           type: 'string',
         },
-        count: {
-          type: 'integer',
-          default: 3
+        image: {
+          type: 'number',
         },
-        tags: {
-          type: 'array',
-          default: []
-        },
-        posts: {
-          type: 'array',
-          default: []
-        },
-        post_types: {
-          type: 'array',
-          default: []
-        },
-        read_more_text: {
-          type: 'string'
-        },
-        read_more_link: {
+        consent: {
           type: 'string',
-          default: ''
+          default: 'Als je dit aanvinkt, mag Greenpeace je per e-mail op de hoogte houden over onze campagnes. Ook vragen we je af en toe om steun. Afmelden kan natuurlijk altijd.'
         },
-        button_link_new_tab: {
+        sign: {
+          type: 'string',
+        },
+        campaignpolicy: {
+          type: 'string',
+        },
+        thanktitle: {
+          type: 'string',
+        },
+        thanktext: {
+          type: 'string',
+        },
+        donatebuttontext: {
+          type: 'string',
+          default: 'Doneer'
+        },
+        donatebuttonlink: {
+          type: 'string',
+          default: '/doneren'
+        },
+        hidesharingbuttons: {
           type: 'boolean',
-          default: false
-        }
+        },
+        twittertext: {
+          type: 'string',
+        },
+        whatsapptext: {
+          type: 'string',
+        },
+        marketingcode: {
+          type: 'string',
+        },
+        literaturecode: {
+          type: 'string',
+        },
+        campaigncode: {
+          type: 'string',
+        },
+        countermin: {
+          type: 'number',
+          default: 1000
+        },
+        countermax: {
+          type: 'number',
+        },
+        countertext: {
+          type: 'string',
+          default: 'handtekeningen'
+        },
+        ga_action: {
+          type: 'string',
+          default: 'Petitie'
+        },
+        ad_campaign: {
+          type: 'string',
+        },
+        apref: {
+          type: 'string',
+        },
+        jalt_track: {
+          type: 'string',
+        },
+        form_id: {
+          type: 'number',
+          default: 1
+        },
       },
-      // withSelect is a "Higher Order Component", it works as
-      // a Decorator, it will provide some basic API functionality
-      // through `select`.
-      edit: withSelect((select) => {
-        const tagsTaxonomy = 'post_tag';
-        const postTypesTaxonomy = 'p4-page-type';
-        const args = {
-          hide_empty: false,
-          per_page: 50,
-        };
-        const {getEntityRecords} = select('core');
 
-        // We should probably wrap all these in a single call,
-        // or maybe use our own way of retrieving data from the
-        // API, I don't know how this scales.
-        const tagsList = getEntityRecords('taxonomy', tagsTaxonomy, args);
-        const postTypesList = getEntityRecords('taxonomy', postTypesTaxonomy, args);
+      edit: withSelect((select, props) => {
+        const {attributes} = props;
+        const {image} = attributes;
+
+        let image_url = '';
+
+        if (image && (0 < image)) {
+          const image_object = wp.data.select('core').getMedia(image);
+          if (image_object) {
+            image_url = image_object.source_url;
+          }
+        }
 
         return {
-          postTypesList,
-          tagsList,
+          image_url
         };
-      })(({
-            postTypesList,
-            tagsList,
-            isSelected,
-            attributes,
-            setAttributes
-          }) => {
+      })(({ attributes, setAttributes, isSelected, image_url }) => {
 
-        if (!tagsList || !postTypesList) {
-          return "Populating block's fields...";
+        // Functions we want to call while editing to change attributes.
+        function onValueChange(value) {
+          setAttributes({[this]: value});
+        }
+        function onSelectImage(media) {
+          setAttributes({
+            image: media.id
+          });
         }
 
-        // TO-DO: Check for posts types and posts too...
-        if ((tagsList && tagsList.length === 0) || (postTypesList && postTypesList.length === 0)) {
-          return "Populating block's fields...";
+
+        // if the block is selected, the block-editor is rendered, otherwise the block is rendered server-side.
+        if (isSelected){
+          return ([
+            <Petition
+              {...attributes}
+              image_url={image_url}
+              onValueChange={onValueChange}
+              onSelectImage={onSelectImage}
+            />,
+              <Preview showBar={isSelected}>
+                <ServerSideRender
+                  block={'planet4-gpnl-blocks/' + this.blockNameKebabCase}
+                  attributes={attributes}
+                />
+              </Preview>
+              ]
+          )
+        } else {
+          return (
+            <ServerSideRender
+              block={'planet4-gpnl-blocks/' + this.blockNameKebabCase}
+              attributes={attributes}
+            />
+          )
         }
-
-        // These methods are passed down to the
-        // Articles component, they update the corresponding attribute.
-
-        function onTitleChange(value) {
-          setAttributes({title: value});
-        }
-
-        function onDescriptionChange(value) {
-          setAttributes({description: value});
-        }
-
-        function onReadmoretextChange(value) {
-          setAttributes({read_more_text: value});
-        }
-
-        function onCountChange(value) {
-          setAttributes({count: Number(value)});
-        }
-
-        function onReadmorelinkChange(value) {
-          setAttributes({read_more_link: value});
-        }
-
-        function onButtonLinkTabChange(value) {
-          setAttributes({button_link_new_tab: value});
-        }
-
-        function onSelectedTagsChange(tagIds) {
-          setAttributes({tags: tagIds});
-        }
-
-        function onSelectedPostsChange(value) {
-          setAttributes({posts: value});
-        }
-
-        function onSelectedPostTypesChange(postTypeIds) {
-          setAttributes({post_types: postTypeIds});
-        }
-
-        function onIgnoreCategoriesChange(value) {
-          setAttributes({ignore_categories: value});
-        }
-
-        // We pass down all the attributes to Covers as props using
-        // the spread operator. Then we selectively add more
-        // props.
-        return <Petition
-          {...attributes}
-          isSelected={isSelected}
-          tagsList={tagsList}
-          postTypesList={postTypesList}
-          onSelectedTagsChange={onSelectedTagsChange}
-          onTitleChange={onTitleChange}
-          onDescriptionChange={onDescriptionChange}
-          onCountChange={onCountChange}
-          onSelectedPostsChange={onSelectedPostsChange}
-          onSelectedPostTypesChange={onSelectedPostTypesChange}
-          onReadmoretextChange={onReadmoretextChange}
-          onReadmorelinkChange={onReadmorelinkChange}
-          onButtonLinkTabChange={onButtonLinkTabChange}
-          onIgnoreCategoriesChange={onIgnoreCategoriesChange}/>
       }),
-      save() {
-        return null;
-      }
+
+      // This is not used, because rendering is done server-side. The method has to be defined though for wordpress.
+      save: () => null,
+
     });
   };
 }
-
