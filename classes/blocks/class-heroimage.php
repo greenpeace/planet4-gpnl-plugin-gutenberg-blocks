@@ -2,7 +2,7 @@
 
 
 /**
- * Test block class
+ * Hero Image block class
  *
  * @package P4NL_GB_BKS
  * @since 0.1
@@ -52,6 +52,9 @@ class HeroImage extends Base_Block {
 					'link_url' => [
 						'type' => 'string',
 						'default' => '',
+					],
+					'focus_image' => [
+						'type' => 'string',
 					]
 				]
 

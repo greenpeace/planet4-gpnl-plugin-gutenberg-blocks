@@ -1,7 +1,7 @@
 import React from 'react';
 import BaseBlock from "../../BaseBlock";
 import { ServerSideRender } from "@wordpress/components";
-import HeroImageSelected from "./HeroImageSelected";
+import HeroImage from "./HeroImage";
 
 export class HeroImageBlock extends BaseBlock {
 
@@ -45,6 +45,9 @@ export class HeroImageBlock extends BaseBlock {
         is_small: {
           type: 'boolean',
         },
+        focus_image: {
+          type: 'string',
+        },
       },
 
       edit: ({ attributes, setAttributes, isSelected }) => {
@@ -60,13 +63,20 @@ export class HeroImageBlock extends BaseBlock {
           });
         }
 
+        function onFocalPointChange( {x,y} ) {
+          x = parseFloat(x).toFixed(2);
+          y = parseFloat(y).toFixed(2);
+          setAttributes({focus_image: (x*100)+'% '+(y*100)+'%'});
+        }
+
         // if the block is selected, the block-editor is rendered, otherwise the block is rendered server-side.
         if (isSelected){
           return (
-            <HeroImageSelected
+            <HeroImage
               {...attributes}
               onValueChange={onValueChange}
               onSelectImage={onSelectImage}
+              onFocalPointChange={onFocalPointChange}
             />
           )
         } else {
