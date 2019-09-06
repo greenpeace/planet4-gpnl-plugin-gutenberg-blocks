@@ -1,7 +1,9 @@
 import React from 'react';
 import BaseBlock from "../../BaseBlock";
-import { ServerSideRender } from "@wordpress/components";
+import {ServerSideRender} from "@wordpress/components";
 import HeroImage from "./HeroImage";
+const {withSelect} = wp.data;
+
 
 export class HeroImageBlock extends BaseBlock {
 
@@ -9,8 +11,8 @@ export class HeroImageBlock extends BaseBlock {
     super();
 
     // Setup references to external functions
-    const { __ } = wp.i18n;
-    const { registerBlockType } = wp.blocks;
+    const {__} = wp.i18n;
+    const {registerBlockType} = wp.blocks;
 
     // Register the block
     registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
@@ -33,9 +35,6 @@ export class HeroImageBlock extends BaseBlock {
         image_id: {
           type: 'number'
         },
-        image_url: {
-          type: 'string',
-        },
         link_text: {
           type: 'string'
         },
@@ -50,30 +49,49 @@ export class HeroImageBlock extends BaseBlock {
         },
       },
 
-      edit: ({ attributes, setAttributes, isSelected }) => {
+      edit: withSelect((select, props) => {
+        const {attributes} = props;
+        const {image_id} = attributes;
+
+        let image_url = '';
+
+        if (image_id && (0 < image_id)) {
+          const image_object = wp.data.select('core').getMedia(image_id);
+          if (image_object) {
+            image_url = image_object.source_url;
+          }
+        }
+
+        return {
+          image_url
+        };
+      })(({
+            attributes, setAttributes, isSelected, image_url
+          }) => {
 
         // Functions we want to call while editing to change attributes.
         function onValueChange(value) {
           setAttributes({[this]: value});
         }
+
         function onSelectImage(media) {
           setAttributes({
-            image_url: media.url,
             image_id: media.id
           });
         }
 
-        function onFocalPointChange( {x,y} ) {
+        function onFocalPointChange({x, y}) {
           x = parseFloat(x).toFixed(2);
           y = parseFloat(y).toFixed(2);
-          setAttributes({focus_image: (x*100)+'% '+(y*100)+'%'});
+          setAttributes({focus_image: (x * 100) + '% ' + (y * 100) + '%'});
         }
 
         // if the block is selected, the block-editor is rendered, otherwise the block is rendered server-side.
-        if (isSelected){
+        if (isSelected) {
           return (
             <HeroImage
               {...attributes}
+              image_url={image_url}
               onValueChange={onValueChange}
               onSelectImage={onSelectImage}
               onFocalPointChange={onFocalPointChange}
@@ -87,7 +105,8 @@ export class HeroImageBlock extends BaseBlock {
             />
           )
         }
-      },
+      })
+      ,
 
       // This is not used, because rendering is done server-side. The method has to be defined though for wordpress.
       save: () => null,

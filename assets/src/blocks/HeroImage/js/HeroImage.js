@@ -20,7 +20,6 @@ export default class HeroImage extends Component {
       onFocalPointChange,
     } = this.props;
 
-
     let focal_point_params = {x:'',y:''};
 
     if (focus_image) {
@@ -30,7 +29,6 @@ export default class HeroImage extends Component {
     } else {
       focal_point_params = {x:0.5, y:0.5};
     }
-
 
     const fields =
       <div className="page-template hero__wrapper ">

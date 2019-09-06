@@ -357,6 +357,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var withSelect = wp.data.withSelect;
 var HeroImageBlock =
 /*#__PURE__*/
 function (_BaseBlock) {
@@ -387,9 +388,6 @@ function (_BaseBlock) {
         image_id: {
           type: 'number'
         },
-        image_url: {
-          type: 'string'
-        },
         link_text: {
           type: 'string'
         },
@@ -403,10 +401,27 @@ function (_BaseBlock) {
           type: 'string'
         }
       },
-      edit: function edit(_ref) {
+      edit: withSelect(function (select, props) {
+        var attributes = props.attributes;
+        var image_id = attributes.image_id;
+        var image_url = '';
+
+        if (image_id && 0 < image_id) {
+          var image_object = wp.data.select('core').getMedia(image_id);
+
+          if (image_object) {
+            image_url = image_object.source_url;
+          }
+        }
+
+        return {
+          image_url: image_url
+        };
+      })(function (_ref) {
         var attributes = _ref.attributes,
             setAttributes = _ref.setAttributes,
-            isSelected = _ref.isSelected;
+            isSelected = _ref.isSelected,
+            image_url = _ref.image_url;
 
         // Functions we want to call while editing to change attributes.
         function onValueChange(value) {
@@ -415,7 +430,6 @@ function (_BaseBlock) {
 
         function onSelectImage(media) {
           setAttributes({
-            image_url: media.url,
             image_id: media.id
           });
         }
@@ -433,6 +447,7 @@ function (_BaseBlock) {
 
         if (isSelected) {
           return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_HeroImage__WEBPACK_IMPORTED_MODULE_10__["default"], _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({}, attributes, {
+            image_url: image_url,
             onValueChange: onValueChange,
             onSelectImage: onSelectImage,
             onFocalPointChange: onFocalPointChange
@@ -443,7 +458,7 @@ function (_BaseBlock) {
             attributes: attributes
           });
         }
-      },
+      }),
       // This is not used, because rendering is done server-side. The method has to be defined though for wordpress.
       save: function save() {
         return null;
@@ -1047,12 +1062,12 @@ function (_BaseBlock) {
 /*!***************************************************!*\
   !*** ./assets/src/blocks/Petition/js/Petition.js ***!
   \***************************************************/
-/*! exports provided: Petition */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Petition", function() { return Petition; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return HeroImage; });
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
@@ -1067,7 +1082,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _components_Preview_js_Preview__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../components/Preview/js/Preview */ "./assets/src/components/Preview/js/Preview.js");
+/* harmony import */ var _wordpress_editor__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/editor */ "@wordpress/editor");
+/* harmony import */ var _wordpress_editor__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_editor__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__);
 
@@ -1079,283 +1095,81 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _wp = wp,
-    apiFetch = _wp.apiFetch;
-var addQueryArgs = wp.url.addQueryArgs;
-var Petition =
+
+var HeroImage =
 /*#__PURE__*/
 function (_Component) {
-  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default()(Petition, _Component);
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default()(HeroImage, _Component);
 
-  function Petition(props) {
-    var _this;
+  function HeroImage() {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, HeroImage);
 
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Petition);
-
-    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default()(Petition).call(this, props)); // Populate tag tokens for saved tags.
-
-    var tagTokens = props.tagsList.filter(function (tag) {
-      return props.tags.includes(tag.id);
-    }).map(function (tag) {
-      return tag.name;
-    }); // Populate post types tokens for saved post types.
-
-    var postTypeTokens = props.postTypesList.filter(function (post_type) {
-      return props.post_types.includes(post_type.id);
-    }).map(function (post_type) {
-      return post_type.name;
-    });
-    _this.state = {
-      tagTokens: tagTokens,
-      postTypeTokens: postTypeTokens,
-      selectedPosts: []
-    };
-
-    _this.populatePostsToken();
-
-    return _this;
+    return _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default()(HeroImage).apply(this, arguments));
   }
-  /**
-   * Set component's state for existing blocks.
-   */
 
-
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Petition, [{
-    key: "populatePostsToken",
-    value: function populatePostsToken() {
-      var _this2 = this;
-
-      if (this.props.posts.length > 0) {
-        apiFetch({
-          path: addQueryArgs('/wp/v2/posts', {
-            per_page: 50,
-            page: 1,
-            include: this.props.posts
-          })
-        }).then(function (posts) {
-          var postsTokens = posts.map(function (post) {
-            return post.title.rendered;
-          });
-          var postsSuggestions = posts.map(function (post) {
-            return post.title.rendered;
-          });
-
-          _this2.setState({
-            postsTokens: postsTokens,
-            postsList: posts,
-            postsSuggestions: postsSuggestions,
-            selectedPosts: posts
-          });
-        });
-      } else {
-        this.setState({
-          postsTokens: [],
-          postsList: [],
-          postsSuggestions: [],
-          selectedPosts: []
-        });
-      }
-    }
-    /**
-     * Search posts using wp api.
-     *
-     * @param tokens
-     */
-
-  }, {
-    key: "onPostsSearch",
-    value: function onPostsSearch(tokens) {
-      var _this3 = this;
-
-      apiFetch({
-        path: addQueryArgs('/wp/v2/posts', {
-          per_page: 50,
-          page: 1,
-          search: tokens,
-          orderby: 'title',
-          post_status: 'publish'
-        })
-      }).then(function (posts) {
-        var postsSuggestions = posts.map(function (post) {
-          return post.title.rendered;
-        });
-
-        _this3.setState({
-          postsSuggestions: postsSuggestions,
-          postsList: posts
-        });
-      });
-    }
-  }, {
-    key: "onSelectedTagsChange",
-    value: function onSelectedTagsChange(tokens) {
-      var _this4 = this;
-
-      var tagIds = tokens.map(function (token) {
-        return _this4.props.tagsList.filter(function (tag) {
-          return tag.name === token;
-        })[0].id;
-      });
-      this.props.onSelectedTagsChange(tagIds);
-      this.setState({
-        tagTokens: tokens
-      });
-    }
-  }, {
-    key: "onSelectedPostTypesChange",
-    value: function onSelectedPostTypesChange(tokens) {
-      var _this5 = this;
-
-      var postTypeIds = tokens.map(function (token) {
-        return _this5.props.postTypesList.filter(function (postType) {
-          return postType.name === token;
-        })[0].id;
-      });
-      this.props.onSelectedPostTypesChange(postTypeIds);
-      this.setState({
-        postTypeTokens: tokens
-      });
-    }
-  }, {
-    key: "onSelectedPostsChange",
-    value: function onSelectedPostsChange(tokens) {
-      var _this6 = this;
-
-      // Array to hold references to selected posts objects.
-      var currentSelectedPosts = [];
-      tokens.forEach(function (token) {
-        var f = _this6.state.postsList.filter(function (post) {
-          return post.title.rendered === token;
-        });
-
-        if (f.length > 0) {
-          currentSelectedPosts.push(f[0]);
-        }
-
-        f = _this6.state.selectedPosts.filter(function (post) {
-          return post.title.rendered === token;
-        });
-
-        if (f.length > 0) {
-          currentSelectedPosts.push(f[0]);
-        }
-      });
-      var postIds = currentSelectedPosts.map(function (post) {
-        return post.id;
-      });
-      this.props.onSelectedPostsChange(postIds);
-      this.setState({
-        postsTokens: tokens,
-        selectedPosts: currentSelectedPosts
-      });
-    }
-  }, {
-    key: "renderEdit",
-    value: function renderEdit() {
-      var _this7 = this;
-
-      var __ = wp.i18n.__;
-      var tagSuggestions = this.props.tagsList.map(function (tag) {
-        return tag.name;
-      });
-      var postTypeSuggestions = this.props.postTypesList.map(function (postType) {
-        return postType.name;
-      });
-      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(react__WEBPACK_IMPORTED_MODULE_6__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
-        label: __('Title', 'p4ge'),
-        placeholder: __('Enter title', 'p4ge'),
-        help: __('Your default is set to [ Related Articles ]', 'p4ge'),
-        value: this.props.title,
-        onChange: this.props.onTitleChange
-      })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextareaControl"], {
-        label: __('Description', 'p4ge'),
-        placeholder: __('Enter description', 'p4ge'),
-        value: this.props.description,
-        onChange: this.props.onDescriptionChange
-      })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
-        label: __('Button Text', 'p4ge'),
-        placeholder: __('Override button text', 'p4ge'),
-        help: __('Your default is set to [ Load More ]', 'p4ge'),
-        value: this.props.read_more_text,
-        onChange: this.props.onReadmoretextChange
-      })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
-        label: __('Button Link', 'p4ge'),
-        placeholder: __('Add read more button link', 'p4ge'),
-        value: this.props.read_more_link,
-        onChange: this.props.onReadmorelinkChange
-      })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["CheckboxControl"], {
-        label: __('Open in a new Tab', 'p4ge'),
-        help: __('Open button link in new tab', 'p4ge'),
-        value: this.props.button_link_new_tab,
-        onChange: this.props.onButtonLinkTabChange
-      })), this.props.posts !== 'undefined' && this.props.posts.length === 0 ? Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(react__WEBPACK_IMPORTED_MODULE_6__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
-        label: __('Articles count', 'p4ge'),
-        help: __('Number of articles', 'p4ge'),
-        type: "number",
-        value: this.props.count,
-        onChange: this.props.onCountChange
-      })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["FormTokenField"], {
-        value: this.state.tagTokens,
-        suggestions: tagSuggestions,
-        label: __('Select Tags', 'p4ge'),
-        onChange: function onChange(tokens) {
-          return _this7.onSelectedTagsChange(tokens);
-        }
-      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("p", {
-        className: "FieldHelp"
-      }, "Associate this block with Actions that have specific Tags")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["FormTokenField"], {
-        value: this.state.postTypeTokens,
-        suggestions: postTypeSuggestions,
-        label: __('Post Types', 'p4ge'),
-        onChange: function onChange(tokens) {
-          return _this7.onSelectedPostTypesChange(tokens);
-        }
-      })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
-        className: "ignore-categories-wrapper"
-      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["CheckboxControl"], {
-        label: __('Ignore categories', 'p4ge'),
-        help: __('Ignore categories when filtering posts to populate the content of this block', 'p4ge'),
-        value: this.props.ignore_categories,
-        onChange: this.props.onIgnoreCategoriesChange
-      }))) : null, this.props.tags.length === 0 && this.props.post_types.length === 0 ? Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("hr", null), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("label", null, __('Manual override', 'p4ge')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["FormTokenField"], {
-        value: this.state.postsTokens,
-        suggestions: this.state.postsSuggestions,
-        label: __('CAUTION: Adding articles individually will override the automatic functionality of this block. For good user experience, please include at least three articles so that spacing and alignment of the design remains in tact.', 'p4ge'),
-        onChange: function onChange(tokens) {
-          return _this7.onSelectedPostsChange(tokens);
-        },
-        onInputChange: function onInputChange(tokens) {
-          return _this7.onPostsSearch(tokens);
-        },
-        placeholder: "Select Posts",
-        maxLength: "10",
-        maxSuggestions: "20"
-      })) : null);
-    }
-  }, {
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(HeroImage, [{
     key: "render",
     value: function render() {
-      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", null, this.props.isSelected ? this.renderEdit() : null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_components_Preview_js_Preview__WEBPACK_IMPORTED_MODULE_7__["Preview"], {
-        showBar: this.props.isSelected
-      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["ServerSideRender"], {
-        block: 'planet4-blocks/articles',
-        attributes: {
-          read_more_text: this.props.read_more_text,
-          read_more_link: this.props.read_more_link,
-          tags: this.props.tags,
-          post_types: this.props.post_types,
-          posts: this.props.posts,
-          title: this.props.title,
-          description: this.props.description,
-          count: this.props.count,
-          ignore_categories: this.props.ignore_categories
-        }
-      })));
+      var _this$props = this.props,
+          title = _this$props.title,
+          description = _this$props.description,
+          consent = _this$props.consent,
+          sign = _this$props.sign,
+          campaignpolicy = _this$props.campaignpolicy,
+          thanktitle = _this$props.thanktitle,
+          thanktext = _this$props.thanktext,
+          donatebuttontext = _this$props.donatebuttontext,
+          onValueChange = _this$props.onValueChange;
+      return [Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(react__WEBPACK_IMPORTED_MODULE_6__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Titel',
+        onChange: onValueChange.bind('title'),
+        value: title,
+        placeholder: 'Vul een titel in'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Ondertitel',
+        onChange: onValueChange.bind('subtitle'),
+        value: description,
+        placeholder: 'Ondertitel'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextareaControl"], {
+        label: 'Opt in tekst',
+        onChange: onValueChange.bind('consent'),
+        value: consent,
+        placeholder: 'Opt in tekst'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Teken knop',
+        onChange: onValueChange.bind('sign'),
+        value: sign,
+        placeholder: 'Teken knop'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Link naar actievoorwaarden',
+        onChange: onValueChange.bind('campaignpolicy'),
+        value: campaignpolicy,
+        placeholder: 'Link naar actievoorwaarden'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Bedankt titel',
+        onChange: onValueChange.bind('thanktitle'),
+        value: thanktitle,
+        placeholder: 'Bedankt titel'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextareaControl"], {
+        label: 'Bedankt tekst',
+        onChange: onValueChange.bind('thanktext'),
+        value: thanktext,
+        placeholder: 'Bedankt tekst',
+        help: 'Deze tekst wordt getoond nadat iemand de petitie tekent.'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Doneerknop bij bedankttekst',
+        onChange: onValueChange.bind('donatebuttontext'),
+        value: donatebuttontext,
+        placeholder: 'Doneerknop bij bedankttekst',
+        help: 'Nadat iemand de petitie tekent wordt een doneerknop getoond waarin we vragen om financiële steun. De tekst op de knop kun je hier instellen.'
+      }))];
     }
   }]);
 
-  return Petition;
+  return HeroImage;
 }(react__WEBPACK_IMPORTED_MODULE_6__["Component"]);
+
+
 
 /***/ }),
 
@@ -1371,18 +1185,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PetitionBlock", function() { return PetitionBlock; });
 /* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js");
 /* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js");
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _Petition_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Petition.js */ "./assets/src/blocks/Petition/js/Petition.js");
-/* harmony import */ var _BaseBlock__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../BaseBlock */ "./assets/src/blocks/BaseBlock.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js");
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _BaseBlock__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../BaseBlock */ "./assets/src/blocks/BaseBlock.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _Petition__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Petition */ "./assets/src/blocks/Petition/js/Petition.js");
+/* harmony import */ var _components_Preview_js_Preview__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../components/Preview/js/Preview */ "./assets/src/components/Preview/js/Preview.js");
+
+
+
+
 
 
 
@@ -1394,180 +1219,90 @@ __webpack_require__.r(__webpack_exports__);
 var PetitionBlock =
 /*#__PURE__*/
 function (_BaseBlock) {
-  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default()(PetitionBlock, _BaseBlock);
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5___default()(PetitionBlock, _BaseBlock);
 
   function PetitionBlock() {
     var _this;
 
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default()(this, PetitionBlock);
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default()(this, PetitionBlock);
 
-    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default()(PetitionBlock).call(this)); // Setup references to external functions
+    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(PetitionBlock).call(this)); // Setup references to external functions
 
     var __ = wp.i18n.__;
-    var registerBlockType = wp.blocks.registerBlockType;
-    var withSelect = wp.data.withSelect; // Register the block
+    var registerBlockType = wp.blocks.registerBlockType; // Register the block
 
     registerBlockType('planet4-gpnl-blocks/' + _this.blockNameKebabCase, {
       title: _this.blockName,
-      icon: 'format-image',
+      icon: 'welcome-widgets-menus',
       category: 'planet4-gpnl-blocks',
       keywords: [__(_this.blockName), __('hero'), __('header'), __('image')],
-      // This attributes definition mimics the one in the PHP side.
       attributes: {
         title: {
           type: 'string'
         },
-        description: {
+        subtitle: {
           type: 'string'
         },
-        count: {
-          type: 'integer',
-          default: 3
+        image_id: {
+          type: 'number'
         },
-        tags: {
-          type: 'array',
-          default: []
-        },
-        posts: {
-          type: 'array',
-          default: []
-        },
-        post_types: {
-          type: 'array',
-          default: []
-        },
-        read_more_text: {
-          type: 'string'
-        },
-        read_more_link: {
+        consent: {
           type: 'string',
-          default: ''
+          default: 'Als je dit aanvinkt, mag Greenpeace je per e-mail op de hoogte houden over onze campagnes. Ook vragen we je af en toe om steun. Afmelden kan natuurlijk altijd.'
         },
-        button_link_new_tab: {
-          type: 'boolean',
-          default: false
+        sign: {
+          type: 'string'
+        },
+        campaignpolicy: {
+          type: 'string'
+        },
+        thanktitle: {
+          type: 'string'
+        },
+        thanktext: {
+          type: 'string'
+        },
+        donatebuttontext: {
+          type: 'string',
+          default: 'Doneer'
         }
       },
-      // withSelect is a "Higher Order Component", it works as
-      // a Decorator, it will provide some basic API functionality
-      // through `select`.
-      edit: withSelect(function (select) {
-        var tagsTaxonomy = 'post_tag';
-        var postTypesTaxonomy = 'p4-page-type';
-        var args = {
-          hide_empty: false,
-          per_page: 50
-        };
+      edit: function edit(_ref) {
+        var attributes = _ref.attributes,
+            setAttributes = _ref.setAttributes,
+            isSelected = _ref.isSelected;
 
-        var _select = select('core'),
-            getEntityRecords = _select.getEntityRecords; // We should probably wrap all these in a single call,
-        // or maybe use our own way of retrieving data from the
-        // API, I don't know how this scales.
-
-
-        var tagsList = getEntityRecords('taxonomy', tagsTaxonomy, args);
-        var postTypesList = getEntityRecords('taxonomy', postTypesTaxonomy, args);
-        return {
-          postTypesList: postTypesList,
-          tagsList: tagsList
-        };
-      })(function (_ref) {
-        var postTypesList = _ref.postTypesList,
-            tagsList = _ref.tagsList,
-            isSelected = _ref.isSelected,
-            attributes = _ref.attributes,
-            setAttributes = _ref.setAttributes;
-
-        if (!tagsList || !postTypesList) {
-          return "Populating block's fields...";
-        } // TO-DO: Check for posts types and posts too...
-
-
-        if (tagsList && tagsList.length === 0 || postTypesList && postTypesList.length === 0) {
-          return "Populating block's fields...";
-        } // These methods are passed down to the
-        // Articles component, they update the corresponding attribute.
-
-
-        function onTitleChange(value) {
-          setAttributes({
-            title: value
-          });
+        // Functions we want to call while editing to change attributes.
+        function onValueChange(value) {
+          setAttributes(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()({}, this, value));
         }
 
-        function onDescriptionChange(value) {
+        function onSelectImage(media) {
           setAttributes({
-            description: value
+            image_url: media.url,
+            image_id: media.id
+          });
+        } // if the block is selected, the block-editor is rendered, otherwise the block is rendered server-side.
+
+
+        if (isSelected) {
+          return [Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_Petition__WEBPACK_IMPORTED_MODULE_10__["default"], _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({}, attributes, {
+            onValueChange: onValueChange // onSelectImage={onSelectImage}
+
+          })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_components_Preview_js_Preview__WEBPACK_IMPORTED_MODULE_11__["Preview"], {
+            showBar: isSelected
+          }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_9__["ServerSideRender"], {
+            block: 'planet4-gpnl-blocks/' + _this.blockNameKebabCase,
+            attributes: attributes
+          }))];
+        } else {
+          return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_9__["ServerSideRender"], {
+            block: 'planet4-gpnl-blocks/' + _this.blockNameKebabCase,
+            attributes: attributes
           });
         }
-
-        function onReadmoretextChange(value) {
-          setAttributes({
-            read_more_text: value
-          });
-        }
-
-        function onCountChange(value) {
-          setAttributes({
-            count: Number(value)
-          });
-        }
-
-        function onReadmorelinkChange(value) {
-          setAttributes({
-            read_more_link: value
-          });
-        }
-
-        function onButtonLinkTabChange(value) {
-          setAttributes({
-            button_link_new_tab: value
-          });
-        }
-
-        function onSelectedTagsChange(tagIds) {
-          setAttributes({
-            tags: tagIds
-          });
-        }
-
-        function onSelectedPostsChange(value) {
-          setAttributes({
-            posts: value
-          });
-        }
-
-        function onSelectedPostTypesChange(postTypeIds) {
-          setAttributes({
-            post_types: postTypeIds
-          });
-        }
-
-        function onIgnoreCategoriesChange(value) {
-          setAttributes({
-            ignore_categories: value
-          });
-        } // We pass down all the attributes to Covers as props using
-        // the spread operator. Then we selectively add more
-        // props.
-
-
-        return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_Petition_js__WEBPACK_IMPORTED_MODULE_6__["Petition"], _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({}, attributes, {
-          isSelected: isSelected,
-          tagsList: tagsList,
-          postTypesList: postTypesList,
-          onSelectedTagsChange: onSelectedTagsChange,
-          onTitleChange: onTitleChange,
-          onDescriptionChange: onDescriptionChange,
-          onCountChange: onCountChange,
-          onSelectedPostsChange: onSelectedPostsChange,
-          onSelectedPostTypesChange: onSelectedPostTypesChange,
-          onReadmoretextChange: onReadmoretextChange,
-          onReadmorelinkChange: onReadmorelinkChange,
-          onButtonLinkTabChange: onButtonLinkTabChange,
-          onIgnoreCategoriesChange: onIgnoreCategoriesChange
-        }));
-      }),
+      },
+      // This is not used, because rendering is done server-side. The method has to be defined though for wordpress.
       save: function save() {
         return null;
       }
@@ -1576,7 +1311,7 @@ function (_BaseBlock) {
   }
 
   return PetitionBlock;
-}(_BaseBlock__WEBPACK_IMPORTED_MODULE_7__["default"]);
+}(_BaseBlock__WEBPACK_IMPORTED_MODULE_8__["default"]);
 
 /***/ }),
 
