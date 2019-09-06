@@ -377,7 +377,7 @@ function (_BaseBlock) {
       title: _this.blockName,
       icon: 'format-image',
       category: 'planet4-gpnl-blocks',
-      keywords: [__(_this.blockName), __('hero'), __('header'), __('image')],
+      keywords: [__(_this.blockName), __('hero'), __('header'), __('image'), __('afbeelding'), __('held')],
       attributes: {
         title: {
           type: 'string'
@@ -1112,13 +1112,31 @@ function (_Component) {
     value: function render() {
       var _this$props = this.props,
           title = _this$props.title,
-          description = _this$props.description,
+          subtitle = _this$props.subtitle,
+          image = _this$props.image,
           consent = _this$props.consent,
           sign = _this$props.sign,
           campaignpolicy = _this$props.campaignpolicy,
           thanktitle = _this$props.thanktitle,
           thanktext = _this$props.thanktext,
           donatebuttontext = _this$props.donatebuttontext,
+          donatebuttonlink = _this$props.donatebuttonlink,
+          hidesharingbuttons = _this$props.hidesharingbuttons,
+          twittertext = _this$props.twittertext,
+          whatsapptext = _this$props.whatsapptext,
+          marketingcode = _this$props.marketingcode,
+          literaturecode = _this$props.literaturecode,
+          campaigncode = _this$props.campaigncode,
+          countermin = _this$props.countermin,
+          countermax = _this$props.countermax,
+          countertext = _this$props.countertext,
+          ga_action = _this$props.ga_action,
+          ad_campaign = _this$props.ad_campaign,
+          apref = _this$props.apref,
+          jalt_track = _this$props.jalt_track,
+          form_id = _this$props.form_id,
+          image_url = _this$props.image_url,
+          onSelectImage = _this$props.onSelectImage,
           onValueChange = _this$props.onValueChange;
       return [Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(react__WEBPACK_IMPORTED_MODULE_6__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
         label: 'Titel',
@@ -1128,7 +1146,7 @@ function (_Component) {
       }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
         label: 'Ondertitel',
         onChange: onValueChange.bind('subtitle'),
-        value: description,
+        value: subtitle,
         placeholder: 'Ondertitel'
       }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextareaControl"], {
         label: 'Opt in tekst',
@@ -1162,6 +1180,61 @@ function (_Component) {
         value: donatebuttontext,
         placeholder: 'Doneerknop bij bedankttekst',
         help: 'Nadat iemand de petitie tekent wordt een doneerknop getoond waarin we vragen om financiële steun. De tekst op de knop kun je hier instellen.'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Link van doneerknop',
+        onChange: onValueChange.bind('donatebuttonlink'),
+        value: donatebuttonlink,
+        placeholder: 'Link van doneerknop',
+        help: 'Hiernaartoe verwijst de doneerknop. "/doneren" is de standaardpagina voor Greenpeace Nederland.'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["CheckboxControl"], {
+        label: 'Verberg sharing button?',
+        onChange: onValueChange.bind('hidesharingbuttons'),
+        value: hidesharingbuttons,
+        help: 'Als dit aangevinkt is worden de sharing buttons niet getoond.'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Twitter tekst',
+        onChange: onValueChange.bind('twittertext'),
+        value: twittertext,
+        placeholder: '',
+        help: 'Deze tekst wordt getoond wanneer iemand na het tekenen de pagina deelt op twitter.'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Whatsapp text',
+        onChange: onValueChange.bind('whatsapptext'),
+        value: whatsapptext,
+        placeholder: '',
+        help: 'Deze tekst wordt getoond wanneer iemand na het tekenen de pagina deelt op whatsapp.'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Marketingcode',
+        onChange: onValueChange.bind('marketingcode'),
+        value: marketingcode,
+        placeholder: '',
+        help: 'Marketingcode.'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Literaturecode',
+        onChange: onValueChange.bind('literaturecode'),
+        value: literaturecode,
+        placeholder: '',
+        help: 'Literaturecode.'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Campaigncode',
+        onChange: onValueChange.bind('campaigncode'),
+        value: campaigncode,
+        placeholder: '',
+        help: 'Campaigncode.'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["SelectControl"], {
+        label: 'Advertentiecampagne?',
+        onChange: onValueChange.bind('ad_campaign'),
+        value: ad_campaign,
+        options: [{
+          label: 'Greenpeace',
+          value: 'GP'
+        }, {
+          label: 'Social Blue',
+          value: 'SB'
+        }, {
+          label: 'Jalt',
+          value: 'JA'
+        }]
       }))];
     }
   }]);
@@ -1202,8 +1275,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _BaseBlock__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../BaseBlock */ "./assets/src/blocks/BaseBlock.js");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _Petition__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Petition */ "./assets/src/blocks/Petition/js/Petition.js");
-/* harmony import */ var _components_Preview_js_Preview__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../components/Preview/js/Preview */ "./assets/src/components/Preview/js/Preview.js");
+/* harmony import */ var _components_Preview_js_Preview__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../components/Preview/js/Preview */ "./assets/src/components/Preview/js/Preview.js");
+/* harmony import */ var _Petition__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Petition */ "./assets/src/blocks/Petition/js/Petition.js");
 
 
 
@@ -1215,6 +1288,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var withSelect = wp.data.withSelect;
 
 var PetitionBlock =
 /*#__PURE__*/
@@ -1235,7 +1309,7 @@ function (_BaseBlock) {
       title: _this.blockName,
       icon: 'welcome-widgets-menus',
       category: 'planet4-gpnl-blocks',
-      keywords: [__(_this.blockName), __('hero'), __('header'), __('image')],
+      keywords: [__(_this.blockName), __('petitie')],
       attributes: {
         title: {
           type: 'string'
@@ -1243,7 +1317,7 @@ function (_BaseBlock) {
         subtitle: {
           type: 'string'
         },
-        image_id: {
+        image: {
           type: 'number'
         },
         consent: {
@@ -1265,12 +1339,79 @@ function (_BaseBlock) {
         donatebuttontext: {
           type: 'string',
           default: 'Doneer'
+        },
+        donatebuttonlink: {
+          type: 'string',
+          default: '/doneren'
+        },
+        hidesharingbuttons: {
+          type: 'boolean'
+        },
+        twittertext: {
+          type: 'string'
+        },
+        whatsapptext: {
+          type: 'string'
+        },
+        marketingcode: {
+          type: 'string'
+        },
+        literaturecode: {
+          type: 'string'
+        },
+        campaigncode: {
+          type: 'string'
+        },
+        countermin: {
+          type: 'number',
+          default: 1000
+        },
+        countermax: {
+          type: 'number'
+        },
+        countertext: {
+          type: 'string',
+          default: 'handtekeningen'
+        },
+        ga_action: {
+          type: 'string',
+          default: 'Petitie'
+        },
+        ad_campaign: {
+          type: 'string'
+        },
+        apref: {
+          type: 'string'
+        },
+        jalt_track: {
+          type: 'string'
+        },
+        form_id: {
+          type: 'number',
+          default: 1
         }
       },
-      edit: function edit(_ref) {
+      edit: withSelect(function (select, props) {
+        var attributes = props.attributes;
+        var image = attributes.image;
+        var image_url = '';
+
+        if (image && 0 < image) {
+          var image_object = wp.data.select('core').getMedia(image);
+
+          if (image_object) {
+            image_url = image_object.source_url;
+          }
+        }
+
+        return {
+          image_url: image_url
+        };
+      })(function (_ref) {
         var attributes = _ref.attributes,
             setAttributes = _ref.setAttributes,
-            isSelected = _ref.isSelected;
+            isSelected = _ref.isSelected,
+            image_url = _ref.image_url;
 
         // Functions we want to call while editing to change attributes.
         function onValueChange(value) {
@@ -1279,17 +1420,17 @@ function (_BaseBlock) {
 
         function onSelectImage(media) {
           setAttributes({
-            image_url: media.url,
-            image_id: media.id
+            image: media.id
           });
         } // if the block is selected, the block-editor is rendered, otherwise the block is rendered server-side.
 
 
         if (isSelected) {
-          return [Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_Petition__WEBPACK_IMPORTED_MODULE_10__["default"], _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({}, attributes, {
-            onValueChange: onValueChange // onSelectImage={onSelectImage}
-
-          })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_components_Preview_js_Preview__WEBPACK_IMPORTED_MODULE_11__["Preview"], {
+          return [Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_Petition__WEBPACK_IMPORTED_MODULE_11__["default"], _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({}, attributes, {
+            image_url: image_url,
+            onValueChange: onValueChange,
+            onSelectImage: onSelectImage
+          })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_components_Preview_js_Preview__WEBPACK_IMPORTED_MODULE_10__["Preview"], {
             showBar: isSelected
           }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_9__["ServerSideRender"], {
             block: 'planet4-gpnl-blocks/' + _this.blockNameKebabCase,
@@ -1301,7 +1442,7 @@ function (_BaseBlock) {
             attributes: attributes
           });
         }
-      },
+      }),
       // This is not used, because rendering is done server-side. The method has to be defined though for wordpress.
       save: function save() {
         return null;

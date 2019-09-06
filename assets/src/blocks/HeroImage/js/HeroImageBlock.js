@@ -24,6 +24,8 @@ export class HeroImageBlock extends BaseBlock {
         __('hero'),
         __('header'),
         __('image'),
+        __('afbeelding'),
+        __('held'),
       ],
       attributes: {
         title: {
