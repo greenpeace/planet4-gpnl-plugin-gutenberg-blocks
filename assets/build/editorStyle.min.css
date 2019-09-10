@@ -224,5 +224,8 @@ and so on...
     cursor: pointer;
     text-decoration: none; }
 
+.panel-body--warning {
+  color: red; }
+
 
 /*# sourceMappingURL=editorStyle.min.css.map*/

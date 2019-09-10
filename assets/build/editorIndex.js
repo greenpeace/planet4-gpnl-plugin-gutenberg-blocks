@@ -163,7 +163,7 @@ function (_Component) {
           link_url = _this$props.link_url,
           image_id = _this$props.image_id,
           image_url = _this$props.image_url,
-          is_small = _this$props.is_small,
+          small = _this$props.small,
           focus_image = _this$props.focus_image,
           onValueChange = _this$props.onValueChange,
           onSelectImage = _this$props.onSelectImage,
@@ -271,7 +271,7 @@ function (_Component) {
 
       var heroClass = "hero";
 
-      if (is_small === true) {
+      if (small === true) {
         heroClass = "hero hero__small";
       }
 
@@ -295,9 +295,9 @@ function (_Component) {
       }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_9__["ToggleControl"], {
         label: 'small header',
         help: 'When selected, the header height will be smaller than normal. Also, the abstract / description text will no longer appear!',
-        value: is_small,
-        checked: is_small,
-        onChange: onValueChange.bind('is_small')
+        value: small,
+        checked: small,
+        onChange: onValueChange.bind('small')
       })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_9__["PanelBody"], {
         title: 'Focal point'
       }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_9__["FocalPointPicker"], {
@@ -394,7 +394,7 @@ function (_BaseBlock) {
         link_url: {
           type: 'string'
         },
-        is_small: {
+        small: {
           type: 'boolean'
         },
         focus_image: {
@@ -1110,6 +1110,8 @@ function (_Component) {
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(HeroImage, [{
     key: "render",
     value: function render() {
+      var _this = this;
+
       var _this$props = this.props,
           title = _this$props.title,
           subtitle = _this$props.subtitle,
@@ -1137,7 +1139,32 @@ function (_Component) {
           form_id = _this$props.form_id,
           image_url = _this$props.image_url,
           onSelectImage = _this$props.onSelectImage,
-          onValueChange = _this$props.onValueChange;
+          onValueChange = _this$props.onValueChange,
+          onNumberChange = _this$props.onNumberChange;
+
+      var getImageOrButton = function getImageOrButton(openEvent) {
+        if (_this.props.id && 0 < _this.props.id) {
+          return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
+            align: "center"
+          }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("img", {
+            src: image_url,
+            onClick: openEvent,
+            className: "happypoint__imgs",
+            width: '400px',
+            style: {
+              padding: '10px 10px'
+            }
+          }));
+        } else {
+          return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("div", {
+            className: "button-container"
+          }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["Button"], {
+            onClick: openEvent,
+            className: "button"
+          }, "+ ", 'Select Background Image'));
+        }
+      };
+
       return [Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(react__WEBPACK_IMPORTED_MODULE_6__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
         label: 'Titel',
         onChange: onValueChange.bind('title'),
@@ -1221,6 +1248,39 @@ function (_Component) {
         value: campaigncode,
         placeholder: '',
         help: 'Campaigncode.'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Counter min',
+        onChange: onNumberChange.bind('countermin'),
+        value: countermin,
+        help: 'Het minimale aantaal ondertekeningen voordat de counter getoond wordt.'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Counter max',
+        onChange: onNumberChange.bind('countermax'),
+        value: countermax,
+        type: 'Number',
+        help: 'Tot hoeveel ondertekeningen wordt er geteld?'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Counter tekst',
+        onChange: onValueChange.bind('countertext'),
+        value: countertext,
+        placeholder: '',
+        help: 'De tekst naast het aantal.'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_editor__WEBPACK_IMPORTED_MODULE_7__["MediaUploadCheck"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_editor__WEBPACK_IMPORTED_MODULE_7__["MediaUpload"], {
+        type: "image",
+        onSelect: onSelectImage,
+        value: image,
+        render: function render(_ref) {
+          var open = _ref.open;
+          return getImageOrButton(open);
+        }
+      })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_editor__WEBPACK_IMPORTED_MODULE_7__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["PanelBody"], {
+        title: 'Geavanceerde instellingen'
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("strong", {
+        className: "panel-body--warning"
+      }, "LET OP! De instellingen hieronder alleen gebruiken als je weet wat ze doen en waar ze voor zijn!"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Google Analytics action',
+        onChange: onValueChange.bind('ga_action'),
+        value: ga_action
       }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["SelectControl"], {
         label: 'Advertentiecampagne?',
         onChange: onValueChange.bind('ad_campaign'),
@@ -1235,7 +1295,22 @@ function (_Component) {
           label: 'Jalt',
           value: 'JA'
         }]
-      }))];
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Social blue _apRef',
+        onChange: onValueChange.bind('apref'),
+        value: apref,
+        help: 'Vul hier de _apRef uit de Social Blue pixel bedankpagina in.'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Jalt tracking identifier',
+        onChange: onValueChange.bind('jalt_track'),
+        value: jalt_track,
+        help: 'Vul hier de tracking identifier van Jalt in.'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["RangeControl"], {
+        label: 'Formulier ID',
+        onChange: onValueChange.bind('form_id'),
+        value: form_id,
+        help: 'Gebruik dit als er meerdere petitieformulieren op 1 pagina staan. Elk formulier moet een uniek numeriek id hebben.'
+      }))))];
     }
   }]);
 
@@ -1310,6 +1385,7 @@ function (_BaseBlock) {
       icon: 'welcome-widgets-menus',
       category: 'planet4-gpnl-blocks',
       keywords: [__(_this.blockName), __('petitie')],
+      // in reality, for the image only the imageId is stored. With the higher order function 'withSelect' the imageUrl is retrieved.
       attributes: {
         title: {
           type: 'string'
@@ -1367,7 +1443,7 @@ function (_BaseBlock) {
           default: 1000
         },
         countermax: {
-          type: 'number'
+          type: 'integer'
         },
         countertext: {
           type: 'string',
@@ -1378,13 +1454,15 @@ function (_BaseBlock) {
           default: 'Petitie'
         },
         ad_campaign: {
-          type: 'string'
+          type: 'string',
+          default: 'GP'
         },
         apref: {
           type: 'string'
         },
         jalt_track: {
-          type: 'string'
+          type: 'string',
+          default: 'lead'
         },
         form_id: {
           type: 'number',
@@ -1418,6 +1496,10 @@ function (_BaseBlock) {
           setAttributes(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()({}, this, value));
         }
 
+        function onNumberChange(value) {
+          setAttributes(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()({}, this, Number(value)));
+        }
+
         function onSelectImage(media) {
           setAttributes({
             image: media.id
@@ -1429,6 +1511,7 @@ function (_BaseBlock) {
           return [Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_Petition__WEBPACK_IMPORTED_MODULE_11__["default"], _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({}, attributes, {
             image_url: image_url,
             onValueChange: onValueChange,
+            onNumberChange: onNumberChange,
             onSelectImage: onSelectImage
           })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_components_Preview_js_Preview__WEBPACK_IMPORTED_MODULE_10__["Preview"], {
             showBar: isSelected

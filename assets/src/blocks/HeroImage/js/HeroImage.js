@@ -13,7 +13,7 @@ export default class HeroImage extends Component {
       link_url,
       image_id,
       image_url,
-      is_small,
+      small,
       focus_image,
       onValueChange,
       onSelectImage,
@@ -103,7 +103,7 @@ export default class HeroImage extends Component {
     };
 
     let heroClass = "hero";
-    if (is_small === true) {
+    if (small === true) {
       heroClass = "hero hero__small"
     }
     return ([
@@ -123,9 +123,9 @@ export default class HeroImage extends Component {
           <ToggleControl
             label={'small header'}
             help={'When selected, the header height will be smaller than normal. Also, the abstract / description text will no longer appear!'}
-            value={is_small}
-            checked={is_small}
-            onChange={onValueChange.bind('is_small')}
+            value={small}
+            checked={small}
+            onChange={onValueChange.bind('small')}
           />
         </PanelBody>
 

@@ -24,6 +24,7 @@ export class PetitionBlock extends BaseBlock {
         __(this.blockName),
         __('petitie'),
       ],
+      // in reality, for the image only the imageId is stored. With the higher order function 'withSelect' the imageUrl is retrieved.
       attributes: {
         title: {
           type: 'string',
@@ -81,7 +82,7 @@ export class PetitionBlock extends BaseBlock {
           default: 1000
         },
         countermax: {
-          type: 'number',
+          type: 'integer',
         },
         countertext: {
           type: 'string',
@@ -93,12 +94,14 @@ export class PetitionBlock extends BaseBlock {
         },
         ad_campaign: {
           type: 'string',
+          default: 'GP'
         },
         apref: {
           type: 'string',
         },
         jalt_track: {
           type: 'string',
+          default: 'lead'
         },
         form_id: {
           type: 'number',
@@ -128,6 +131,11 @@ export class PetitionBlock extends BaseBlock {
         function onValueChange(value) {
           setAttributes({[this]: value});
         }
+
+        function onNumberChange(value) {
+          setAttributes({[this]: Number(value)});
+        }
+
         function onSelectImage(media) {
           setAttributes({
             image: media.id
@@ -142,6 +150,7 @@ export class PetitionBlock extends BaseBlock {
               {...attributes}
               image_url={image_url}
               onValueChange={onValueChange}
+              onNumberChange={onNumberChange}
               onSelectImage={onSelectImage}
             />,
               <Preview showBar={isSelected}>

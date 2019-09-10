@@ -6,17 +6,25 @@ const TerserJSPlugin = require('terser-webpack-plugin');
 module.exports = {
   ...defaultConfig,
   entry: {
+    // assets for the editor (backend)
     editorIndex: './assets/src/editor/js/editorIndex.js',
-	editorStyle: './assets/src/editor/scss/editor-styles.scss',
+    editorStyle: './assets/src/editor/scss/editor-styles.scss',
 
-	// Separate css files are generated for the blocks so they can be used only when required on public pages.
+    // assets that are used in the petition block.
+    jaltLanding: './assets/src/blocks/Petition/js/jalt-landing.js',
+    socialBlueLanding: './assets/src/blocks/Petition/js/social-blue-landing.js',
+    onload: './assets/src/blocks/Petition/js/onload.js',
+    onsubmit: './assets/src/blocks/Petition/js/onsubmit.js',
+
+    // Separate css files are generated for the blocks so they can be used only when required on public pages.
     heroImage: './assets/src/blocks/HeroImage/scss/hero-image.scss',
     quote: './assets/src/blocks/Quote/scss/quote.scss',
-	newsletter: './assets/src/blocks/Newsletter/scss/newsletter.scss',
-	test: './assets/src/blocks/Test/scss/test.scss',
-	  // media: './assets/src/blocks/Media/scss/media.scss',
+    newsletter: './assets/src/blocks/Newsletter/scss/newsletter.scss',
+    petition: './assets/src/blocks/Petition/scss/petition.scss',
+    test: './assets/src/blocks/Test/scss/test.scss',
+    // media: './assets/src/blocks/Media/scss/media.scss',
 
-	newsletterFormSubmit: './assets/src/blocks/Newsletter/js/NewsletterFormSubmit.js',
+    newsletterFormSubmit: './assets/src/blocks/Newsletter/js/NewsletterFormSubmit.js',
 
   },
   output: {

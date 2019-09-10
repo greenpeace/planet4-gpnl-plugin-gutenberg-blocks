@@ -43,7 +43,7 @@ export class HeroImageBlock extends BaseBlock {
         link_url: {
           type: 'string',
         },
-        is_small: {
+        small: {
           type: 'boolean',
         },
         focus_image: {

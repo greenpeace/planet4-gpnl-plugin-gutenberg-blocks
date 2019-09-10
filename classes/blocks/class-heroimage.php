@@ -33,12 +33,8 @@ class HeroImage extends Base_Block {
 						'type' => 'text',
 						'default' => '',
 					],
-					'is_small' => [
+					'small' => [
 						'type' => 'boolean',
-						'default' => '',
-					],
-					'image_url' => [
-						'type' => 'string',
 						'default' => '',
 					],
 					'image_id' => [

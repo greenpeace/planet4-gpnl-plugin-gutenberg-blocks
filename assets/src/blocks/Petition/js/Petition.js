@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import {RichText, MediaUpload, MediaUploadCheck, InspectorControls, BlockControls} from "@wordpress/editor";
-import {TextControl, TextareaControl, SelectControl, CheckboxControl, Button, PanelBody, ToggleControl, FocalPointPicker} from '@wordpress/components';
+import {TextControl, TextareaControl, SelectControl, CheckboxControl, RangeControl, Button, PanelBody, ToggleControl, FocalPointPicker} from '@wordpress/components';
 
 
 export default class HeroImage extends Component {
@@ -35,7 +35,38 @@ export default class HeroImage extends Component {
       image_url,
       onSelectImage,
       onValueChange,
+      onNumberChange,
     } = this.props;
+
+    const getImageOrButton = (openEvent) => {
+      if ( this.props.id && ( 0 < this.props.id ) ) {
+
+        return (
+
+          <div align='center'>
+            <img
+              src={ image_url }
+              onClick={ openEvent }
+              className='happypoint__imgs'
+              width={'400px'}
+              style={{padding: '10px 10px'}}
+            />
+          </div>
+
+        );
+      }
+      else {
+        return (
+          <div className='button-container'>
+            <Button
+              onClick={ openEvent }
+              className='button'>
+              + {'Select Background Image'}
+            </Button>
+          </div>
+        );
+      }
+    };
 
 
     return ([
@@ -139,9 +170,49 @@ export default class HeroImage extends Component {
           help={'Campaigncode.'}
         />
 
+        <TextControl
+          label={'Counter min'}
+          onChange={onNumberChange.bind('countermin')}
+          value={countermin}
+          help={'Het minimale aantaal ondertekeningen voordat de counter getoond wordt.'}
+        />
+        <TextControl
+          label={'Counter max'}
+          onChange={onNumberChange.bind('countermax')}
+          value={countermax}
+          type={'Number'}
+          help={'Tot hoeveel ondertekeningen wordt er geteld?'}
+        />
+        <TextControl
+          label={'Counter tekst'}
+          onChange={onValueChange.bind('countertext')}
+          value={countertext}
+          placeholder={''}
+          help={'De tekst naast het aantal.'}
+        />
+
+        <MediaUploadCheck>
+          <MediaUpload
+            type="image"
+            onSelect={onSelectImage}
+            value={image}
+            render={({open}) => getImageOrButton(open)}
+          />
+        </MediaUploadCheck>
 
 
-        <SelectControl
+
+        <InspectorControls>
+          <PanelBody title={'Geavanceerde instellingen'}>
+            <strong className="panel-body--warning">LET OP! De instellingen hieronder alleen gebruiken als je weet wat ze doen en waar ze voor zijn!</strong>
+
+            <TextControl
+              label={'Google Analytics action'}
+              onChange={onValueChange.bind('ga_action')}
+              value={ga_action}
+            />
+
+  <SelectControl
           label={'Advertentiecampagne?'}
           onChange={onValueChange.bind('ad_campaign')}
           value={ad_campaign}
@@ -151,6 +222,29 @@ export default class HeroImage extends Component {
             { label: 'Jalt', value: 'JA' },
           ] }
         />
+
+            <TextControl
+              label={'Social blue _apRef'}
+              onChange={onValueChange.bind('apref')}
+              value={apref}
+              help={'Vul hier de _apRef uit de Social Blue pixel bedankpagina in.'}
+            />
+            <TextControl
+              label={'Jalt tracking identifier'}
+              onChange={onValueChange.bind('jalt_track')}
+              value={jalt_track}
+              help={'Vul hier de tracking identifier van Jalt in.'}
+            />
+            <RangeControl
+              label={'Formulier ID'}
+              onChange={onValueChange.bind('form_id')}
+              value={form_id}
+              help={'Gebruik dit als er meerdere petitieformulieren op 1 pagina staan. Elk formulier moet een uniek numeriek id hebben.'}
+            />
+
+
+          </PanelBody>
+        </InspectorControls>
 
       </Fragment>
     ])
