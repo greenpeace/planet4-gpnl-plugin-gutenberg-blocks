@@ -77,7 +77,7 @@ export default class HeroImage extends Component {
             value={title}
             placeholder={'Vul een titel in'}
           />
-        <TextControl
+        <TextareaControl
           label={'Ondertitel'}
           onChange={onValueChange.bind('subtitle')}
           value={subtitle}

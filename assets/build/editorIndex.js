@@ -1170,7 +1170,7 @@ function (_Component) {
         onChange: onValueChange.bind('title'),
         value: title,
         placeholder: 'Vul een titel in'
-      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextareaControl"], {
         label: 'Ondertitel',
         onChange: onValueChange.bind('subtitle'),
         value: subtitle,

@@ -1,13 +1,8 @@
-// Global styles
-@import "../../styleguide/src/base/variables";
-@import "../../styleguide/src/base/colors";
-@import "../../styleguide/src/base/functions";
-@import "../../styleguide/src/base/mixins";
-
 // Block styles
 @import "../../blocks/Quote/scss/quote";
 @import "../../blocks/HeroImage/scss/hero-image";
 @import "../../blocks/Newsletter/scss/newsletter";
+@import "../../blocks/Petition/scss/petition-editor";
 @import "../../blocks/Test/scss/test";
 
 // General editor styles

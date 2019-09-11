@@ -31,7 +31,6 @@
 				</div>
 				<div class="col-lg-6 order-first order-lg-last gpnl-petition-wrapper card">
 					<div class="card-body">
-
 						{% if ( fields.title ) %}
 							<div class="petition-title">
 								<h2 class="card-title">{{ fields.title }}</h2>
@@ -50,7 +49,7 @@
 									Bel onze Supporter Care via 0800-4223344 of stuur een mail via <a href="https://www.greenpeace.org/nl/contact/contact-formulier/">dit contactformulier.</a>
 								</p>
 							</noscript>
-							<div class="gpnl-petition-form front" style="display:none;">
+							<div class="gpnl-petition-form front hidden-when-no-js-enabled">
 								<div class="counter">
 									<div class="counter__slider"></div>
 									<div class="counter__text">
@@ -98,7 +97,7 @@
 								</form>
 							</div>
 							{# Used for hiding the petitionform, unless JS is enabled #}
-							<script>jQuery('.gpnl-petition-form').show();</script>
+							<script>jQuery('.gpnl-petition-form').removeClass('hidden-when-no-js-enabled');</script>
 							<div class="gpnl-petition-thank back">
 								<div class="card">
 									<div class="card-body">

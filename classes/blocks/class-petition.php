@@ -170,6 +170,7 @@ class Petition extends Base_Block {
 
 		// Setting values as defaults that are not automatically saved by gutenberg (even though some default values are defined in the block, but these are not saved to the db).
 		$fields['ad_campaign'] = ( empty( $fields['ad_campaign'] ) ) ? 'GP' : $fields['ad_campaign'];
+		$fields['consent']  = ( empty( $fields['consent'] ) ) ? "Als je dit aanvinkt, mag Greenpeace je per e-mail op de hoogte houden over onze campagnes. Ook vragen we je af en toe om steun. Afmelden kan natuurlijk altijd." : $fields['consent'];
 		$fields['countermin']  = ( empty( $fields['countermin'] ) ) ? 1000 : $fields['countermin'];
 		$fields['countermax']  = ( empty( $fields['countermax'] ) ) ? 5000 : $fields['countermax'];
 		$fields['apref']       = ( empty( $fields['apref'] ) ) ? 1000 : $fields['apref'];

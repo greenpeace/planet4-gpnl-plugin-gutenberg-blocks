@@ -126,5 +126,8 @@ h2.card-title {
 .hidden-when-no-js-enabled {
   display: none; }
 
+.hidden-when-no-js-enabled {
+  display: block; }
 
-/*# sourceMappingURL=petition.min.css.map*/
+
+/*# sourceMappingURL=petitionEditor.min.css.map*/
