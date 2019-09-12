@@ -82,7 +82,7 @@ export default class HeroImage extends Component {
           }}>
             <BlockControls>
               <div className={'components-toolbar'}>
-                <a className={'components-toolbar-text-button'} onClick={openEvent}>change background image</a>
+                <a className={'components-toolbar-text-button'} onClick={openEvent}>verander achtergrondafbeelding</a>
               </div>
             </BlockControls>
             {fields}
@@ -129,9 +129,9 @@ export default class HeroImage extends Component {
           />
         </PanelBody>
 
-        <PanelBody title={'Focal point'}>
+        <PanelBody title={'Focus punt'}>
           <FocalPointPicker
-            help={'Set the focal point to where your subject is on the image. On smaller screens, this part of the image will be shown.'}
+            help={'Plaats het focus punt op het onderwerp van deze afbeelding. Op kleinere monitors (zoals op telefoons) zal het focus punt zichtbaar zijn.'}
             url={image_url}
             value={focal_point_params}
             onChange={onFocalPointChange}

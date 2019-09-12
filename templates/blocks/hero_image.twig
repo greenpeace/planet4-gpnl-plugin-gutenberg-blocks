@@ -2,7 +2,7 @@
 
 	{% if ( fields ) %}
 
-		<section class="hero {% if ( fields.is_small ) %}hero__small{% endif %}"
+		<section class="hero {% if ( fields.small ) %}hero__small{% endif %}"
 				 style="background-image: url('{{ fields.image_url }}');
 					 background-position: {{ fields.focus_image | default }}; ">
 

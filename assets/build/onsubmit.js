@@ -96,54 +96,39 @@ $('.gpnl-petitionform').on('submit', function () {
     data: post_form_value,
     success: function success(data) {
       // eslint-disable-next-line no-console
-      console.log('^-^');
-      var phone = post_form_value.phone,
-          consent = post_form_value.consent;
-      var optin = 'on' === consent;
-      var phoneFilled = '' !== phone;
-      var phonetmp = data['data']['phoneresult'];
-      var phoneResult = false === phonetmp || true === phonetmp ? phonetmp : null;
-      var mailtmp = data['data']['mailresult'];
-      var mailResult = false === mailtmp || true === mailtmp ? mailtmp : null; // Send conversion event to the GTM
+      console.log('^-^'); // Send conversion event to the GTM
 
       if (typeof dataLayer !== 'undefined') {
-        // New conversion object
-        dataLayer.push({
-          'event': 'RegisterComplete',
-          'campaign': window[form_config].analytics_campaign,
-          'action': window[form_config].ga_action,
-          'emailKnown': mailResult,
-          'telKnown': phoneResult,
-          'telFilled': phoneFilled,
-          'optin': optin
-        }); // Temp old stuff to compare
-
         dataLayer.push({
           'event': 'petitiebutton',
           'conv_campaign': window[form_config].analytics_campaign,
           'conv_action': window[form_config].ga_action,
           'conv_label': 'registreer'
-        }); // if consent was given by entering phonenumber
+        });
+      } // if consent was given by entering phonenumber
 
-        if (phoneFilled) {
-          // Send conversion event to the GTM
-          // Temp old stuff to compare
+
+      if (post_form_value.phone !== '') {
+        // Send conversion event to the GTM
+        if (typeof dataLayer !== 'undefined') {
           dataLayer.push({
             'event': 'petitiebutton',
             'conv_campaign': window[form_config].analytics_campaign,
             'conv_action': 'telnr',
             'conv_label': 'Ja'
-          }); // If an ad campaign is run by an external company fire the conversiontracking
+          });
+        } // If an ad campaign is run by an external company fire the conversiontracking
 
-          if (window[form_config].ad_campaign === 'SB') {
-            fbq('track', 'Lead'); // if it is run by social blue, also deduplicate
 
-            socialBlueDeDuplicate(post_form_value['mail'], data['data']['phonesanitized'], window[form_config].apref);
-          } else if (window[form_config].ad_campaign === 'JA') {
-            fbq('track', window[form_config].jalt_track);
-          }
-        } else {
-          // Temp old stuff to compare
+        if (window[form_config].ad_campaign === 'SB') {
+          fbq('track', 'Lead'); // if it is run by social blue, also deduplicate
+
+          socialBlueDeDuplicate(post_form_value['mail'], data['data']['phone'], window[form_config].apref);
+        } else if (window[form_config].ad_campaign === 'JA') {
+          fbq('track', window[form_config].jalt_track);
+        }
+      } else {
+        if (typeof dataLayer !== 'undefined') {
           dataLayer.push({
             'event': 'petitiebutton',
             'conv_campaign': window[form_config].analytics_campaign,

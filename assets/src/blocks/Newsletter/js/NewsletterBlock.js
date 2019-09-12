@@ -1,95 +1,129 @@
+import React from 'react';
 import BaseBlock from "../../BaseBlock";
-import { Newsletter } from "./Newsletter";
+import {ServerSideRender} from "@wordpress/components";
+import Newsletter from "./Newsletter";
+const {withSelect} = wp.data;
+
 
 export class NewsletterBlock extends BaseBlock {
 
-	constructor() {
-		super();
+  constructor() {
+    super();
 
-		// Setup references to external functions
-		const {__} = wp.i18n;
-		const { registerBlockType } = wp.blocks;
-		const blockNameKebabCase = this.blockNameKebabCase;
+    // Setup references to external functions
+    const {__} = wp.i18n;
+    const {registerBlockType} = wp.blocks;
 
-		// Register the block
-		registerBlockType('planet4-gpnl-blocks/' + this.blockNameLowerCase, {
+    // Register the block
+    registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
+      title: this.blockName,
+      icon: 'format-image',
+      category: 'planet4-gpnl-blocks',
+      keywords: [
+        __(this.blockName),
+        __('subscription'),
+        __('nieuwsbrief'),
+      ],
+      attributes: {
+        title: {
+          type: 'string',
+        },
+        subtitle: {
+          type: 'string',
+        },
+        background: {
+          type: 'number'
+        },
+        opacity: {
+          type: 'number',
+          default: 30,
+        },
+        focus_image: {
+          type: 'string',
+        },
+        marketingcode: {
+          type: 'string',
+        },
+        literaturecode: {
+          type: 'string',
+        },
+        screenid: {
+          type: 'string',
+        },
+        form_id: {
+          type: 'number',
+          default: 1,
+        },
 
-			title: this.blockName,
-			category: 'planet4-gpnl-blocks',
-			keywords: [
-				__(this.blockName),
-				__('news'),
-				__('subscription'),
-				__('email'),
-			],
-			attributes: {
-				title: {
-					type: 'string',
-				},
-				subtitle: {
-					type: 'string',
-				},
-				backgroundimage_id: {
-					type: 'number'
-				},
-				backgroundimage_url: {
-					type: 'string',
-				},
-				backgroundimage_opacity: {
-					type: 'number'
-				},
-				marketingcode: {
-					type: 'string',
-				},
-				literaturecode: {
-					type: 'boolean',
-				},
-				screenid: {
-					type: 'text',
-				},
-				form_id: {
-					type: 'number',
-				}
-			},
+      },
 
-			edit({
-					 attributes, 		// - The block's attributes
-					 setAttributes,    	// - Method to set the attributes
-					 isSelected        	// - Handy flag to toggle the edit view
-				 })
-			{
-				function onTitleChange(value) {
-					setAttributes({title: value});
-				}
-				function onSubtitleChange(value) {
-					setAttributes({subtitle: value});
-				}
-				function onMarketingcodeChange(value) {
-					setAttributes({marketingcode: value});
-				}
-				function onLiteraturecodeChange(value) {
-					setAttributes({literaturecode: value});
-				}
-				function onSelectImage(media) {
-					setAttributes({
-						backgroundimage_id: media.id,
-						backgroundimage_url: media.url
-					});
-				}
+      edit: withSelect((select, props) => {
+        const {attributes} = props;
+        const {background} = attributes;
 
-				return <Newsletter
-					{...attributes}
-					blockNameKebabCase={blockNameKebabCase}
-					isSelected={isSelected}
-					onTitleChange={onTitleChange}
-					onSubtitleChange={onSubtitleChange}
-					onMarketingcodeChange={onMarketingcodeChange}
-					onLiteraturecodeChange={onLiteraturecodeChange}
-					onSelectImage={onSelectImage}
-				/>;
-			},
+        let image_url = '';
 
-			save: () => null,
-		});
-	};
+        if (background && (0 < background)) {
+          const image_object = wp.data.select('core').getMedia(background);
+          if (image_object) {
+            image_url = image_object.source_url;
+          }
+        }
+
+        return {
+          image_url
+        };
+      })(({
+            attributes, setAttributes, isSelected, image_url
+          }) => {
+
+        // Functions we want to call while editing to change attributes.
+        function onValueChange(value) {
+          setAttributes({[this]: value});
+        }
+
+        function onNumberChange(value) {
+          setAttributes({[this]: Number(value)});
+        }
+
+        function onSelectImage(media) {
+          setAttributes({
+            background: media.id
+          });
+        }
+
+        function onFocalPointChange({x, y}) {
+          x = parseFloat(x).toFixed(2);
+          y = parseFloat(y).toFixed(2);
+          setAttributes({focus_image: (x * 100) + '% ' + (y * 100) + '%'});
+        }
+
+        // if the block is selected, the block-editor is rendered, otherwise the block is rendered server-side.
+        if (isSelected) {
+          return (
+            <Newsletter
+              {...attributes}
+              image_url={image_url}
+              onValueChange={onValueChange}
+              onNumberChange={onNumberChange}
+              onSelectImage={onSelectImage}
+              onFocalPointChange={onFocalPointChange}
+            />
+          )
+        } else {
+          return (
+            <ServerSideRender
+              block={'planet4-gpnl-blocks/' + this.blockNameKebabCase}
+              attributes={attributes}
+            />
+          )
+        }
+      })
+      ,
+
+      // This is not used, because rendering is done server-side. The method has to be defined though for wordpress.
+      save: () => null,
+
+    });
+  };
 }

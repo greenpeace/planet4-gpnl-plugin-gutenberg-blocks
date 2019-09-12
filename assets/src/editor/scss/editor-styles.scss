@@ -1,8 +1,8 @@
 // Block styles
 @import "../../blocks/Quote/scss/quote";
 @import "../../blocks/HeroImage/scss/hero-image";
-@import "../../blocks/Newsletter/scss/newsletter";
 @import "../../blocks/Petition/scss/petition-editor";
+@import "../../blocks/Newsletter/scss/newsletter";
 @import "../../blocks/Test/scss/test";
 
 // General editor styles
@@ -30,3 +30,7 @@
   color: red;
 }
 
+// unsetting the width of the slider which is otherwise messed up by twitter bootstrap.
+.components-range-control__slider {
+  width: unset;
+}

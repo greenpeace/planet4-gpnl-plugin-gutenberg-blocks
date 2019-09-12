@@ -5,30 +5,44 @@ and so on...
 */
 /* stylelint-disable value-keyword-case*/
 .gpnl-newsletter__block {
-  margin: 54px calc(50% - 50vw) 0;
-  border-bottom: 3px solid #66cc00;
+  overflow: hidden;
+  background-size: cover;
+  margin: 32px calc(50% - 50vw) 0;
   max-width: 100vw;
   width: 100vw; }
+  .gpnl-newsletter__block .background-image {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 calc(50% - 50vw) 0;
+    width: 100vw;
+    height: 100%; }
+
+.newsletter__block {
+  margin-bottom: 0; }
 
 .gpnl-newsletter__wrapper {
-  padding: 0 !important;
-  margin: 0 auto; }
+  margin: 48px 0 32px;
+  padding: 0 !important; }
 
-.happy-point-block-wrap {
+.gpnl-newsletter__block {
   height: unset; }
-  .happy-point-block-wrap div.form-group {
+  .gpnl-newsletter__block div.form-group {
     margin-bottom: 0; }
-  .happy-point-block-wrap input.form-control {
+  .gpnl-newsletter__block input.form-control {
     margin-bottom: 15px; }
-  .happy-point-block-wrap .gpnl-newsletter__text {
+  .gpnl-newsletter__block .gpnl-newsletter__text {
     margin-top: 20px; }
-    .happy-point-block-wrap .gpnl-newsletter__text h2 {
+    .gpnl-newsletter__block .gpnl-newsletter__text h2 {
       margin-bottom: 15px;
       padding: 15px;
       background-color: white;
       width: max-content;
       max-width: 100%; }
-    .happy-point-block-wrap .gpnl-newsletter__text p {
+    .gpnl-newsletter__block .gpnl-newsletter__text .gpnl-newsletter__description {
       line-height: unset;
       font-size: unset;
       color: white;
@@ -37,12 +51,12 @@ and so on...
       background-color: #003300;
       max-width: 100%;
       text-align: left; }
-  .happy-point-block-wrap .gpnl-newsletter__form {
+  .gpnl-newsletter__block .gpnl-newsletter__form {
     margin: 15px 15px 15px 0; }
-    .happy-point-block-wrap .gpnl-newsletter__form .submit-button-newsletter {
+    .gpnl-newsletter__block .gpnl-newsletter__form .submit-button-newsletter {
       line-height: 2;
       margin: 0; }
-  .happy-point-block-wrap .input__human {
+  .gpnl-newsletter__block .input__human {
     display: none; }
 
 

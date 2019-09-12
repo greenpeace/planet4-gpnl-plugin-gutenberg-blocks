@@ -39,6 +39,7 @@ class Petition extends Base_Block {
 					],
 					'sign' => [
 						'type' => 'text',
+						'default' => 'teken',
 					],
 					'campaignpolicy' => [
 						'type' => 'text',
@@ -169,15 +170,17 @@ class Petition extends Base_Block {
 	public function prepare_data( $fields ) : array {
 
 		// Setting values as defaults that are not automatically saved by gutenberg (even though some default values are defined in the block, but these are not saved to the db).
-		$fields['ad_campaign'] = ( empty( $fields['ad_campaign'] ) ) ? 'GP' : $fields['ad_campaign'];
-		$fields['consent']  = ( empty( $fields['consent'] ) ) ? "Als je dit aanvinkt, mag Greenpeace je per e-mail op de hoogte houden over onze campagnes. Ook vragen we je af en toe om steun. Afmelden kan natuurlijk altijd." : $fields['consent'];
-		$fields['countermin']  = ( empty( $fields['countermin'] ) ) ? 1000 : $fields['countermin'];
-		$fields['countermax']  = ( empty( $fields['countermax'] ) ) ? 5000 : $fields['countermax'];
-		$fields['apref']       = ( empty( $fields['apref'] ) ) ? 1000 : $fields['apref'];
-		$fields['countertext'] = ( empty( $fields['countertext'] ) ) ? 'handtekeningen' : $fields['countertext'];
-		$fields['ga_action']   = ( empty( $fields['ga_action'] ) ) ? 'Petitie' : $fields['ga_action'];
-		$fields['jalt_track']  = ( empty( $fields['jalt_track'] ) ) ? 'Lead' : $fields['jalt_track'];
-//		$fields['form_id']     = ( empty( $fields['form_id'] ) ) ? 1 : $fields['form_id'];
+		$fields['ad_campaign']  = ( empty( $fields['ad_campaign'] ) ) ? 'GP' : $fields['ad_campaign'];
+		$fields['consent']      = ( empty( $fields['consent'] ) ) ? "Als je dit aanvinkt, mag Greenpeace je per e-mail op de hoogte houden over onze campagnes. Ook vragen we je af en toe om steun. Afmelden kan natuurlijk altijd." : $fields['consent'];
+		$fields['countermin']   = ( empty( $fields['countermin'] ) ) ? 1000 : $fields['countermin'];
+		$fields['countermax']   = ( empty( $fields['countermax'] ) ) ? 5000 : $fields['countermax'];
+		$fields['apref']        = ( empty( $fields['apref'] ) ) ? 1000 : $fields['apref'];
+		$fields['countertext']  = ( empty( $fields['countertext'] ) ) ? 'handtekeningen' : $fields['countertext'];
+		$fields['ga_action']    = ( empty( $fields['ga_action'] ) ) ? 'Petitie' : $fields['ga_action'];
+		$fields['jalt_track']   = ( empty( $fields['jalt_track'] ) ) ? 'Lead' : $fields['jalt_track'];
+		$fields['form_id']      = ( empty( $fields['form_id'] ) ) ? 1 : $fields['form_id'];
+		$fields['twittertext']  = ( empty( $fields['twittertext'] ) ) ? '' : $fields['twittertext'];
+		$fields['campaigncode'] = ( empty( $fields['campaigncode'] ) ) ? '' : $fields['campaigncode'];
 
 
 //		echo '<pre>', var_dump($fields) , '</pre>';

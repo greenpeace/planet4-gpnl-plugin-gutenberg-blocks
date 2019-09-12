@@ -1,61 +1,81 @@
 @import "../../../base/base.scss";
 
 .gpnl-newsletter__block {
-	margin: 54px calc(50% - 50vw) 0;
-	border-bottom: 3px solid $light-green;
-	max-width: 100vw;
-	width: 100vw;
+  overflow: hidden;
+  background-size: cover;
+  margin: 32px calc(50% - 50vw) 0;
+  max-width: 100vw;
+  width: 100vw;
+
+  .background-image {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 calc(50% - 50vw) 0;
+    width: 100vw;
+    height: 100%;
+  }
+}
+
+.newsletter__block {
+  margin-bottom: 0;
 }
 
 .gpnl-newsletter__wrapper {
-	padding: 0 !important;
-	margin: 0 auto;
+  margin: 48px 0 32px;
+  padding: 0 !important;
 }
 
-.happy-point-block-wrap {
-	height: unset;
+.gpnl-newsletter__block {
+  height: unset;
 
-	div.form-group {
-		margin-bottom: 0;
-	}
+  div.form-group {
+    margin-bottom: 0;
+  }
 
-	input.form-control {
-		margin-bottom: 15px;
-	}
+  input.form-control {
+    margin-bottom: 15px;
+  }
 
-	.gpnl-newsletter__text {
-		margin-top: 20px;
+  .gpnl-newsletter__text {
+    margin-top: 20px;
 
-		h2 {
-			margin-bottom: 15px;
-			padding: 15px;
-			background-color: white;
-			width: max-content;
-			max-width: 100%;
-		}
+    h2 {
+      margin-bottom: 15px;
+      padding: 15px;
+      background-color: white;
+      width: max-content;
+      max-width: 100%;
+    }
 
-		p {
-			line-height: unset;
-			font-size: unset;
-			color: white;
-			width: max-content;
-			padding: 15px;
-			background-color: $dark-green;
-			max-width: 100%;
-			text-align: left;
-		}
-	}
+    .gpnl-newsletter__description {
+      line-height: unset;
+      font-size: unset;
+      color: white;
+      width: max-content;
+      padding: 15px;
+      background-color: $dark-green;
+      max-width: 100%;
+      text-align: left;
+    }
 
-	.gpnl-newsletter__form {
-		margin: 15px 15px 15px 0;
+  }
 
-		.submit-button-newsletter {
-			line-height: 2;
-			margin: 0;
-		}
-	}
 
-	.input__human {
-		display: none;
-	}
+
+  .gpnl-newsletter__form {
+    margin: 15px 15px 15px 0;
+
+    .submit-button-newsletter {
+      line-height: 2;
+      margin: 0;
+    }
+  }
+
+  .input__human {
+    display: none;
+  }
 }
