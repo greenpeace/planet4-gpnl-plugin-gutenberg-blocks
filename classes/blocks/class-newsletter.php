@@ -45,12 +45,15 @@ class Newsletter extends Base_Block {
 					],
 					'marketingcode' => [
 						'type' => 'string',
+						'default' => '04950',
 					],
 					'literaturecode' => [
 						'type' => 'string',
+						'default' => 'EN009'
 					],
 					'screenid' => [
 						'type' => 'string',
+						'default' => '250'
 					],
 					'form_id' => [
 						'type' => 'number',

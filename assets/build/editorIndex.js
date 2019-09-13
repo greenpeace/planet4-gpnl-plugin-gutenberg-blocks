@@ -1076,13 +1076,16 @@ function (_BaseBlock) {
           type: 'string'
         },
         marketingcode: {
-          type: 'string'
+          type: 'string',
+          default: '04950'
         },
         literaturecode: {
-          type: 'string'
+          type: 'string',
+          default: 'EN009'
         },
         screenid: {
-          type: 'string'
+          type: 'string',
+          default: '250'
         },
         form_id: {
           type: 'number',
