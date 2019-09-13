@@ -98,6 +98,7 @@ final class Loader {
 			new Blocks\Newsletter(),
 			new Blocks\Liveblogitem(),
 			new Blocks\Petition(),
+			new Blocks\Donation(),
 		];
 	}
 

@@ -2,7 +2,7 @@
 
 
 /**
- * Hero Image block class
+ * Petition block class
  *
  * @package P4NL_GB_BKS
  * @since 0.1
@@ -37,7 +37,6 @@ class Petition extends Base_Block {
 					'consent'            => [
 						'type'    => 'text',
 						'default' => 'Als je dit aanvinkt, mag Greenpeace je per e-mail op de hoogte houden over onze campagnes. Ook vragen we je af en toe om steun. Afmelden kan natuurlijk altijd.'
-
 					],
 					'sign'               => [
 						'type'    => 'text',
@@ -58,7 +57,6 @@ class Petition extends Base_Block {
 					'donatebuttonlink'   => [
 						'type' => 'text',
 			'           default' => '/doneren'
-
 					],
 					'hidesharingbuttons' => [
 						'type' => 'boolean',

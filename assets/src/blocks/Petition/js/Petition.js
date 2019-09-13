@@ -3,7 +3,7 @@ import {RichText, MediaUpload, MediaUploadCheck, InspectorControls, BlockControl
 import {TextControl, TextareaControl, SelectControl, CheckboxControl, RangeControl, Button, PanelBody, ToggleControl, FocalPointPicker} from '@wordpress/components';
 
 
-export default class HeroImage extends Component {
+export default class Petition extends Component {
 
   render() {
 

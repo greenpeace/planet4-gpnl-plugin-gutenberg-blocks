@@ -19,5 +19,5 @@ const testBlock = new TestBlock();
 import { PetitionBlock } from "../../blocks/Petition/js/PetitionBlock";
 const petitionBlock = new PetitionBlock();
 
-
-
+import { DonationBlock } from "../../blocks/Donation/js/DonationBlock";
+const donationBlock = new DonationBlock();
