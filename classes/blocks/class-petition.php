@@ -22,80 +22,84 @@ class Petition extends Base_Block {
 		register_block_type(
 			'planet4-gpnl-blocks/' . $this->getKebabCaseClassName(),
 			[
-				'editor_script' => 'planet4-gpnl-blocks',
-				'render_callback' => [$this, 'render'],
-				'attributes' => [
-					'title' => [
+				'editor_script'   => 'planet4-gpnl-blocks',
+				'render_callback' => [ $this, 'render' ],
+				'attributes'      => [
+					'title'              => [
 						'type' => 'text',
 					],
-					'subtitle' => [
+					'subtitle'           => [
 						'type' => 'text',
 					],
-					'image' => [
+					'image'              => [
 						'type' => 'number',
 					],
-					'consent' => [
-						'type' => 'text',
+					'consent'            => [
+						'type'    => 'text',
+						'default' => 'Als je dit aanvinkt, mag Greenpeace je per e-mail op de hoogte houden over onze campagnes. Ook vragen we je af en toe om steun. Afmelden kan natuurlijk altijd.'
+
 					],
-					'sign' => [
-						'type' => 'text',
+					'sign'               => [
+						'type'    => 'text',
 						'default' => 'teken',
 					],
-					'campaignpolicy' => [
+					'campaignpolicy'     => [
 						'type' => 'text',
 					],
-					'thanktitle' => [
+					'thanktitle'         => [
 						'type' => 'text',
 					],
-					'thanktext' => [
+					'thanktext'          => [
 						'type' => 'text',
 					],
-					'donatebuttontext' => [
+					'donatebuttontext'   => [
 						'type' => 'text',
 					],
-					'donatebuttonlink' => [
+					'donatebuttonlink'   => [
 						'type' => 'text',
+			'           default' => '/doneren'
+
 					],
 					'hidesharingbuttons' => [
 						'type' => 'boolean',
 					],
-					'twittertext' => [
+					'twittertext'        => [
 						'type' => 'text',
 					],
-					'whatsapptext' => [
+					'whatsapptext'       => [
 						'type' => 'text',
 					],
-					'marketingcode' => [
+					'marketingcode'      => [
 						'type' => 'text',
 					],
-					'literaturecode' => [
+					'literaturecode'     => [
 						'type' => 'text',
 					],
-					'campaigncode' => [
+					'campaigncode'       => [
 						'type' => 'text',
 					],
-					'countermin' => [
+					'countermin'         => [
 						'type' => 'number',
 					],
-					'countermax' => [
+					'countermax'         => [
 						'type' => 'number',
 					],
-					'countertext' => [
+					'countertext'        => [
 						'type' => 'text',
 					],
-					'ga_action' => [
+					'ga_action'          => [
 						'type' => 'text',
 					],
-					'ad_campaign' => [
+					'ad_campaign'        => [
 						'type' => 'text',
 					],
-					'apref' => [
+					'apref'              => [
 						'type' => 'text',
 					],
-					'jalt_track' => [
+					'jalt_track'         => [
 						'type' => 'text',
 					],
-					'form_id' => [
+					'form_id'            => [
 						'type' => 'number',
 					]
 				]
@@ -107,6 +111,7 @@ class Petition extends Base_Block {
 	 * Get the HTTP(S) URL of the current page.
 	 *
 	 * @param $server The $_SERVER superglobals array.
+	 *
 	 * @return string The URL.
 	 */
 	private function current_url( $server ): string {
@@ -133,7 +138,7 @@ class Petition extends Base_Block {
 	 *
 	 * @return array
 	 */
-	private function get_social_accounts( $social_menu ) : array {
+	private function get_social_accounts( $social_menu ): array {
 		$social_accounts = [];
 		if ( null !== $social_menu ) {
 
@@ -161,13 +166,13 @@ class Petition extends Base_Block {
 	 * Callback for the shortcake_twocolumn shortcode.
 	 * It renders the shortcode based on supplied attributes.
 	 *
-	 * @param array  $fields Array of fields that are to be used in the template.
+	 * @param array $fields Array of fields that are to be used in the template.
 	 * @param string $content The content of the post.
 	 * @param string $shortcode_tag The shortcode tag (shortcake_blockname).
 	 *
 	 * @return string The complete html of the block
 	 */
-	public function prepare_data( $fields ) : array {
+	public function prepare_data( $fields ): array {
 
 		// Setting values as defaults that are not automatically saved by gutenberg (even though some default values are defined in the block, but these are not saved to the db).
 		$fields['ad_campaign']  = ( empty( $fields['ad_campaign'] ) ) ? 'GP' : $fields['ad_campaign'];
@@ -216,7 +221,10 @@ class Petition extends Base_Block {
 		}
 
 		//  Include the script and styling for the counter
-		wp_enqueue_script( 'petitioncounterjs', P4NL_GB_BKS_PLUGIN_URL . 'assets/build/onload.js', [ 'jquery', 'jquery-effects-core' ], '2.6.9', true );
+		wp_enqueue_script( 'petitioncounterjs', P4NL_GB_BKS_PLUGIN_URL . 'assets/build/onload.js', [
+			'jquery',
+			'jquery-effects-core'
+		], '2.6.9', true );
 		wp_enqueue_style( 'petitioncountercss', P4NL_GB_BKS_PLUGIN_URL . 'assets/build/petition.min.css', [], '2.11.4' );
 
 //		var_dump(P4NL_GB_BKS_ASSETS_DIR);
@@ -226,7 +234,7 @@ class Petition extends Base_Block {
 			C S S / JS
 		   ======================== */
 		// Enqueue the script:
-		wp_enqueue_script( 'jquery-docready-script', P4NL_GB_BKS_PLUGIN_URL . 'assets/build/onsubmit.js', [  'jquery'  ], '2.11.4', true );
+		wp_enqueue_script( 'jquery-docready-script', P4NL_GB_BKS_PLUGIN_URL . 'assets/build/onsubmit.js', [ 'jquery' ], '2.11.4', true );
 
 		// Pass options to frontend code
 		wp_localize_script(
