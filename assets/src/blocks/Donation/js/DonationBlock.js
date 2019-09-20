@@ -39,30 +39,39 @@ export class DonationBlock extends BaseBlock {
         },
         min_amount: {
           type: 'number',
+          default: 5
         },
         oneoff_amount1: {
           type: 'number',
+          default: 5
         },
         oneoff_amount2: {
           type: 'number',
+          default: 10
         },
         oneoff_amount3: {
           type: 'number',
+          default: 25
         },
         oneoff_suggested_amount: {
           type: 'number',
+          default: 10
         },
         recurring_amount1: {
           type: 'number',
+          default: 5
         },
         recurring_amount2: {
           type: 'number',
+          default: 10
         },
         recurring_amount3: {
           type: 'number',
+          default: 25
         },
         recurring_suggested_amount: {
           type: 'number',
+          default: 10
         },
         thanktitle: {
           type: 'string',

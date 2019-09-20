@@ -158,6 +158,22 @@ function (_Component) {
           description = _this$props.description,
           thanktitle = _this$props.thanktitle,
           thankdescription = _this$props.thankdescription,
+          suggested_frequency = _this$props.suggested_frequency,
+          allow_frequency_override = _this$props.allow_frequency_override,
+          min_amount = _this$props.min_amount,
+          oneoff_amount1 = _this$props.oneoff_amount1,
+          oneoff_amount2 = _this$props.oneoff_amount2,
+          oneoff_amount3 = _this$props.oneoff_amount3,
+          oneoff_suggested_amount = _this$props.oneoff_suggested_amount,
+          recurring_amount1 = _this$props.recurring_amount1,
+          recurring_amount2 = _this$props.recurring_amount2,
+          recurring_amount3 = _this$props.recurring_amount3,
+          recurring_suggested_amount = _this$props.recurring_suggested_amount,
+          literatuurcode = _this$props.literatuurcode,
+          marketingcode_recurring = _this$props.marketingcode_recurring,
+          marketingcode_oneoff = _this$props.marketingcode_oneoff,
+          returnpage = _this$props.returnpage,
+          errorpage = _this$props.errorpage,
           onValueChange = _this$props.onValueChange,
           onNumberChange = _this$props.onNumberChange;
       return [Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(react__WEBPACK_IMPORTED_MODULE_6__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
@@ -180,7 +196,93 @@ function (_Component) {
         onChange: onValueChange.bind('thankdescription'),
         value: thankdescription,
         placeholder: 'Bedankt tmschrijving'
-      }))];
+      })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_editor__WEBPACK_IMPORTED_MODULE_7__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["PanelBody"], {
+        title: 'Doneerfrequentie'
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["SelectControl"], {
+        label: 'Voorgestelde frequente',
+        onChange: onValueChange.bind('suggested_frequency'),
+        value: suggested_frequency,
+        options: [{
+          label: 'Eenmalig',
+          value: 'E'
+        }, {
+          label: 'Maandelijks',
+          value: 'M'
+        }, {
+          label: 'Maandelijks voor 12 maanden (forces)',
+          value: 'F'
+        }]
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["CheckboxControl"], {
+        label: 'Donateur kan periodiek wijzigen',
+        onChange: onValueChange.bind('allow_frequency_override'),
+        value: allow_frequency_override,
+        help: 'Als dit aangevinkt is kan de donateur zelf bepalen of deze eenmalig of eens per maand doneert.'
+      })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["PanelBody"], {
+        title: 'Bedragen',
+        initialOpen: false
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Minimum bedrag',
+        onChange: onNumberChange.bind('min_amount'),
+        value: min_amount
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Eenmalig: Bedrag 1',
+        onChange: onNumberChange.bind('oneoff_amount1'),
+        value: oneoff_amount1
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Eenmalig: Bedrag 2',
+        onChange: onNumberChange.bind('oneoff_amount2'),
+        value: oneoff_amount2
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Eenmalig: Bedrag 3',
+        onChange: onNumberChange.bind('oneoff_amount3'),
+        value: oneoff_amount3
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Eenmalig: Voorgesteld bedrag',
+        onChange: onNumberChange.bind('oneoff_suggested_amount'),
+        value: oneoff_suggested_amount
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Periodiek: Bedrag 1',
+        onChange: onNumberChange.bind('recurring_amount1'),
+        value: recurring_amount1
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Periodiek: Bedrag 2',
+        onChange: onNumberChange.bind('recurring_amount2'),
+        value: recurring_amount2
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Periodiek: Bedrag 3',
+        onChange: onNumberChange.bind('recurring_amount3'),
+        value: recurring_amount3
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Periodiek: Voorgesteld bedrag',
+        onChange: onNumberChange.bind('recurring_suggested_amount'),
+        value: recurring_suggested_amount
+      })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["PanelBody"], {
+        title: 'Database instellingen',
+        initialOpen: false
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Literatuurcode',
+        onChange: onValueChange.bind('literatuurcode'),
+        value: literatuurcode
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Marketingcode voor terugkerende betalingen',
+        onChange: onValueChange.bind('marketingcode_recurring'),
+        value: marketingcode_recurring
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Marketingcode voor eenmalige betalingen',
+        onChange: onValueChange.bind('marketingcode_oneoff'),
+        value: marketingcode_oneoff
+      })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["PanelBody"], {
+        title: 'iDeal',
+        initialOpen: false
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'returnpage',
+        onChange: onNumberChange.bind('returnpage'),
+        value: returnpage
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'errorpage',
+        onChange: onValueChange.bind('errorpage'),
+        value: errorpage
+      })))];
     }
   }]);
 
@@ -269,31 +371,40 @@ function (_BaseBlock) {
           type: 'string'
         },
         min_amount: {
-          type: 'number'
+          type: 'number',
+          default: 5
         },
         oneoff_amount1: {
-          type: 'number'
+          type: 'number',
+          default: 5
         },
         oneoff_amount2: {
-          type: 'number'
+          type: 'number',
+          default: 10
         },
         oneoff_amount3: {
-          type: 'number'
+          type: 'number',
+          default: 25
         },
         oneoff_suggested_amount: {
-          type: 'number'
+          type: 'number',
+          default: 10
         },
         recurring_amount1: {
-          type: 'number'
+          type: 'number',
+          default: 5
         },
         recurring_amount2: {
-          type: 'number'
+          type: 'number',
+          default: 10
         },
         recurring_amount3: {
-          type: 'number'
+          type: 'number',
+          default: 25
         },
         recurring_suggested_amount: {
-          type: 'number'
+          type: 'number',
+          default: 10
         },
         thanktitle: {
           type: 'string'

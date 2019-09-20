@@ -16,6 +16,10 @@ module.exports = {
     onload: './assets/src/blocks/Petition/js/onload.js',
     onsubmit: './assets/src/blocks/Petition/js/onsubmit.js',
 
+    // assets for the donation block
+    donationForm: './assets/src/blocks/Donation/js/donationform.js',
+    donationFormStyle: './assets/src/blocks/Donation/scss/donationform.scss',
+
     // Separate css files are generated for the blocks so they can be used only when required on public pages.
     heroImage: './assets/src/blocks/HeroImage/scss/hero-image.scss',
     quote: './assets/src/blocks/Quote/scss/quote.scss',
