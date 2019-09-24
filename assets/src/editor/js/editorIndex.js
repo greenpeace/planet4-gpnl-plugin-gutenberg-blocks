@@ -21,3 +21,6 @@ const petitionBlock = new PetitionBlock();
 
 import { DonationBlock } from "../../blocks/Donation/js/DonationBlock";
 const donationBlock = new DonationBlock();
+
+import { TwoColumnEmbedBlock } from "../../blocks/TwoColumnEmbed/js/TwoColumnEmbedBlock";
+const twoColumnEmbedBlock = new TwoColumnEmbedBlock();

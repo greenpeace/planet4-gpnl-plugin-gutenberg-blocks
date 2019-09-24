@@ -99,6 +99,7 @@ final class Loader {
 			new Blocks\Liveblogitem(),
 			new Blocks\Petition(),
 			new Blocks\Donation(),
+			new Blocks\TwoColumnEmbed(),
 		];
 	}
 
