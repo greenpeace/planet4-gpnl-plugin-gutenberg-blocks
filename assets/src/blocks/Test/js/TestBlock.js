@@ -1,9 +1,14 @@
+import React, {Component} from 'react';
 import BaseBlock from "../../BaseBlock";
-import {DateTimePicker, PanelRow} from "@wordpress/components";
+import {Button, DateTimePicker, PanelRow} from "@wordpress/components";
+
 
 const {__} = wp.i18n; // Import __() from wp.i18n
-const {MediaUpload, RichText, PlainText, InspectorControls} = wp.editor;
-const {PanelBody, TextControl, SelectControl} = wp.components;
+const {MediaUpload, RichText, PlainText, InspectorControls } = wp.editor;
+const {PanelBody, TextControl, SelectControl } = wp.components;
+
+import { __experimentalGetSettings } from '@wordpress/date';
+import { withState } from '@wordpress/compose';
 
 
 // I am trying to create a LiveBlog block which contains all items of the blog.
@@ -73,6 +78,27 @@ export class TestBlock extends BaseBlock {
 			// The "edit" property must be a valid function.
 			edit: function (props) {
 
+        const toggleDateTimePicker = (liveblog, newObject) => {
+
+          console.log(liveblog);
+
+          return <DateTimePicker
+            onChange={() => {
+              props.setAttributes({
+                items: [
+                  ...items.filter(
+                    item => item.index != liveblog.index
+                  ),
+                  newObject
+                ]
+              });
+            }}
+            is12Hour={false}
+            currentDate={liveblog.datetime}
+            value={liveblog.datetime}
+          />
+        };
+
 				const {items} = props.attributes;
 
 				const t_style_control = [
@@ -103,9 +129,11 @@ export class TestBlock extends BaseBlock {
 				const itemsList = items
 					.sort((a, b) => b.index - a.index)
 					.map(liveblog => {
-						return (
+
+            return (
+
 							<div className="liveblog-item">
-								<p>
+                <p>
 									  <span>
 										Item {Number(liveblog.index) + 1}
 									  </span>
@@ -159,25 +187,35 @@ export class TestBlock extends BaseBlock {
 											});
 										}}
 									/>
-									{ /*TODO: make this a pop-up */ }
-									<DateTimePicker
-										currentDate={liveblog.datetime}
-										onChange={datetime => {
-											const newObject = Object.assign({}, liveblog, {
-												datetime: datetime
-											});
-											props.setAttributes({
-												items: [
-													...items.filter(
-														item => item.index != liveblog.index
-													),
-													newObject
-												]
-											});
-										}}
-										value={liveblog.datetime}
-										is12Hour={false}
-									/>
+
+									{ /*TODO: make this a working pop-up */ }
+                  <Button onClick={(datetime => {
+
+                            const newObject = Object.assign({}, liveblog, {
+                              datetime: datetime
+                            });
+
+                            toggleDateTimePicker(liveblog, newObject); })}
+
+                  >test</Button>
+                  {/*<DateTimePicker*/}
+                  {/*currentDate={liveblog.datetime}*/}
+                  {/*value={liveblog.datetime}*/}
+                  {/*onChange={datetime => {*/}
+                  {/*  const newObject = Object.assign({}, liveblog, {*/}
+                  {/*    datetime: datetime*/}
+                  {/*  });*/}
+                  {/*  props.setAttributes({*/}
+                  {/*    items: [*/}
+                  {/*      ...items.filter(*/}
+                  {/*        item => item.index != liveblog.index*/}
+                  {/*      ),*/}
+                  {/*      newObject*/}
+                  {/*    ]*/}
+                  {/*  });*/}
+                  {/*}}*/}
+                  {/*is12Hour={false}*/}
+                  {/*/>*/}
 
 									<MediaUpload
 										onSelect={media => {
@@ -283,7 +321,7 @@ export class TestBlock extends BaseBlock {
 			save: props => {
 				const {items} = props.attributes;
 
-				const itemsList = items.map(function (liveblog) {
+				const itemsList = items.map((liveblog) => {
 
 					return (
 						<div key={liveblog.index}>
