@@ -11,7 +11,7 @@ export default class HeroImage extends Component {
       description,
       link_text,
       link_url,
-      image_id,
+      image,
       image_url,
       small,
       focus_image,
@@ -72,7 +72,7 @@ export default class HeroImage extends Component {
     ;
 
     const getImageOrButton = (openEvent) => {
-      if (image_id) {
+      if (image) {
         return (
           <div style={{
             height: "100%",
@@ -113,7 +113,7 @@ export default class HeroImage extends Component {
           <MediaUpload
             type="image"
             onSelect={onSelectImage}
-            value={image_id}
+            value={image}
             render={({open}) => getImageOrButton(open)}
           />
         </MediaUploadCheck>

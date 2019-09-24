@@ -34,7 +34,7 @@ export class HeroImageBlock extends BaseBlock {
         description: {
           type: 'string',
         },
-        image_id: {
+        image: {
           type: 'number'
         },
         link_text: {
@@ -53,12 +53,12 @@ export class HeroImageBlock extends BaseBlock {
 
       edit: withSelect((select, props) => {
         const {attributes} = props;
-        const {image_id} = attributes;
+        const {image} = attributes;
 
         let image_url = '';
 
-        if (image_id && (0 < image_id)) {
-          const image_object = wp.data.select('core').getMedia(image_id);
+        if (image && (0 < image)) {
+          const image_object = wp.data.select('core').getMedia(image);
           if (image_object) {
             image_url = image_object.source_url;
           }
@@ -78,7 +78,7 @@ export class HeroImageBlock extends BaseBlock {
 
         function onSelectImage(media) {
           setAttributes({
-            image_id: media.id
+            image: media.id
           });
         }
 

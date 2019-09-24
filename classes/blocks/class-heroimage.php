@@ -37,7 +37,7 @@ class HeroImage extends Base_Block {
 						'type' => 'boolean',
 						'default' => false,
 					],
-					'image_id' => [
+					'image' => [
 						'type' => 'number',
 						'default' => '',
 					],
@@ -72,12 +72,12 @@ class HeroImage extends Base_Block {
 	public function prepare_data( $fields ): array {
 
 		// If an image is selected
-		if ( isset( $fields['image_id'] ) && $image = wp_get_attachment_image_src( $fields['image_id'], 'full' ) ) {
+		if ( isset( $fields['image'] ) && $image = wp_get_attachment_image_src( $fields['image'], 'full' ) ) {
 			// load the image from the library
 			$fields['image_url']    = $image[0];
-			$fields['alt_text']     = get_post_meta( $fields['image_id'], '_wp_attachment_image_alt', true );
-			$fields['image_srcset'] = wp_get_attachment_image_srcset( $fields['image_id'], 'full', wp_get_attachment_metadata( $fields['image_id'] ) );
-			$fields['image_sizes']  = wp_calculate_image_sizes( 'full', null, null, $fields['image_id'] );
+			$fields['alt_text']     = get_post_meta( $fields['image'], '_wp_attachment_image_alt', true );
+			$fields['image_srcset'] = wp_get_attachment_image_srcset( $fields['image'], 'full', wp_get_attachment_metadata( $fields['image'] ) );
+			$fields['image_sizes']  = wp_calculate_image_sizes( 'full', null, null, $fields['image'] );
 		}
 
 		wp_enqueue_style( 'hero-image', P4NL_GB_BKS_PLUGIN_URL . '/assets/build/heroImage.min.css', null, '0.1' );
