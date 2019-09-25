@@ -16,8 +16,8 @@ export class NewsletterBlock extends BaseBlock {
 
     // Register the block
     registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
-      title: this.blockName,
-      icon: 'format-image',
+      title: 'Nieuwsbrief',
+      icon: 'email',
       category: 'planet4-gpnl-blocks',
       keywords: [
         __(this.blockName),

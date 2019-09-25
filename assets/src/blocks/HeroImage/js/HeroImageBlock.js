@@ -16,7 +16,7 @@ export class HeroImageBlock extends BaseBlock {
 
     // Register the block
     registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
-      title: this.blockName,
+      title: 'Hero afbeelding',
       icon: 'format-image',
       category: 'planet4-gpnl-blocks',
       keywords: [

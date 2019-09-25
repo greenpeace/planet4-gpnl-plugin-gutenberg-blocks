@@ -17,7 +17,7 @@ export class PetitionBlock extends BaseBlock {
 
     // Register the block
     registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
-      title: this.blockName,
+      title: 'Petitie',
       icon: 'welcome-widgets-menus',
       category: 'planet4-gpnl-blocks',
       keywords: [
