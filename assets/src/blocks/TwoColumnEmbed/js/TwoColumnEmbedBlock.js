@@ -4,6 +4,7 @@ import { ServerSideRender } from "@wordpress/components";
 import { Preview } from '../../../components/Preview/js/Preview';
 const { withSelect } = wp.data;
 import TwoColumnEmbed from "./TwoColumnEmbed";
+import { Icon } from "./TwoColumnEmbedIcon";
 
 
 export class TwoColumnEmbedBlock extends BaseBlock {
@@ -17,8 +18,8 @@ export class TwoColumnEmbedBlock extends BaseBlock {
 
     // Register the block
     registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
-      title: this.blockName,
-      icon: 'welcome-widgets-menus',
+      title: 'Twee kolommen met embed of afbeelding',
+      icon: Icon,
       category: 'planet4-gpnl-blocks',
       keywords: [
         __(this.blockName),
