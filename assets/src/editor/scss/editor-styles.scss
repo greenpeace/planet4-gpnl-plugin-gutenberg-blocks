@@ -13,10 +13,15 @@
 
 .editor-styles-wrapper {
   padding-top: 0;
+
 }
 
 .editor-post-title {
-  height: 4rem;
+  height: 8rem;
+  //background-color: rgb(35, 40, 45);
+  background-color: rgb(243, 244, 245);
+  padding: 3rem 0 7rem;
+  border-bottom: 1px solid rgb(226, 228, 231);
 }
 
 .editor-post-title__block {
@@ -25,8 +30,11 @@
   .editor-post-title__input {
     font-family: $roboto;
     font-size: 2.2rem;
-    margin: 3rem 0 0;
+    //margin: 3rem 0 0;
+    margin: 0;
+    margin-bottom: 40px;
     padding: 10px 15px;
+    background-color: white;
     border: 1px solid rgb(141, 150, 160);
     border-radius: 4px;
   }
@@ -46,6 +54,10 @@
     cursor: pointer;
     text-decoration: none;
   }
+}
+
+.components-notice {
+  margin: 0 !important;
 }
 
 .panel-body--warning {

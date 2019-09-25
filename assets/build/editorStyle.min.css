@@ -343,15 +343,20 @@ and so on...
   padding-top: 0; }
 
 .editor-post-title {
-  height: 4rem; }
+  height: 8rem;
+  background-color: #f3f4f5;
+  padding: 3rem 0 7rem;
+  border-bottom: 1px solid #e2e4e7; }
 
 .editor-post-title__block {
   padding: 0 2px; }
   .editor-post-title__block .editor-post-title__input {
     font-family: "Roboto", sans-serif;
     font-size: 2.2rem;
-    margin: 3rem 0 0;
+    margin: 0;
+    margin-bottom: 40px;
     padding: 10px 15px;
+    background-color: white;
     border: 1px solid #8d96a0;
     border-radius: 4px; }
 
@@ -367,6 +372,9 @@ and so on...
     box-shadow: inset 0 0 0 1px #555d66, inset 0 0 0 2px #fff;
     cursor: pointer;
     text-decoration: none; }
+
+.components-notice {
+  margin: 0 !important; }
 
 .panel-body--warning {
   color: red; }
