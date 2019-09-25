@@ -1,0 +1,8 @@
+{% block gpnl_liveblogitem %}
+	{% if ( fields ) %}
+		<article>
+			<h3>{{ fields.title }}</h3>
+			<small class="moment--date">{{ fields.datetime | date("j F Y - H:i") }}</small>
+		</article>
+	{% endif %}
+{% endblock %}

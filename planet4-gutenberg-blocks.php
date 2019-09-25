@@ -8,7 +8,7 @@
  *
  * Author: Greenpeace Netherlands
  * Author URI: http://www.greenpeace.org/
- * Text Domain: planet4-blocks
+ * Text Domain: planet4-gpnl-blocks
  *
  * License:     GPLv3
  * Copyright (C) 2019 Greenpeace Netherlands
@@ -85,6 +85,7 @@ if ( ! defined( 'P4NL_GB_BKS_ALLOWED_PAGETYPE' ) ) {
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	define( 'WP_UNINSTALL_PLUGIN', P4NL_GB_BKS_PLUGIN_BASENAME );
 }
+if ( ! defined( 'P4NL_GB_BKS_ASSETS_DIR' ) )        define( 'P4NL_GB_BKS_ASSETS_DIR',       P4NL_GB_BKS_PLUGIN_DIRNAME . '/assets/' );
 
 require_once __DIR__ . '/classes/class-loader.php';
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
@@ -99,7 +100,7 @@ P4NL_GB_BKS\Loader::get_instance(
 	[
 		// --- Add here your own Block Controller ---
 		// DEPRECATED: Blocks could be registered inside Loader class
-	// 'P4NL_GB_BKS\Controllers\Blocks\NewCovers_Controller',
+		// 'P4NL_GB_BKS\Controllers\Blocks\NewCovers_Controller',
 	],
 	'P4NL_GB_BKS\Views\View'
 );

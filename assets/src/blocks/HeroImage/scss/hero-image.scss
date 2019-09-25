@@ -1,0 +1,77 @@
+@import "../../../base/base.scss";
+
+// if a hero-image is present, hide the default header.
+.page-header, .page-header-title, .page-header-subtitle, .page-header-content {
+  display: none;
+  visibility: hidden;
+  height: 0;
+  padding: 0;
+}
+
+.hero {
+  height: 500px;
+  overflow: hidden;
+  background-size: cover;
+  margin: 0 calc(50% - 50vw) 32px;
+  border-bottom: 3px solid $light-green;
+  max-width: 100vw;
+  width: 100vw;
+
+  &.hero__small {
+    height: 250px;
+
+    .hero__description {
+      display: none;
+    }
+  }
+
+  // TODO add option for hero with only title white on green
+  .hero__wrapper {
+
+    padding: 0 !important;
+
+    .hero__description {
+      background: $dark-green;
+      color: $white;
+      padding: $norm;
+      @include small-and-up {
+        max-width: 80%;
+      }
+      @include medium-and-up {
+        max-width: 60%;
+      }
+    }
+
+    .hero__text {
+      margin-top: 40px;
+      //margin: 0 -15px;
+      max-width: 100%;
+
+      h2 {
+        margin-bottom: 15px;
+        padding: 15px;
+        background-color: white;
+        width: max-content;
+        max-width: 100%;
+      }
+
+      .hero__button {
+        margin: 20px 0 0 0;
+        box-shadow: none;
+      }
+    }
+  }
+
+
+}
+
+
+// This is for the editor
+div[data-type="planet4-gpnl-blocks/hero"] {
+  max-width: unset;
+  width: 100%;
+}
+
+.block-control-button {
+
+}

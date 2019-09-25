@@ -1,0 +1,59 @@
+@import "../../base/base.scss";
+
+// Block styles
+@import "../../blocks/Quote/scss/quote";
+@import "../../blocks/HeroImage/scss/hero-image";
+@import "../../blocks/Petition/scss/petition-editor";
+@import "../../blocks/Newsletter/scss/newsletter";
+@import "../../blocks/Test/scss/test";
+
+// width of editor same as page width
+.wp-block {
+	max-width: 1140px;
+}
+
+.editor-styles-wrapper {
+  padding-top: 0;
+}
+
+.editor-post-title {
+  height: 4rem;
+}
+
+.editor-post-title__block {
+  padding: 0 2px;
+
+  .editor-post-title__input {
+    font-family: $roboto;
+    font-size: 2.2rem;
+    margin: 3rem 0 0;
+    padding: 10px 15px;
+    border: 1px solid rgb(141, 150, 160);
+    border-radius: 4px;
+  }
+}
+
+.components-toolbar-text-button {
+  color: black;
+  border-radius: 4px;
+  margin: 3px;
+  padding: 5px;
+  font-size: 13px;
+  line-height: 1.5;
+
+  &:hover {
+    color: black;
+    box-shadow: inset 0 0 0 1px #555d66, inset 0 0 0 2px #fff;
+    cursor: pointer;
+    text-decoration: none;
+  }
+}
+
+.panel-body--warning {
+  color: red;
+}
+
+// unsetting the width of the slider which is otherwise messed up by twitter bootstrap.
+.components-range-control__slider {
+  width: unset;
+}

@@ -1,0 +1,383 @@
+@charset "UTF-8";
+/* Generates mutilevel nested comments
+level-1 is the first level comment with a margin of 50px
+level-2 is the first level comment with a margin of 100px
+and so on...
+*/
+/* stylelint-disable value-keyword-case*/
+/* Generates mutilevel nested comments
+level-1 is the first level comment with a margin of 50px
+level-2 is the first level comment with a margin of 100px
+and so on...
+*/
+/* stylelint-disable value-keyword-case*/
+.quote {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  justify-content: center !important;
+  display: flex !important;
+  display: -webkit-flex !important;
+  align-items: center !important;
+  height: auto; }
+  @media (min-width: 768px) {
+    .quote {
+      height: 180px !important; } }
+  @media (min-width: 992px) {
+    .quote {
+      height: 190px !important; } }
+  .quote .col-2 {
+    flex: none;
+    -webkit-box-flex: none;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 50%;
+    max-width: none; }
+    @media (min-width: 768px) {
+      .quote .col-2 {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 0; } }
+    @media (min-width: 992px) {
+      .quote .col-2 {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 0; } }
+    .quote .col-2 .quote__img {
+      max-width: none;
+      margin-left: -50%;
+      width: auto;
+      height: 100%; }
+      @media (min-width: 768px) {
+        .quote .col-2 .quote__img {
+          margin-left: -50%;
+          width: auto;
+          height: 100%; } }
+  .quote .col-10 {
+    flex: 0 0 60% !important;
+    max-width: none; }
+    @media (min-width: 768px) {
+      .quote .col-10 {
+        flex: 0 0 80% !important;
+        padding: 0 40px; } }
+    @media (min-width: 992px) {
+      .quote .col-10 {
+        flex: 0 0 75% !important;
+        padding: 0 40px; } }
+  .quote .quote__text {
+    font-size: 0.875rem !important;
+    margin-bottom: 10px !important; }
+    @media (min-width: 768px) {
+      .quote .quote__text {
+        font-size: 1.125rem !important;
+        margin-bottom: 5px !important; } }
+    @media (min-width: 992px) {
+      .quote .quote__text {
+        font-size: 1.3rem !important; } }
+  .quote .quote__text::before {
+    content: "“"; }
+  .quote .quote__text::after {
+    content: "”"; }
+  .quote .quote__author::before {
+    content: "- "; }
+  .quote .quote__author {
+    font-size: 0.6875rem !important; }
+    @media (min-width: 768px) {
+      .quote .quote__author {
+        font-size: 0.875rem !important; } }
+    @media (min-width: 992px) {
+      .quote .quote__author {
+        font-size: 1rem !important; } }
+  .quote .button {
+    margin-top: 30px; }
+
+/* Generates mutilevel nested comments
+level-1 is the first level comment with a margin of 50px
+level-2 is the first level comment with a margin of 100px
+and so on...
+*/
+/* stylelint-disable value-keyword-case*/
+.page-header, .page-header-title, .page-header-subtitle, .page-header-content {
+  display: none;
+  visibility: hidden;
+  height: 0;
+  padding: 0; }
+
+.hero {
+  height: 500px;
+  overflow: hidden;
+  background-size: cover;
+  margin: 0 calc(50% - 50vw) 32px;
+  border-bottom: 3px solid #66cc00;
+  max-width: 100vw;
+  width: 100vw; }
+  .hero.hero__small {
+    height: 250px; }
+    .hero.hero__small .hero__description {
+      display: none; }
+  .hero .hero__wrapper {
+    padding: 0 !important; }
+    .hero .hero__wrapper .hero__description {
+      background: #003300;
+      color: #ffffff;
+      padding: 20px; }
+      @media (min-width: 576px) {
+        .hero .hero__wrapper .hero__description {
+          max-width: 80%; } }
+      @media (min-width: 768px) {
+        .hero .hero__wrapper .hero__description {
+          max-width: 60%; } }
+    .hero .hero__wrapper .hero__text {
+      margin-top: 40px;
+      max-width: 100%; }
+      .hero .hero__wrapper .hero__text h2 {
+        margin-bottom: 15px;
+        padding: 15px;
+        background-color: white;
+        width: max-content;
+        max-width: 100%; }
+      .hero .hero__wrapper .hero__text .hero__button {
+        margin: 20px 0 0 0;
+        box-shadow: none; }
+
+div[data-type="planet4-gpnl-blocks/hero"] {
+  max-width: unset;
+  width: 100%; }
+
+/* Generates mutilevel nested comments
+level-1 is the first level comment with a margin of 50px
+level-2 is the first level comment with a margin of 100px
+and so on...
+*/
+/* stylelint-disable value-keyword-case*/
+.counter {
+  width: 100%;
+  background-color: #5c6978;
+  display: none;
+  margin: 15px 0 10px;
+  position: relative; }
+
+.counter__slider {
+  width: 0;
+  height: 100%;
+  background-color: #ee562d;
+  position: absolute; }
+
+.counter__text {
+  width: 100%;
+  padding: 5px 5px 5px 7px;
+  color: #fff;
+  font-size: .9em;
+  text-align: left;
+  display: none;
+  position: relative;
+  font-weight: bold; }
+
+/* card container */
+.gpnl-petition-wrapper {
+  perspective: 800px; }
+
+/* card */
+.gpnl-petition {
+  width: 100%;
+  /*height: 500px;*/
+  transform-style: preserve-3d;
+  -webkit-transition: transform 1s;
+  transition: transform 1s; }
+
+/* front side of the card */
+.front {
+  /*position: absolute;*/
+  height: 100%;
+  width: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden; }
+
+/* back side of the card */
+.back {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  -ms-transform: rotateY(-180deg);
+  /* IE 9 */
+  -webkit-transform: rotateY(-180deg);
+  /* Safari */
+  transform: rotateY(-180deg);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden; }
+
+/* flipping the card on hover */
+.flipped {
+  -ms-transform: rotateY(-180deg);
+  /* IE 9 */
+  -webkit-transform: rotateY(-180deg);
+  /* Safari */
+  transform: rotateY(-180deg); }
+
+input[type=checkbox].gpnl-petition-checkbox {
+  opacity: 1;
+  margin-left: 0; }
+
+.gpnl-petition-checkbox-label {
+  margin-bottom: 0; }
+
+.gpnl-petition-checkbox-label small {
+  margin-left: 1.5rem; }
+
+.gpnl-petitionshare {
+  margin-top: 1rem; }
+
+.gpnl-share-facebook {
+  background-color: #4267b2; }
+
+.gpnl-share-twitter {
+  background-color: #5cb8ff; }
+
+.gpnl-share-whatsapp {
+  background-color: #48c251; }
+
+.page-header-title,
+.page-header-subtitle,
+.page-header-content {
+  display: none; }
+
+.skewed-overlay {
+  display: none; }
+
+.card {
+  background-color: #323842;
+  color: white;
+  font-family: "Roboto", sans-serif; }
+
+.form-control::placeholder {
+  color: #6c757d;
+  opacity: 1;
+  font-weight: bold; }
+
+.card-title {
+  font-weight: normal; }
+
+.form-group {
+  margin-bottom: .5rem; }
+
+.optin {
+  margin-bottom: 0; }
+
+h2.card-title {
+  line-height: 1; }
+
+.signBtn {
+  margin-bottom: 1rem; }
+
+.hidden-when-no-js-enabled {
+  display: none; }
+
+.hidden-when-no-js-enabled {
+  display: block; }
+
+/* Generates mutilevel nested comments
+level-1 is the first level comment with a margin of 50px
+level-2 is the first level comment with a margin of 100px
+and so on...
+*/
+/* stylelint-disable value-keyword-case*/
+.gpnl-newsletter__block {
+  overflow: hidden;
+  background-size: cover;
+  margin: 32px calc(50% - 50vw) 0;
+  max-width: 100vw;
+  width: 100vw; }
+  .gpnl-newsletter__block .background-image {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 calc(50% - 50vw) 0;
+    width: 100vw;
+    height: 100%; }
+
+.newsletter__block {
+  margin-bottom: 0; }
+
+.gpnl-newsletter__wrapper {
+  margin: 48px 0 32px;
+  padding: 0 !important; }
+
+.gpnl-newsletter__block {
+  height: unset; }
+  .gpnl-newsletter__block div.form-group {
+    margin-bottom: 0; }
+  .gpnl-newsletter__block input.form-control {
+    margin-bottom: 15px; }
+  .gpnl-newsletter__block .gpnl-newsletter__text {
+    margin-top: 20px; }
+    .gpnl-newsletter__block .gpnl-newsletter__text h2 {
+      margin-bottom: 15px;
+      padding: 15px;
+      background-color: white;
+      width: max-content;
+      max-width: 100%; }
+    .gpnl-newsletter__block .gpnl-newsletter__text .gpnl-newsletter__description {
+      line-height: unset;
+      font-size: unset;
+      color: white;
+      width: max-content;
+      padding: 15px;
+      background-color: #003300;
+      max-width: 100%;
+      text-align: left; }
+  .gpnl-newsletter__block .gpnl-newsletter__form {
+    margin: 15px 15px 15px 0; }
+    .gpnl-newsletter__block .gpnl-newsletter__form .submit-button-newsletter {
+      line-height: 2;
+      margin: 0; }
+  .gpnl-newsletter__block .input__human {
+    display: none; }
+
+.remove-liveblog-item {
+  color: red !important; }
+  .remove-liveblog-item:hover {
+    cursor: pointer; }
+
+.wp-block {
+  max-width: 1140px; }
+
+.editor-styles-wrapper {
+  padding-top: 0; }
+
+.editor-post-title {
+  height: 4rem; }
+
+.editor-post-title__block {
+  padding: 0 2px; }
+  .editor-post-title__block .editor-post-title__input {
+    font-family: "Roboto", sans-serif;
+    font-size: 2.2rem;
+    margin: 3rem 0 0;
+    padding: 10px 15px;
+    border: 1px solid #8d96a0;
+    border-radius: 4px; }
+
+.components-toolbar-text-button {
+  color: black;
+  border-radius: 4px;
+  margin: 3px;
+  padding: 5px;
+  font-size: 13px;
+  line-height: 1.5; }
+  .components-toolbar-text-button:hover {
+    color: black;
+    box-shadow: inset 0 0 0 1px #555d66, inset 0 0 0 2px #fff;
+    cursor: pointer;
+    text-decoration: none; }
+
+.panel-body--warning {
+  color: red; }
+
+.components-range-control__slider {
+  width: unset; }
+
+
+/*# sourceMappingURL=editorStyle.min.css.map*/
