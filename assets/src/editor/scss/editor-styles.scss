@@ -1,3 +1,5 @@
+@import "../../base/base.scss";
+
 // Block styles
 @import "../../blocks/Quote/scss/quote";
 @import "../../blocks/HeroImage/scss/hero-image";
@@ -5,11 +7,32 @@
 @import "../../blocks/Newsletter/scss/newsletter";
 @import "../../blocks/Test/scss/test";
 
-// General editor styles
 // width of editor same as page width
 .wp-block {
 	max-width: 1140px;
 }
+
+.editor-styles-wrapper {
+  padding-top: 0;
+}
+
+.editor-post-title {
+  height: 4rem;
+}
+
+.editor-post-title__block {
+  padding: 0 2px;
+
+  .editor-post-title__input {
+    font-family: $roboto;
+    font-size: 2.2rem;
+    margin: 3rem 0 0;
+    padding: 10px 15px;
+    border: 1px solid rgb(141, 150, 160);
+    border-radius: 4px;
+  }
+}
+
 .components-toolbar-text-button {
   color: black;
   border-radius: 4px;

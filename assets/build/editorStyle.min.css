@@ -5,6 +5,12 @@ level-2 is the first level comment with a margin of 100px
 and so on...
 */
 /* stylelint-disable value-keyword-case*/
+/* Generates mutilevel nested comments
+level-1 is the first level comment with a margin of 50px
+level-2 is the first level comment with a margin of 100px
+and so on...
+*/
+/* stylelint-disable value-keyword-case*/
 .quote {
   margin-left: 0 !important;
   margin-right: 0 !important;
@@ -337,6 +343,22 @@ and so on...
 
 .wp-block {
   max-width: 1140px; }
+
+.editor-styles-wrapper {
+  padding-top: 0; }
+
+.editor-post-title {
+  height: 4rem; }
+
+.editor-post-title__block {
+  padding: 0 2px; }
+  .editor-post-title__block .editor-post-title__input {
+    font-family: "Roboto", sans-serif;
+    font-size: 2.2rem;
+    margin: 3rem 0 0;
+    padding: 10px 15px;
+    border: 1px solid #8d96a0;
+    border-radius: 4px; }
 
 .components-toolbar-text-button {
   color: black;
