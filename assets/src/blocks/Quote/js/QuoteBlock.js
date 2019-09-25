@@ -2,7 +2,6 @@ import BaseBlock from "../../BaseBlock";
 
 import { Icon } from './QuoteIcon';
 import { Quote } from "./Quote";
-import {MediaVideo} from "../../MediaVideo/js/MediaVideo";
 
 export class QuoteBlock extends BaseBlock {
 

@@ -336,11 +336,6 @@ and so on...
   .gpnl-newsletter__block .input__human {
     display: none; }
 
-.remove-liveblog-item {
-  color: red !important; }
-  .remove-liveblog-item:hover {
-    cursor: pointer; }
-
 .wp-block {
   max-width: 1140px; }
 

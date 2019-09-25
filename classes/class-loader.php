@@ -94,9 +94,7 @@ final class Loader {
 		$this->blocks = [
 			new Blocks\Quote(),
 			new Blocks\HeroImage(),
-			new Blocks\MediaVideo(),
 			new Blocks\Newsletter(),
-			new Blocks\Liveblogitem(),
 			new Blocks\Petition(),
 			new Blocks\Donation(),
 			new Blocks\TwoColumnEmbed(),

@@ -25,9 +25,6 @@ module.exports = {
     quote: './assets/src/blocks/Quote/scss/quote.scss',
     newsletter: './assets/src/blocks/Newsletter/scss/newsletter.scss',
     petition: './assets/src/blocks/Petition/scss/petition.scss',
-    // petitionEditor: './assets/src/blocks/Petition/scss/petition-editor.scss',
-    test: './assets/src/blocks/Test/scss/test.scss',
-    // media: './assets/src/blocks/Media/scss/media.scss',
 
     newsletterFormSubmit: './assets/src/blocks/Newsletter/js/NewsletterFormSubmit.js',
 
