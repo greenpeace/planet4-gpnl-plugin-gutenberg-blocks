@@ -1,6 +1,7 @@
 import React from 'react';
 import BaseBlock from "../../BaseBlock";
 import {ServerSideRender} from "@wordpress/components";
+import { Icon } from './HeroImageIcon';
 import HeroImage from "./HeroImage";
 const {withSelect} = wp.data;
 
@@ -17,7 +18,7 @@ export class HeroImageBlock extends BaseBlock {
     // Register the block
     registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
       title: 'Hero afbeelding',
-      icon: 'format-image',
+      icon: Icon,
       category: 'planet4-gpnl-blocks',
       keywords: [
         __(this.blockName),

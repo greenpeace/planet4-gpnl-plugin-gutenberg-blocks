@@ -2,6 +2,7 @@ import React from 'react';
 import BaseBlock from "../../BaseBlock";
 import {ServerSideRender} from "@wordpress/components";
 import Newsletter from "./Newsletter";
+import { Icon } from './NewsletterIcon';
 const {withSelect} = wp.data;
 
 
@@ -17,7 +18,7 @@ export class NewsletterBlock extends BaseBlock {
     // Register the block
     registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
       title: 'Nieuwsbrief',
-      icon: 'email',
+      icon: Icon,
       category: 'planet4-gpnl-blocks',
       keywords: [
         __(this.blockName),

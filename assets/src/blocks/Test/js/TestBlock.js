@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import BaseBlock from "../../BaseBlock";
 import {Button, DateTimePicker, PanelRow} from "@wordpress/components";
 
@@ -6,10 +6,6 @@ import {Button, DateTimePicker, PanelRow} from "@wordpress/components";
 const {__} = wp.i18n; // Import __() from wp.i18n
 const {MediaUpload, RichText, PlainText, InspectorControls } = wp.editor;
 const {PanelBody, TextControl, SelectControl } = wp.components;
-
-import { __experimentalGetSettings } from '@wordpress/date';
-import { withState } from '@wordpress/compose';
-
 
 // I am trying to create a LiveBlog block which contains all items of the blog.
 export class TestBlock extends BaseBlock {
@@ -78,25 +74,33 @@ export class TestBlock extends BaseBlock {
 			// The "edit" property must be a valid function.
 			edit: function (props) {
 
-        const toggleDateTimePicker = (liveblog, newObject) => {
+        const toggleDateTimePicker = (liveblog) => {
 
           console.log(liveblog);
 
-          return <DateTimePicker
-            onChange={() => {
-              props.setAttributes({
-                items: [
-                  ...items.filter(
-                    item => item.index != liveblog.index
-                  ),
-                  newObject
-                ]
-              });
-            }}
-            is12Hour={false}
-            currentDate={liveblog.datetime}
-            value={liveblog.datetime}
-          />
+          return (
+            <Fragment>
+
+            <DateTimePicker
+              currentDate={liveblog.datetime}
+              value={liveblog.datetime}
+              onChange={datetime => {
+                const newObject = Object.assign({}, liveblog, {
+                  datetime: datetime
+                });
+                props.setAttributes({
+                  items: [
+                    ...items.filter(
+                      item => item.index != liveblog.index
+                    ),
+                    newObject
+                  ]
+                });
+              }}
+              is12Hour={false}
+            />
+            </Fragment>
+          )
         };
 
 				const {items} = props.attributes;
@@ -189,33 +193,8 @@ export class TestBlock extends BaseBlock {
 									/>
 
 									{ /*TODO: make this a working pop-up */ }
-                  <Button onClick={(datetime => {
+                  <Button onClick={ () => toggleDateTimePicker(liveblog)} >test</Button>
 
-                            const newObject = Object.assign({}, liveblog, {
-                              datetime: datetime
-                            });
-
-                            toggleDateTimePicker(liveblog, newObject); })}
-
-                  >test</Button>
-                  {/*<DateTimePicker*/}
-                  {/*currentDate={liveblog.datetime}*/}
-                  {/*value={liveblog.datetime}*/}
-                  {/*onChange={datetime => {*/}
-                  {/*  const newObject = Object.assign({}, liveblog, {*/}
-                  {/*    datetime: datetime*/}
-                  {/*  });*/}
-                  {/*  props.setAttributes({*/}
-                  {/*    items: [*/}
-                  {/*      ...items.filter(*/}
-                  {/*        item => item.index != liveblog.index*/}
-                  {/*      ),*/}
-                  {/*      newObject*/}
-                  {/*    ]*/}
-                  {/*  });*/}
-                  {/*}}*/}
-                  {/*is12Hour={false}*/}
-                  {/*/>*/}
 
 									<MediaUpload
 										onSelect={media => {
