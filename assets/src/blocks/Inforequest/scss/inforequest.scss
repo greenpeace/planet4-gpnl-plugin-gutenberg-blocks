@@ -1,0 +1,22 @@
+@import "../../../base/base.scss";
+
+.btn-primary.resetBtn {
+  background-color: $slate-grey;
+  border-color: $slate-grey;
+
+  &:hover, &:focus {
+    background-color: $slate-grey;
+    border-color: $slate-grey;
+  }
+}
+
+.inforequest__wrapper {
+  padding: 15px;
+}
+
+.page-template .educationrequest__button {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1100;
+}
