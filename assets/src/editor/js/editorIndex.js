@@ -18,3 +18,6 @@ const donationBlock = new DonationBlock();
 
 import { TwoColumnEmbedBlock } from "../../blocks/TwoColumnEmbed/js/TwoColumnEmbedBlock";
 const twoColumnEmbedBlock = new TwoColumnEmbedBlock();
+
+import { InforequestBlock } from "../../blocks/Inforequest/js/InforequestBlock";
+const inforequestBlock = new InforequestBlock();
