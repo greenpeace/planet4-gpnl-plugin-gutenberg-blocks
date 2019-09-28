@@ -98,7 +98,6 @@ final class Loader {
 			new Blocks\Petition(),
 			new Blocks\Donation(),
 			new Blocks\TwoColumnEmbed(),
-			new Blocks\Inforequest(),
 		];
 	}
 

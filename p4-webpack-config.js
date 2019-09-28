@@ -16,11 +16,6 @@ module.exports = {
     onload: './assets/src/blocks/Petition/js/onload.js',
     onsubmit: './assets/src/blocks/Petition/js/onsubmit.js',
 
-    // assets for the inforequest block
-    inforequestHelper: './assets/src/blocks/Inforequest/js/InforequestHelper.js',
-
-    addressAutofill: './assets/src/components/AddressAutofill.js',
-
     // assets for the donation block
     donationForm: './assets/src/blocks/Donation/js/donationform.js',
     donationFormStyle: './assets/src/blocks/Donation/scss/donationform.scss',
@@ -30,7 +25,6 @@ module.exports = {
     quote: './assets/src/blocks/Quote/scss/quote.scss',
     newsletter: './assets/src/blocks/Newsletter/scss/newsletter.scss',
     petition: './assets/src/blocks/Petition/scss/petition.scss',
-    inforequest: './assets/src/blocks/Inforequest/scss/inforequest.scss',
 
     newsletterFormSubmit: './assets/src/blocks/Newsletter/js/NewsletterFormSubmit.js',
 
