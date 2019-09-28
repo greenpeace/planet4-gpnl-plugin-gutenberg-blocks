@@ -18,6 +18,7 @@ namespace P4NL_GB_BKS\Blocks;
 class Noindex extends Base_Block {
 
 	public function __construct() {
+
 		// - Register the block for the editor in the PHP side.
 		register_block_type(
 			'planet4-gpnl-blocks/' . $this->getKebabCaseClassName(),
@@ -26,16 +27,27 @@ class Noindex extends Base_Block {
 				'render_callback' => [$this, 'render'],
 				'attributes' => [ ]
 			]
+
 		);
+		add_action('template_redirect', [$this, 'pre_render_if_block_is_present']);
 	}
 
-	public function load() {
 
-		//	add a function on saving of a post and add a function on loading of the page, before outputting the header
-		if ( is_admin() ) {
-			add_action( 'save_post', [ $this, 'delete_tags_and_categories' ] );
-		} else {
-			add_action( 'template_redirect', [ $this, 'add_robots_noindex_to_wp_header' ] );
+	/**
+	 * This will run before determining which template to load.
+	 */
+	function pre_render_if_block_is_present(){
+
+		// Check if the block is present on the page that is requested.
+		if(has_block('planet4-gpnl-blocks/' .$this->getKebabCaseClassName())){
+
+			// add a function on saving of a post.
+			if ( is_admin() ) {
+				add_action( 'save_post', [ $this, 'delete_tags_and_categories' ] );
+			// add a no-index to the head tag.
+			} else {
+				add_action( 'wp_head', 'wp_no_robots' );
+			}
 		}
 	}
 
@@ -48,10 +60,7 @@ class Noindex extends Base_Block {
 	 */
 	public function prepare_data() {
 
-		// TODO: The code does not yet work. The 'add_action' does not work inside this class. What is wrong?
-
-		$this->load();
-
+		// nothing has to be rendered, so we return null.
 		return null;
 	}
 
@@ -60,27 +69,10 @@ class Noindex extends Base_Block {
 	 * Checks if the noindex block is used, if so, removes the categories and tags
 	 */
 	public function delete_tags_and_categories() {
+		// TODO: what about these shortcake/shortcode checks? Can we remove these?
 		if ( ! empty( $_POST ) && defined( $_POST['content']) && has_shortcode( $_POST['content'], 'shortcake_noindex' ) ) {
 			wp_set_post_terms( $_POST['post_ID'], [], 'post_tag' );
 			wp_set_post_terms( $_POST['post_ID'], [], 'category' );
-		}
-	}
-
-	/**
-	 * Is meant to be use just before the rendering starts, so to modify the header dependent of the page content.
-	 * Checks if the noindex block is used, if so add the robots noindex metatag
-	 */
-	public function add_robots_noindex_to_wp_header() {
-
-		global $post;
-
-		if ( ! is_object( $post ) ) {
-			return;
-		}
-		$post_content = $post->post_content;
-
-		if ( ( null !== $post_content ) && has_shortcode( $post_content, 'shortcake_noindex' ) ) {
-			add_action( 'wp_head', 'wp_no_robots' );
 		}
 	}
 
