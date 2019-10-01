@@ -988,78 +988,77 @@ function (_Component) {
           hider = _this$props.hider,
           onValueChange = _this$props.onValueChange;
       return [Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(react__WEBPACK_IMPORTED_MODULE_6__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
-        label: 'formtitle',
+        label: 'Titel van het formulier',
         onChange: onValueChange.bind('formtitle'),
         value: formtitle,
-        placeholder: 'formtitle'
+        placeholder: 'Formuliertitel'
       }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
-        label: 'itemtitle',
+        label: 'Benaming van het aangevraagde',
         onChange: onValueChange.bind('itemtitle'),
-        value: itemtitle,
-        placeholder: 'itemtitle'
+        value: itemtitle
       }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("h4", null, "Voer hieronder minimaal 1 en maximaal 5 artikelen in"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
-        label: 'mcode1_code',
+        label: 'Optie 1: Marketingcode',
         onChange: onValueChange.bind('mcode1_code'),
         value: mcode1_code,
-        placeholder: 'mcode1_code'
+        placeholder: 'marketingcode'
       }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
-        label: 'mcode1_label',
+        label: 'Optie 1: Naam',
         onChange: onValueChange.bind('mcode1_label'),
         value: mcode1_label,
-        placeholder: 'mcode1_label'
+        placeholder: 'marketingcode label'
       }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
-        label: 'mcode2_code',
+        label: 'Optie 2: Marketingcode',
         onChange: onValueChange.bind('mcode2_code'),
         value: mcode2_code,
-        placeholder: 'mcode2_code'
+        placeholder: 'marketingcode'
       }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
-        label: 'mcode2_label',
+        label: 'Optie 2: Naam',
         onChange: onValueChange.bind('mcode2_label'),
         value: mcode2_label,
-        placeholder: 'mcode2_label'
+        placeholder: 'marketingcode label'
       }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
-        label: 'mcode3_code',
+        label: 'Optie 3: Marketingcode',
         onChange: onValueChange.bind('mcode3_code'),
         value: mcode3_code,
-        placeholder: 'mcode3_code'
+        placeholder: 'marketingcode'
       }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
-        label: 'mcode3_label',
+        label: 'Optie 3: Naam',
         onChange: onValueChange.bind('mcode3_label'),
         value: mcode3_label,
-        placeholder: 'mcode3_label'
+        placeholder: 'marketingcode label'
       }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
-        label: 'mcode4_code',
+        label: 'Optie 4: Marketingcode',
         onChange: onValueChange.bind('mcode4_code'),
         value: mcode4_code,
-        placeholder: 'mcode4_code'
+        placeholder: 'marketingcode'
       }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
-        label: 'mcode4_label',
+        label: 'Optie 4: Naam',
         onChange: onValueChange.bind('mcode4_label'),
         value: mcode4_label,
-        placeholder: 'mcode4_label'
+        placeholder: 'marketingcode label'
       }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
-        label: 'mcode5_code',
+        label: 'Optie 5: Marketingcode',
         onChange: onValueChange.bind('mcode5_code'),
         value: mcode5_code,
-        placeholder: 'mcode5_code'
+        placeholder: 'marketingcode'
       }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
-        label: 'mcode5_label',
+        label: 'Optie 5: Naam',
         onChange: onValueChange.bind('mcode5_label'),
         value: mcode5_label,
-        placeholder: 'mcode5_label'
+        placeholder: 'marketingcode label'
       }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextareaControl"], {
-        label: 'consent',
+        label: 'Opt in tekst',
         onChange: onValueChange.bind('consent'),
         value: consent,
         placeholder: 'consent',
         help: 'Deze tekst wordt getoond bij de opt-in.'
       }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
-        label: 'sign',
+        label: 'Tekst op registreer knop',
         onChange: onValueChange.bind('sign'),
         value: sign,
         placeholder: 'Tekst op registreer knop'
       }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["SelectControl"], {
-        label: 'hider',
+        label: 'Waar wordt dit blok gebruikt?',
         onChange: onValueChange.bind('hider'),
         value: hider,
         options: [{
