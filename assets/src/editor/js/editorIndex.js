@@ -18,3 +18,6 @@ const donationBlock = new DonationBlock();
 
 import { TwoColumnEmbedBlock } from "../../blocks/TwoColumnEmbed/js/TwoColumnEmbedBlock";
 const twoColumnEmbedBlock = new TwoColumnEmbedBlock();
+
+import { NoindexBlock } from "../../blocks/Noindex/js/NoindexBlock";
+const noindexBlock = new NoindexBlock();
