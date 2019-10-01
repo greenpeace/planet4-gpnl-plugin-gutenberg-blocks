@@ -74,10 +74,11 @@ export class InforequestBlock extends BaseBlock {
         },
         hider: {
           type: 'string',
+          default: '0'
         },
       },
 
-      edit: (({ attributes, setAttributes, isSelected, image_url }) => {
+      edit: (({ attributes, setAttributes, isSelected }) => {
 
         // Functions we want to call while editing to change attributes.
         function onValueChange(value) {
@@ -89,7 +90,6 @@ export class InforequestBlock extends BaseBlock {
           return ([
             <Inforequest
               {...attributes}
-              image_url={image_url}
               onValueChange={onValueChange}
             />,
               <Preview showBar={isSelected}>

@@ -71,6 +71,7 @@ class Inforequest extends Base_Block {
 					],
 					'hider'     => [
 						'type' => 'text',
+						'default' => '0'
 					]
 				]
 			]
@@ -91,7 +92,7 @@ class Inforequest extends Base_Block {
 
 		wp_enqueue_style( 'inforequest', P4NL_GB_BKS_PLUGIN_URL . 'assets/build/inforequest.min.css', [], '2.11.0' );
 		wp_enqueue_script( 'inforequest_helper', P4NL_GB_BKS_PLUGIN_URL . 'assets/build/inforequestHelper.js', [ 'jquery' ], '2.11.0', true );
-		wp_enqueue_script( 'address_autofill', P4NL_GB_BKS_PLUGIN_URL . 'build/addressAutofill.js', [ 'jquery' ], '0.0.1', true );
+		wp_enqueue_script( 'address_autofill', P4NL_GB_BKS_PLUGIN_URL . 'assets/build/addressAutofill.js', [ 'jquery' ], '0.0.1', true );
 
 		global $post;
 
@@ -104,11 +105,11 @@ class Inforequest extends Base_Block {
 
 		// Pass options to frontend code.
 		wp_localize_script(
-			'gpnl_request_js',
+			'inforequest_helper',
 			'request_form_object',
 			[
 				'ajaxUrl'        => admin_url( 'admin-ajax.php' ),
-				'nonce'          => wp_create_nonce( 'GPNL_Inforequest' ),
+				'nonce'          => wp_create_nonce( 'inforequest_helper' ),
 				'literaturecode' => '04935',
 				'hider'          => $fields['hider'],
 			]
@@ -116,7 +117,7 @@ class Inforequest extends Base_Block {
 
 		// Pass option for address autofill to frontend code.
 		wp_localize_script(
-			'gpnl_address_autofill',
+			'address_autofill',
 			'get_address_object',
 			[
 				'ajaxUrl'        => admin_url( 'admin-ajax.php' ),

@@ -1189,14 +1189,14 @@ function (_BaseBlock) {
           default: 'Registreer'
         },
         hider: {
-          type: 'string'
+          type: 'string',
+          default: '0'
         }
       },
       edit: function edit(_ref) {
         var attributes = _ref.attributes,
             setAttributes = _ref.setAttributes,
-            isSelected = _ref.isSelected,
-            image_url = _ref.image_url;
+            isSelected = _ref.isSelected;
 
         // Functions we want to call while editing to change attributes.
         function onValueChange(value) {
@@ -1206,7 +1206,6 @@ function (_BaseBlock) {
 
         if (isSelected) {
           return [Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_Inforequest__WEBPACK_IMPORTED_MODULE_11__["default"], _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({}, attributes, {
-            image_url: image_url,
             onValueChange: onValueChange
           })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_components_Preview_js_Preview__WEBPACK_IMPORTED_MODULE_10__["Preview"], {
             showBar: isSelected
