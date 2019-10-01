@@ -918,6 +918,320 @@ function (_Component) {
 
 /***/ }),
 
+/***/ "./assets/src/blocks/Inforequest/js/Inforequest.js":
+/*!*********************************************************!*\
+  !*** ./assets/src/blocks/Inforequest/js/Inforequest.js ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Inforequest; });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js");
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js");
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _wordpress_editor__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/editor */ "@wordpress/editor");
+/* harmony import */ var _wordpress_editor__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_editor__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__);
+
+
+
+
+
+
+
+
+
+
+var Inforequest =
+/*#__PURE__*/
+function (_Component) {
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default()(Inforequest, _Component);
+
+  function Inforequest() {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Inforequest);
+
+    return _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_2___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_3___default()(Inforequest).apply(this, arguments));
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Inforequest, [{
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          formtitle = _this$props.formtitle,
+          itemtitle = _this$props.itemtitle,
+          mcode1_code = _this$props.mcode1_code,
+          mcode1_label = _this$props.mcode1_label,
+          mcode2_code = _this$props.mcode2_code,
+          mcode2_label = _this$props.mcode2_label,
+          mcode3_code = _this$props.mcode3_code,
+          mcode3_label = _this$props.mcode3_label,
+          mcode4_code = _this$props.mcode4_code,
+          mcode4_label = _this$props.mcode4_label,
+          mcode5_code = _this$props.mcode5_code,
+          mcode5_label = _this$props.mcode5_label,
+          consent = _this$props.consent,
+          sign = _this$props.sign,
+          hider = _this$props.hider,
+          onValueChange = _this$props.onValueChange;
+      return [Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(react__WEBPACK_IMPORTED_MODULE_6__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Titel van het formulier',
+        onChange: onValueChange.bind('formtitle'),
+        value: formtitle,
+        placeholder: 'Formuliertitel'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Benaming van het aangevraagde',
+        onChange: onValueChange.bind('itemtitle'),
+        value: itemtitle
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])("h4", null, "Voer hieronder minimaal 1 en maximaal 5 artikelen in"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Optie 1: Marketingcode',
+        onChange: onValueChange.bind('mcode1_code'),
+        value: mcode1_code,
+        placeholder: 'marketingcode'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Optie 1: Naam',
+        onChange: onValueChange.bind('mcode1_label'),
+        value: mcode1_label,
+        placeholder: 'marketingcode label'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Optie 2: Marketingcode',
+        onChange: onValueChange.bind('mcode2_code'),
+        value: mcode2_code,
+        placeholder: 'marketingcode'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Optie 2: Naam',
+        onChange: onValueChange.bind('mcode2_label'),
+        value: mcode2_label,
+        placeholder: 'marketingcode label'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Optie 3: Marketingcode',
+        onChange: onValueChange.bind('mcode3_code'),
+        value: mcode3_code,
+        placeholder: 'marketingcode'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Optie 3: Naam',
+        onChange: onValueChange.bind('mcode3_label'),
+        value: mcode3_label,
+        placeholder: 'marketingcode label'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Optie 4: Marketingcode',
+        onChange: onValueChange.bind('mcode4_code'),
+        value: mcode4_code,
+        placeholder: 'marketingcode'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Optie 4: Naam',
+        onChange: onValueChange.bind('mcode4_label'),
+        value: mcode4_label,
+        placeholder: 'marketingcode label'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Optie 5: Marketingcode',
+        onChange: onValueChange.bind('mcode5_code'),
+        value: mcode5_code,
+        placeholder: 'marketingcode'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Optie 5: Naam',
+        onChange: onValueChange.bind('mcode5_label'),
+        value: mcode5_label,
+        placeholder: 'marketingcode label'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextareaControl"], {
+        label: 'Opt in tekst',
+        onChange: onValueChange.bind('consent'),
+        value: consent,
+        placeholder: 'consent',
+        help: 'Deze tekst wordt getoond bij de opt-in.'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["TextControl"], {
+        label: 'Tekst op registreer knop',
+        onChange: onValueChange.bind('sign'),
+        value: sign,
+        placeholder: 'Tekst op registreer knop'
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_8__["SelectControl"], {
+        label: 'Waar wordt dit blok gebruikt?',
+        onChange: onValueChange.bind('hider'),
+        value: hider,
+        options: [{
+          label: 'Op de hoofdpagina',
+          value: '0'
+        }, {
+          label: 'Op een lesmateriaalpagina',
+          value: '1'
+        }]
+      }))];
+    }
+  }]);
+
+  return Inforequest;
+}(react__WEBPACK_IMPORTED_MODULE_6__["Component"]);
+
+
+
+/***/ }),
+
+/***/ "./assets/src/blocks/Inforequest/js/InforequestBlock.js":
+/*!**************************************************************!*\
+  !*** ./assets/src/blocks/Inforequest/js/InforequestBlock.js ***!
+  \**************************************************************/
+/*! exports provided: InforequestBlock */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InforequestBlock", function() { return InforequestBlock; });
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js");
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js");
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _BaseBlock__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../BaseBlock */ "./assets/src/blocks/BaseBlock.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _components_Preview_js_Preview__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../components/Preview/js/Preview */ "./assets/src/components/Preview/js/Preview.js");
+/* harmony import */ var _Inforequest__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Inforequest */ "./assets/src/blocks/Inforequest/js/Inforequest.js");
+
+
+
+
+
+
+
+
+
+
+
+
+var InforequestBlock =
+/*#__PURE__*/
+function (_BaseBlock) {
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5___default()(InforequestBlock, _BaseBlock);
+
+  function InforequestBlock() {
+    var _this;
+
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_2___default()(this, InforequestBlock);
+
+    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_3___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_4___default()(InforequestBlock).call(this)); // Setup references to external functions
+
+    var __ = wp.i18n.__;
+    var registerBlockType = wp.blocks.registerBlockType; // Register the block
+
+    registerBlockType('planet4-gpnl-blocks/' + _this.blockNameKebabCase, {
+      title: 'Docentenaanvraag',
+      icon: 'welcome-widgets-menus',
+      category: 'planet4-gpnl-blocks',
+      keywords: [__(_this.blockName), __('docenten'), __('educatie'), __('aanvraag'), __('informatie'), __('registratie')],
+      attributes: {
+        formtitle: {
+          type: 'string'
+        },
+        itemtitle: {
+          type: 'string'
+        },
+        mcode1_code: {
+          type: 'string'
+        },
+        mcode1_label: {
+          type: 'string'
+        },
+        mcode2_code: {
+          type: 'string'
+        },
+        mcode2_label: {
+          type: 'string'
+        },
+        mcode3_code: {
+          type: 'string'
+        },
+        mcode3_label: {
+          type: 'string'
+        },
+        mcode4_code: {
+          type: 'string'
+        },
+        mcode4_label: {
+          type: 'string'
+        },
+        mcode5_code: {
+          type: 'string'
+        },
+        mcode5_label: {
+          type: 'string'
+        },
+        consent: {
+          type: 'string',
+          default: 'Als je dit aanvinkt, mag Greenpeace je per e-mail op de hoogte houden over onze campagnes. Ook vragen we je af en toe om steun. Afmelden kan natuurlijk altijd.'
+        },
+        sign: {
+          type: 'string',
+          default: 'Registreer'
+        },
+        hider: {
+          type: 'string',
+          default: '0'
+        }
+      },
+      edit: function edit(_ref) {
+        var attributes = _ref.attributes,
+            setAttributes = _ref.setAttributes,
+            isSelected = _ref.isSelected;
+
+        // Functions we want to call while editing to change attributes.
+        function onValueChange(value) {
+          setAttributes(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()({}, this, value));
+        } // if the block is selected, the block-editor is rendered, otherwise the block is rendered server-side.
+
+
+        if (isSelected) {
+          return [Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_Inforequest__WEBPACK_IMPORTED_MODULE_11__["default"], _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({}, attributes, {
+            onValueChange: onValueChange
+          })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_components_Preview_js_Preview__WEBPACK_IMPORTED_MODULE_10__["Preview"], {
+            showBar: isSelected
+          }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_9__["ServerSideRender"], {
+            block: 'planet4-gpnl-blocks/' + _this.blockNameKebabCase,
+            attributes: attributes
+          }))];
+        } else {
+          return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_9__["ServerSideRender"], {
+            block: 'planet4-gpnl-blocks/' + _this.blockNameKebabCase,
+            attributes: attributes
+          });
+        }
+      },
+      // This is not used, because rendering is done server-side. The method has to be defined though for wordpress.
+      save: function save() {
+        return null;
+      }
+    });
+    return _this;
+  }
+
+  return InforequestBlock;
+}(_BaseBlock__WEBPACK_IMPORTED_MODULE_8__["default"]);
+
+/***/ }),
+
 /***/ "./assets/src/blocks/Newsletter/js/Newsletter.js":
 /*!*******************************************************!*\
   !*** ./assets/src/blocks/Newsletter/js/Newsletter.js ***!
@@ -2746,6 +3060,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _blocks_Donation_js_DonationBlock__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../blocks/Donation/js/DonationBlock */ "./assets/src/blocks/Donation/js/DonationBlock.js");
 /* harmony import */ var _blocks_TwoColumnEmbed_js_TwoColumnEmbedBlock__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../blocks/TwoColumnEmbed/js/TwoColumnEmbedBlock */ "./assets/src/blocks/TwoColumnEmbed/js/TwoColumnEmbedBlock.js");
 /* harmony import */ var _blocks_Noindex_js_NoindexBlock__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../blocks/Noindex/js/NoindexBlock */ "./assets/src/blocks/Noindex/js/NoindexBlock.js");
+/* harmony import */ var _blocks_Inforequest_js_InforequestBlock__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../blocks/Inforequest/js/InforequestBlock */ "./assets/src/blocks/Inforequest/js/InforequestBlock.js");
 // All the JS of our blocks have to be imported and instantiated in this file so they can all be used in the Gutenberg editor.
 // Styles of the blocks are imported seperately in the 'editor-styles.scss' file.
 
@@ -2762,6 +3077,8 @@ var donationBlock = new _blocks_Donation_js_DonationBlock__WEBPACK_IMPORTED_MODU
 var twoColumnEmbedBlock = new _blocks_TwoColumnEmbed_js_TwoColumnEmbedBlock__WEBPACK_IMPORTED_MODULE_5__["TwoColumnEmbedBlock"]();
 
 var noindexBlock = new _blocks_Noindex_js_NoindexBlock__WEBPACK_IMPORTED_MODULE_6__["NoindexBlock"]();
+
+var inforequestBlock = new _blocks_Inforequest_js_InforequestBlock__WEBPACK_IMPORTED_MODULE_7__["InforequestBlock"]();
 
 /***/ }),
 
