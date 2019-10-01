@@ -68,3 +68,8 @@
 .components-range-control__slider {
   width: unset;
 }
+
+// wordpress also has a card class with a top margin that we don want.
+.card {
+  margin-top: 0;
+}
