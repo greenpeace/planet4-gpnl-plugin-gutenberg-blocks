@@ -99,6 +99,7 @@ final class Loader {
 			new Blocks\Donation(),
 			new Blocks\TwoColumnEmbed(),
 			new Blocks\Inforequest(),
+			new Blocks\Noindex(),
 		];
 	}
 
