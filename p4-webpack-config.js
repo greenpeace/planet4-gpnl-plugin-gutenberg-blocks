@@ -69,9 +69,11 @@ module.exports = {
   ],
   optimization: {
     ...defaultConfig.optimization,
+    minimize: true,
     minimizer: [
       // enable the css minification plugin
-      new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})
+      new TerserJSPlugin({}),
+      new OptimizeCSSAssetsPlugin({})
     ]
   }
 };
