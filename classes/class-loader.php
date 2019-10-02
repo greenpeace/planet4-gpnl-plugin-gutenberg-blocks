@@ -100,6 +100,7 @@ final class Loader {
 			new Blocks\TwoColumnEmbed(),
 			new Blocks\Inforequest(),
 			new Blocks\Noindex(),
+			new Blocks\Educationcovers(),
 		];
 	}
 

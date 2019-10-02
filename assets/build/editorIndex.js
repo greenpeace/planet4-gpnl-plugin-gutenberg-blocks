@@ -478,6 +478,80 @@ function (_BaseBlock) {
 
 /***/ }),
 
+/***/ "./assets/src/blocks/Educationcovers/js/EducationcoversBlock.js":
+/*!**********************************************************************!*\
+  !*** ./assets/src/blocks/Educationcovers/js/EducationcoversBlock.js ***!
+  \**********************************************************************/
+/*! exports provided: EducationcoversBlock */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EducationcoversBlock", function() { return EducationcoversBlock; });
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js");
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js");
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js");
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js");
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _BaseBlock__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../BaseBlock */ "./assets/src/blocks/BaseBlock.js");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _HeroImage_js_HeroImage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../HeroImage/js/HeroImage */ "./assets/src/blocks/HeroImage/js/HeroImage.js");
+
+
+
+
+
+
+
+
+
+var EducationcoversBlock =
+/*#__PURE__*/
+function (_BaseBlock) {
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3___default()(EducationcoversBlock, _BaseBlock);
+
+  function EducationcoversBlock() {
+    var _this;
+
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, EducationcoversBlock);
+
+    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_1___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2___default()(EducationcoversBlock).call(this)); // Setup references to external functions
+
+    var __ = wp.i18n.__;
+    var registerBlockType = wp.blocks.registerBlockType;
+    var blockNameKebabCase = _this.blockNameKebabCase; // Register the block
+
+    registerBlockType('planet4-gpnl-blocks/' + _this.blockNameLowerCase, {
+      title: 'lesmateriaal overzicht',
+      icon: 'grid-view',
+      category: 'planet4-gpnl-blocks',
+      keywords: [__(_this.blockName), __('educatie'), __('overzicht')],
+      attributes: null,
+      edit: function edit() {
+        return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__["ServerSideRender"], {
+          block: 'planet4-gpnl-blocks/' + _this.blockNameKebabCase
+        });
+      },
+      save: function save() {
+        return null;
+      }
+    });
+    return _this;
+  }
+
+  return EducationcoversBlock;
+}(_BaseBlock__WEBPACK_IMPORTED_MODULE_6__["default"]);
+
+/***/ }),
+
 /***/ "./assets/src/blocks/HeroImage/js/HeroImage.js":
 /*!*****************************************************!*\
   !*** ./assets/src/blocks/HeroImage/js/HeroImage.js ***!
@@ -3061,8 +3135,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _blocks_TwoColumnEmbed_js_TwoColumnEmbedBlock__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../blocks/TwoColumnEmbed/js/TwoColumnEmbedBlock */ "./assets/src/blocks/TwoColumnEmbed/js/TwoColumnEmbedBlock.js");
 /* harmony import */ var _blocks_Noindex_js_NoindexBlock__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../blocks/Noindex/js/NoindexBlock */ "./assets/src/blocks/Noindex/js/NoindexBlock.js");
 /* harmony import */ var _blocks_Inforequest_js_InforequestBlock__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../blocks/Inforequest/js/InforequestBlock */ "./assets/src/blocks/Inforequest/js/InforequestBlock.js");
+/* harmony import */ var _blocks_Educationcovers_js_EducationcoversBlock__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../blocks/Educationcovers/js/EducationcoversBlock */ "./assets/src/blocks/Educationcovers/js/EducationcoversBlock.js");
 // All the JS of our blocks have to be imported and instantiated in this file so they can all be used in the Gutenberg editor.
-// Styles of the blocks are imported seperately in the 'editor-styles.scss' file.
+// Styles of the blocks are imported separately in the 'editor-styles.scss' file.
 
 var quoteBlock = new _blocks_Quote_js_QuoteBlock__WEBPACK_IMPORTED_MODULE_0__["QuoteBlock"]();
 
@@ -3079,6 +3154,8 @@ var twoColumnEmbedBlock = new _blocks_TwoColumnEmbed_js_TwoColumnEmbedBlock__WEB
 var noindexBlock = new _blocks_Noindex_js_NoindexBlock__WEBPACK_IMPORTED_MODULE_6__["NoindexBlock"]();
 
 var inforequestBlock = new _blocks_Inforequest_js_InforequestBlock__WEBPACK_IMPORTED_MODULE_7__["InforequestBlock"]();
+
+var educationcoversBlock = new _blocks_Educationcovers_js_EducationcoversBlock__WEBPACK_IMPORTED_MODULE_8__["EducationcoversBlock"]();
 
 /***/ }),
 

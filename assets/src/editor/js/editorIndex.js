@@ -1,5 +1,5 @@
 // All the JS of our blocks have to be imported and instantiated in this file so they can all be used in the Gutenberg editor.
-// Styles of the blocks are imported seperately in the 'editor-styles.scss' file.
+// Styles of the blocks are imported separately in the 'editor-styles.scss' file.
 
 import { QuoteBlock } from "../../blocks/Quote/js/QuoteBlock";
 const quoteBlock = new QuoteBlock();
@@ -24,3 +24,6 @@ const noindexBlock = new NoindexBlock();
 
 import { InforequestBlock } from "../../blocks/Inforequest/js/InforequestBlock";
 const inforequestBlock = new InforequestBlock();
+
+import { EducationcoversBlock } from "../../blocks/Educationcovers/js/EducationcoversBlock";
+const educationcoversBlock = new EducationcoversBlock();
