@@ -266,8 +266,8 @@ function petition_form_process() {
 	$literatuurcode = htmlspecialchars( wp_strip_all_tags( $_POST['literaturecode'] ) );
 
 	// Get and sanitize the formdata
-	$naam  = wp_strip_all_tags( $_POST['name'] );
-	$email = wp_strip_all_tags( $_POST['mail'] );
+	$naam        = wp_strip_all_tags( $_POST['name'] );
+	$email       = wp_strip_all_tags( $_POST['mail'] );
 	$phonenumber = validate_phonenumber( wp_strip_all_tags( $_POST['phone'] ) );
 
 	$known = check_known( 'mail', $email );
