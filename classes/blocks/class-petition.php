@@ -286,10 +286,18 @@ function petition_form_process() {
 	$consent = htmlspecialchars( wp_strip_all_tags( $_POST['consent'] ) );
 	$consent = ( 'on' === $consent ? 0 : 1 );
 
-	$options = get_option( 'planet4nl_options' );
-//	$baseurl = 'https://www.mygreenpeace.nl/registreren/pixel.aspx';
+	$data_array = [
+		'source' => $marketingcode,
+		'per'    => $literatuurcode,
+		'fn'     => $naam,
+		'email'  => $email,
+		'tel'    => $phonenumber,
+		'stop'   => $consent,
+	];
+
+	$options     = get_option( 'planet4nl_options' );
 	$baseurl     = $options['petitionpixel_url'];
-	$querystring = '?source=' . $marketingcode . '&per=' . $literatuurcode . '&fn=' . $naam . '&email=' . $email . '&tel=' . $phonenumber . '&stop=' . $consent;
+	$querystring = http_build_query( $data_array );
 
 	// initiate a cUrl request to the database.
 	// phpcs:disable
@@ -314,7 +322,7 @@ function petition_form_process() {
 	}
 	wp_send_json_success(
 		[
-			'statuscode' => $httpcode,
+			'statuscode'     => $httpcode,
 			'phonesanitized' => $phonenumber,
 			'mailresult'     => $mail,
 			'phoneresult'    => $tel,
