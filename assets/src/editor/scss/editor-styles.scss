@@ -1,5 +1,4 @@
 @import "../../base/base.scss";
-
 // Block styles
 @import "../../blocks/Quote/scss/quote";
 @import "../../blocks/HeroImage/scss/hero-image";
@@ -8,12 +7,11 @@
 
 // width of editor same as page width
 .wp-block {
-	max-width: 1140px;
+  max-width: 1140px;
 }
 
 .editor-styles-wrapper {
   padding-top: 0;
-
 }
 
 .editor-post-title {
