@@ -80,7 +80,8 @@ class HeroImage extends Base_Block {
 			$fields['image_sizes']  = wp_calculate_image_sizes( 'full', null, null, $fields['image'] );
 		}
 
-		wp_enqueue_style( 'hero-image', P4NL_GB_BKS_PLUGIN_URL . '/assets/build/heroImage.min.css', null, '0.1' );
+		// enqueue any style by giving the name as defined in webpack (camelCase).
+		$this->enqueue_style('heroImage');
 
 		$data = [
 			'fields' => $fields,
@@ -89,6 +90,8 @@ class HeroImage extends Base_Block {
 		return $data;
 
 	}
+
+
 
 }
 
