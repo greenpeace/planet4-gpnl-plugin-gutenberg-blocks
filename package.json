@@ -1,9 +1,22 @@
 {
 	"name": "planet4-plugin-gutenberg-blocks",
-	"description": "Gutenberg blocks plugin for the Planet 4 Wordpress project",
-	"homepage": "https://github.com/greenpeace/planet4-gutenberg-plugin-blocks#readme",
-	"repository": "git@github.com:greenpeace/planet4-plugin-gutenberg-blocks.git",
-	"author": "Greenpeace International",
+	"description": "Gutenberg blocks plugin for the Planet 4 Wordpress project for the Netherlands",
+	"homepage": "https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks#readme",
+	"repository": "git@github.com:greenpeace/planet4-gpnl-plugin-gutenberg-blocks.git",
+	"authors": [
+		{
+			"name": "Greenpeace Netherlands",
+			"email": "planet4-group@greenpeace.org"
+		},
+		{
+			"name": "Oscar Keur",
+			"email": "okeur@greenpeace.org"
+		},
+		{
+			"name": "Dirk Faber",
+			"email": "dfaber@greenpeace.org"
+		}
+	],
 	"license": "GPL-3.0",
 	"main": "index.js",
 	"scripts": {
@@ -14,20 +27,9 @@
 	},
 	"devDependencies": {
 		"@wordpress/eslint-plugin": "^2.4.0",
-		"@wordpress/scripts": "3.3.0",
+		"@wordpress/scripts": "^5.0.1",
 		"css-loader": "^3.1.0",
 		"eslint": "^5.16.0",
-		"gulp": "^4.0.2",
-		"gulp-clean-css": "^4.2.0",
-		"gulp-concat": "^2.6.1",
-		"gulp-eslint": "^5.0.0",
-		"gulp-livereload": "^4.0.1",
-		"gulp-notify": "^3.2.0",
-		"gulp-plumber": "^1.2.0",
-		"gulp-sass": "^4.0.1",
-		"gulp-sourcemaps": "^2.6.5",
-		"gulp-stylelint": "^9.0.0",
-		"gulp-uglify-es": "^1.0.4",
 		"mini-css-extract-plugin": "^0.7.0",
 		"node-sass": "^4.12.0",
 		"optimize-css-assets-webpack-plugin": "^5.0.3",

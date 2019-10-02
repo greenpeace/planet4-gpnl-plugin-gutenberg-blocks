@@ -1420,19 +1420,19 @@ function (_Component) {
       return [Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])("div", {
         className: 'gpnl-newsletter__block',
         style: {
-          height: "100%",
-          overflow: "hidden",
-          maxWidth: "100%",
-          margin: "0"
+          // height: "100%",
+          overflow: 'hidden',
+          maxWidth: '100%',
+          margin: '0'
         }
       }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])("div", {
         className: 'background-image',
         style: {
-          backgroundColor: "#f4f4f4",
-          margin: "0",
-          width: "100%",
+          backgroundColor: '#f4f4f4',
+          margin: '0',
+          width: '100%',
           backgroundImage: "url(".concat(image_url, ")"),
-          backgroundSize: "cover",
+          backgroundSize: 'cover',
           opacity: "".concat(opacity, "%")
         }
       }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__["createElement"])("div", {
