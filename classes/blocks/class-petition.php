@@ -156,7 +156,6 @@ class Petition extends Base_Block {
 		return $social_accounts;
 	}
 
-
 	/**
 	 * Callback for the shortcake_twocolumn shortcode.
 	 * It renders the shortcode based on supplied attributes.
@@ -259,6 +258,17 @@ function petition_form_process() {
 	if ( ! defined( $_POST ) ) {
 		return;
 	}
+	$nonce        = htmlspecialchars( wp_strip_all_tags( $_POST['nonce'] ) );
+	$key_in_cache = wp_cache_get( $nonce, 'gpnl_cache' );
+	if ( ! $key_in_cache ) {
+		wp_send_json_error(
+			[
+				'statuscode' => 400,
+			],
+			500
+		);
+	}
+	wp_cache_delete( $nonce, 'gpnl_cache' );
 
 	// Add back GPNL nonce.
 	$_POST          = wp_unslash( $_POST );
@@ -307,12 +317,12 @@ function petition_form_process() {
 	curl_setopt( $request, CURLOPT_RETURNTRANSFER, 1 );
 
 	$result   = curl_exec( $request );
-	$httpcode = curl_getinfo( $request, CURLINFO_HTTP_CODE );
+	$httpcode = intval( curl_getinfo( $request, CURLINFO_HTTP_CODE ) );
 	curl_close( $request );
 	// phpcs:enable
 
 	// Give the appropriate response to the frontend.
-	if ( false === $result ) {
+	if ( $httpcode >= 400 || false === $result ) {
 		wp_send_json_error(
 			[
 				'statuscode' => $httpcode,
