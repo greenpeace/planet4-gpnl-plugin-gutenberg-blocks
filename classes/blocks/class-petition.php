@@ -273,7 +273,9 @@ function petition_form_process() {
 	$consent = htmlspecialchars( wp_strip_all_tags( $_POST['consent'] ) );
 	$consent = ( 'on' === $consent ? 0 : 1 );
 
-	$baseurl     = 'https://www.mygreenpeace.nl/registreren/pixel.aspx';
+	$options = get_option( 'planet4nl_options' );
+//	$baseurl = 'https://www.mygreenpeace.nl/registreren/pixel.aspx';
+	$baseurl     = $options['petitionpixel_url'];
 	$querystring = '?source=' . $marketingcode . '&per=' . $literatuurcode . '&fn=' . $naam . '&email=' . $email . '&tel=' . $phonenumber . '&stop=' . $consent;
 
 	// initiate a cUrl request to the database.
