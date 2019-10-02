@@ -24,7 +24,6 @@ class Petition extends Base_Block {
 	 * Define the fields and exposed functions to Gutenberg
 	 */
 	public function __construct() {
-		// - Register the block for the editor in the PHP side.
 		register_block_type(
 			'planet4-gpnl-blocks/' . $this->getKebabCaseClassName(),
 			[
