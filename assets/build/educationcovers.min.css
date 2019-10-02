@@ -1,0 +1,26 @@
+/* Generates mutilevel nested comments
+level-1 is the first level comment with a margin of 50px
+level-2 is the first level comment with a margin of 100px
+and so on...
+*/
+/* stylelint-disable value-keyword-case*/
+.inforequest__wrapper {
+  padding: 15px; }
+
+.inforequest__form-collection .btn {
+  margin: 5px 4px 0 0; }
+
+.cover-card .educationcovers__card__p {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  background: #003300;
+  color: #ffffff !important;
+  margin-bottom: 0;
+  padding: 5px;
+  padding-bottom: 1.6rem; }
+  .cover-card .educationcovers__card__p:hover {
+    color: #ffffff; }
+
+
+/*# sourceMappingURL=educationcovers.min.css.map*/

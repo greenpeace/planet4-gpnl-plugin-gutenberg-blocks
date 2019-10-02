@@ -66,21 +66,21 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./assets/src/blocks/Test/scss/test.scss");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./assets/src/blocks/Educationcovers/scss/educationcovers.scss");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./assets/src/blocks/Test/scss/test.scss":
-/*!***********************************************!*\
-  !*** ./assets/src/blocks/Test/scss/test.scss ***!
-  \***********************************************/
+/***/ "./assets/src/blocks/Educationcovers/scss/educationcovers.scss":
+/*!*********************************************************************!*\
+  !*** ./assets/src/blocks/Educationcovers/scss/educationcovers.scss ***!
+  \*********************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module build failed: ModuleBuildError: Module build failed: Error: ENOENT: no such file or directory, open '/var/docker/planet4-docker-compose/persistence/app/public/wp-content/plugins/planet4-gpnl-plugin-gutenberg-blocks/assets/src/blocks/Test/scss/test.scss'\n    at /var/docker/planet4-docker-compose/persistence/app/public/wp-content/plugins/planet4-gpnl-plugin-gutenberg-blocks/node_modules/webpack/lib/NormalModule.js:252:20\n    at /var/docker/planet4-docker-compose/persistence/app/public/wp-content/plugins/planet4-gpnl-plugin-gutenberg-blocks/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at Array.<anonymous> (/var/docker/planet4-docker-compose/persistence/app/public/wp-content/plugins/planet4-gpnl-plugin-gutenberg-blocks/node_modules/loader-runner/lib/LoaderRunner.js:203:19)\n    at Storage.finished (/var/docker/planet4-docker-compose/persistence/app/public/wp-content/plugins/planet4-gpnl-plugin-gutenberg-blocks/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:43:16)\n    at ReadFileContext.<anonymous> (/var/docker/planet4-docker-compose/persistence/app/public/wp-content/plugins/planet4-gpnl-plugin-gutenberg-blocks/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:79:9)\n    at ReadFileContext.callback (/var/docker/planet4-docker-compose/persistence/app/public/wp-content/plugins/planet4-gpnl-plugin-gutenberg-blocks/node_modules/graceful-fs/graceful-fs.js:90:16)\n    at FSReqCallback.readFileAfterOpen [as oncomplete] (fs.js:246:13)");
+// extracted by mini-css-extract-plugin
 
 /***/ })
 
 /******/ });
-//# sourceMappingURL=test.js.map
+//# sourceMappingURL=educationcovers.js.map

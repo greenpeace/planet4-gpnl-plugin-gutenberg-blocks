@@ -25,6 +25,10 @@ module.exports = {
     donationForm: './assets/src/blocks/Donation/js/donationform.js',
     donationFormStyle: './assets/src/blocks/Donation/scss/donationform.scss',
 
+    // assets for the educationcovers block
+    educationcoversHelper: './assets/src/blocks/Educationcovers/js/educationcoversHelper.js',
+    educationcovers: './assets/src/blocks/Educationcovers/scss/educationcovers.scss',
+
     // Separate css files are generated for the blocks so they can be used only when required on public pages.
     heroImage: './assets/src/blocks/HeroImage/scss/hero-image.scss',
     quote: './assets/src/blocks/Quote/scss/quote.scss',
