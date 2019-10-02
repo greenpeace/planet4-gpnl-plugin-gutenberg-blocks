@@ -1,6 +1,4 @@
 <?php
-
-
 /**
  * Hero Image block class
  *
@@ -10,52 +8,54 @@
 
 namespace P4NL_GB_BKS\Blocks;
 
-
 /**
+ * Defines the HeroInmage block for Gutenberg
+ *
  * @package P4BKS\Controllers\Blocks
  * @since 0.1
  */
 class HeroImage extends Base_Block {
 
+	/**
+	 * Defines the fields and render callback for Gutenberg
+	 */
 	public function __construct() {
-		// - Register the block for the editor in the PHP side.
 		register_block_type(
 			'planet4-gpnl-blocks/' . $this->getKebabCaseClassName(),
 			[
-				'editor_script' => 'planet4-gpnl-blocks',
-				'render_callback' => [$this, 'render'],
-				'attributes' => [
-					'title' => [
-						'type' => 'string',
+				'editor_script'   => 'planet4-gpnl-blocks',
+				'render_callback' => [ $this, 'render' ],
+				'attributes'      => [
+					'title'       => [
+						'type'    => 'string',
 						'default' => '',
 					],
 					'description' => [
-						'type' => 'text',
+						'type'    => 'text',
 						'default' => '',
 					],
-					'small' => [
-						'type' => 'boolean',
+					'small'       => [
+						'type'    => 'boolean',
 						'default' => false,
 					],
-					'image' => [
-						'type' => 'number',
+					'image'       => [
+						'type'    => 'number',
 						'default' => '',
 					],
-					'link_text' => [
-						'type' => 'string',
+					'link_text'   => [
+						'type'    => 'string',
 						'default' => '',
 					],
-					'link_url' => [
-						'type' => 'string',
+					'link_url'    => [
+						'type'    => 'string',
 						'default' => '',
 					],
 					'focus_image' => [
 						'type' => 'string',
-					]
-				]
+					],
+				],
 
 			]
-
 		);
 	}
 
@@ -73,7 +73,6 @@ class HeroImage extends Base_Block {
 
 		// If an image is selected
 		if ( isset( $fields['image'] ) && $image = wp_get_attachment_image_src( $fields['image'], 'full' ) ) {
-			// load the image from the library
 			$fields['image_url']    = $image[0];
 			$fields['alt_text']     = get_post_meta( $fields['image'], '_wp_attachment_image_alt', true );
 			$fields['image_srcset'] = wp_get_attachment_image_srcset( $fields['image'], 'full', wp_get_attachment_metadata( $fields['image'] ) );
