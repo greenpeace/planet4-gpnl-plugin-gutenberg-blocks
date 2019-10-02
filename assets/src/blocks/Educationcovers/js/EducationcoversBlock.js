@@ -1,7 +1,6 @@
 import React from 'react';
 import BaseBlock from "../../BaseBlock";
 import { ServerSideRender } from "@wordpress/components";
-import HeroImage from "../../HeroImage/js/HeroImage";
 
 export class EducationcoversBlock extends BaseBlock {
 

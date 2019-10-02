@@ -503,8 +503,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _BaseBlock__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../BaseBlock */ "./assets/src/blocks/BaseBlock.js");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _HeroImage_js_HeroImage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../HeroImage/js/HeroImage */ "./assets/src/blocks/HeroImage/js/HeroImage.js");
-
 
 
 
