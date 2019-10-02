@@ -61,7 +61,7 @@ export default class Newsletter extends Component {
       <div
         className={'gpnl-newsletter__block'}
         style={{
-          height: "100%",
+          // height: "100%",
           overflow: "hidden",
           maxWidth: "100%",
           margin: "0",
