@@ -24,11 +24,7 @@ export class NoindexBlock extends BaseBlock {
         __('robots'),
         __('indexed'),
 			],
-      attributes: {
-        hidden: {
-          type: 'string',
-        }
-      },
+      attributes: null,
 
 			edit( {} ) {
         return <h4 style={{"color": "red"}}>

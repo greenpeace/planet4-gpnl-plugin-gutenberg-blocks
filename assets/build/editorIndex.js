@@ -1830,11 +1830,7 @@ function (_BaseBlock) {
       icon: 'hidden',
       category: 'planet4-gpnl-blocks',
       keywords: [__(_this.blockName), __('verborgen'), __('hidden'), __('robots'), __('indexed')],
-      attributes: {
-        hidden: {
-          type: 'string'
-        }
-      },
+      attributes: null,
       edit: function edit(_ref) {
         _babel_runtime_helpers_objectDestructuringEmpty__WEBPACK_IMPORTED_MODULE_0___default()(_ref);
 
