@@ -11,6 +11,8 @@
 namespace P4NL_GB_BKS\Blocks;
 
 
+use P4NL_GB_BKS\Services\Asset_Enqueuer;
+
 /**
  * @package P4BKS\Controllers\Blocks
  * @since 0.1
@@ -90,9 +92,10 @@ class Inforequest extends Base_Block {
 	 */
 	public function prepare_data( $fields ): array {
 
-		wp_enqueue_style( 'inforequest', P4NL_GB_BKS_PLUGIN_URL . 'assets/build/inforequest.min.css', [], '2.11.0' );
-		wp_enqueue_script( 'inforequest_helper', P4NL_GB_BKS_PLUGIN_URL . 'assets/build/inforequestHelper.js', [ 'jquery' ], '2.11.0', true );
-		wp_enqueue_script( 'address_autofill', P4NL_GB_BKS_PLUGIN_URL . 'assets/build/addressAutofill.js', [ 'jquery' ], '0.0.1', true );
+		// enqueue any asset (style or script) by giving the name as defined in webpack config.
+		Asset_Enqueuer::enqueue_asset('inforequest', 'style');
+		Asset_Enqueuer::enqueue_asset('inforequestHelper', 'script', true);
+		Asset_Enqueuer::enqueue_asset('addressAutofill', 'script', true);
 
 		global $post;
 

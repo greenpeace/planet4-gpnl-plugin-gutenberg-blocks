@@ -8,6 +8,9 @@
 
 namespace P4NL_GB_BKS\Blocks;
 
+use P4NL_GB_BKS\Services\Asset_Enqueuer;
+
+
 /**
  * Defines the HeroInmage block for Gutenberg
  *
@@ -79,8 +82,8 @@ class HeroImage extends Base_Block {
 			$fields['image_sizes']  = wp_calculate_image_sizes( 'full', null, null, $fields['image'] );
 		}
 
-		// enqueue any style by giving the name as defined in webpack (camelCase).
-		$this->enqueue_style('heroImage');
+		// enqueue the style file.
+		Asset_Enqueuer::enqueue_asset('heroImage', 'style');
 
 		$data = [
 			'fields' => $fields,

@@ -8,6 +8,7 @@
 
 namespace P4NL_GB_BKS\Blocks;
 
+use P4NL_GB_BKS\Services\Asset_Enqueuer;
 use function count;
 use function strlen;
 
@@ -201,33 +202,24 @@ class Petition extends Base_Block {
 
 		// Include de approptiate scripts for ad campaign tracking.
 		if ( 'SB' === $fields['ad_campaign'] ) {
-			wp_enqueue_script( 'social-blue-landing-script', P4NL_GB_BKS_PLUGIN_URL . 'assets/build/socialBlueLanding.js', [], '2.3.6', true );
+			Asset_Enqueuer::enqueue_asset( 'socialBlueLanding', 'script', true);
 		} elseif ( 'JA' === $fields['ad_campaign'] ) {
-			wp_enqueue_script( 'jalt-landing-script', P4NL_GB_BKS_PLUGIN_URL . 'assets/build/jaltLanding.js', [], '2.3.6', true );
+			Asset_Enqueuer::enqueue_asset( 'jaltLanding', 'script', true);
 		}
 
 		// Include the script and styling for the counter.
-		wp_enqueue_script(
-			'petitioncounterjs',
-			P4NL_GB_BKS_PLUGIN_URL . 'assets/build/onload.js',
-			[
-				'jquery',
-				'jquery-effects-core',
-			],
-			'2.6.9',
-			true
-		);
-		wp_enqueue_style( 'petitioncountercss', P4NL_GB_BKS_PLUGIN_URL . 'assets/build/petition.min.css', [], '2.11.4' );
+		Asset_Enqueuer::enqueue_asset( 'onload', 'script', true);
 
 		/**
-		*========================
-		* CSS / JS
+		 *========================
+		 * CSS / JS
 		 */
-		wp_enqueue_script( 'jquery-docready-script', P4NL_GB_BKS_PLUGIN_URL . 'assets/build/onsubmit.js', [ 'jquery' ], '2.11.4', true );
+		Asset_Enqueuer::enqueue_asset( 'onsubmit', 'script', true);
+		Asset_Enqueuer::enqueue_asset( 'petition', 'style');
 
 		// Pass options to frontend code.
 		wp_localize_script(
-			'jquery-docready-script',
+			'onsubmit',
 			'petition_form_object_' . $fields['form_id'],
 			array(
 				'ajaxUrl'            => admin_url( 'admin-ajax.php' ),
