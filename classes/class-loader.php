@@ -121,8 +121,8 @@ final class Loader {
 
 						$namespace = implode( '\\', $class_name_parts );
 						$path      = str_ireplace(
-							[ 'P4NL_GB_BKS', 'Blocks', 'Controllers', 'Views', '_', '\\' ],
-							[ '', 'blocks', 'controller', 'view', '-', '/' ],
+							[ 'P4NL_GB_BKS', 'Blocks', 'Controllers', 'Views', 'Services', '_', '\\' ],
+							[ '', 'blocks', 'controller', 'view', 'services', '-', '/' ],
 							strtolower( $namespace )
 						);
 						require_once __DIR__ . '/' . $path . '/' . $file_name . '.php';
