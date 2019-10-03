@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 $(document).ready(function () {
 
   // this will get the address object that is inserted with the wp_localize_script() function in the controller

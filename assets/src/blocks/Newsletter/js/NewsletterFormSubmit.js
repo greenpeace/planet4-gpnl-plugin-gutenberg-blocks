@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 var newsletter_form_element = {};
 $('.gpnl-newsletter__form').on('submit', function () {
 

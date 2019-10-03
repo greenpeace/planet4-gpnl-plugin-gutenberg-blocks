@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 $('.gpnl-petitionform').on('submit', function () {
   var petition_form_element = this;
   // Get the  parameter from the petition form and add the action and CSRF protection

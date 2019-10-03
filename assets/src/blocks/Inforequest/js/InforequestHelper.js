@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 var request_form_element = {};
 var check_form_element = {};
 var form_config = 'request_form_object';
