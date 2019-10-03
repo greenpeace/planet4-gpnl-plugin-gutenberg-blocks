@@ -11,6 +11,8 @@
 namespace P4NL_GB_BKS\Blocks;
 
 
+use P4NL_GB_BKS\Services\Asset_Enqueuer;
+
 /**
  * @package P4BKS\Controllers\Blocks
  * @since 0.1
@@ -77,8 +79,8 @@ class Newsletter extends Base_Block {
 	 */
 	public function prepare_data( $fields ): array {
 
-		wp_enqueue_style( 'gpnl_newsletter_css', P4NL_GB_BKS_PLUGIN_URL . 'assets/build/newsletter.min.css', [], '0.1' );
-		wp_enqueue_script( 'gpnl_newsletter_js', P4NL_GB_BKS_PLUGIN_URL . 'assets/build/newsletterFormSubmit.js', [ 'jquery' ], '0.1', true );
+		Asset_Enqueuer::enqueue_asset( 'newsletterFormSubmit', 'script', true);
+		Asset_Enqueuer::enqueue_asset( 'newsletter', 'style');
 
 
 		// If an image is selected

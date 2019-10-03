@@ -1,3 +1,6 @@
+import $ from 'jquery';
+import 'jquery-ui';
+
 $(document).ready(function() {
 
   // Hide the consentbox if the opt=in url var is set. (this is for set for ie mailings)

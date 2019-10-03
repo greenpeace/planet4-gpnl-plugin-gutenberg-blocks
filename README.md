@@ -44,3 +44,8 @@ or
 ## Contribute
 
 Please read the [Contribution Guidelines](https://planet4.greenpeace.org/handbook/dev-contribute-to-planet4/) for Planet4.
+
+## Assets
+
+To watch the files run `npm start`. 
+To build files for production run `npm run-script build`. 

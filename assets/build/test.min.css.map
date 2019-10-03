@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack:///./assets/src/blocks/Test/scss/test.scss"],"names":[],"mappings":"AAAA;AACA,wBAAwB;AACxB;AACA,oBAAoB","file":"./test.min.css","sourcesContent":[".remove-liveblog-item {\n  color: red !important; }\n  .remove-liveblog-item:hover {\n    cursor: pointer; }\n"],"sourceRoot":""}

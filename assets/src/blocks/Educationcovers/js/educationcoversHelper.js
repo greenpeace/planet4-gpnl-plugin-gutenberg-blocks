@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 var tags = [];
 var covers = $('.cover-card-column');
 $( '.tagselector input[type=checkbox]' ).on( 'click', function () {

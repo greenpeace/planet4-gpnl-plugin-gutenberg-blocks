@@ -2,6 +2,7 @@ const defaultConfig = require("./node_modules/@wordpress/scripts/config/webpack.
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const TerserJSPlugin = require('terser-webpack-plugin');
+const DependencyExtractionWebpackPlugin = require( '@wordpress/dependency-extraction-webpack-plugin' );
 
 module.exports = {
   ...defaultConfig,
@@ -15,6 +16,7 @@ module.exports = {
     socialBlueLanding: './assets/src/blocks/Petition/js/social-blue-landing.js',
     onload: './assets/src/blocks/Petition/js/onload.js',
     onsubmit: './assets/src/blocks/Petition/js/onsubmit.js',
+    petition: './assets/src/blocks/Petition/scss/petition.scss',
 
     // assets for the inforequest block
     inforequestHelper: './assets/src/blocks/Inforequest/js/InforequestHelper.js',
@@ -33,14 +35,13 @@ module.exports = {
     heroImage: './assets/src/blocks/HeroImage/scss/hero-image.scss',
     quote: './assets/src/blocks/Quote/scss/quote.scss',
     newsletter: './assets/src/blocks/Newsletter/scss/newsletter.scss',
-    petition: './assets/src/blocks/Petition/scss/petition.scss',
     inforequest: './assets/src/blocks/Inforequest/scss/inforequest.scss',
 
     newsletterFormSubmit: './assets/src/blocks/Newsletter/js/NewsletterFormSubmit.js',
 
   },
   output: {
-    filename: '[name].js',
+    filename: "[name].min.js",
     path: __dirname + '/assets/build'
   },
   module: {
@@ -62,18 +63,27 @@ module.exports = {
     ...defaultConfig.plugins,
     // extract css into dedicated file
     new MiniCssExtractPlugin({
-      chunkFilename: '[id].css',
+      chunkFilename: '[id].min.css',
       ignoreOrder: false, // Enable to remove warnings about conflicting order
       filename: './[name].min.css'
     }),
+    new DependencyExtractionWebpackPlugin(),
   ],
   optimization: {
     ...defaultConfig.optimization,
     minimize: true,
     minimizer: [
       // enable the css minification plugin
-      new TerserJSPlugin({}),
+      new TerserJSPlugin({
+        test: /\.js(\?.*)?$/i,
+        parallel: true,
+        sourceMap: true,
+        terserOptions: {
+          keep_fnames: true,
+        },
+      }),
       new OptimizeCSSAssetsPlugin({})
+
     ]
   }
 };

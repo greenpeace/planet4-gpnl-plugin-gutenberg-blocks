@@ -11,6 +11,8 @@
 namespace P4NL_GB_BKS\Blocks;
 
 
+use P4NL_GB_BKS\Services\Asset_Enqueuer;
+
 /**
  * @package P4BKS\Controllers\Blocks
  * @since 0.1
@@ -43,8 +45,9 @@ class Educationcovers extends Base_Block {
 	 */
 	public function prepare_data( $fields ): array {
 
-		wp_enqueue_style( 'educationcovers', P4NL_GB_BKS_PLUGIN_URL . '/assets/build/educationcovers.min.css', [], '2.11.0' );
-		wp_enqueue_script( 'educationcovers', P4NL_GB_BKS_PLUGIN_URL . '/assets/build/educationcoversHelper.js', ['jquery'], '2.11.0', true );
+		// enqueue any asset (style or script) by giving the name as defined in webpack config.
+		Asset_Enqueuer::enqueue_asset('educationcovers', 'style');
+		Asset_Enqueuer::enqueue_asset('educationcoversHelper', 'script', true);
 
 		$args     = array(
 			'numberposts'   => -1, // magic number for retrieving all

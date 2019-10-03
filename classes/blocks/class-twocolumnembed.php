@@ -87,7 +87,6 @@ class TwoColumnEmbed extends Base_Block {
 	 */
 	public function prepare_data( $fields ): array {
 
-
 		// If an image is selected
 		if ( isset( $fields['image'] ) && $image = wp_get_attachment_image_src( $fields['image'], 'full' ) ) {
 			// load the image from the library
@@ -100,8 +99,6 @@ class TwoColumnEmbed extends Base_Block {
 		$data = [
 			'fields' => $fields,
 		];
-
-//		wp_enqueue_style( 'hero-image', P4NL_GB_BKS_PLUGIN_URL . '/assets/build/quote.min.css', null, '0.1' );
 
 		return $data;
 	}

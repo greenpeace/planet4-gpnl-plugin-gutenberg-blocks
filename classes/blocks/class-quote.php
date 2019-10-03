@@ -11,6 +11,8 @@
 namespace P4NL_GB_BKS\Blocks;
 
 
+use P4NL_GB_BKS\Services\Asset_Enqueuer;
+
 /**
  * @package P4BKS\Controllers\Blocks
  * @since 0.1
@@ -73,7 +75,7 @@ class Quote extends Base_Block {
 			'fields' => $fields,
 		];
 
-		wp_enqueue_style( 'hero-image', P4NL_GB_BKS_PLUGIN_URL . '/assets/build/quote.min.css', null, '0.1' );
+		Asset_Enqueuer::enqueue_asset('quote', 'style');
 
 		return $data;
 	}
