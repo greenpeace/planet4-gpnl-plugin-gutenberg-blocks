@@ -60,16 +60,4 @@ class Base_Block {
 			);
 		}
 	}
-
-	protected function enqueue_style ($filename, $dependencies = null) {
-
-		$file_path       =  $_SERVER['DOCUMENT_ROOT'].'/wp-content/plugins/'.P4NL_GB_BKS_PLUGIN_DIRNAME.'/assets/build/'.$filename.'.min.css';
-		$file_asset_path =  $_SERVER['DOCUMENT_ROOT'].'/wp-content/plugins/' . P4NL_GB_BKS_PLUGIN_DIRNAME .  '/assets/build/'. $filename.'.asset.php';
-
-		$file_asset      = file_exists( $file_asset_path )
-			? require( $file_asset_path )
-			: array( 'dependencies' => [], 'version' => filemtime( $file_path ) );
-
-		wp_enqueue_style( 'hero-image', P4NL_GB_BKS_PLUGIN_URL.'/assets/build/'.$filename.'.min.css', $dependencies , $file_asset['version'] );
-	}
 }
