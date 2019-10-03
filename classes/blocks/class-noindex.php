@@ -36,7 +36,7 @@ class Noindex extends Base_Block {
 	 * This will run before determining which template to load.
 	 */
 	/** @noinspection PhpUnused */
-	protected function pre_render_if_block_is_present() {
+	public function pre_render_if_block_is_present() {
 
 		// Check if the block is present on the page that is requested.
 		if ( has_block( 'planet4-gpnl-blocks/' . $this->getKebabCaseClassName() ) ) {
@@ -67,7 +67,7 @@ class Noindex extends Base_Block {
 	 * Checks if the noindex block is used, if so, removes the categories and tags
 	 */
 	/** @noinspection PhpUnused */
-	protected function delete_tags_and_categories() {
+	public function delete_tags_and_categories() {
 		// TODO: what about these shortcake/shortcode checks? Can we remove these?
 		if ( ! empty( $_POST ) && defined( $_POST['content'] ) && has_shortcode( $_POST['content'], 'shortcake_noindex' ) ) {
 			wp_set_post_terms( $_POST['post_ID'], [], 'post_tag' );
