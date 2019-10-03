@@ -291,37 +291,10 @@ final class Loader {
 
 		wp_enqueue_style( 'wp-components' );
 
-		// These styles from the master theme are enqueued on the frontend
-		// but not in the admin side.
-
-		wp_enqueue_style(
-			'P4NL_GB_BKS_admin_style',
-			P4NL_GB_BKS_PLUGIN_URL . 'assets/build/editorStyle.min.css', // - Bundled CSS for the blocks
-			[  ],
-			'0.1'
-		);
-
-		wp_enqueue_style(
-			'P4NL_GB_BKS_style',
-			P4NL_GB_BKS_PLUGIN_URL . 'assets/build/style.min.css', // - Bundled CSS for the blocks
-			[  ],
-			'0.1'
-		);
-
-		// Enqueue editor script for all Blocks in this Plugin.
-		wp_enqueue_script(
-			'planet4-gpnl-blocks-script',                       // - Script handler
-			P4NL_GB_BKS_PLUGIN_URL . 'assets/build/editorIndex.js',                                     // - Bundled JS for the editor
-			[
-				'wp-blocks',      // - Helpers for registering blocks
-				'wp-components',  // - Wordpress components
-				'wp-element',     // - WP React wrapper
-				'wp-data',        // - WP data helpers
-				'wp-i18n',        // - Exports the __() function
-			],
-			'0.1',
-			true
-		);
+		// Enqueueing asset files for the editor.
+		$enque = new Services\Asset_Enqueuer();
+		$enque->enqueue_asset('editorStyle', 'style');
+		$enque->enqueue_asset('editorIndex', 'script', true);
 
 		// Variables exposed from PHP to JS,
 		// WP calls this "localizing a script"...
