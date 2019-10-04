@@ -20,14 +20,14 @@ export default class HeroImage extends Component {
       onFocalPointChange,
     } = this.props;
 
-    let focal_point_params = {x:'',y:''};
+    let focal_point_params = {x: '', y: ''};
 
     if (focus_image) {
       let focus_image_str = focus_image.replace(/%/g, '');
       let [x, y] = focus_image_str.split(' ');
-      focal_point_params = {x: x/100,y: y/100};
+      focal_point_params = {x: x / 100, y: y / 100};
     } else {
-      focal_point_params = {x:0.5, y:0.5};
+      focal_point_params = {x: 0.5, y: 0.5};
     }
 
     const fields =
@@ -136,7 +136,7 @@ export default class HeroImage extends Component {
             value={focal_point_params}
             onChange={onFocalPointChange}
           />
-          </PanelBody>
+        </PanelBody>
       </InspectorControls>
     ])
   }

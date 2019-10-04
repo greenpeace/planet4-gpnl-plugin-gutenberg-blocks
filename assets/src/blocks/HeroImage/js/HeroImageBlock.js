@@ -1,8 +1,9 @@
 import React from 'react';
 import BaseBlock from "../../BaseBlock";
 import {ServerSideRender} from "@wordpress/components";
-import { Icon } from './HeroImageIcon';
+import {Icon} from './HeroImageIcon';
 import HeroImage from "./HeroImage";
+
 const {withSelect} = wp.data;
 
 
@@ -49,6 +50,7 @@ export class HeroImageBlock extends BaseBlock {
         },
         focus_image: {
           type: 'string',
+          default: '50% 50%'
         },
       },
 

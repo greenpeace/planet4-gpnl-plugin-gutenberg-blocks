@@ -55,6 +55,7 @@ class HeroImage extends Base_Block {
 					],
 					'focus_image' => [
 						'type' => 'string',
+						'default' => '50% 50%',
 					],
 				],
 
