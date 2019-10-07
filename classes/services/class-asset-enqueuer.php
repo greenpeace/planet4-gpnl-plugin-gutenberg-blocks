@@ -18,21 +18,21 @@ class Asset_Enqueuer {
 
 		$build_path = $_SERVER['DOCUMENT_ROOT'] . '/wp-content/plugins/' . P4NL_GB_BKS_PLUGIN_DIRNAME . '/assets/build/';
 
-		if ( $asset_type == 'style' ) {
-			$file_path =  $build_path. $filename . '.min.css';
-		} elseif ( $asset_type == 'script' ) {
-			$file_path = $build_path. $filename . '.min.js';
+		if ( 'style' === $asset_type ) {
+			$file_path = $build_path . $filename . '.min.css';
+		} elseif ( 'script' === $asset_type ) {
+			$file_path = $build_path . $filename . '.min.js';
 		}
 
 		$file_asset_path = $build_path . $filename . '.asset.php';
-		$file_asset      = file_exists( $file_asset_path ) ? require( $file_asset_path ) : [
+		$file_asset      = file_exists( $file_asset_path ) ? require $file_asset_path : [
 			'dependencies' => [],
-			'version'      => filemtime( $file_path )
+			'version'      => filemtime( $file_path ),
 		];
 
-		if ( $asset_type == 'style' ) {
+		if ( 'style' === $asset_type ) {
 			wp_enqueue_style( $filename, P4NL_GB_BKS_PLUGIN_URL . 'assets/build/' . $filename . '.min.css', $file_asset['dependencies'], $file_asset['version'] );
-		} elseif ( $asset_type == 'script' ) {
+		} elseif ( 'script' === $asset_type ) {
 			wp_enqueue_script( $filename, P4NL_GB_BKS_PLUGIN_URL . 'assets/build/' . $filename . '.min.js', $file_asset['dependencies'], $file_asset['version'], $in_footer );
 		}
 	}
