@@ -22,46 +22,21 @@
 							<p class="gpnl-newsletter__description">{{ fields.subtitle }}</p>
 						{% endif %}
 					</div>
-					<form class="gpnl-newsletter__form" onsubmit="return false;">
-						<fieldset class="row">
-							<div class="form-group col-12 col-md-6 col-lg-5 ">
-								<input type="text" name="name" id="name" class="form-control" placeholder="Naam">
-							</div>
-							<div class="form-group col-12 col-md-6 col-lg-4 ">
-								<input type="email" class="form-control" name="mail" id="mail" placeholder="E-mail">
-							</div>
-							<div class="input__human">
-								<input type="text" class="form-control" name="human" id="human"
-									   aria-describedby="emailHelpId"
-									   placeholder="Vul dit veld niet in">
-							</div>
-							<div class="form-group col-12 col-md-12 col-lg-3 ">
-								<input type="submit" class="btn btn-primary submit-button-newsletter" value="Aanmelden" disabled>
-								<input type="text" name="form_id" value="{{ fields.form_id }}" hidden readonly>
-							</div>
-						</fieldset>
-					</form>
-				</div>
 				<form class="gpnl-newsletter__form" onsubmit="return false;">
 					<fieldset class="row">
 						<div class="form-group col-12 col-md-6 col-lg-5 ">
-							<input type="text" name="name" id="name" class="form-control" placeholder="Naam"
-								   aria-describedby="helpId">
-							{#							<small id="helpId" class="text-muted">Help text</small>#}
+							<input type="text" name="name" id="name" class="form-control" placeholder="Naam">
 						</div>
 						<div class="form-group col-12 col-md-6 col-lg-4 ">
-							<input type="email" class="form-control" name="mail" id="mail"
-								   aria-describedby="emailHelpId"
-								   placeholder="E-mail">
+							<input type="email" class="form-control" name="mail" id="mail" placeholder="E-mail">
 						</div>
-						{#							<small id="emailHelpId" class="form-text text-muted">Help text</small>#}
 						<div class="input__human">
 							<input type="text" class="form-control" name="human" id="human"
 								   aria-describedby="emailHelpId"
 								   placeholder="Vul dit veld niet in">
 						</div>
 						<div class="form-group col-12 col-md-12 col-lg-3 ">
-							<input type="submit" class="btn btn-primary submit-button-newsletter" value="Aanmelden">
+							<input type="submit" class="btn btn-primary submit-button-newsletter" value="Aanmelden" disabled>
 							<input type="text" name="form_id" value="{{ fields.form_id }}" hidden readonly>
 						</div>
 					</fieldset>
