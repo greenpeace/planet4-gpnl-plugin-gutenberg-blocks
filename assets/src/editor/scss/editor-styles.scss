@@ -71,3 +71,8 @@
 .card {
   margin-top: 0;
 }
+
+// This fixes a bug in Chrome of overlapping meta-data.
+.block-editor-writing-flow {
+  height: auto;
+}
