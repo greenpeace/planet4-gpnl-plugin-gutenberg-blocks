@@ -21,6 +21,7 @@ module.exports = {
     // assets for the inforequest block
     inforequestHelper: './assets/src/blocks/Inforequest/js/InforequestHelper.js',
 
+    // component for the address API
     addressAutofill: './assets/src/components/AddressAutofill.js',
 
     // assets for the donation block
@@ -56,6 +57,39 @@ module.exports = {
         test: /\.(png|svg|jpg|jpeg|gif)$/,
         use:
           ['url-loader']
+      },
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader?modules&importLoaders=1&localIdentName=[local]_[hash:base64:6]',
+          {
+            loader: 'postcss-loader',
+          },
+        ]
+      },
+      {
+        test: /\.css$/,
+        use: [
+          { loader: 'style-loader' },
+          {
+            loader: 'css-loader', options: {
+              sourceMap: true, modules: true,
+              localIdentName: '[local]_[hash:base64:5]'
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              localIdentName: "[name]__[local]___[hash:base64:5]",
+              modules: true,
+              sourceMap: true,
+            }
+          },
+          {
+            loader: 'sass-loader', options: { sourceMap: true }
+          }
+        ]
       }
     ]
   },
