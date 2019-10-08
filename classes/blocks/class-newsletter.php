@@ -25,42 +25,43 @@ class Newsletter extends Base_Block {
 		register_block_type(
 			'planet4-gpnl-blocks/' . $this->getKebabCaseClassName(),
 			[
-				'editor_script' => 'planet4-gpnl-blocks',
-				'render_callback' => [$this, 'render'],
-				'attributes' => [
-					'title' => [
+				'editor_script'   => 'planet4-gpnl-blocks',
+				'render_callback' => [ $this, 'render' ],
+				'attributes'      => [
+					'title'          => [
 						'type' => 'string',
 					],
-					'subtitle' => [
+					'subtitle'       => [
 						'type' => 'string',
 					],
 					// in reality 'background' is actually the image ID.
-					'background' => [
+					'background'     => [
 						'type' => 'number',
 					],
-					'opacity' => [
-						'type' => 'number',
+					'opacity'        => [
+						'type'    => 'number',
 						'default' => 30,
 					],
-					'focus_image' => [
-						'type' => 'string',
+					'focus_image'    => [
+						'type'    => 'string',
+						'default' => '50% 50%',
 					],
-					'marketingcode' => [
-						'type' => 'string',
+					'marketingcode'  => [
+						'type'    => 'string',
 						'default' => '04950',
 					],
 					'literaturecode' => [
-						'type' => 'string',
+						'type'    => 'string',
 						'default' => 'EN009'
 					],
-					'screenid' => [
-						'type' => 'string',
+					'screenid'       => [
+						'type'    => 'string',
 						'default' => '250'
 					],
-					'form_id' => [
-						'type' => 'number',
+					'form_id'        => [
+						'type'        => 'number',
 						'description' => 'Gebruik dit als er meerdere nieuwsbriefformulieren op 1 pagina staan. Elk formulier moet een uniek numeriek id hebben.',
-						'default' => 1,
+						'default'     => 1,
 					]
 				]
 
@@ -79,8 +80,8 @@ class Newsletter extends Base_Block {
 	 */
 	public function prepare_data( $fields ): array {
 
-		Asset_Enqueuer::enqueue_asset( 'newsletterFormSubmit', 'script', true);
-		Asset_Enqueuer::enqueue_asset( 'newsletter', 'style');
+		Asset_Enqueuer::enqueue_asset( 'newsletterFormSubmit', 'script', true );
+		Asset_Enqueuer::enqueue_asset( 'newsletter', 'style' );
 
 
 		// If an image is selected
@@ -202,8 +203,6 @@ function newsletter_form_process() {
 add_action( 'wp_ajax_newsletter_form_process', 'P4NL_GB_BKS\Blocks\newsletter_form_process' );
 // use this version for if you want the callback to work for users who are not logged in.
 add_action( 'wp_ajax_nopriv_newsletter_form_process', 'P4NL_GB_BKS\Blocks\newsletter_form_process' );
-
-
 
 
 function request_id() {

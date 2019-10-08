@@ -41,6 +41,7 @@ export class NewsletterBlock extends BaseBlock {
         },
         focus_image: {
           type: 'string',
+          default: '50% 50%'
         },
         marketingcode: {
           type: 'string',
