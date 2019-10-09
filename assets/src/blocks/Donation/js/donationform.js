@@ -1,6 +1,8 @@
 var donationformVue = {};
 var url_vars = {};
 
+var address_object = 'get_address_object';
+
 // REFACTOR IE11 doesn't support UrlSearchParams, so custom UrlParam function.
 // 	Consider polyfilling it now? or wait until we drop IE11 support and switch then?
 function getUrlVars(){
@@ -115,6 +117,16 @@ $(document).ready(function() {
     formconfig.allow_frequency_override = 'false';
     formconfig.suggested_frequency = ['M', 'maandelijks voor 12 maanden'];
   }
+
+  $.ajax({
+    type:    'POST',
+    url:     window['p4_vars'].ajaxurl,
+    data:    {'action' : 'request_id'},
+    success: function(response) {
+      // eslint-disable-next-line no-console
+      formconfig.nonce = response.data.nonce;
+    }
+  });
 
   Vue.use(window.vuelidate.default);
   const {
@@ -711,21 +723,28 @@ $(document).ready(function() {
         var zipcodeValue = zipcodeInput.value;
         var houseNoValue = houseNoInput.value;
 
-        Vue.http.interceptors.push((request, next) => {
-          request.headers.set('x-api-key', 'P7TdlkQG4k4ppvVyAXmdD4TR9v5fW4YT8qv4TzOY');
-          request.headers.set('Accept', 'application/hal+json');
-          next();
+        var ajax_values = {
+          action: 'get_address_donation_form',
+          zipcode: zipcodeValue,
+          house_no: houseNoValue,
+          nonce: window[address_object].nonce
+        };
+
+        var self = this;
+
+        $.ajax({
+          type: 'POST',
+          url: window[address_object].ajaxUrl,
+          data: ajax_values,
+          success: function (t) {
+
+            let street = t.data.cUrlresult.result.straat;
+            let city = t.data.cUrlresult.result.woonplaats;
+
+            self.populateFields(street, city);
+
+          }
         });
-
-        this.$http.get('https://api.postcodeapi.nu/v2/addresses/?postcode='+ zipcodeValue +'&number=' + houseNoValue +'')
-          .then(function (response) {
-            let street = response.body._embedded.addresses[0].street;
-            let city = response.body._embedded.addresses[0].city.label;
-
-            this.populateFields(street, city);
-          }, function () {
-
-          });
       },
 
       populateFields: function(street, city) {
@@ -828,7 +847,7 @@ $(document).ready(function() {
         });
         /** Google Tag Manager E-commerce */
 
-          // Build product array
+        // Build product array
         let gtm_products = [];
 
         gtm_products.push({
@@ -844,11 +863,10 @@ $(document).ready(function() {
         /** Build an event send to the Datalayer, which needs to trigger the E-commerce transaction in the GTM backend
          *  Additional datalayer items are send to the datalayer and processed by the GTM as an transaction
          */
-        // TODO make transactionId configurable
         dataLayer.push({
           'event': 'trackTrans',
           'transactionId': donationformVue.getGTMTransactionId(),
-          'transactionAffiliation': '',
+          'transactionAffiliation': this.finalModel.machtigingType,
           'transactionTotal': this.finalModel.bedrag,
           'transactionTax': '',
           'transactionShipping': '',
@@ -907,6 +925,8 @@ $(document).ready(function() {
             dataType: 'script',
           });
         }
+
+        let transaction_id = donationformVue.getGTMTransactionId();
         this.result.msg = '';
         this.result.hasError = false;
         this.idealData.initials = this.finalModel.initialen;
@@ -918,6 +938,27 @@ $(document).ready(function() {
         this.idealData.phonenumber = this.finalModel.telefoonnummer;
         this.idealData.description = 'Eenmalige donatie Greenpeace tnv ' + this.finalModel.voornaam + ' ' + this.finalModel.achternaam;
         this.idealData.amount = this.finalModel.bedrag;
+        this.idealData.returnUrlSuccess = this.idealData.returnUrlSuccess + '?don_trans=' + transaction_id;
+
+        let data_string_cache = JSON.stringify({
+          'amount'    : this.finalModel.bedrag,
+          'method'    : this.finalModel.betaling,
+          'frequency' : this.finalModel.machtigingType
+        });
+
+        let cache_data = {
+          'action' : 'cache_donation',
+          'nonce'  : formconfig.nonce,
+          'transaction' : transaction_id,
+          'data' : data_string_cache,
+        };
+
+        $.ajax({
+          type:    'POST',
+          url:     window['p4_vars'].ajaxurl,
+          data:    cache_data,
+        });
+
         $.ajax({
           method: 'POST',
           url: 'https://www.mygreenpeace.nl/GPN.RegistrerenApi/payment/ideal',
