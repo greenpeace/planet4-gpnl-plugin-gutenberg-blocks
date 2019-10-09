@@ -23,6 +23,10 @@ class HeroImage extends Base_Block {
 	 * Defines the fields and render callback for Gutenberg
 	 */
 	public function __construct() {
+
+		// Hook styles and scripts.
+		add_action( 'wp_enqueue_scripts', [$this, 'hook_assets'] );
+
 		register_block_type(
 			'planet4-gpnl-blocks/' . $this->getKebabCaseClassName(),
 			[
@@ -64,8 +68,6 @@ class HeroImage extends Base_Block {
 	}
 
 
-
-
 	/**
 	 * Get all the data that will be needed to render the block correctly.
 	 *
@@ -83,17 +85,19 @@ class HeroImage extends Base_Block {
 			$fields['image_sizes']  = wp_calculate_image_sizes( 'full', null, null, $fields['image'] );
 		}
 
-		// enqueue the style file.
-		Asset_Enqueuer::enqueue_asset('heroImage', 'style');
-
 		$data = [
 			'fields' => $fields,
 		];
 
 		return $data;
-
 	}
 
+	/**
+	 * This runs during 'wp_enqueue_scripts' and is used for hooking the assets.
+	 */
+	public function hook_assets(){
+		Asset_Enqueuer::enqueue_asset('heroImage', 'style', false);
+	}
 
 
 }
