@@ -262,7 +262,6 @@ function petition_form_process() {
 	}
 	wp_cache_delete( $nonce, 'gpnl_cache' );
 
-	// Add back GPNL nonce.
 	$_POST          = wp_unslash( $_POST );
 	$marketingcode  = htmlspecialchars( wp_strip_all_tags( $_POST['marketingcode'] ) );
 	$literatuurcode = htmlspecialchars( wp_strip_all_tags( $_POST['literaturecode'] ) );
