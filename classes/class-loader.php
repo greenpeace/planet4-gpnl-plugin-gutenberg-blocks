@@ -288,13 +288,14 @@ final class Loader {
 	 * @param string $hook The slug name of the current admin page.
 	 */
 	public function enqueue_editor_scripts( $hook ) {
-
 		wp_enqueue_style( 'wp-components' );
+		wp_enqueue_style( 'bootstrap', 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.min.css', array(), '4.1.1' );
+
 
 		// Enqueueing asset files for the editor.
 		$enque = new Services\Asset_Enqueuer();
-		$enque->enqueue_asset('editorStyle', 'style');
-		$enque->enqueue_asset('editorIndex', 'script', true);
+		$enque->enqueue_asset( 'editorStyle', 'style' );
+		$enque->enqueue_asset( 'editorIndex', 'script', [], true );
 
 		// Variables exposed from PHP to JS,
 		// WP calls this "localizing a script"...

@@ -9,10 +9,11 @@
 namespace P4NL_GB_BKS\Blocks;
 
 use P4NL_GB_BKS\Services\Asset_Enqueuer;
+use phpDocumentor\Reflection\Types\Parent_;
 
 
 /**
- * Defines the HeroInmage block for Gutenberg
+ * Defines the HeroImage block for Gutenberg
  *
  * @package P4BKS\Controllers\Blocks
  * @since 0.1
@@ -23,9 +24,6 @@ class HeroImage extends Base_Block {
 	 * Defines the fields and render callback for Gutenberg
 	 */
 	public function __construct() {
-
-		// Hook styles and scripts.
-		add_action( 'wp_enqueue_scripts', [$this, 'hook_assets'] );
 
 		register_block_type(
 			'planet4-gpnl-blocks/' . $this->getKebabCaseClassName(),
@@ -58,13 +56,26 @@ class HeroImage extends Base_Block {
 						'default' => '',
 					],
 					'focus_image' => [
-						'type' => 'string',
+						'type'    => 'string',
 						'default' => '50% 50%',
 					],
 				],
-
 			]
 		);
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_if_block_is_present' ] );
+	}
+
+	/**
+	 * This will run before determining which template to load.
+	 */
+	public function enqueue_if_block_is_present() {
+
+
+		// Check if the block is present on the page that is requested.
+		if ( has_block( 'planet4-gpnl-blocks/' . $this->getKebabCaseClassName() ) ) {
+
+			Asset_Enqueuer::enqueue_asset( 'heroImage', 'style' );
+		}
 	}
 
 
@@ -89,15 +100,21 @@ class HeroImage extends Base_Block {
 			'fields' => $fields,
 		];
 
+
 		return $data;
+
 	}
+
 
 	/**
 	 * This runs during 'wp_enqueue_scripts' and is used for hooking the assets.
 	 */
-	public function hook_assets(){
-		Asset_Enqueuer::enqueue_asset('heroImage', 'style', false);
-	}
+//	public function hook_assets() {
+	// Check if the block is present on the page that is requested.
+//		if ( has_block( 'planet4-gpnl-blocks/' . $this->getKebabCaseClassName() ) ) {
+//			Asset_Enqueuer::enqueue_asset( 'heroImage', 'style', false );
+//		}
+//	}
 
 
 }

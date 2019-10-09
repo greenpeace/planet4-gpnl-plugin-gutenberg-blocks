@@ -20,6 +20,7 @@ use P4NL_GB_BKS\Services\Asset_Enqueuer;
 class Newsletter extends Base_Block {
 
 	public function __construct() {
+
 		// - Register the block for the editor
 		// in the PHP side.
 		register_block_type(
@@ -68,8 +69,19 @@ class Newsletter extends Base_Block {
 			]
 
 		);
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_if_block_is_present' ] );
 	}
 
+	/**
+	 * This will run before determining which template to load.
+	 */
+	public function enqueue_if_block_is_present() {
+
+		// Check if the block is present on the page that is requested.
+		if ( has_block( 'planet4-gpnl-blocks/' . $this->getKebabCaseClassName() ) ) {
+			Asset_Enqueuer::enqueue_asset( 'newsletterFormSubmit', 'script',[], true );
+			Asset_Enqueuer::enqueue_asset( 'newsletter', 'style' );		}
+	}
 
 	/**
 	 * Get all the data that will be needed to render the block correctly.
@@ -79,10 +91,6 @@ class Newsletter extends Base_Block {
 	 * @return array The data to be passed in the View.
 	 */
 	public function prepare_data( $fields ): array {
-
-		Asset_Enqueuer::enqueue_asset( 'newsletterFormSubmit', 'script', true );
-		Asset_Enqueuer::enqueue_asset( 'newsletter', 'style' );
-
 
 		// If an image is selected
 		if ( isset( $fields['background'] ) && $image = wp_get_attachment_image_src( $fields['background'], 'full' ) ) {
@@ -113,6 +121,7 @@ class Newsletter extends Base_Block {
 
 		return $data;
 	}
+
 
 }
 
