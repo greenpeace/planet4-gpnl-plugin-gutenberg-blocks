@@ -53,7 +53,7 @@ export default class Donation extends Component {
           thanktitle={'Vul een titel in'}
         />
         <TextareaControl
-          label={'Bedank omschrijving'}
+          label={'Bedankt omschrijving'}
           onChange={onValueChange.bind('thankdescription')}
           value={thankdescription}
           placeholder={'Bedankt omschrijving'}

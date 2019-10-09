@@ -33,6 +33,7 @@ export class DonationBlock extends BaseBlock {
         },
         suggested_frequency: {
           type: 'string',
+          default: 'E'
         },
         allow_frequency_override: {
           type: 'string',
