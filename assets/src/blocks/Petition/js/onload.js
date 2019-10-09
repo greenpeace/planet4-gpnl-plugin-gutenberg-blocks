@@ -159,20 +159,6 @@ $(document).ready(function() {
       $(formwrapper).find('.counter__text').fadeIn(2000);
     }
   }
-
-  //  try to get an response from whatsapp, else hide the whatsappbutton
-  //  ATM not working because ajax doesn't support custom schemes...
-  // TODO Find different way of determining whatsapp support
-  // $.ajax({
-  //   type: 'HEAD',
-  //   url: 'whatsapp://send?text=text=Hello%20World!',
-  //   success: function() {
-  //     // window.location='whatsapp://send?text=text=Hello%20World!';
-  //   },
-  //   error: function() {
-  //     $('.gpnl-share-whatsapp').toggle();
-  //   }
-  // });
 });
 
 function getUrlVars(){

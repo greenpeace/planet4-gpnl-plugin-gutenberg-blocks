@@ -20,6 +20,7 @@ use P4NL_GB_BKS\Services\Asset_Enqueuer;
 class Inforequest extends Base_Block {
 
 	public function __construct() {
+
 		// - Register the block for the editor in the PHP side.
 		register_block_type(
 			'planet4-gpnl-blocks/' . $this->getKebabCaseClassName(),
@@ -27,58 +28,73 @@ class Inforequest extends Base_Block {
 				'editor_script'   => 'planet4-gpnl-blocks',
 				'render_callback' => [ $this, 'render' ],
 				'attributes'      => [
-					'formtitle'              => [
+					'formtitle'    => [
 						'type' => 'text',
 					],
-					'itemtitle'           => [
+					'itemtitle'    => [
 						'type' => 'text',
 					],
-					'mcode1_code'           => [
+					'mcode1_code'  => [
 						'type' => 'text',
 					],
-					'mcode1_label'           => [
+					'mcode1_label' => [
 						'type' => 'text',
 					],
-					'mcode2_code'           => [
+					'mcode2_code'  => [
 						'type' => 'text',
 					],
-					'mcode2_label'           => [
+					'mcode2_label' => [
 						'type' => 'text',
 					],
-					'mcode3_code'           => [
+					'mcode3_code'  => [
 						'type' => 'text',
 					],
-					'mcode3_label'           => [
+					'mcode3_label' => [
 						'type' => 'text',
 					],
-					'mcode4_code'           => [
+					'mcode4_code'  => [
 						'type' => 'text',
 					],
-					'mcode4_label'           => [
+					'mcode4_label' => [
 						'type' => 'text',
 					],
-					'mcode5_code'           => [
+					'mcode5_code'  => [
 						'type' => 'text',
 					],
-					'mcode5_label'           => [
+					'mcode5_label' => [
 						'type' => 'text',
 					],
-					'consent'            => [
+					'consent'      => [
 						'type'    => 'text',
 						'default' => 'Als je dit aanvinkt, mag Greenpeace je per e-mail op de hoogte houden over onze campagnes. Ook vragen we je af en toe om steun. Afmelden kan natuurlijk altijd.'
 					],
-					'sign'               => [
+					'sign'         => [
 						'type'    => 'text',
 						'default' => 'Registreer',
 					],
-					'hider'     => [
-						'type' => 'text',
+					'hider'        => [
+						'type'    => 'text',
 						'default' => '0'
 					]
 				]
 			]
 		);
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_if_block_is_present' ] );
 	}
+
+	/**
+	 * This will run before determining which template to load.
+	 */
+	public function enqueue_if_block_is_present() {
+
+		// Check if the block is present on the page that is requested.
+		if ( has_block( 'planet4-gpnl-blocks/' . $this->getKebabCaseClassName() ) ) {
+			Asset_Enqueuer::enqueue_asset( 'inforequest', 'style' );
+			Asset_Enqueuer::enqueue_asset( 'inforequestHelper', 'script', [], true );
+			Asset_Enqueuer::enqueue_asset( 'addressAutofill', 'script', [], true );
+		}
+	}
+
 
 	/**
 	 * Callback for the shortcake_twocolumn shortcode.
@@ -91,11 +107,6 @@ class Inforequest extends Base_Block {
 	 * @return string The complete html of the block
 	 */
 	public function prepare_data( $fields ): array {
-
-		// enqueue any asset (style or script) by giving the name as defined in webpack config.
-		Asset_Enqueuer::enqueue_asset('inforequest', 'style');
-		Asset_Enqueuer::enqueue_asset('inforequestHelper', 'script', true);
-		Asset_Enqueuer::enqueue_asset('addressAutofill', 'script', true);
 
 		global $post;
 
@@ -123,16 +134,16 @@ class Inforequest extends Base_Block {
 			'address_autofill',
 			'get_address_object',
 			[
-				'ajaxUrl'        => admin_url( 'admin-ajax.php' ),
-				'nonce'          => wp_create_nonce( 'GPNL_get_address' ),
+				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+				'nonce'   => wp_create_nonce( 'GPNL_get_address' ),
 			]
 		);
 
 		return $data;
-
 	}
+}
 
-}function request_form_process() {
+function request_form_process() {
 
 	// get codes for processing in the database and sanitize
 	$literatuurcode = htmlspecialchars( wp_strip_all_tags( $_POST['literaturecode'] ) );

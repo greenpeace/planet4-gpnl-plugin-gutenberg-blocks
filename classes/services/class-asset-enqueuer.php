@@ -13,8 +13,9 @@ class Asset_Enqueuer {
 	/**
 	 * This will enqueue an asset. Either a style-file (css) or a script-file (js).
 	 * The name of the file that should be passed as an argument is the name defined in the webpack config.
+	 * It is also possible to add external dependencies that are loaded through a CDN. See the readme.md for an example.
 	 */
-	public static function enqueue_asset( $filename, $asset_type, $in_footer = false ) {
+	public static function enqueue_asset( $filename, $asset_type, $dependencies = [], $in_footer = false ) {
 
 		$build_path = $_SERVER['DOCUMENT_ROOT'] . '/wp-content/plugins/' . P4NL_GB_BKS_PLUGIN_DIRNAME . '/assets/build/';
 
@@ -31,10 +32,28 @@ class Asset_Enqueuer {
 		];
 
 		if ( 'style' === $asset_type ) {
-			wp_enqueue_style( $filename, P4NL_GB_BKS_PLUGIN_URL . 'assets/build/' . $filename . '.min.css', $file_asset['dependencies'], $file_asset['version'] );
+			// Always adding the child-style as a depencency.
+			$dependencies = array_merge( $file_asset['dependencies'], [ 'child-style' ], $dependencies );
+			wp_enqueue_style( $filename, P4NL_GB_BKS_PLUGIN_URL . 'assets/build/' . $filename . '.min.css', $dependencies, $file_asset['version'] );
 		} elseif ( 'script' === $asset_type ) {
-			wp_enqueue_script( $filename, P4NL_GB_BKS_PLUGIN_URL . 'assets/build/' . $filename . '.min.js', $file_asset['dependencies'], $file_asset['version'], $in_footer );
+			$dependencies = array_merge( $file_asset['dependencies'], $dependencies );
+			wp_enqueue_script( $filename, P4NL_GB_BKS_PLUGIN_URL . 'assets/build/' . $filename . '.min.js', $dependencies, $file_asset['version'], $in_footer );
 		}
 	}
 
+	/**
+	 * Enqueue external assets (such as assets from a CDN).
+	 * See the readme.md for an example.
+	 */
+	public static function enqueue_external_asset( $external_assets ) {
+		foreach ( $external_assets as $asset ) {
+			if ( 'style' === $asset['type'] ) {
+				wp_enqueue_style( $asset['handle'], $asset['src'], [], null );
+			} elseif ( 'script' === $asset['type'] ) {
+				wp_enqueue_script( $asset['handle'], $asset['src'], [], null, $asset['in_footer'] = true );
+			}
+		}
+
+	}
 }
+

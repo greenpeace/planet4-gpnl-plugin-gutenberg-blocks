@@ -20,6 +20,7 @@ class Noindex extends Base_Block {
 	 * Define the exposed render function for Gutenberg
 	 */
 	public function __construct() {
+
 		register_block_type(
 			'planet4-gpnl-blocks/' . $this->getKebabCaseClassName(),
 			[
