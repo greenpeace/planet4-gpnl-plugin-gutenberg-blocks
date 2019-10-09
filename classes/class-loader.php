@@ -63,12 +63,12 @@ final class Loader {
 	 * Singleton creational pattern.
 	 * Makes sure there is only one instance at all times.
 	 *
-	 * @param array  $services The Controller services to inject.
+	 * @param array $services The Controller services to inject.
 	 * @param string $view_class The View class name.
 	 *
 	 * @return Loader
 	 */
-	public static function get_instance( $services, $view_class ) : Loader {
+	public static function get_instance( $services, $view_class ): Loader {
 		if ( ! isset( self::$instance ) ) {
 			self::$instance = new self( $services, $view_class );
 		}
@@ -82,7 +82,7 @@ final class Loader {
 	 * after WordPress has finished loading but before any headers are sent.
 	 * Most of WP is loaded at this stage (but not all) and the user is authenticated.
 	 *
-	 * @param array  $services The Controller services to inject.
+	 * @param array $services The Controller services to inject.
 	 * @param string $view_class The View class name.
 	 */
 	private function __construct( $services, $view_class ) {
@@ -137,7 +137,7 @@ final class Loader {
 	/**
 	 * Loads all shortcake blocks registered from within this plugin.
 	 *
-	 * @param array  $services The Controller services to inject.
+	 * @param array $services The Controller services to inject.
 	 * @param string $view_class The View class name.
 	 */
 	public function load_services( $services, $view_class ) {
@@ -173,7 +173,7 @@ final class Loader {
 	private function hook_plugin() {
 		add_action( 'admin_menu', [ $this, 'load_i18n' ] );
 		// Load the editor scripts
-		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_editor_scripts' ] );
+		add_action( 'enqueue_block_assets', [ $this, 'enqueue_editor_scripts' ] );
 
 		add_action( 'plugins_loaded', [ $this, 'load_i18n' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_public_assets' ] );
@@ -204,15 +204,15 @@ final class Loader {
 					deactivate_plugins( P4NL_GB_BKS_PLUGIN_BASENAME );
 					$count   = 0;
 					$message = '<div class="error fade">' .
-							'<u>' . esc_html( P4NL_GB_BKS_PLUGIN_NAME ) . ' > ' . esc_html__( 'Requirements Error(s)', 'planet4-gpnl-blocks-backend' ) . '</u><br /><br />';
+					           '<u>' . esc_html( P4NL_GB_BKS_PLUGIN_NAME ) . ' > ' . esc_html__( 'Requirements Error(s)', 'planet4-gpnl-blocks-backend' ) . '</u><br /><br />';
 
 					foreach ( $plugins['not_found'] as $plugin ) {
 						$message .= '<br/><strong>' . ( ++ $count ) . '. ' . esc_html( $plugin['Name'] ) . '</strong> ' . esc_html__( 'plugin needs to be installed and activated.', 'planet4-gpnl-blocks-backend' ) . '<br />';
 					}
 					foreach ( $plugins['not_updated'] as $plugin ) {
 						$message .= '<br/><strong>' . ( ++ $count ) . '. ' . esc_html( $plugin['Name'] ) . '</strong><br />' .
-									esc_html__( 'Minimum version ', 'planet4-gpnl-blocks-backend' ) . '<strong>' . esc_html( $plugin['min_version'] ) . '</strong>' .
-									'<br/>' . esc_html__( 'Current version ', 'planet4-gpnl-blocks-backend' ) . '<strong>' . esc_html( $plugin['Version'] ) . '</strong><br />';
+						            esc_html__( 'Minimum version ', 'planet4-gpnl-blocks-backend' ) . '<strong>' . esc_html( $plugin['min_version'] ) . '</strong>' .
+						            '<br/>' . esc_html__( 'Current version ', 'planet4-gpnl-blocks-backend' ) . '<strong>' . esc_html( $plugin['Version'] ) . '</strong><br />';
 					}
 
 					$message .= '</div><br />';
@@ -220,7 +220,8 @@ final class Loader {
 						$message, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						'Plugin Requirements Error',
 						[
-							'response'  => \WP_Http::OK, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							'response'  => \WP_Http::OK,
+							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							'back_link' => true,
 						]
 					);
@@ -287,15 +288,21 @@ final class Loader {
 	 *
 	 * @param string $hook The slug name of the current admin page.
 	 */
-	public function enqueue_editor_scripts( $hook ) {
+	public function enqueue_editor_scripts() {
+
 		wp_enqueue_style( 'wp-components' );
 		wp_enqueue_style( 'bootstrap', 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.min.css', array(), '4.1.1' );
-
 
 		// Enqueueing asset files for the editor.
 		$enque = new Services\Asset_Enqueuer();
 		$enque->enqueue_asset( 'editorStyle', 'style' );
 		$enque->enqueue_asset( 'editorIndex', 'script', [], true );
+
+		$plugin_version        = wp_get_theme()->get( 'Version' );
+		$parent_plugin_version = filectime( get_template_directory() . '/style.css' );
+
+		wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css', [], $parent_plugin_version );
+		wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', [], $plugin_version );
 
 		// Variables exposed from PHP to JS,
 		// WP calls this "localizing a script"...
@@ -309,6 +316,7 @@ final class Loader {
 	 * Load assets for the frontend.
 	 */
 	public function enqueue_public_assets() {
+
 		// plugin-blocks assets.
 		$css_blocks_creation = filectime( P4NL_GB_BKS_PLUGIN_DIR . '/style.css' );
 		$js_blocks_creation  = filectime( P4NL_GB_BKS_PLUGIN_DIR . '/main.js' );
@@ -388,4 +396,3 @@ final class Loader {
 	private function __wakeup() {
 	}
 }
-
