@@ -35,26 +35,12 @@ class Donation extends Base_Block {
 						'type' => 'text',
 						'default' => '',
 					],
-					'suggested_frequency' => [
-						'type'    => 'select',
-						'meta'    => [ 'onchange' => 'hideNonForcesOptions()' ],
-						'options' => [
-							[
-								'value' => 'E',
-								'label' => __( 'Eenmalig' ),
-							],
-							[
-								'value' => 'M',
-								'label' => __( 'Maandelijks' ),
-							],
-							[
-								'value' => 'F',
-								'label' => __( 'Maandelijks voor 12 maanden (Forces)' ),
-							],
-						],
+					'suggested_frequency'        => [
+						'type'    => 'string',
+						'default' => 'E',
 					],
-					'allow_frequency_override' => [
-						'type' => 'string',
+					'allow_frequency_override'   => [
+						'type'    => 'string',
 						'default' => '',
 					],
 					'min_amount' => [
