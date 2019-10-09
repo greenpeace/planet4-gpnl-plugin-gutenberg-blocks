@@ -8,9 +8,8 @@
  * @since 0.1
  */
 
-//TODO: Make the Vue form render!
+// TODO: Make the Vue form render!
 namespace P4NL_GB_BKS\Blocks;
-
 
 /**
  * @package P4BKS\Controllers\Blocks
@@ -24,15 +23,15 @@ class Donation extends Base_Block {
 		register_block_type(
 			'planet4-gpnl-blocks/' . $this->getKebabCaseClassName(),
 			[
-				'editor_script' => 'planet4-gpnl-blocks',
-				'render_callback' => [$this, 'render'],
-				'attributes' => [
-					'title' => [
-						'type' => 'string',
+				'editor_script'   => 'planet4-gpnl-blocks',
+				'render_callback' => [ $this, 'render' ],
+				'attributes'      => [
+					'title'                      => [
+						'type'    => 'string',
 						'default' => '',
 					],
-					'description' => [
-						'type' => 'text',
+					'description'                => [
+						'type'    => 'string',
 						'default' => '',
 					],
 					'suggested_frequency'        => [
@@ -43,71 +42,71 @@ class Donation extends Base_Block {
 						'type'    => 'string',
 						'default' => '',
 					],
-					'min_amount' => [
-						'type' => 'number',
+					'min_amount'                 => [
+						'type'    => 'number',
 						'default' => 5,
 					],
-					'oneoff_amount1' => [
-						'type' => 'number',
+					'oneoff_amount1'             => [
+						'type'    => 'number',
 						'default' => 5,
 					],
-					'oneoff_amount2' => [
-						'type' => 'number',
+					'oneoff_amount2'             => [
+						'type'    => 'number',
 						'default' => 10,
 					],
-					'oneoff_amount3' => [
-						'type' => 'number',
+					'oneoff_amount3'             => [
+						'type'    => 'number',
 						'default' => 25,
 					],
-					'oneoff_suggested_amount' => [
-						'type' => 'number',
+					'oneoff_suggested_amount'    => [
+						'type'    => 'number',
 						'default' => 10,
 					],
-					'recurring_amount1' => [
-						'type' => 'number',
+					'recurring_amount1'          => [
+						'type'    => 'number',
 						'default' => 5,
 					],
-					'recurring_amount2' => [
-						'type' => 'number',
+					'recurring_amount2'          => [
+						'type'    => 'number',
 						'default' => 10,
 					],
-					'recurring_amount3' => [
-						'type' => 'number',
+					'recurring_amount3'          => [
+						'type'    => 'number',
 						'default' => 25,
 					],
 					'recurring_suggested_amount' => [
-						'type' => 'number',
+						'type'    => 'number',
 						'default' => 10,
 					],
-					'thanktitle' => [
-						'type' => 'string',
+					'thanktitle'                 => [
+						'type'    => 'string',
 						'default' => '',
 					],
-					'thankdescription' => [
-						'type' => 'string',
+					'thankdescription'           => [
+						'type'    => 'string',
 						'default' => '',
 					],
-					'literatuurcode' => [
-						'type' => 'string',
+					'literatuurcode'             => [
+						'type'    => 'string',
 						'default' => 'EN999',
 					],
-					'marketingcode_recurring' => [
-						'type' => 'string',
+					'marketingcode_recurring'    => [
+						'type'    => 'string',
 						'default' => '04888',
 					],
-					'marketingcode_oneoff' => [
-						'type' => 'string',
+					'marketingcode_oneoff'       => [
+						'type'    => 'string',
 						'default' => '04888',
 					],
-					'returnpage' => [
-						'type' => 'string',
+					'returnpage'                 => [
+						'type'    => 'string',
 						'default' => 'https://www.greenpeace.org/nl/',
 					],
-					'errorpage' => [
-						'type' => 'string',
+					'errorpage'                  => [
+						'type'    => 'string',
 						'default' => 'https://www.greenpeace.org/nl/',
-					]
-				]
+					],
+				],
 			]
 		);
 	}
@@ -122,9 +121,9 @@ class Donation extends Base_Block {
 	 */
 	public function prepare_data( $fields ): array {
 
-		$fields['drplus_amount1'] = '';
-		$fields['drplus_amount2'] = '';
-		$fields['drplus_amount3'] = '';
+		$fields['drplus_amount1']      = '';
+		$fields['drplus_amount2']      = '';
+		$fields['drplus_amount3']      = '';
 		$frequencies = [
 			'E' => 'Eenmalig',
 			'M' => 'Maandelijks',
@@ -145,7 +144,7 @@ class Donation extends Base_Block {
 		wp_enqueue_script( 'vueresource', 'https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.5.0/vue-resource.min.js', [ 'vue', 'vueform' ], '1.5.0', true );
 		wp_enqueue_script( 'vuelidate', P4NL_GB_BKS_PLUGIN_URL . 'assets/src/blocks/Donation/js/vuelidate.min.js', [ 'vue', 'vueform' ], '0.7.4', true );
 		wp_enqueue_script( 'vuelidators', P4NL_GB_BKS_PLUGIN_URL . 'assets/src/blocks/Donation/js/validators.min.js', [ 'vue', 'vueform' ], '0.7.4', true );
-		wp_enqueue_script( 'donationform', P4NL_GB_BKS_PLUGIN_URL . 'assets/build/donationForm.js', ['vue', 'vueresource', 'vueform', 'vuelidate', 'vuelidators'], '2.10.2', true );
+		// wp_enqueue_script( 'donationform', P4NL_GB_BKS_PLUGIN_URL . 'assets/build/donationForm.js', ['vue', 'vueresource', 'vueform', 'vuelidate', 'vuelidators'], '2.10.2', true );
 
 		// Pass options to frontend code
 		wp_localize_script(
