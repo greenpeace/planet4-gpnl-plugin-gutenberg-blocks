@@ -56,7 +56,7 @@ export default class Donation extends Component {
           label={'Bedank omschrijving'}
           onChange={onValueChange.bind('thankdescription')}
           value={thankdescription}
-          placeholder={'Bedankt tmschrijving'}
+          placeholder={'Bedankt omschrijving'}
         />
       </Fragment>,
       <InspectorControls>
