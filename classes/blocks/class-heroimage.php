@@ -9,7 +9,6 @@
 namespace P4NL_GB_BKS\Blocks;
 
 use P4NL_GB_BKS\Services\Asset_Enqueuer;
-use phpDocumentor\Reflection\Types\Parent_;
 
 
 /**
@@ -100,22 +99,7 @@ class HeroImage extends Base_Block {
 			'fields' => $fields,
 		];
 
-
 		return $data;
-
 	}
-
-
-	/**
-	 * This runs during 'wp_enqueue_scripts' and is used for hooking the assets.
-	 */
-//	public function hook_assets() {
-	// Check if the block is present on the page that is requested.
-//		if ( has_block( 'planet4-gpnl-blocks/' . $this->getKebabCaseClassName() ) ) {
-//			Asset_Enqueuer::enqueue_asset( 'heroImage', 'style', false );
-//		}
-//	}
-
-
 }
 
