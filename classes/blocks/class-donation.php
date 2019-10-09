@@ -125,7 +125,16 @@ class Donation extends Base_Block {
 		$fields['drplus_amount1'] = '';
 		$fields['drplus_amount2'] = '';
 		$fields['drplus_amount3'] = '';
-		 $fields['suggested_frequency'] = array( "E", "eenmalig");
+		$frequencies = [
+			'E' => 'Eenmalig',
+			'M' => 'Maandelijks',
+			'K' => 'Kwartaal',
+			'H' => 'Halfjaarlijks',
+			'J' => 'Jaarlijks',
+			'F' => 'Maandelijks voor 12 maanden',
+		];
+
+		$fields['suggested_frequency'] = [ $fields['suggested_frequency'], strtolower( $frequencies[ $fields['suggested_frequency'] ] ) ];
 
 		$data = [
 			'fields' => $fields,
