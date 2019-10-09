@@ -39,74 +39,74 @@ $(document).ready(function() {
   $.each(url_vars, function(key, value){
     if (value !== undefined){
       switch (key) {
-        case 'suggested_frequency':
-          switch (value) {
-            case 'E':
-              formconfig.allow_frequency_override = 'false';
-              formconfig.suggested_frequency = ['E', 'Eenmalig'];
-              break;
-            case 'M':
-              formconfig.allow_frequency_override = 'false';
-              formconfig.suggested_frequency = ['M', 'Maandelijks'];
-              break;
-            case 'F':
-              formconfig.allow_frequency_override = 'false';
-              formconfig.suggested_frequency = ['M', 'maandelijks voor 12 maanden'];
-              break;
-            default:
-              formconfig.suggested_frequency = ['M', 'Maandelijks'];
-              break;
-          }
+      case 'suggested_frequency':
+        switch (value) {
+        case 'E':
+          formconfig.allow_frequency_override = 'false';
+          formconfig.suggested_frequency = ['E', 'Eenmalig'];
           break;
-        case 'marketingcode':
+        case 'M':
+          formconfig.allow_frequency_override = 'false';
+          formconfig.suggested_frequency = ['M', 'Maandelijks'];
+          break;
+        case 'F':
+          formconfig.allow_frequency_override = 'false';
+          formconfig.suggested_frequency = ['M', 'maandelijks voor 12 maanden'];
+          break;
+        default:
+          formconfig.suggested_frequency = ['M', 'Maandelijks'];
+          break;
+        }
+        break;
+      case 'marketingcode':
+        if (formconfig.suggested_frequency[0] === 'E') {
+          let url_tmp = 'marketingcode_oneoff';
+          formconfig[url_tmp] = value;
+        } else {
+          let url_tmp = 'marketingcode_recurring';
+          formconfig[url_tmp] = value;
+        }
+        break;
+      case 'drplus':
+        if (value === 'true') {
           if (formconfig.suggested_frequency[0] === 'E') {
-            let url_tmp = 'marketingcode_oneoff';
-            formconfig[url_tmp] = value;
+            formconfig.oneoff_amount1    = formconfig.drplus_amount1;
+            formconfig.oneoff_amount2    = formconfig.drplus_amount2;
+            formconfig.oneoff_amount3    = formconfig.drplus_amount3;
+            formconfig.oneoff_suggested_amount = formconfig.drplus_amount2;
           } else {
-            let url_tmp = 'marketingcode_recurring';
-            formconfig[url_tmp] = value;
+            formconfig.recurring_amount1 = formconfig.drplus_amount1;
+            formconfig.recurring_amount2 = formconfig.drplus_amount2;
+            formconfig.recurring_amount3 = formconfig.drplus_amount3;
+            formconfig.recurring_suggested_amount = formconfig.drplus_amount2;
           }
-          break;
-        case 'drplus':
-          if (value === 'true') {
-            if (formconfig.suggested_frequency[0] === 'E') {
-              formconfig.oneoff_amount1    = formconfig.drplus_amount1;
-              formconfig.oneoff_amount2    = formconfig.drplus_amount2;
-              formconfig.oneoff_amount3    = formconfig.drplus_amount3;
-              formconfig.oneoff_suggested_amount = formconfig.drplus_amount2;
-            } else {
-              formconfig.recurring_amount1 = formconfig.drplus_amount1;
-              formconfig.recurring_amount2 = formconfig.drplus_amount2;
-              formconfig.recurring_amount3 = formconfig.drplus_amount3;
-              formconfig.recurring_suggested_amount = formconfig.drplus_amount2;
-            }
-          }
-          break;
-        case 'min_amount':
-          // if min_amount < lowest_amount => lowest_amount == min_amount
-          formconfig.min_amount = value;
-          if (value > Math.min(formconfig.oneoff_amount1, formconfig.recurring_amount1)){
-            formconfig.min_amount = Math.min(formconfig.oneoff_amount1, formconfig.recurring_amount1);
-          }
-          break;
-        case 'literatuurcode':
-          formconfig.literatuurcode = value;
-          break;
-        case 'suggested_amount':
-          var oneoff = 'oneoff_amount' + value;
-          var recurring = 'recurring_amount' + value;
-          formconfig.recurring_suggested_amount = formconfig[recurring];
-          formconfig.oneoff_suggested_amount = formconfig[oneoff];
-          break;
-        case 'override_amount':
-          if (formconfig.suggested_frequency[0] === 'E') {
-            formconfig.oneoff_amount1    = value;
-            formconfig.oneoff_suggested_amount = value;
-          } else {
-            formconfig.recurring_amount1 = value;
-            formconfig.recurring_suggested_amount = value;
-          }
-          break;
+        }
+        break;
+      case 'min_amount':
+        // if min_amount < lowest_amount => lowest_amount == min_amount
+        formconfig.min_amount = value;
+        if (value > Math.min(formconfig.oneoff_amount1, formconfig.recurring_amount1)){
+          formconfig.min_amount = Math.min(formconfig.oneoff_amount1, formconfig.recurring_amount1);
+        }
+        break;
+      case 'literatuurcode':
+        formconfig.literatuurcode = value;
+        break;
+      case 'suggested_amount':
+        var oneoff = 'oneoff_amount' + value;
+        var recurring = 'recurring_amount' + value;
+        formconfig.recurring_suggested_amount = formconfig[recurring];
+        formconfig.oneoff_suggested_amount = formconfig[oneoff];
+        break;
+      case 'override_amount':
+        if (formconfig.suggested_frequency[0] === 'E') {
+          formconfig.oneoff_amount1    = value;
+          formconfig.oneoff_suggested_amount = value;
+        } else {
+          formconfig.recurring_amount1 = value;
+          formconfig.recurring_suggested_amount = value;
+        }
+        break;
       }
     }
   });
