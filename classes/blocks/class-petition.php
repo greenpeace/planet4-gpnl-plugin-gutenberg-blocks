@@ -20,11 +20,11 @@ use function strlen;
  */
 class Petition extends Base_Block {
 
-
 	/**
 	 * Define the fields and exposed functions to Gutenberg
 	 */
 	public function __construct() {
+
 		register_block_type(
 			'planet4-gpnl-blocks/' . $this->getKebabCaseClassName(),
 			[
@@ -109,7 +109,22 @@ class Petition extends Base_Block {
 				],
 			]
 		);
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_if_block_is_present' ] );
 	}
+
+	/**
+	 * This will run before determining which template to load.
+	 */
+	public function enqueue_if_block_is_present() {
+
+		// Check if the block is present on the page that is requested.
+		if ( has_block( 'planet4-gpnl-blocks/' . $this->getKebabCaseClassName() ) ) {
+			Asset_Enqueuer::enqueue_asset( 'onload', 'script', [], true );
+			Asset_Enqueuer::enqueue_asset( 'onsubmit', 'script', [], true );
+			Asset_Enqueuer::enqueue_asset( 'petition', 'style' );
+		}
+	}
+
 
 	/**
 	 * Get the HTTP(S) URL of the current page.
@@ -206,16 +221,6 @@ class Petition extends Base_Block {
 		} elseif ( 'JA' === $fields['ad_campaign'] ) {
 			Asset_Enqueuer::enqueue_asset( 'jaltLanding', 'script', true);
 		}
-
-		// Include the script and styling for the counter.
-		Asset_Enqueuer::enqueue_asset( 'onload', 'script', true);
-
-		/**
-		 *========================
-		 * CSS / JS
-		 */
-		Asset_Enqueuer::enqueue_asset( 'onsubmit', 'script', true);
-		Asset_Enqueuer::enqueue_asset( 'petition', 'style');
 
 		// Pass options to frontend code.
 		wp_localize_script(

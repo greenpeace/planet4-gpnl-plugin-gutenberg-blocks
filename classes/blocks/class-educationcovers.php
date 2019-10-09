@@ -25,15 +25,26 @@ class Educationcovers extends Base_Block {
 		register_block_type(
 			'planet4-gpnl-blocks/' . $this->getKebabCaseClassName(),
 			[
-				'editor_script' => 'planet4-gpnl-blocks',
-				'render_callback' => [$this, 'render'],
-				'attributes' => [ ]
+				'editor_script'   => 'planet4-gpnl-blocks',
+				'render_callback' => [ $this, 'render' ],
+				'attributes'      => []
 			]
 
 		);
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_if_block_is_present' ] );
 	}
 
+	/**
+	 * This will run before determining which template to load.
+	 */
+	public function enqueue_if_block_is_present() {
 
+		// Check if the block is present on the page that is requested.
+		if ( has_block( 'planet4-gpnl-blocks/' . $this->getKebabCaseClassName() ) ) {
+			Asset_Enqueuer::enqueue_asset( 'educationcovers', 'style' );
+			Asset_Enqueuer::enqueue_asset( 'educationcoversHelper', 'script', [], true );
+		}
+	}
 
 
 	/**
@@ -45,12 +56,9 @@ class Educationcovers extends Base_Block {
 	 */
 	public function prepare_data( $fields ): array {
 
-		// enqueue any asset (style or script) by giving the name as defined in webpack config.
-		Asset_Enqueuer::enqueue_asset('educationcovers', 'style');
-		Asset_Enqueuer::enqueue_asset('educationcoversHelper', 'script', true);
 
 		$args     = array(
-			'numberposts'   => -1, // magic number for retrieving all
+			'numberposts'   => - 1, // magic number for retrieving all.
 			'category_name' => 'lesmateriaal',
 			'post_type'     => 'page',
 		);
@@ -59,34 +67,34 @@ class Educationcovers extends Base_Block {
 
 		$pages = get_posts( $args );
 		foreach ( $pages as $page ) {
-			// Fetch the featured image and tags from each of the entries
+			// Fetch the featured image and tags from each of the entries.
 			$page_id            = $page->ID;
 			$pages[ $i ]->image = get_the_post_thumbnail_url( $page_id, 'large' );
 			$post_tags          = get_the_tags( $page_id );
-			// Add the names of the tags to the associated page and the global tagcloud
+			// Add the names of the tags to the associated page and the global tagcloud.
 			$post_tag_names = [];
 			if ( ! empty( $post_tags ) ) {
 				foreach ( $post_tags as $post_tag ) {
-					array_push( $post_tag_names, html_entity_decode($post_tag->name) );
+					array_push( $post_tag_names, html_entity_decode( $post_tag->name ) );
 				}
 				$pages[ $i ]->tags = wp_json_encode( $post_tag_names );
 				$tagcloud          = array_merge( $tagcloud, $post_tag_names );
 			}
 
 			$pages[ $i ]->link = get_permalink( $page_id );
-			$i++;
+			$i ++;
 		}
 
-		// Filter out audiences, remove duplicates and sort the tags
+		// Filter out audiences, remove duplicates and sort the tags.
 		$audiences = [ 'PO', 'VO', 'MBO', 'DO' ];
 		$tagcloud  = array_diff( array_unique( $tagcloud ), $audiences );
 		sort( $tagcloud );
 
-		$fields =  [
-				'pages'     => $pages,
-				'tags'      => $tagcloud,
-				'audiences' => $audiences,
-			];
+		$fields = [
+			'pages'     => $pages,
+			'tags'      => $tagcloud,
+			'audiences' => $audiences,
+		];
 
 		$data = [
 			'fields' => $fields,
@@ -95,6 +103,7 @@ class Educationcovers extends Base_Block {
 		return $data;
 
 	}
+
 
 }
 

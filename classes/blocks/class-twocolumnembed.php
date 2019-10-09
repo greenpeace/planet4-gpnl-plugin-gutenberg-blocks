@@ -11,6 +11,8 @@
 namespace P4NL_GB_BKS\Blocks;
 
 
+use P4NL_GB_BKS\Services\Asset_Enqueuer;
+
 /**
  * @package P4BKS\Controllers\Blocks
  * @since 0.1
@@ -18,6 +20,7 @@ namespace P4NL_GB_BKS\Blocks;
 class TwoColumnEmbed extends Base_Block {
 
 	public function __construct() {
+
 		// - Register the block for the editor
 		// in the PHP side.
 		register_block_type(
@@ -75,8 +78,19 @@ class TwoColumnEmbed extends Base_Block {
 			]
 
 		);
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_if_block_is_present' ] );
 	}
 
+	/**
+	 * This will run before determining which template to load.
+	 */
+	public function enqueue_if_block_is_present() {
+
+//		// Check if the block is present on the page that is requested.
+//		if ( has_block( 'planet4-gpnl-blocks/' . $this->getKebabCaseClassName() ) ) {
+//
+//		}
+	}
 
 	/**
 	 * Get all the data that will be needed to render the block correctly.

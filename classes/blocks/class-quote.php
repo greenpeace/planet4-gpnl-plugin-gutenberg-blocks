@@ -2,14 +2,13 @@
 
 
 /**
- * Test block class
+ * Quote block class
  *
  * @package P4NL_GB_BKS
  * @since 0.1
  */
 
 namespace P4NL_GB_BKS\Blocks;
-
 
 use P4NL_GB_BKS\Services\Asset_Enqueuer;
 
@@ -20,35 +19,46 @@ use P4NL_GB_BKS\Services\Asset_Enqueuer;
 class Quote extends Base_Block {
 
 	public function __construct() {
+
 		// - Register the block for the editor
 		// in the PHP side.
 		register_block_type(
 			'planet4-gpnl-blocks/' . $this->getKebabCaseClassName(),
 			[
-				'editor_script' => 'planet4-gpnl-blocks',
-				'render_callback' => [$this, 'render'],
-				'attributes' => [
-					'quote' => [
-						'type' => 'string',
+				'editor_script'   => 'planet4-gpnl-blocks',
+				'render_callback' => [ $this, 'render' ],
+				'attributes'      => [
+					'quote'     => [
+						'type'    => 'string',
 						'default' => '',
 					],
-					'quotee' => [
-						'type' => 'string',
+					'quotee'    => [
+						'type'    => 'string',
 						'default' => '',
 					],
 					'image_url' => [
-						'type' => 'string',
+						'type'    => 'string',
 						'default' => '',
 					],
-					'image_id' => [
-						'type' => 'number',
+					'image_id'  => [
+						'type'    => 'number',
 						'default' => '',
 					]
 				]
-
 			]
-
 		);
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_if_block_is_present' ] );
+	}
+
+	/**
+	 * This will run before determining which template to load.
+	 */
+	public function enqueue_if_block_is_present() {
+
+		// Check if the block is present on the page that is requested.
+		if ( has_block( 'planet4-gpnl-blocks/' . $this->getKebabCaseClassName() ) ) {
+			Asset_Enqueuer::enqueue_asset( 'quote', 'style' );
+		}
 	}
 
 
@@ -65,7 +75,7 @@ class Quote extends Base_Block {
 		// If an image is selected
 		if ( isset( $fields['image_id'] ) && $image = wp_get_attachment_image_src( $fields['image_id'], 'full' ) ) {
 			// load the image from the library
-			$fields['image_url'] 	= $image[0];
+			$fields['image_url']    = $image[0];
 			$fields['alt_text']     = get_post_meta( $fields['image_id'], '_wp_attachment_image_alt', true );
 			$fields['image_srcset'] = wp_get_attachment_image_srcset( $fields['image_id'], 'full', wp_get_attachment_metadata( $fields['image_id'] ) );
 			$fields['image_sizes']  = wp_calculate_image_sizes( 'full', null, null, $fields['image_id'] );
@@ -75,10 +85,8 @@ class Quote extends Base_Block {
 			'fields' => $fields,
 		];
 
-		Asset_Enqueuer::enqueue_asset('quote', 'style');
 
 		return $data;
 	}
-
 }
 
