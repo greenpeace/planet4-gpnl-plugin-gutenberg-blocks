@@ -117,8 +117,7 @@ class Newsletter extends Base_Block {
 }
 
 function newsletter_form_process() {
-
-	// TODO: DE AJAX REQUEST WERKT NIET, LIGT AAN DE ONDERSTAANDE REGELS. IN HET OUDE BLOK WERKT HET WEL MET DEZE CODE...
+	
 	$nonce        = htmlspecialchars( wp_strip_all_tags( $_POST['nonce'] ) );
 	$key_in_cache = wp_cache_get( $nonce, 'gpnl_cache' );
 	if ( ! $key_in_cache ) {
