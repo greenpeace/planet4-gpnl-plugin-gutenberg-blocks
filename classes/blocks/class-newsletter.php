@@ -100,7 +100,7 @@ class Newsletter extends Base_Block {
 
 		// Pass options to frontend code
 		wp_localize_script(
-			'gpnl_newsletter_js',
+			'newsletterFormSubmit',
 			'newsletter_form_object_' . $fields['form_id'],
 			[
 				'ajaxUrl'        => admin_url( 'admin-ajax.php' ),
