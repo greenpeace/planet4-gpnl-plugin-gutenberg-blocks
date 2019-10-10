@@ -55,7 +55,7 @@ class TwoColumnEmbed extends Base_Block {
 					],
 					'embed_option' => [
 						'type' => 'string',
-						'default' => '',
+						'default' => 'iframe',
 					],
 					'iframe_src' => [
 						'type' => 'string',
