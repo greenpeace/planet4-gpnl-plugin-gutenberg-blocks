@@ -32,6 +32,9 @@ module.exports = {
     educationcoversHelper: './assets/src/blocks/Educationcovers/js/educationcoversHelper.js',
     educationcovers: './assets/src/blocks/Educationcovers/scss/educationcovers.scss',
 
+    // assets for the two-column-embed block
+    'two-column-embed': './assets/src/blocks/TwoColumnEmbed/scss/two-column-embed.scss',
+
     // Separate css files are generated for the blocks so they can be used only when required on public pages.
     heroImage: './assets/src/blocks/HeroImage/scss/hero-image.scss',
     quote: './assets/src/blocks/Quote/scss/quote.scss',
