@@ -2,7 +2,7 @@
   {% if ( fields ) %}
 	  {% set columnsize_0 = fields.column_size %}
 	  {% set columnsize_1 = 12 - fields.column_size %}
-	  <section class="block columns-block">
+	  <section class="block columns-block two-column-embed-block">
 		  <div class="container">
 			  {% if ( fields.title ) %}
 				  <header>
@@ -26,7 +26,12 @@
 				  </div>
 				  <div class="col-md-{{ columnsize_1 }} column-wrap ">
 					  {%  if fields.embed_option == 'iframe' %}
-						  <iframe src="{{ fields.iframe_src }}" height="{{ fields.iframe_height }}" width="100%"></iframe>
+						  <iframe src="{{ fields.iframe_src }}" height="{{ fields.iframe_height }}" width="100%"
+						  style="width: 100%"
+						  ></iframe>
+
+{#						  width="100%" style="height: {{ fields.iframe_height }}px; width: 100%">#}
+
 					  {% elseif fields.embed_option == 'image' %}
 						  <img
 							  class="img-fluid"
