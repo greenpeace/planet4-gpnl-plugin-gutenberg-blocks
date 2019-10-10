@@ -295,7 +295,7 @@ final class Loader {
 
 		// Enqueueing asset files for the editor.
 		$enque = new Services\Asset_Enqueuer();
-		$enque->enqueue_asset( 'editorStyle', 'style' );
+		$enque->enqueue_asset( 'editor-style', 'style' );
 		$enque->enqueue_asset( 'editorIndex', 'script', [], true );
 
 		$plugin_version        = wp_get_theme()->get( 'Version' );
