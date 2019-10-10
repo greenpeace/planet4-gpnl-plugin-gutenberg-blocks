@@ -9,14 +9,14 @@ module.exports = {
   entry: {
     // assets for the editor (backend)
     editorIndex: './assets/src/editor/js/editorIndex.js',
-    editorStyle: './assets/src/editor/scss/editor-styles.scss',
+    'editor-style': './assets/src/editor/scss/editor-styles.scss',
 
     // assets that are used in the petition block.
     jaltLanding: './assets/src/blocks/Petition/js/jalt-landing.js',
     socialBlueLanding: './assets/src/blocks/Petition/js/social-blue-landing.js',
     onload: './assets/src/blocks/Petition/js/onload.js',
     onsubmit: './assets/src/blocks/Petition/js/onsubmit.js',
-    petition: './assets/src/blocks/Petition/scss/petition.scss',
+    'petition': './assets/src/blocks/Petition/scss/petition.scss',
 
     // assets for the inforequest block
     inforequestHelper: './assets/src/blocks/Inforequest/js/InforequestHelper.js',
@@ -26,20 +26,20 @@ module.exports = {
 
     // assets for the donation block
     donationForm: './assets/src/blocks/Donation/js/donationform.js',
-    donationFormStyle: './assets/src/blocks/Donation/scss/donationform.scss',
+    'donation-form': './assets/src/blocks/Donation/scss/donationform.scss',
 
     // assets for the educationcovers block
     educationcoversHelper: './assets/src/blocks/Educationcovers/js/educationcoversHelper.js',
-    educationcovers: './assets/src/blocks/Educationcovers/scss/educationcovers.scss',
+    'educationcovers': './assets/src/blocks/Educationcovers/scss/educationcovers.scss',
 
     // assets for the two-column-embed block
     'two-column-embed': './assets/src/blocks/TwoColumnEmbed/scss/two-column-embed.scss',
 
     // Separate css files are generated for the blocks so they can be used only when required on public pages.
-    heroImage: './assets/src/blocks/HeroImage/scss/hero-image.scss',
-    quote: './assets/src/blocks/Quote/scss/quote.scss',
-    newsletter: './assets/src/blocks/Newsletter/scss/newsletter.scss',
-    inforequest: './assets/src/blocks/Inforequest/scss/inforequest.scss',
+    'hero-image': './assets/src/blocks/HeroImage/scss/hero-image.scss',
+    'quote': './assets/src/blocks/Quote/scss/quote.scss',
+    'newsletter': './assets/src/blocks/Newsletter/scss/newsletter.scss',
+    'inforequest': './assets/src/blocks/Inforequest/scss/inforequest.scss',
 
     newsletterFormSubmit: './assets/src/blocks/Newsletter/js/NewsletterFormSubmit.js',
 
