@@ -31,14 +31,13 @@ export default class HeroImage extends Component {
     }
 
     const fields =
-      <div className="page-template hero__wrapper ">
+      <div className="hero__wrapper">
         <div className="hero__text">
-          <h2>
+          <h2 className="hero__title">
             <RichText
+              style={{display: 'inline-block', backgroundColor: 'white', padding: '15px'}}
               onChange={onValueChange.bind('title')}
               value={title}
-              tagName={'span'}
-              className={'hero__title'}
               placeholder={'Enter a title'}
             />
           </h2>
