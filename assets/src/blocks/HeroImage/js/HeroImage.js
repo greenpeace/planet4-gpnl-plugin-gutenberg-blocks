@@ -77,7 +77,8 @@ export default class HeroImage extends Component {
             height: "100%",
             overflow: "hidden",
             backgroundImage: `url(${image_url})`,
-            backgroundSize: "cover"
+            backgroundSize: "cover",
+            backgroundPosition: `${focus_image}`
           }}>
             <BlockControls>
               <div className={'components-toolbar'}>
