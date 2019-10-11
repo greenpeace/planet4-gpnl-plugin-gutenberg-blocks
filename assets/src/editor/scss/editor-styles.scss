@@ -84,3 +84,12 @@
 input[type="checkbox"], input[type="radio"] {
   margin: unset;
 }
+
+// Disabled buttons with the class 'btn-primary' must appear in the editor as regular buttons.
+.btn-primary {
+  &:disabled {
+    border-color: $orange !important;
+    background-color: $orange;
+    opacity: 1 !important;
+  }
+}
