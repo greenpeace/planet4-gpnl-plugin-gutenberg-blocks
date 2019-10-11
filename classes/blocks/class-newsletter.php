@@ -31,9 +31,11 @@ class Newsletter extends Base_Block {
 				'attributes'      => [
 					'title'          => [
 						'type' => 'string',
+						'default' => 'Mis geen van onze acties!'
 					],
 					'subtitle'       => [
 						'type' => 'string',
+						'default' => 'Laat merken dat de aarde ook van jou is. Meld je aan en je ontvangt iedere maand een actiemail.'
 					],
 					// in reality 'background' is actually the image ID.
 					'background'     => [
@@ -41,7 +43,7 @@ class Newsletter extends Base_Block {
 					],
 					'opacity'        => [
 						'type'    => 'number',
-						'default' => 30,
+						'default' => 100,
 					],
 					'focus_image'    => [
 						'type'    => 'string',
@@ -126,7 +128,7 @@ class Newsletter extends Base_Block {
 }
 
 function newsletter_form_process() {
-	
+
 	$nonce        = htmlspecialchars( wp_strip_all_tags( $_POST['nonce'] ) );
 	$key_in_cache = wp_cache_get( $nonce, 'gpnl_cache' );
 	if ( ! $key_in_cache ) {

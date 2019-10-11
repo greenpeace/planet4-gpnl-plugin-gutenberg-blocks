@@ -28,16 +28,18 @@ export class NewsletterBlock extends BaseBlock {
       attributes: {
         title: {
           type: 'string',
+          default: 'Mis geen van onze acties!'
         },
         subtitle: {
           type: 'string',
+          default: 'Laat merken dat de aarde ook van jou is. Meld je aan en je ontvangt iedere maand een actiemail.'
         },
         background: {
           type: 'number'
         },
         opacity: {
           type: 'number',
-          default: 30,
+          default: 100,
         },
         focus_image: {
           type: 'string',

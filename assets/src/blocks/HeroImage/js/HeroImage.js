@@ -95,7 +95,7 @@ export default class HeroImage extends Component {
               onClick={openEvent}
               style={{position: "absolute", top: "50%", left: "50%", transform: 'translateX(-50%) translateY(-50%)'}}
               className="btn btn-large btn-primary">
-              select an image
+              selecteer een afbeelding
             </Button>
           </div>
         );
@@ -108,7 +108,7 @@ export default class HeroImage extends Component {
     }
     return ([
       <div className={heroClass}
-           style={{backgroundColor: "#f4f4f4", maxWidth: "100%", margin: "0"}}>
+           style={{maxWidth: "100%", margin: "0"}}>
         <MediaUploadCheck>
           <MediaUpload
             type="image"
