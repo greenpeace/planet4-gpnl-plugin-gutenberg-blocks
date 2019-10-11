@@ -45,15 +45,12 @@ class Asset_Enqueuer {
 	 * Enqueue external assets (such as assets from a CDN).
 	 * See the readme.md for an example.
 	 */
-	public static function enqueue_external_asset( $external_assets ) {
-		foreach ( $external_assets as $asset ) {
-			if ( 'style' === $asset['type'] ) {
-				wp_enqueue_style( $asset['handle'], $asset['src'], [], null );
-			} elseif ( 'script' === $asset['type'] ) {
-				wp_enqueue_script( $asset['handle'], $asset['src'], [], null, $asset['in_footer'] = true );
+	public static function enqueue_external_asset($asset_handle, $asset_type, $asset_src, $asset_is_in_footer = false) {
+			if ( 'style' === $asset_type ) {
+				wp_enqueue_style( $asset_handle, $asset_src, [], null );
+			} elseif ( 'script' === $asset_type ) {
+				wp_enqueue_script( $asset_handle, $asset_src, [], null, $asset_is_in_footer );
 			}
-		}
-
 	}
 }
 

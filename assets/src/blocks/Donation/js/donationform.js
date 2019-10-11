@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 var donationformVue = {};
 var url_vars = {};
 
@@ -142,7 +144,6 @@ $(document).ready(function() {
   Vue.use(VueFormWizard);
 
   Vue.config.devtools = true;
-
 
   Vue.component('step1', {
     template: `

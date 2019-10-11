@@ -11,6 +11,8 @@
 // TODO: Make the Vue form render!
 namespace P4NL_GB_BKS\Blocks;
 
+use P4NL_GB_BKS\Services\Asset_Enqueuer;
+
 /**
  * @package P4BKS\Controllers\Blocks
  * @since 0.1
@@ -109,8 +111,31 @@ class Donation extends Base_Block {
 				],
 			]
 		);
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_if_block_is_present' ] );
 	}
 
+	/**
+	 * This will run before determining which template to load.
+	 */
+	public function enqueue_if_block_is_present() {
+
+
+		// Check if the block is present on the page that is requested.
+		if ( has_block( 'planet4-gpnl-blocks/' . $this->getKebabCaseClassName() ) ) {
+
+			Asset_Enqueuer::enqueue_external_asset(  'vueform_style', 'style', 'https://unpkg.com/vue-form-wizard@0.8.4/dist/vue-form-wizard.min.css');
+			Asset_Enqueuer::enqueue_asset('donation-form', 'style');
+
+			Asset_Enqueuer::enqueue_external_asset(  'vue', 'script','https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.15/vue.min.js', true );
+			Asset_Enqueuer::enqueue_external_asset( 'vueresource', 'script', 'https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.5.0/vue-resource.min.js', true );
+//			Asset_Enqueuer::enqueue_asset('vue-form-wizard', 'style');
+			Asset_Enqueuer::enqueue_asset('vueform', 'script', [ 'vue' ], true);
+			Asset_Enqueuer::enqueue_asset('vuelidate', 'script', [ 'vue', 'vueform' ], true);
+			Asset_Enqueuer::enqueue_asset('vuelidators', 'script', [ 'vue', 'vueform' ], true);
+
+			Asset_Enqueuer::enqueue_asset('donationForm', 'script', ['vue', 'vueresource', 'vueform', 'vuelidate', 'vuelidators'], true);
+		}
+	}
 
 	/**
 	 * Get all the data that will be needed to render the block correctly.
@@ -139,16 +164,9 @@ class Donation extends Base_Block {
 			'fields' => $fields,
 		];
 
-		wp_enqueue_script( 'vue', 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.15/vue.min.js', null, '', true );
-		wp_enqueue_script( 'vueform', P4NL_GB_BKS_PLUGIN_URL . 'assets/src/blocks/Donation/js/vue-form-wizard.min.js', [ 'vue' ], '0.8.4', true );
-		wp_enqueue_script( 'vueresource', 'https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.5.0/vue-resource.min.js', [ 'vue', 'vueform' ], '1.5.0', true );
-		wp_enqueue_script( 'vuelidate', P4NL_GB_BKS_PLUGIN_URL . 'assets/src/blocks/Donation/js/vuelidate.min.js', [ 'vue', 'vueform' ], '0.7.4', true );
-		wp_enqueue_script( 'vuelidators', P4NL_GB_BKS_PLUGIN_URL . 'assets/src/blocks/Donation/js/validators.min.js', [ 'vue', 'vueform' ], '0.7.4', true );
-		// wp_enqueue_script( 'donationform', P4NL_GB_BKS_PLUGIN_URL . 'assets/build/donationForm.js', ['vue', 'vueresource', 'vueform', 'vuelidate', 'vuelidators'], '2.10.2', true );
-
 		// Pass options to frontend code
 		wp_localize_script(
-			'donationform',
+			'donationForm',
 			'formconfig',
 			array(
 				'min_amount'                 => $fields['min_amount'],
@@ -175,18 +193,15 @@ class Donation extends Base_Block {
 			)
 		);
 
-		// Pass option for address autofill to frontend code.
+//		 Pass option for address autofill to frontend code.
 		wp_localize_script(
-			'donationform',
+			'donationForm',
 			'get_address_object',
 			[
 				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
 				'nonce'   => wp_create_nonce( 'GPNL_get_address_donation_form' ),
 			]
 		);
-
-		wp_enqueue_style( 'vueform_style', P4NL_GB_BKS_PLUGIN_URL . 'assets/src/blocks/Donation/css/vue-form-wizard.min.css', [], '2.7.3' );
-		wp_enqueue_style( 'gpnl_donationform_style', P4NL_GB_BKS_PLUGIN_URL . 'assets/build/donationFormStyle.min.css', 'vueform_style', '2.11.4' );
 
 		return $data;
 	}
