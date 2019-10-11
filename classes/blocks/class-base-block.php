@@ -37,7 +37,10 @@ class Base_Block {
 		// underscore name for twig files
 		$underscoreBlockName = str_replace("-", "_", $this->getKebabCaseClassName());
 
-		\Timber::render( $underscoreBlockName. '.twig', $data );
+		$block = \Timber::compile( $underscoreBlockName. '.twig', $data );
+
+		// Return empty string if rendered output contains only whitespace or new lines.
+		return ctype_space( $block ) ? '' : $block;
 	}
 
 	/**
