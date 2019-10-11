@@ -3,6 +3,7 @@ import BaseBlock from "../../BaseBlock";
 import {ServerSideRender} from "@wordpress/components";
 import {Icon} from './HeroImageIcon';
 import HeroImage from "./HeroImage";
+import Transform from "./Transforms";
 
 const {withSelect} = wp.data;
 
@@ -24,11 +25,13 @@ export class HeroImageBlock extends BaseBlock {
       keywords: [
         __(this.blockName),
         __('hero'),
+        __('banner'),
         __('header'),
         __('image'),
         __('afbeelding'),
         __('held'),
       ],
+      transforms: Transform,
       attributes: {
         title: {
           type: 'string',
