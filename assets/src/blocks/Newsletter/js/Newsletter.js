@@ -74,6 +74,7 @@ export default class Newsletter extends Component {
                margin: '0',
                width: '100%',
                backgroundImage: `url(${image_url})`,
+               backgroundPosition: `${focus_image}`,
                backgroundSize: 'cover',
                opacity: `${opacity}%`,
              }}
