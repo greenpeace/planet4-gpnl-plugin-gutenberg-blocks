@@ -8,6 +8,19 @@
 
 			<div class="page-template hero__wrapper ">
 				<div class="hero__text">
+					{% if not fields.image_url | default %}
+						<p>
+							<em>
+							Dit is het block "Hero afbeelding" en heeft nu nog geen afbeelding of tekst.<br>
+							Selecteer dit blok om aanpassinging te maken.
+							</em>
+						</p>
+						<p>
+							<em>
+								Als je dit blok niet wil gebruiken dan kun je het verwijderen.
+							</em>
+						</p>
+					{% endif %}
 					{% if ( fields.title ) %}
 						<h2 class="hero__title">
 					  <span>
@@ -21,7 +34,8 @@
 					{% endif %}
 
 					{% if (fields.link_text) %}
-						<a href="{{ fields.link_url }}" class="btn btn-small btn-medium btn-primary hero__button">{{ fields.link_text }}</a>
+						<a href="{{ fields.link_url }}"
+						   class="btn btn-small btn-medium btn-primary hero__button">{{ fields.link_text }}</a>
 					{% endif %}
 
 				</div>
