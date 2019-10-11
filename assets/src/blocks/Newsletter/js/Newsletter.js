@@ -68,9 +68,7 @@ export default class Newsletter extends Component {
         }}>
 
         <div className={'background-image'}
-
              style={{
-               backgroundColor: '#f4f4f4',
                margin: '0',
                width: '100%',
                backgroundImage: `url(${image_url})`,

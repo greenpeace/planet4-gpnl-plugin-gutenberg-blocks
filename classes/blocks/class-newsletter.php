@@ -43,7 +43,7 @@ class Newsletter extends Base_Block {
 					],
 					'opacity'        => [
 						'type'    => 'number',
-						'default' => 30,
+						'default' => 100,
 					],
 					'focus_image'    => [
 						'type'    => 'string',

@@ -39,7 +39,7 @@ export class NewsletterBlock extends BaseBlock {
         },
         opacity: {
           type: 'number',
-          default: 30,
+          default: 100,
         },
         focus_image: {
           type: 'string',
