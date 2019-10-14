@@ -95,6 +95,10 @@ class Inforequest extends Base_Block {
 		}
 	}
 
+	private function isMarketingcodeAttribute( $string ) {
+		return 0 === strpos( $string, 'mcode' );
+	}
+
 
 	/**
 	 * Callback for the shortcake_twocolumn shortcode.
@@ -111,6 +115,23 @@ class Inforequest extends Base_Block {
 		global $post;
 
 		$parent = wp_get_canonical_url( $post->post_parent );
+
+		$mcode_attributes = array_filter( $fields, [ $this, 'isMarketingcodeAttribute' ], ARRAY_FILTER_USE_KEY );
+		$sorted_mcodes    = [];
+		$postfixes        = [ '_code', '_label' ];
+		for ( $i = 1; $i < 6; $i ++ ) {
+			$key = 'mcode' . $i;
+			foreach ( $postfixes as $postfix ) {
+				if ( isset( $mcode_attributes[ $key . $postfix ] ) ) {
+					if ( '' === $mcode_attributes[ $key . $postfix ] ) {
+						continue;
+					}
+					$sorted_mcodes[ $i ][ $postfix ] = $mcode_attributes[ $key . $postfix ];
+				}
+			}
+		}
+
+		$fields['mcodes'] = $sorted_mcodes;
 
 		$data = [
 			'fields' => $fields,
