@@ -140,7 +140,7 @@ class Inforequest extends Base_Block {
 
 		// Pass options to frontend code.
 		wp_localize_script(
-			'inforequest_helper',
+			'inforequestHelper',
 			'request_form_object',
 			[
 				'ajaxUrl'        => admin_url( 'admin-ajax.php' ),
@@ -152,7 +152,7 @@ class Inforequest extends Base_Block {
 
 		// Pass option for address autofill to frontend code.
 		wp_localize_script(
-			'address_autofill',
+			'addressAutofill',
 			'get_address_object',
 			[
 				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
