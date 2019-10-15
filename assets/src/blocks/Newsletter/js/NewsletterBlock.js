@@ -4,6 +4,8 @@ import {ServerSideRender} from "@wordpress/components";
 import Newsletter from "./Newsletter";
 import { Icon } from './NewsletterIcon';
 const {withSelect} = wp.data;
+import Transform from "./Transform";
+
 
 
 export class NewsletterBlock extends BaseBlock {
@@ -25,6 +27,7 @@ export class NewsletterBlock extends BaseBlock {
         __('subscription'),
         __('nieuwsbrief'),
       ],
+      transforms: Transform,
       attributes: {
         title: {
           type: 'string',
