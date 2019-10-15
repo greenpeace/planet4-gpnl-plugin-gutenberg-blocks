@@ -16,7 +16,7 @@ function Transform() {
             },
             description: {
               shortcode: function (attributes) {
-                return attributes.named.title;
+                return attributes.named.description;
               }
             },
             // Converting the image to a number, because in reality we store the image_id and NOT AS A STRING ANYMORE!

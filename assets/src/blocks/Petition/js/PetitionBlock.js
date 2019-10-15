@@ -4,6 +4,8 @@ import { ServerSideRender } from "@wordpress/components";
 import { Preview } from '../../../components/Preview/js/Preview';
 const { withSelect } = wp.data;
 import Petition from "./Petition";
+import Transform from "./Transform";
+
 
 
 export class PetitionBlock extends BaseBlock {
@@ -20,6 +22,7 @@ export class PetitionBlock extends BaseBlock {
       title: 'Petitie',
       icon: 'welcome-widgets-menus',
       category: 'planet4-gpnl-blocks',
+      transforms: Transform,
       keywords: [
         __(this.blockName),
         __('petitie'),

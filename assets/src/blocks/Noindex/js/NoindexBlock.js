@@ -1,6 +1,7 @@
 import React from 'react';
 import BaseBlock from "../../BaseBlock";
 import {ServerSideRender} from "@wordpress/components";
+import Transform from "./Transform";
 
 export class NoindexBlock extends BaseBlock {
 
@@ -17,7 +18,8 @@ export class NoindexBlock extends BaseBlock {
 			title: this.blockName,
 			icon: 'hidden',
 			category: 'planet4-gpnl-blocks',
-			keywords: [
+      transforms: Transform,
+      keywords: [
 				__(this.blockName),
         __('verborgen'),
         __('hidden'),
