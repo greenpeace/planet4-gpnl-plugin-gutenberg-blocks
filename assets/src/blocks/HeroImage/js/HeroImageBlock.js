@@ -3,7 +3,7 @@ import BaseBlock from "../../BaseBlock";
 import {ServerSideRender} from "@wordpress/components";
 import {Icon} from './HeroImageIcon';
 import HeroImage from "./HeroImage";
-import Transform from "./Transforms";
+import Transform from "./Transform";
 
 const {withSelect} = wp.data;
 
