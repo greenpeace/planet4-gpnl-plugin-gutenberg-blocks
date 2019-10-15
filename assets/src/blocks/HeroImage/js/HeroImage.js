@@ -108,7 +108,7 @@ export default class HeroImage extends Component {
     }
     return ([
       <div className={heroClass}
-           style={{maxWidth: "100%", margin: "0"}}>
+           style={{maxWidth: "100%", height: "500px", margin: "0"}}>
         <MediaUploadCheck>
           <MediaUpload
             type="image"
