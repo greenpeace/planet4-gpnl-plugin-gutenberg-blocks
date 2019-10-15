@@ -9,7 +9,7 @@
 }
 
 .hero {
-  height: 500px;
+  min-height: 500px;
   overflow: hidden;
   background-size: cover;
   border-bottom: 3px solid $light-green;
@@ -31,17 +31,20 @@
 
   // TODO add option for hero with only title white on green
   .hero__wrapper {
-
     padding: 0 !important;
 
     .hero__text {
-      margin-top: 40px;
+      margin: 15px 0;
       max-width: 100%;
+
+      @include medium-and-up {
+        margin-top: 40px;
+      }
 
       .hero__title {
         span {
-          font-size: 2.375rem;
           padding: 15px;
+          font-size: 1.625rem;
           margin-bottom: 15px;
           background-color: $white;
           line-height: 2.5;
@@ -49,6 +52,9 @@
           box-decoration-break: clone;
           width: max-content;
           max-width: 100%;
+          @include medium-and-up {
+            font-size: 2rem;
+          }
         }
       }
 
@@ -76,8 +82,4 @@
 div[data-type="planet4-gpnl-blocks/hero"] {
   max-width: unset;
   width: 100%;
-}
-
-.block-control-button {
-
 }
