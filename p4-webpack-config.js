@@ -25,7 +25,7 @@ module.exports = {
     addressAutofill: './assets/src/components/AddressAutofill.js',
 
     // assets for the donation block
-    donationForm: './assets/src/blocks/Donation/js/donationform.js',
+    donationForm: './assets/src/blocks/Donation/js/donationForm.js',
     vueform: './assets/src/blocks/Donation/js/vue-form-wizard.min.js',
     vuelidate: './assets/src/blocks/Donation/js/vuelidate.min.js',
     vuelidators: './assets/src/blocks/Donation/js/validators.min.js',
