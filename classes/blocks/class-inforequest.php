@@ -95,6 +95,10 @@ class Inforequest extends Base_Block {
 		}
 	}
 
+	private function isMarketingcodeAttribute( $string ) {
+		return 0 === strpos( $string, 'mcode' );
+	}
+
 
 	/**
 	 * Callback for the shortcake_twocolumn shortcode.
@@ -112,6 +116,23 @@ class Inforequest extends Base_Block {
 
 		$parent = wp_get_canonical_url( $post->post_parent );
 
+		$mcode_attributes = array_filter( $fields, [ $this, 'isMarketingcodeAttribute' ], ARRAY_FILTER_USE_KEY );
+		$sorted_mcodes    = [];
+		$postfixes        = [ '_code', '_label' ];
+		for ( $i = 1; $i < 6; $i ++ ) {
+			$key = 'mcode' . $i;
+			foreach ( $postfixes as $postfix ) {
+				if ( isset( $mcode_attributes[ $key . $postfix ] ) ) {
+					if ( '' === $mcode_attributes[ $key . $postfix ] ) {
+						continue;
+					}
+					$sorted_mcodes[ $i ][ $postfix ] = $mcode_attributes[ $key . $postfix ];
+				}
+			}
+		}
+
+		$fields['mcodes'] = $sorted_mcodes;
+
 		$data = [
 			'fields' => $fields,
 			'parent' => $parent,
@@ -119,7 +140,7 @@ class Inforequest extends Base_Block {
 
 		// Pass options to frontend code.
 		wp_localize_script(
-			'inforequest_helper',
+			'inforequestHelper',
 			'request_form_object',
 			[
 				'ajaxUrl'        => admin_url( 'admin-ajax.php' ),
@@ -131,7 +152,7 @@ class Inforequest extends Base_Block {
 
 		// Pass option for address autofill to frontend code.
 		wp_localize_script(
-			'address_autofill',
+			'addressAutofill',
 			'get_address_object',
 			[
 				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
