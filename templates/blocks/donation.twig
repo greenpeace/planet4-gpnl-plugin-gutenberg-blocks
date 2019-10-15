@@ -28,8 +28,6 @@
 					</script>
 
 					<div id="app" class="card">
-
-
 						<div class="gp-donation-form card-body">
 							<noscript>
 								<p>
@@ -53,7 +51,7 @@
 								<tab-content
 									title="1 Donatie"
 									icon="icon-euro"
-									:before-change="()=>validateStep('step1')"
+									:beforeChange="function(){validateStep('step1')}"
 								>
 									<step1
 										ref="step1"
@@ -65,7 +63,7 @@
 								<tab-content
 									title="2 Gegevens"
 									icon="icon-user"
-									:before-change="()=>validateStep('step2')"
+									:before-change="function(){validateStep('step2')}"
 								>
 									<step2
 										ref="step2"
@@ -77,7 +75,7 @@
 								<tab-content
 									title="3 Adres"
 									icon="icon-home"
-									:before-change="()=>validateStep('step3')"
+									:before-change="function(){validateStep('step3')}"
 									v-if="!isiDeal()"
 								>
 									<step3
@@ -98,6 +96,8 @@
 							</form-wizard>
 						</div>
 					</div>
+<!-- end #app -->
+
 					<script>
 						dataLayer.push({
 							'event': 'virtualPageViewDonatie',
@@ -106,6 +106,8 @@
 						});
 					</script>
 				</div>
+
+
 			</div>
 		</section>
 	{% endif %}
