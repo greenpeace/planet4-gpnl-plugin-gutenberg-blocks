@@ -5,6 +5,8 @@ import { Preview } from '../../../components/Preview/js/Preview';
 const { withSelect } = wp.data;
 import TwoColumnEmbed from "./TwoColumnEmbed";
 import { Icon } from "./TwoColumnEmbedIcon";
+import Transform from "./Transform";
+
 
 
 export class TwoColumnEmbedBlock extends BaseBlock {
@@ -21,6 +23,7 @@ export class TwoColumnEmbedBlock extends BaseBlock {
       title: '2 kolommen met iframe of afbeelding',
       icon: Icon,
       category: 'planet4-gpnl-blocks',
+      transforms: Transform,
       keywords: [
         __(this.blockName),
         __('embed'),
@@ -60,7 +63,7 @@ export class TwoColumnEmbedBlock extends BaseBlock {
           type: 'number',
         },
         column_size: {
-          type: 'number',
+          type: 'string',
           default: '6'
         },
       },
