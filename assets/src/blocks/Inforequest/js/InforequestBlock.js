@@ -3,6 +3,8 @@ import BaseBlock from "../../BaseBlock";
 import { ServerSideRender } from "@wordpress/components";
 import { Preview } from '../../../components/Preview/js/Preview';
 import Inforequest from "./Inforequest";
+import Transform from "./Transform";
+
 
 
 export class InforequestBlock extends BaseBlock {
@@ -19,6 +21,7 @@ export class InforequestBlock extends BaseBlock {
       title: 'Docentenaanvraag',
       icon: 'welcome-widgets-menus',
       category: 'planet4-gpnl-blocks',
+      transforms: Transform,
       keywords: [
         __(this.blockName),
         __('docenten'),
