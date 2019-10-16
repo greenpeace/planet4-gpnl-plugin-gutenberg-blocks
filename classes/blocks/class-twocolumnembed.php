@@ -63,14 +63,14 @@ class TwoColumnEmbed extends Base_Block {
 					],
 					'iframe_height' => [
 						'type' => 'number',
-						'default' => '',
+						'default' => 400,
 					],
 					'image' => [
 						'type' => 'number',
-						'default' => '',
+						'default' => null,
 					],
 					'column_size' => [
-						'type' => 'number',
+						'type' => 'string',
 						'default' => '6',
 					]
 				]

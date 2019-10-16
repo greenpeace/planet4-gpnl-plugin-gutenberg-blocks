@@ -101,21 +101,14 @@ export class TwoColumnEmbedBlock extends BaseBlock {
 
         // if the block is selected, the block-editor is rendered, otherwise the block is rendered server-side.
         if (isSelected){
-          return ([
+          return (
             <TwoColumnEmbed
               {...attributes}
               image_url={image_url}
               onValueChange={onValueChange}
               onNumberChange={onNumberChange}
               onSelectImage={onSelectImage}
-            />,
-              <Preview showBar={isSelected}>
-                <ServerSideRender
-                  block={'planet4-gpnl-blocks/' + this.blockNameKebabCase}
-                  attributes={attributes}
-                />
-              </Preview>
-              ]
+            />
           )
         } else {
           return (
