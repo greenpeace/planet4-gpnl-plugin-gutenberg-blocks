@@ -63,6 +63,14 @@
   color: red;
 }
 
+.warning-message {
+  color: red;
+  background-color: white;
+  font-style: italic;
+  padding: 0 15px;
+  display: inline-block;
+}
+
 // unsetting the width of the slider which is otherwise messed up by twitter bootstrap.
 .components-range-control__slider {
   width: unset;
