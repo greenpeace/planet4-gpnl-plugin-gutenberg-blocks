@@ -30,24 +30,39 @@ export default class HeroImage extends Component {
       focal_point_params = {x: 0.5, y: 0.5};
     }
 
+    let isTitleTooLong = false;
+    if (title.length > 75) {
+      isTitleTooLong = true;
+    }
+    let isDescriptionTooLong = false;
+    if (description.length > 250) {
+      isDescriptionTooLong = true;
+    }
+
     const fields =
       <div className="hero__wrapper">
+
         <div className="hero__text">
-          <h2 className="hero__title">
+          <h2 className="hero__title" style={{marginBottom: '0'}}>
             <RichText
-              style={{display: 'inline-block', backgroundColor: 'white', padding: '15px'}}
+              style={{display: 'inline-block', size: '2rem', backgroundColor: isTitleTooLong == true ? 'red' : 'white', color: isTitleTooLong == true ? 'white' : '', padding: '15px' }}
               onChange={onValueChange.bind('title')}
               value={title}
               placeholder={'Enter a title'}
             />
           </h2>
+          <p className={"warning-message"}>  { isTitleTooLong == true ? "De titel is erg lang en dit kan problemen opleveren op kleinere displays." : ""  }</p>
+
           <RichText
             onChange={onValueChange.bind('description')}
             value={description}
             tagName={'p'}
             className={'hero__description'}
+            style={{ backgroundColor: isDescriptionTooLong == true ? 'red' : '' }}
             placeholder={'Abstract / description (optional)'}
           />
+          <p className={"warning-message"}>  { isDescriptionTooLong == true ? "De omschrijving is erg lang en dit kan problemen opleveren op kleinere displays." : ""  }</p>
+
           <div style={{width: '280px'}}>
             <RichText
               onChange={onValueChange.bind('link_text')}
