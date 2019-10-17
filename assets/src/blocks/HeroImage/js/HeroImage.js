@@ -32,11 +32,11 @@ export default class HeroImage extends Component {
     }
 
     let isTitleTooLong = false;
-    if (title.length > 75) {
+    if (title != null && title.length > 75) {
       isTitleTooLong = true;
     }
     let isDescriptionTooLong = false;
-    if (description.length > 250) {
+    if (description != null && description.length > 250) {
       isDescriptionTooLong = true;
     }
 
@@ -46,7 +46,10 @@ export default class HeroImage extends Component {
         <div className="hero__text">
           <h2 className="hero__title" style={{marginBottom: '0'}}>
             <RichText
-              style={{display: 'inline-block', size: '2rem', backgroundColor: isTitleTooLong == true ? '#f0b112' : 'white', color: isTitleTooLong == true ? 'white' : '', padding: '15px' }}
+              style={{display: 'inline-block', size: '2rem',
+                backgroundColor: isTitleTooLong == true ? '#f0b112' : 'white',
+                color: isTitleTooLong == true ? 'white' : '',
+                padding: '15px' }}
               onChange={onValueChange.bind('title')}
               value={title}
               placeholder={'Enter a title'}
@@ -59,7 +62,9 @@ export default class HeroImage extends Component {
             value={description}
             tagName={'p'}
             className={'hero__description'}
-            style={{ backgroundColor: isDescriptionTooLong == true ? '#f0b112' : '' }}
+            style={{
+              backgroundColor: isDescriptionTooLong == true ? '#f0b112' : ''
+            }}
             placeholder={'Abstract / description (optional)'}
           />
           <p className={"warning-message"}>  { isDescriptionTooLong == true ? "De omschrijving is erg lang en dit kan problemen opleveren op kleinere displays." : ""  }</p>
