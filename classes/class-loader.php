@@ -90,6 +90,10 @@ final class Loader {
 		$this->load_files();
 		$this->check_requirements();
 
+		$this->services = [
+			new Services\Twig_helper()
+		];
+
 		// Load Blocks.
 		$this->blocks = [
 			new Blocks\Quote(),

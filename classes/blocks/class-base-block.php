@@ -37,6 +37,9 @@ class Base_Block {
 		// underscore name for twig files
 		$underscoreBlockName = str_replace("-", "_", $this->getKebabCaseClassName());
 
+		$public_dir = ['public' => P4NL_GB_BKS_PUBLIC_DIR, 'images' => P4NL_GB_BKS_PUBLIC_DIR.'/images/'];
+		$data = array_merge($data, $public_dir);
+
 		$block = \Timber::compile( $underscoreBlockName. '.twig', $data );
 
 		// Return empty string if rendered output contains only whitespace or new lines.
