@@ -85,7 +85,11 @@ if ( ! defined( 'P4NL_GB_BKS_ALLOWED_PAGETYPE' ) ) {
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	define( 'WP_UNINSTALL_PLUGIN', P4NL_GB_BKS_PLUGIN_BASENAME );
 }
-if ( ! defined( 'P4NL_GB_BKS_ASSETS_DIR' ) )        define( 'P4NL_GB_BKS_ASSETS_DIR',       P4NL_GB_BKS_PLUGIN_DIRNAME . '/assets/' );
+if ( ! defined( 'P4NL_GB_BKS_ASSETS_DIR' ) )        define( 'P4NL_GB_BKS_ASSETS_DIR',       P4NL_GB_BKS_PLUGIN_DIRNAME . 'assets/' );
+
+if ( ! defined( 'P4NL_GB_BKS_ASSETS_BUILD_DIR' ) )        define( 'P4NL_GB_BKS_ASSETS_BUILD_DIR',       P4NL_GB_BKS_PLUGIN_URL . 'assets/build' );
+if ( ! defined( 'P4NL_GB_BKS_PUBLIC_DIR' ) )        define( 'P4NL_GB_BKS_PUBLIC_DIR',       P4NL_GB_BKS_PLUGIN_URL . 'public' );
+
 
 require_once __DIR__ . '/classes/class-loader.php';
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
@@ -104,3 +108,22 @@ P4NL_GB_BKS\Loader::get_instance(
 	],
 	'P4NL_GB_BKS\Views\View'
 );
+
+
+
+//add_filter( 'timber/twig', 'add_to_twig' );
+//
+///**
+// * A Twig functionality to add the image scr path.
+// *
+// * @param \Twig\Environment $twig
+// * @return \Twig\Environment
+// */
+//function add_to_twig( $twig ) {
+//
+//	$twig->addFunction( new Timber\Twig_Function('image', function ($param1) {
+//		return isset($param1) ? P4NL_GB_BKS_PUBLIC_DIR.'/images/'.$param1 :'';
+//	}) );
+//
+//	return $twig;
+//}
