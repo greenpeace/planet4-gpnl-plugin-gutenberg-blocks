@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {RichText, MediaUpload, MediaUploadCheck, InspectorControls, BlockControls} from "@wordpress/editor";
 import {Button, PanelBody, ToggleControl, FocalPointPicker} from '@wordpress/components';
+import "../../../base/_variables_gpnl.scss";
 
 export default class HeroImage extends Component {
 
@@ -45,7 +46,7 @@ export default class HeroImage extends Component {
         <div className="hero__text">
           <h2 className="hero__title" style={{marginBottom: '0'}}>
             <RichText
-              style={{display: 'inline-block', size: '2rem', backgroundColor: isTitleTooLong == true ? 'red' : 'white', color: isTitleTooLong == true ? 'white' : '', padding: '15px' }}
+              style={{display: 'inline-block', size: '2rem', backgroundColor: isTitleTooLong == true ? '#f0b112' : 'white', color: isTitleTooLong == true ? 'white' : '', padding: '15px' }}
               onChange={onValueChange.bind('title')}
               value={title}
               placeholder={'Enter a title'}
@@ -58,7 +59,7 @@ export default class HeroImage extends Component {
             value={description}
             tagName={'p'}
             className={'hero__description'}
-            style={{ backgroundColor: isDescriptionTooLong == true ? 'red' : '' }}
+            style={{ backgroundColor: isDescriptionTooLong == true ? '#f0b112' : '' }}
             placeholder={'Abstract / description (optional)'}
           />
           <p className={"warning-message"}>  { isDescriptionTooLong == true ? "De omschrijving is erg lang en dit kan problemen opleveren op kleinere displays." : ""  }</p>
