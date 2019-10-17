@@ -47,6 +47,7 @@ export class Quote extends Component {
 						</div>
 						<div class="col-10">
 							<RichText
+								formattingControls={ [] }
 								onChange={this.props.onQuoteChange}
 								value={this.props.quote}
 								tagName="p"
@@ -54,6 +55,7 @@ export class Quote extends Component {
 								placeholder="enter a quote"
 							/>
 							<RichText
+								formattingControls={ [] }
 								onChange={this.props.onQuoteeChange}
 								value={this.props.quotee}
 								tagName="p"
