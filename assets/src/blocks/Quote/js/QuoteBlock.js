@@ -2,6 +2,7 @@ import BaseBlock from "../../BaseBlock";
 
 import { Icon } from './QuoteIcon';
 import { Quote } from "./Quote";
+import Transform from "./Transform";
 
 export class QuoteBlock extends BaseBlock {
 
@@ -24,6 +25,7 @@ export class QuoteBlock extends BaseBlock {
         __('citation'),
         __('cite'),
 			],
+			transforms: Transform,
 			attributes: {
 				quote: {
 					type: 'string',
