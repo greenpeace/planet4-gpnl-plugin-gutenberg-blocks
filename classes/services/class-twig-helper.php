@@ -16,15 +16,13 @@ class Twig_Helper {
 	 */
 	public static function add_to_twig( $twig ) {
 
-		$twig->addFunction( new Twig_Function('image', function ($param1) {
-			return isset($param1) ? P4NL_GB_BKS_PUBLIC_DIR.'/images/'.$param1 :'';
-		}) );
-
-//		echo "<h1>wtf</h1>";
+		$twig->addFunction( new Twig_Function( 'image', function ( $param1 ) {
+			return isset( $param1 ) ? P4NL_GB_BKS_PUBLIC_DIR . '/images/' . $param1 : '';
+		} ) );
 
 		return $twig;
 	}
 
 }
 
-add_filter( 'timber/twig', ['P4NL_GB_BKS\Services\Twig_Helper', 'add_to_twig' ] );
+add_filter( 'timber/twig', [ 'P4NL_GB_BKS\Services\Twig_Helper', 'add_to_twig' ] );
