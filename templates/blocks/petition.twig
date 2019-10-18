@@ -17,7 +17,7 @@
 							</tr>
 							<tr>
 								<td>Advertentiebureau:</td>
-								<td>{{  fields.ad_campaign }}</td>
+								<td>{{ fields.ad_campaign }}</td>
 							</tr>
 						</table>
 					{% endif %}
@@ -46,7 +46,9 @@
 								<p>
 									Uw browser ondersteunt geen Javascript.<br>
 									Het is hierdoor niet mogelijk om een petitie te ondertekenen via deze weg.<br>
-									Bel onze Supporter Care via 0800-4223344 of stuur een mail via <a href="https://www.greenpeace.org/nl/contact/contact-formulier/">dit contactformulier.</a>
+									Bel onze Supporter Care via 0800-4223344 of stuur een mail via <a
+										href="https://www.greenpeace.org/nl/contact/contact-formulier/">dit
+										contactformulier.</a>
 								</p>
 							</noscript>
 							<div class="gpnl-petition-form front hidden-when-no-js-enabled">
@@ -57,39 +59,56 @@
 									</div>
 								</div>
 								<form class="gpnl-petitionform" onsubmit="return false;">
-									<div class="form-group">
-										<label hidden for="name">Naam</label>
-										<input name="name" required type="text" class="form-control" placeholder="Voornaam">
+									<div class="text-field-container">
+										<input id="name" name="name" required type="text" class="form-control"
+											   placeholder="Voornaam">
+										<label for="name">Voornaam</label>
 									</div>
-									<div class="form-group">
-										<label hidden for="mail">Email</label>
-										<input name="mail"  required type="email" class="form-control" placeholder="E-mail">
+									<div class="text-field-container">
+										<input id="email" name="mail" required type="email" class="form-control"
+											   placeholder="E-mail">
+										<label for="mail">Email</label>
 									</div>
 
-									<div class="form-group">
-										<label hidden for="phone">Telefoonnummer</label>
-										<input name="phone" type="text" class="form-control" placeholder="Telefoonnummer">
+									<div class="text-field-container">
+										<input id="phone" name="phone" type="text" class="form-control"
+											   placeholder="Telefoonnummer">
+										<label for="phone">Telefoonnummer</label>
 									</div>
-									<div class="form-group optin">
-										<input class="form-check-input gpnl-petition-checkbox" name="consent" id="consent-{{ fields.form_id }}" type="checkbox" />
-										<label class="gpnl-petition-checkbox-label" for="consent-{{ fields.form_id }}"><small class="form-check-label">{{ fields.consent }}</small></label>
+
+									<div class="checkbox-container">
+										<label for="consent">
+											<input type="checkbox" class="consent-checkbox" name="consent" id="consent">
+											{{ fields.consent }}
+										</label>
+										<label for="phone">Vul je je telefoonnummer in? Dan kan Greenpeace jou
+											telefonisch benaderen voor giftverzoeken of updates rondom lopende
+											campagnes.</label>
 									</div>
-									<label for="phone"><small >Vul je je telefoonnummer in? Dan kan Greenpeace jou telefonisch benaderen voor giftverzoeken of updates rondom lopende campagnes.</small></label>
-									<input type="text" name="marketingcode" value="{{ fields.marketingcode }}" hidden readonly>
-									<input type="text" name="literaturecode" value="{{ fields.literaturecode }}" hidden readonly>
+
+
+									<input type="text" name="marketingcode" value="{{ fields.marketingcode }}" hidden
+										   readonly>
+									<input type="text" name="literaturecode" value="{{ fields.literaturecode }}" hidden
+										   readonly>
 									<input type="text" name="form_id" value="{{ fields.form_id }}" hidden readonly>
-								<input type="submit" class="btn btn-primary btn-block signBtn" value="{{ fields.sign }}" disabled>
+									<input type="submit" class="btn btn-primary btn-block signBtn"
+										   value="{{ fields.sign }}" disabled>
 									<div class="small policies">
 										<div class="row">
 											<div class="col-8">
-												Greenpeace beschermt je gegevens en geeft ze niet aan derden voor commerci&euml;le
+												Greenpeace beschermt je gegevens en geeft ze niet aan derden voor
+												commerci&euml;le
 												doeleinden. Lees ook ons
-												<a href="https://www.greenpeace.org/nl/privacystatement/" target="_blank">privacy-beleid</a> en
-												de <a href="{{ fields.campaignpolicy }}" target="_blank" >algemene voorwaarden</a> van deze actie.
+												<a href="https://www.greenpeace.org/nl/privacystatement/"
+												   target="_blank">privacy-beleid</a> en
+												de <a href="{{ fields.campaignpolicy }}" target="_blank">algemene
+													voorwaarden</a> van deze actie.
 											</div>
 											<div class="col-4">
-												<a href="https://privacywaarborg.nl/bedrijven/stichting-greenpeace-nederland/" target="_blank" class="privacywaarborg">
-												<img class="img-fluid" src="{{ image('PW-logo.png') }}">
+												<a href="https://privacywaarborg.nl/bedrijven/stichting-greenpeace-nederland/"
+												   target="_blank" class="privacywaarborg">
+													<img class="img-fluid" src="{{ image('PW-logo.png') }}">
 												</a>
 											</div>
 										</div>
@@ -99,26 +118,29 @@
 							{# Used for hiding the petitionform, unless JS is enabled #}
 							<script>jQuery('.gpnl-petition-form').removeClass('hidden-when-no-js-enabled');</script>
 							<div class="gpnl-petition-thank back">
-								<div class="card">
-									<div class="card-body">
 										<h5 class="card-title">{{ fields.thanktitle|e('wp_kses_post')|raw }}</h5>
 										<p class="card-text">{{ fields.thanktext|e('wp_kses_post')|raw }}</p>
-										<a class="btn btn-primary btn-block" href="{{ fields.donatebuttonlink }}" role="button">{{ fields.donatebuttontext }}</a>
+										<a class="btn btn-primary btn-block" href="{{ fields.donatebuttonlink }}"
+										   role="button">{{ fields.donatebuttontext }}</a>
 										{% if not fields.hidesharingbuttons %}
-										<div class="gpnl-petitionshare row mx-0">
-											<a class="btn btn-primary gpnl-share-facebook col-md-4"
-												   href="https://www.facebook.com/sharer/sharer.php?u={{ fields.current_url|url_encode }}" target="_blank" role="button" onclick="fireShareEvent('facebook', {{ fields.form_id }});">
+											<div class="gpnl-petitionshare row mx-0">
+												<a class="btn btn-primary gpnl-share-facebook col-md-4"
+												   href="https://www.facebook.com/sharer/sharer.php?u={{ fields.current_url|url_encode }}"
+												   target="_blank" role="button"
+												   onclick="fireShareEvent('facebook', {{ fields.form_id }});">
 													FACEBOOK
 												</a>
-											<a class="btn btn-primary gpnl-share-twitter col-md-4"
-												   href="https://twitter.com/share?url={{ fields.current_url }}&text={{ fields.twittertext }}&via={{ fields.social_accounts.twitter }}&related={{ fields.social_accounts.twitter }}" target="_blank" role="button" onclick="fireShareEvent('twitter', {{ fields.form_id }});">
+												<a class="btn btn-primary gpnl-share-twitter col-md-4"
+												   href="https://twitter.com/share?url={{ fields.current_url }}&text={{ fields.twittertext }}&via={{ fields.social_accounts.twitter }}&related={{ fields.social_accounts.twitter }}"
+												   target="_blank" role="button"
+												   onclick="fireShareEvent('twitter', {{ fields.form_id }});">
 													TWITTER
 												</a>
-											<a class="btn btn-primary gpnl-share-whatsapp col-md-4" target="_blank" href="https://api.whatsapp.com/send?text={{ fields.whatsapptext }}%20via%20{{ fields.current_url }}" role="button" onclick="fireShareEvent('whatsapp');">WHATSAPP</a>
+												<a class="btn btn-primary gpnl-share-whatsapp col-md-4" target="_blank"
+												   href="https://api.whatsapp.com/send?text={{ fields.whatsapptext }}%20via%20{{ fields.current_url }}"
+												   role="button" onclick="fireShareEvent('whatsapp');">WHATSAPP</a>
 											</div>
 										{% endif %}
-									</div>
-								</div>
 							</div>
 						</div>
 
