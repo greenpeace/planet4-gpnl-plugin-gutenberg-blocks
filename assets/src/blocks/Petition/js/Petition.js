@@ -61,7 +61,7 @@ export default class Petition extends Component {
             <Button
               onClick={ openEvent }
               className='button'>
-              + {'Select Background Image'}
+              + {'Selecteer afbeeling'}
             </Button>
           </div>
         );
