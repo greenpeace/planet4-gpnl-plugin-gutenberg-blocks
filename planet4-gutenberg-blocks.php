@@ -113,9 +113,22 @@ P4NL_GB_BKS\Loader::get_instance(
 
 const BLOCK_WHITELIST = [
 	'post' => [
+		'planet4-gpnl-blocks/hero-image',
+		'planet4-gpnl-blocks/newsletter',
+		'planet4-gpnl-blocks/noindex',
 		'planet4-gpnl-blocks/quote',
 	],
-	'page' => ['planet4-gpnl-blocks/quote',],
+	'page' => [
+		'planet4-gpnl-blocks/donation',
+		'planet4-gpnl-blocks/educationcovers',
+		'planet4-gpnl-blocks/hero-image',
+		'planet4-gpnl-blocks/inforequest',
+		'planet4-gpnl-blocks/newsletter',
+		'planet4-gpnl-blocks/noindex',
+		'planet4-gpnl-blocks/petition',
+		'planet4-gpnl-blocks/quote',
+		'planet4-gpnl-blocks/two-column-embed',
+		],
 	'campaign' => []
 ];
 const BLOCK_BLACKLIST = [
