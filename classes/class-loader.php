@@ -175,12 +175,8 @@ final class Loader {
 	 * Hooks the plugin.
 	 */
 	private function hook_plugin() {
-		add_action( 'admin_menu', [ $this, 'load_i18n' ] );
 		// Load the editor scripts
 		add_action( 'enqueue_block_assets', [ $this, 'enqueue_editor_scripts' ] );
-
-		add_action( 'plugins_loaded', [ $this, 'load_i18n' ] );
-		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_public_assets' ] );
 
 		// Register a block category.
 		add_filter( 'block_categories', [ $this, 'register_block_category' ], 10, 2 );
@@ -308,66 +304,14 @@ final class Loader {
 		wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css', [], $parent_plugin_version );
 		wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', [], $plugin_version );
 
-		// Variables exposed from PHP to JS,
-		// WP calls this "localizing a script"...
-		$reflection_vars = [
-			'home' => P4NL_GB_BKS_PLUGIN_URL . '/public/',
-		];
-		wp_localize_script( 'planet4-gpnl-blocks-script', 'p4ge_vars', $reflection_vars );
 	}
 
 	/**
 	 * Load assets for the frontend.
 	 */
-	public function enqueue_public_assets() {
-
-		// plugin-blocks assets.
-		$css_blocks_creation = filectime( P4NL_GB_BKS_PLUGIN_DIR . '/style.css' );
-		$js_blocks_creation  = filectime( P4NL_GB_BKS_PLUGIN_DIR . '/main.js' );
-		// Add master theme's main css as dependency for blocks css.
-		wp_enqueue_style(
-			'plugin-blocks',
-			plugins_url( P4NL_GB_BKS_PLUGIN_DIRNAME ) . '/style.css',
-			[
-				'bootstrap',
-				'slick',
-				'parent-style',
-			],
-			$css_blocks_creation
-		);
-		// Add master theme's main js as dependency for blocks js.
-		wp_register_script(
-			'plugin-blocks',
-			plugins_url( P4NL_GB_BKS_PLUGIN_DIRNAME ) . '/main.js',
-			[
-				'jquery',
-				'main',
-				'slick',
-				'popperjs',
-				'bootstrapjs',
-				'hammer',
-			],
-			$js_blocks_creation,
-			true
-		);
-		wp_localize_script(
-			'plugin-blocks',
-			'p4_vars',
-			[
-				'ajaxurl' => admin_url( 'admin-ajax.php' ),
-			]
-		);
-		wp_enqueue_script( 'plugin-blocks' );
-	}
-
-	/**
-	 * Load internationalization (i18n) for this plugin.
-	 * References: http://codex.wordpress.org/I18n_for_WordPress_Developers
-	 */
-	public function load_i18n() {
-		load_plugin_textdomain( 'planet4-gpnl-blocks', false, P4NL_GB_BKS_PLUGIN_DIRNAME . '/languages/' );
-		load_plugin_textdomain( 'planet4-gpnl-blocks-backend', false, P4NL_GB_BKS_PLUGIN_DIRNAME . '/languages/' );
-	}
+//	public function enqueue_public_assets() {
+//
+//	}
 
 	/**
 	 * Registers a new category for our blocks
