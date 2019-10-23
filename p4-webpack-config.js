@@ -47,14 +47,21 @@ module.exports = {
     newsletterFormSubmit: './assets/src/blocks/Newsletter/js/NewsletterFormSubmit.js',
 
   },
+
   output: {
     filename: "[name].min.js",
     path: __dirname + '/assets/build'
   },
   module: {
     ...defaultConfig.module,
+
     rules: [
       ...defaultConfig.module.rules,
+      {
+        test: /\.(js)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader']
+      },
       {
         test: /\.(sass|scss)$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'resolve-url-loader', 'sass-loader']

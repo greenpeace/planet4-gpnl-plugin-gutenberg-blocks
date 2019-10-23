@@ -26,10 +26,12 @@
 		"lint:css": "wp-scripts lint-style"
 	},
 	"devDependencies": {
+		"@babel/preset-react": "^7.6.3",
 		"@wordpress/dependency-extraction-webpack-plugin": "^2.0.0",
 		"@wordpress/eslint-plugin": "^2.4.0",
 		"@wordpress/scripts": "^5.1.0",
 		"autoprefixer": "^9.6.5",
+		"babel-loader": "^8.0.6",
 		"css-loader": "^3.2.0",
 		"eslint": "^5.16.0",
 		"mini-css-extract-plugin": "^0.7.0",
@@ -46,9 +48,17 @@
 	"dependencies": {
 		"@wordpress/components": "^8.3.2",
 		"@wordpress/data": "^4.9.2",
+		"@wordpress/element": "^2.8.2",
 		"jquery": "^3.4.1",
 		"jquery-ui": "^1.12.1",
+		"react": "^16.11.0",
 		"three": "^0.105.2",
 		"three-fbx-loader": "^1.0.3"
+	},
+	"babel": {
+		"presets": [
+			"@babel/preset-env",
+			"@babel/preset-react"
+		]
 	}
 }
