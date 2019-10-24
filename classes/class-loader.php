@@ -305,14 +305,7 @@ final class Loader {
 		wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', [], $plugin_version );
 
 	}
-
-	/**
-	 * Load assets for the frontend.
-	 */
-//	public function enqueue_public_assets() {
-//
-//	}
-
+	
 	/**
 	 * Registers a new category for our blocks
 	 *
