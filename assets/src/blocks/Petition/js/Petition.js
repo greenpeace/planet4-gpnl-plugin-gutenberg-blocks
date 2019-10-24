@@ -132,6 +132,7 @@ export default class Petition extends Component {
           label={'Verberg sharing button?'}
           onChange={onValueChange.bind('hidesharingbuttons')}
           value={hidesharingbuttons}
+          checked={hidesharingbuttons}
           help={'Als dit aangevinkt is worden de sharing buttons niet getoond.'}
         />
         <TextControl
