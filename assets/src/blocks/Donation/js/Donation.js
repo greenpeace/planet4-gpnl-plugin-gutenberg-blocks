@@ -75,6 +75,7 @@ export default class Donation extends Component {
             label={'Donateur kan periodiek wijzigen'}
             onChange={onValueChange.bind('allow_frequency_override')}
             value={allow_frequency_override}
+            checked={allow_frequency_override}
             help={'Als dit aangevinkt is kan de donateur zelf bepalen of deze eenmalig of eens per maand doneert.'}
           />
         </PanelBody>

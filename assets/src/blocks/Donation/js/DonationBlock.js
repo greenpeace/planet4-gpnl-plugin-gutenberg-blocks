@@ -36,7 +36,8 @@ export class DonationBlock extends BaseBlock {
           default: 'E'
         },
         allow_frequency_override: {
-          type: 'string',
+          type: 'boolean',
+          default: 'false'
         },
         min_amount: {
           type: 'number',
