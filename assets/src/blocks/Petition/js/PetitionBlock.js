@@ -64,6 +64,7 @@ export class PetitionBlock extends BaseBlock {
         },
         hidesharingbuttons: {
           type: 'boolean',
+          default: false
         },
         twittertext: {
           type: 'string',

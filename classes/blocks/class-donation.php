@@ -41,8 +41,8 @@ class Donation extends Base_Block {
 						'default' => 'E',
 					],
 					'allow_frequency_override'   => [
-						'type'    => 'string',
-						'default' => '',
+						'type'    => 'boolean',
+						'default' => false,
 					],
 					'min_amount'                 => [
 						'type'    => 'number',

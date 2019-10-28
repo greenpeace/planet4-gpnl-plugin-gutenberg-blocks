@@ -3,7 +3,7 @@
  * Plugin Name: Planet4 - GPNL Gutenberg Blocks
  * Description: Contains the Gutenberg blocks that are used by Planet4 project.
  * Plugin URI: http://github.com/greenpeace/planet4-plugin-gutenberg-blocks
- * Version: 0.1
+ * Version: 0.0.1
  * Php Version: 7.0
  *
  * Author: Greenpeace Netherlands
@@ -111,19 +111,43 @@ P4NL_GB_BKS\Loader::get_instance(
 
 
 
-//add_filter( 'timber/twig', 'add_to_twig' );
-//
-///**
-// * A Twig functionality to add the image scr path.
-// *
-// * @param \Twig\Environment $twig
-// * @return \Twig\Environment
-// */
-//function add_to_twig( $twig ) {
-//
-//	$twig->addFunction( new Timber\Twig_Function('image', function ($param1) {
-//		return isset($param1) ? P4NL_GB_BKS_PUBLIC_DIR.'/images/'.$param1 :'';
-//	}) );
-//
-//	return $twig;
-//}
+const BLOCK_WHITELIST = [
+	'post' => [
+		'planet4-gpnl-blocks/hero-image',
+		'planet4-gpnl-blocks/newsletter',
+		'planet4-gpnl-blocks/noindex',
+		'planet4-gpnl-blocks/quote',
+	],
+	'page' => [
+		'planet4-gpnl-blocks/donation',
+		'planet4-gpnl-blocks/educationcovers',
+		'planet4-gpnl-blocks/hero-image',
+		'planet4-gpnl-blocks/inforequest',
+		'planet4-gpnl-blocks/newsletter',
+		'planet4-gpnl-blocks/noindex',
+		'planet4-gpnl-blocks/petition',
+		'planet4-gpnl-blocks/quote',
+		'planet4-gpnl-blocks/two-column-embed',
+		],
+	'campaign' => []
+];
+const BLOCK_BLACKLIST = [
+	'post' => [
+		// E.g.: 'planet4-blocks/gallery' or 'core/quote'.
+	],
+	'page' => [],
+	'campaign' => []
+];
+function set_child_theme_allowed_block_types( $allowed_block_types, $post ) {
+	if ( ! empty( BLOCK_WHITELIST[ $post->post_type ] )) {
+		$allowed_block_types = array_merge( $allowed_block_types, BLOCK_WHITELIST[$post->post_type] );
+	}
+	if ( ! empty( BLOCK_BLACKLIST[ $post->post_type ] )) {
+		$allowed_block_types = array_filter( $allowed_block_types, function ( $element ) use ( $post ) {
+			return !in_array( $element, BLOCK_BLACKLIST[ $post->post_type ] );
+		} );
+	}
+	// array_values is required as array_filter removes indexes from the array.
+	return array_values($allowed_block_types);
+}
+add_filter( 'allowed_block_types', 'set_child_theme_allowed_block_types', 15, 2 );

@@ -4,6 +4,7 @@ import { ServerSideRender } from "@wordpress/components";
 import { Preview } from '../../../components/Preview/js/Preview';
 const { withSelect } = wp.data;
 import Donation from "./Donation";
+import Transform from "./Transform";
 
 
 export class DonationBlock extends BaseBlock {
@@ -24,6 +25,7 @@ export class DonationBlock extends BaseBlock {
         __(this.blockName),
         __('doneer'),
       ],
+      transforms: Transform,
       attributes: {
         title: {
           type: 'string',
@@ -36,7 +38,8 @@ export class DonationBlock extends BaseBlock {
           default: 'E'
         },
         allow_frequency_override: {
-          type: 'string',
+          type: 'boolean',
+          default: 'false'
         },
         min_amount: {
           type: 'number',

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component, Fragment} from 'react';
 import BaseBlock from "../../BaseBlock";
 import {ServerSideRender} from "@wordpress/components";
 import {Icon} from './HeroImageIcon';
