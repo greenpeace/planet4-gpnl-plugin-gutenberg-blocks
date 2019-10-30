@@ -1,4 +1,19 @@
 import $ from 'jquery';
+import Vue from 'vue/dist/vue.esm.browser.min';
+import Vuelidate from 'vuelidate';
+import VueFormWizard from 'vue-form-wizard';
+import {
+  required,
+  between,
+  minLength,
+  maxLength,
+  email,
+  numeric,
+  alphaNum,
+  requiredUnless
+} from 'vuelidate/lib/validators';
+
+Vue.config.devtools = true;
 
 var donationformVue = {};
 var url_vars = {};
@@ -130,20 +145,8 @@ $(document).ready(function() {
     }
   });
 
-  Vue.use(window.vuelidate.default);
-  const {
-    required,
-    between,
-    minLength,
-    maxLength,
-    email,
-    numeric,
-    alphaNum,
-    requiredUnless
-  } = window.validators;
+  Vue.use(Vuelidate);
   Vue.use(VueFormWizard);
-
-  Vue.config.devtools = true;
 
   Vue.component('step1', {
     template: `
