@@ -50,6 +50,7 @@ export class HeroImageBlock extends BaseBlock {
         },
         small: {
           type: 'boolean',
+          default: false
         },
         focus_image: {
           type: 'string',
