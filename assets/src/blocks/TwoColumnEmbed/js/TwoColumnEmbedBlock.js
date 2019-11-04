@@ -54,6 +54,7 @@ export class TwoColumnEmbedBlock extends BaseBlock {
         },
         iframe_src: {
           type: 'string',
+          default: ''
         },
         iframe_height: {
           type: 'number',
