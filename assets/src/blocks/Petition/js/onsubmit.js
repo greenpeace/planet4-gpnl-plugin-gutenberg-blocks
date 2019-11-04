@@ -63,25 +63,27 @@ $('.gpnl-petitionform').on('submit', function () {
             'conv_action'   :'telnr',
             'conv_label'    :'Ja',
           });
+          // If an ad campaign is run by an external company fire the conversiontracking
+          if (window[form_config].ad_campaign === 'SB') {
+            fbq('track', 'Lead');
+            // if it is run by social blue, also deduplicate
+            socialBlueDeDuplicate(post_form_value['mail'], data['data']['phonesanitized'], window[form_config].apref);
+          } else if (window[form_config].ad_campaign === 'JA') {
+            fbq('track', window[form_config].jalt_track);
+          }
         }
-        // If an ad campaign is run by an external company fire the conversiontracking
-        if (window[form_config].ad_campaign === 'SB') {
-          fbq('track', 'Lead');
-          // if it is run by social blue, also deduplicate
-          socialBlueDeDuplicate(post_form_value['mail'], data['data']['phonesanitized'], window[form_config].apref);
-        } else if (window[form_config].ad_campaign === 'JA') {
-          fbq('track', window[form_config].jalt_track);
+        else{
+          // Temp old stuff to compare
+          dataLayer.push({
+            'event'         :'petitiebutton',
+            'conv_campaign' : window[form_config].analytics_campaign,
+            'conv_action'   :'telnr',
+            'conv_label'    :'Nee',
+          });
         }
       }
-      else{
-        // Temp old stuff to compare
-        dataLayer.push({
-          'event'         :'petitiebutton',
-          'conv_campaign' : window[form_config].analytics_campaign,
-          'conv_action'   :'telnr',
-          'conv_label'    :'Nee',
-        });
-      }
+
+
 
       // cardflip the card, positionattribute flips to make sure no problems arises with different lengths of the front and back of the card, finally hide the front
       cardflip(petition_form_element);
