@@ -13,7 +13,7 @@ module.exports = {
 
     // assets that are used in the petition block.
     jaltLanding: './assets/src/blocks/Petition/js/jalt-landing.js',
-    socialBlueLanding: './assets/src/blocks/Petition/js/social-blue-landing.js',
+    socialBlueLanding: './assets/src/blocks/Petition/js/socialBlueLanding.js',
     onload: './assets/src/blocks/Petition/js/onload.js',
     onsubmit: './assets/src/blocks/Petition/js/onsubmit.js',
     'petition': './assets/src/blocks/Petition/scss/petition.scss',

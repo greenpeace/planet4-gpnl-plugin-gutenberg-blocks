@@ -119,8 +119,8 @@ class Petition extends Base_Block {
 
 		// Check if the block is present on the page that is requested.
 		if ( has_block( 'planet4-gpnl-blocks/' . $this->getKebabCaseClassName() ) ) {
-			Asset_Enqueuer::enqueue_asset( 'onload', 'script', [], true );
-			Asset_Enqueuer::enqueue_asset( 'onsubmit', 'script', [], true );
+			Asset_Enqueuer::enqueue_asset( 'onload', 'script', [ 'jquery', 'jquery-effects-core' ], true );
+			Asset_Enqueuer::enqueue_asset( 'onsubmit', 'script', [ 'jquery' ], true );
 			Asset_Enqueuer::enqueue_asset( 'petition', 'style' );
 		}
 	}
@@ -217,9 +217,9 @@ class Petition extends Base_Block {
 
 		// Include de approptiate scripts for ad campaign tracking.
 		if ( 'SB' === $fields['ad_campaign'] ) {
-			Asset_Enqueuer::enqueue_asset( 'socialBlueLanding', 'script', true);
+			Asset_Enqueuer::enqueue_asset( 'socialBlueLanding', 'script', [], true );
 		} elseif ( 'JA' === $fields['ad_campaign'] ) {
-			Asset_Enqueuer::enqueue_asset( 'jaltLanding', 'script', true);
+			Asset_Enqueuer::enqueue_asset( 'jaltLanding', 'script', [], true );
 		}
 
 		// Pass options to frontend code.
