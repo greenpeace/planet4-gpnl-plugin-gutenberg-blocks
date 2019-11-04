@@ -15,6 +15,7 @@ function Transform() {
               }
             },
             description: {
+              type: 'string',
               shortcode: function (attributes) {
                 return attributes.named.description;
               }
@@ -81,6 +82,7 @@ function Transform() {
               }
             },
             thankdescription: {
+              type: 'string',
               shortcode: function (attributes) {
                 return attributes.named.thankdescription;
               }
