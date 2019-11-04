@@ -61,15 +61,15 @@ $(document).ready(function() {
       case 'suggested_frequency':
         switch (value) {
         case 'E':
-          formconfig.allow_frequency_override = 'false';
+          formconfig.allow_frequency_override = 0;
           formconfig.suggested_frequency = ['E', 'Eenmalig'];
           break;
         case 'M':
-          formconfig.allow_frequency_override = 'false';
+          formconfig.allow_frequency_override = 0;
           formconfig.suggested_frequency = ['M', 'Maandelijks'];
           break;
         case 'F':
-          formconfig.allow_frequency_override = 'false';
+          formconfig.allow_frequency_override = 0;
           formconfig.suggested_frequency = ['M', 'maandelijks voor 12 maanden'];
           break;
         default:
@@ -131,7 +131,7 @@ $(document).ready(function() {
   });
 
   if (formconfig.suggested_frequency[0] === 'F'){
-    formconfig.allow_frequency_override = 'false';
+    formconfig.allow_frequency_override =  0;
     formconfig.suggested_frequency = ['M', 'maandelijks voor 12 maanden'];
   }
 
@@ -154,7 +154,7 @@ $(document).ready(function() {
           <fieldset >
             <legend class="sr-only">Periodiek van de donatie</legend>
                 <div class="form-group" v-bind:class="{ 'has-error': $v.machtigingType }">
-                  <template v-if="formconfig.allow_frequency_override == 'true'">
+                  <template v-if="formconfig.allow_frequency_override == 1">
                       <label for="machtigingType">Ja ik steun Greenpeace:</label>
                       <div id="machtigingType" class="radio-list" role="radiogroup">
           
