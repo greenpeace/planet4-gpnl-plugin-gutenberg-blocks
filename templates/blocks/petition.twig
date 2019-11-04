@@ -115,8 +115,6 @@
 									</div>
 								</form>
 							</div>
-							{# Used for hiding the petitionform, unless JS is enabled #}
-							<script>jQuery('.gpnl-petition-form').removeClass('hidden-when-no-js-enabled');</script>
 							<div class="gpnl-petition-thank back">
 										<h5 class="card-title">{{ fields.thanktitle|e('wp_kses_post')|raw }}</h5>
 										<p class="card-text">{{ fields.thanktext|e('wp_kses_post')|raw }}</p>
@@ -144,7 +142,8 @@
 										{% endif %}
 							</div>
 						</div>
-
+						{# Used for hiding the petitionform, unless JS is enabled #}
+						<script>jQuery('.gpnl-petition-form').removeClass('hidden-when-no-js-enabled');</script>
 					</div>
 				</div>
 			</div>
