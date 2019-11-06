@@ -132,9 +132,29 @@ const BLOCK_WHITELIST = [
 ];
 const BLOCK_BLACKLIST = [
 	'post' => [
-		// E.g.: 'planet4-blocks/gallery' or 'core/quote'.
+		'core/separator',
+		'core/spacer',
+		'core/quote',
+		'core-embed/mixcloud',
+		'core-embed/dailymotion',
+		'core-embed/flickr',
+		'core-embed/reddit',
+		'core-embed/scribd',
+		'core-embed/videopress',
+		'core/table',
 	],
-	'page' => [],
+	'page' => [
+		'core/separator',
+		'core/spacer',
+		'core/quote',
+		'core-embed/mixcloud',
+		'core-embed/dailymotion',
+		'core-embed/flickr',
+		'core-embed/reddit',
+		'core-embed/scribd',
+		'core-embed/videopress',
+		'core/table',
+	],
 	'campaign' => []
 ];
 function set_child_theme_allowed_block_types( $allowed_block_types, $post ) {
