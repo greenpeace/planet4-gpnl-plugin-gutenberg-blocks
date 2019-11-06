@@ -95,7 +95,7 @@ export default class HeroImage extends Component {
       if (image) {
         return (
           <div style={{
-            height: "100%",
+            minHeight: "inherit",
             overflow: "hidden",
             backgroundImage: `url(${image_url})`,
             backgroundSize: "cover",
@@ -129,7 +129,7 @@ export default class HeroImage extends Component {
     }
     return ([
       <div className={heroClass}
-           style={{maxWidth: "100%", height: "500px", margin: "0"}}>
+           style={{maxWidth: "100%", margin: "0"}}>
         <MediaUploadCheck>
           <MediaUpload
             type="image"
