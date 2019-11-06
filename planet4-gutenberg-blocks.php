@@ -85,10 +85,16 @@ if ( ! defined( 'P4NL_GB_BKS_ALLOWED_PAGETYPE' ) ) {
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	define( 'WP_UNINSTALL_PLUGIN', P4NL_GB_BKS_PLUGIN_BASENAME );
 }
-if ( ! defined( 'P4NL_GB_BKS_ASSETS_DIR' ) )        define( 'P4NL_GB_BKS_ASSETS_DIR',       P4NL_GB_BKS_PLUGIN_DIRNAME . 'assets/' );
+if ( ! defined( 'P4NL_GB_BKS_ASSETS_DIR' ) ) {
+	define( 'P4NL_GB_BKS_ASSETS_DIR', P4NL_GB_BKS_PLUGIN_DIRNAME . 'assets/' );
+}
 
-if ( ! defined( 'P4NL_GB_BKS_ASSETS_BUILD_DIR' ) )        define( 'P4NL_GB_BKS_ASSETS_BUILD_DIR',       P4NL_GB_BKS_PLUGIN_URL . 'assets/build' );
-if ( ! defined( 'P4NL_GB_BKS_PUBLIC_DIR' ) )        define( 'P4NL_GB_BKS_PUBLIC_DIR',       P4NL_GB_BKS_PLUGIN_URL . 'public' );
+if ( ! defined( 'P4NL_GB_BKS_ASSETS_BUILD_DIR' ) ) {
+	define( 'P4NL_GB_BKS_ASSETS_BUILD_DIR', P4NL_GB_BKS_PLUGIN_URL . 'assets/build' );
+}
+if ( ! defined( 'P4NL_GB_BKS_PUBLIC_DIR' ) ) {
+	define( 'P4NL_GB_BKS_PUBLIC_DIR', P4NL_GB_BKS_PLUGIN_URL . 'public' );
+}
 
 
 require_once __DIR__ . '/classes/class-loader.php';
@@ -112,12 +118,12 @@ P4NL_GB_BKS\Loader::get_instance(
 
 
 const BLOCK_WHITELIST = [
-	'post' => [
+	'post'     => [
 		'planet4-gpnl-blocks/newsletter',
 		'planet4-gpnl-blocks/noindex',
 		'planet4-gpnl-blocks/quote',
 	],
-	'page' => [
+	'page'     => [
 		'planet4-gpnl-blocks/donation',
 		'planet4-gpnl-blocks/educationcovers',
 		'planet4-gpnl-blocks/hero-image',
@@ -127,11 +133,11 @@ const BLOCK_WHITELIST = [
 		'planet4-gpnl-blocks/petition',
 		'planet4-gpnl-blocks/quote',
 		'planet4-gpnl-blocks/two-column-embed',
-		],
-	'campaign' => []
+	],
+	'campaign' => [],
 ];
 const BLOCK_BLACKLIST = [
-	'post' => [
+	'post'     => [
 		'core/separator',
 		'core/spacer',
 		'core/quote',
@@ -143,7 +149,7 @@ const BLOCK_BLACKLIST = [
 		'core-embed/videopress',
 		'core/table',
 	],
-	'page' => [
+	'page'     => [
 		'core/separator',
 		'core/spacer',
 		'core/quote',
@@ -155,18 +161,21 @@ const BLOCK_BLACKLIST = [
 		'core-embed/videopress',
 		'core/table',
 	],
-	'campaign' => []
+	'campaign' => [],
 ];
 function set_child_theme_allowed_block_types( $allowed_block_types, $post ) {
-	if ( ! empty( BLOCK_WHITELIST[ $post->post_type ] )) {
-		$allowed_block_types = array_merge( $allowed_block_types, BLOCK_WHITELIST[$post->post_type] );
+	if ( ! empty( BLOCK_WHITELIST[ $post->post_type ] ) ) {
+		$allowed_block_types = array_merge( $allowed_block_types, BLOCK_WHITELIST[ $post->post_type ] );
 	}
-	if ( ! empty( BLOCK_BLACKLIST[ $post->post_type ] )) {
-		$allowed_block_types = array_filter( $allowed_block_types, function ( $element ) use ( $post ) {
-			return !in_array( $element, BLOCK_BLACKLIST[ $post->post_type ] );
-		} );
+	if ( ! empty( BLOCK_BLACKLIST[ $post->post_type ] ) ) {
+		$allowed_block_types = array_filter(
+			$allowed_block_types,
+			function ( $element ) use ( $post ) {
+				return ! in_array( $element, BLOCK_BLACKLIST[ $post->post_type ] );
+			}
+		);
 	}
 	// array_values is required as array_filter removes indexes from the array.
-	return array_values($allowed_block_types);
+	return array_values( $allowed_block_types );
 }
 add_filter( 'allowed_block_types', 'set_child_theme_allowed_block_types', 15, 2 );
