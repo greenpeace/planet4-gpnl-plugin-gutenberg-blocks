@@ -21,13 +21,15 @@
 							</tr>
 						</table>
 					{% endif %}
-					<img
-						class="img-fluid"
-						src="{{ fields.image }}"
-						srcset="{{ fields.image_srcset }}"
-						sizes="{{ fields.image_sizes }}"
-						alt="{{ fields.alt_text }}"
-					>
+					{% if ( fields.image ) and ( fields.image == 0 ) %}
+						<img
+							class="img-fluid"
+							src="{{ fields.image }}"
+							srcset="{{ fields.image_srcset }}"
+							sizes="{{ fields.image_sizes }}"
+							alt="{{ fields.alt_text }}"
+						>
+					{% endif %}
 				</div>
 				<div class="col-lg-6 order-first order-lg-last gpnl-petition-wrapper card">
 					<div class="card-body">
