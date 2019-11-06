@@ -74,7 +74,7 @@ export default class Newsletter extends Component {
                backgroundImage: `url(${image_url})`,
                backgroundPosition: `${focus_image}`,
                backgroundSize: 'cover',
-               opacity: `${opacity}%`,
+               opacity: `${parseFloat(opacity)}%`,
              }}
         />
 

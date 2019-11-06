@@ -126,14 +126,14 @@ class Donation extends Base_Block {
 			Asset_Enqueuer::enqueue_external_asset(  'vueform_style', 'style', 'https://unpkg.com/vue-form-wizard@0.8.4/dist/vue-form-wizard.min.css');
 			Asset_Enqueuer::enqueue_asset('donation-form', 'style');
 
-			Asset_Enqueuer::enqueue_external_asset(  'vue', 'script','https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.15/vue.min.js', true );
-			Asset_Enqueuer::enqueue_external_asset( 'vueresource', 'script', 'https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.5.0/vue-resource.min.js', true );
+//			Asset_Enqueuer::enqueue_external_asset(  'vue', 'script','https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.15/vue.min.js', true );
+//			Asset_Enqueuer::enqueue_external_asset( 'vueresource', 'script', 'https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.5.0/vue-resource.min.js', true );
 //			Asset_Enqueuer::enqueue_asset('vue-form-wizard', 'style');
-			Asset_Enqueuer::enqueue_asset('vueform', 'script', [ 'vue' ], true);
-			Asset_Enqueuer::enqueue_asset('vuelidate', 'script', [ 'vue', 'vueform' ], true);
-			Asset_Enqueuer::enqueue_asset('vuelidators', 'script', [ 'vue', 'vueform' ], true);
+//			Asset_Enqueuer::enqueue_asset('vueform', 'script', [ 'vue' ], true);
+//			Asset_Enqueuer::enqueue_asset('vuelidate', 'script', [ 'vue', 'vueform' ], true);
+//			Asset_Enqueuer::enqueue_asset('vuelidators', 'script', [ 'vue', 'vueform' ], true);
 
-			Asset_Enqueuer::enqueue_asset('donationForm', 'script', ['vue', 'vueresource', 'vueform', 'vuelidate', 'vuelidators'], true);
+			Asset_Enqueuer::enqueue_asset('donationForm', 'script', ['jquery'], true);
 		}
 	}
 

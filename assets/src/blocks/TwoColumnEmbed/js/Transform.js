@@ -10,33 +10,44 @@ function Transform() {
           tag: 'shortcake_gpnl_2colembed',
           attributes: {
             title: {
+              type: 'string',
               shortcode: function (attributes) {
-                return attributes.named.title;
+                let title = attributes.named.title ? attributes.named.title : '';
+                return title.replace( 'title', '' );
               }
             },
             description: {
+              type: 'string',
               shortcode: function (attributes) {
-                return attributes.named.description;
+                let description = attributes.named.description ? attributes.named.description : '';
+                return description.replace( 'description', '' );
               }
             },
             column_title: {
+              type: 'string',
               shortcode: function (attributes) {
-                return attributes.named.column_title;
+                let column_title = attributes.named.column_title ? attributes.named.column_title : '';
+                return column_title.replace( 'column_title', '' );
               }
             },
             column_description: {
+              type: 'string',
               shortcode: function (attributes) {
-                return attributes.named.column_description;
+                let column_description = attributes.named.column_description ? attributes.named.column_description : '';
+                return column_description.replace( 'column_description', '' );
               }
             },
             column_cta_text: {
+              type: 'string',
               shortcode: function (attributes) {
-                return attributes.named.column_cta_text;
+                let column_cta_text = attributes.named.column_cta_text ? attributes.named.column_cta_text : '';
+                return column_cta_text.replace( 'column_cta_text', '' );
               }
             },
             column_cta_link: {
               shortcode: function (attributes) {
-                return attributes.named.column_cta_link;
+                let column_cta_link = attributes.named.column_cta_link ? attributes.named.column_cta_link : '';
+                return column_cta_link.replace( 'column_cta_link', '' );
               }
             },
             embed_option: {
@@ -46,12 +57,13 @@ function Transform() {
             },
             iframe_src: {
               shortcode: function (attributes) {
-                return attributes.named.iframe_src;
+                let iframe_src = attributes.named.iframe_src ? attributes.named.iframe_src : '';
+                return iframe_src.replace( 'iframe_src', '' );
               }
             },
             iframe_height: {
               shortcode: function (attributes) {
-                return Number(attributes.named.iframe_height);
+                return Number(attributes.named.iframe_height) || 400;
               }
             },
             image: {

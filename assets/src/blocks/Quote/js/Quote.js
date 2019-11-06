@@ -1,4 +1,4 @@
-import { React, Component } from 'react';
+import React, { Component } from 'react';
 import { ServerSideRender } from '@wordpress/components';
 const { RichText, MediaUpload , MediaUploadCheck } = wp.editor;
 const { Button } = wp.components;

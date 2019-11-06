@@ -13,7 +13,7 @@ module.exports = {
 
     // assets that are used in the petition block.
     jaltLanding: './assets/src/blocks/Petition/js/jalt-landing.js',
-    socialBlueLanding: './assets/src/blocks/Petition/js/social-blue-landing.js',
+    socialBlueLanding: './assets/src/blocks/Petition/js/socialBlueLanding.js',
     onload: './assets/src/blocks/Petition/js/onload.js',
     onsubmit: './assets/src/blocks/Petition/js/onsubmit.js',
     'petition': './assets/src/blocks/Petition/scss/petition.scss',
@@ -26,9 +26,6 @@ module.exports = {
 
     // assets for the donation block
     donationForm: './assets/src/blocks/Donation/js/donationForm.js',
-    vueform: './assets/src/blocks/Donation/js/vue-form-wizard.min.js',
-    vuelidate: './assets/src/blocks/Donation/js/vuelidate.min.js',
-    vuelidators: './assets/src/blocks/Donation/js/validators.min.js',
     'donation-form': './assets/src/blocks/Donation/scss/donationform.scss',
 
     // assets for the educationcovers block

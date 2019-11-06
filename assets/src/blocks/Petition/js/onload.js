@@ -73,7 +73,6 @@ $(document).ready(function() {
       data:    {'action' : 'request_id'},
       success: function(response) {
         // eslint-disable-next-line no-console
-        console.log('succes');
         window[form_config].nonce = response.data.nonce;
         toggleDisable($(form).find(':submit'));
       },

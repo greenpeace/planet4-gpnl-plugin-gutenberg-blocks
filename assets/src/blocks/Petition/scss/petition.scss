@@ -107,6 +107,12 @@ $checkbox-size: 1.1em;
     display: none;
   }
 
+.card {
+  background-color: #323842;
+  color: white;
+  font-family: roboto;
+}
+
   .form-control::placeholder {
     color: #6c757d;
     opacity: 1;
@@ -203,6 +209,7 @@ $checkbox-size: 1.1em;
       outline: 0;
       margin-right: .2em;
       border-radius: .2em;
+      opacity: 1;
     }
 
     .consent-checkbox:after {

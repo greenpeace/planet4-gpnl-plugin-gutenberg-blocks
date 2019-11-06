@@ -2,8 +2,8 @@
 /**
  * Plugin Name: Planet4 - GPNL Gutenberg Blocks
  * Description: Contains the Gutenberg blocks that are used by Planet4 project.
- * Plugin URI: http://github.com/greenpeace/planet4-plugin-gutenberg-blocks
- * Version: 0.0.1
+ * Plugin URI: https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks
+ * Version: 1.0.0
  * Php Version: 7.0
  *
  * Author: Greenpeace Netherlands
@@ -113,7 +113,6 @@ P4NL_GB_BKS\Loader::get_instance(
 
 const BLOCK_WHITELIST = [
 	'post' => [
-		'planet4-gpnl-blocks/hero-image',
 		'planet4-gpnl-blocks/newsletter',
 		'planet4-gpnl-blocks/noindex',
 		'planet4-gpnl-blocks/quote',
