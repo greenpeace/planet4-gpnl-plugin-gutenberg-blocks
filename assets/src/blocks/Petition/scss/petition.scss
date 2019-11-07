@@ -3,6 +3,16 @@
 
 $checkbox-size: 1.1em;
 
+.page-header-title,
+.page-header-subtitle,
+.page-header-content {
+  display: none;
+}
+
+.skewed-overlay {
+  display: none;
+}
+
 .petition-block {
   .counter {
     width: 100%;
@@ -97,21 +107,11 @@ $checkbox-size: 1.1em;
     background-color: #48c251;
   }
 
-  .page-header-title,
-  .page-header-subtitle,
-  .page-header-content {
-    display: none;
+  .card {
+    background-color: #323842;
+    color: white;
+    font-family: roboto;
   }
-
-  .skewed-overlay {
-    display: none;
-  }
-
-.card {
-  background-color: #323842;
-  color: white;
-  font-family: roboto;
-}
 
   .form-control::placeholder {
     color: #6c757d;
