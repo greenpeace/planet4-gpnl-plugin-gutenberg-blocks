@@ -34,11 +34,11 @@
     padding: 0 !important;
 
     .hero__text {
-      padding-top: 15px;
+      padding: 15px;
       max-width: 100%;
 
       @include medium-and-up {
-        padding-top: 40px;
+        padding: 40px 15px 15px 15px;
       }
 
       .hero__title {
