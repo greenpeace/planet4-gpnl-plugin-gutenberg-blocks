@@ -1,7 +1,6 @@
 {% block petition %}
 	{% if ( fields ) %}
-		<section class="petition-block">
-
+		<section class="block petition-block">
 			<div class="row">
 				<div class="col-lg-6 order-last order-lg-first petition-img">
 					{% if fields.isloggedin and fields.ad_campaign != 'GP' %}
@@ -31,7 +30,7 @@
 						>
 					{% endif %}
 				</div>
-				<div class="col-lg-6 order-first order-lg-last gpnl-petition-wrapper card">
+				<div class="col-lg-6 order-first order-lg-last gpnl-petition-wrapper">
 					<div class="card-body">
 						{% if ( fields.title ) %}
 							<div class="petition-title">
