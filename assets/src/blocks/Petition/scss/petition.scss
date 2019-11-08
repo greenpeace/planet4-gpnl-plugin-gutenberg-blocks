@@ -3,6 +3,18 @@
 
 $checkbox-size: 1.1em;
 
+.gpnl-petition-wrapper {
+  .card-body {
+    background-color: $anthracite;
+    color: white;
+
+    @include large-and-up {
+      margin-left: -15px;
+      border-radius: .25rem;
+    }
+  }
+}
+
 .petition-block {
   .counter {
     width: 100%;
@@ -107,11 +119,10 @@ $checkbox-size: 1.1em;
     display: none;
   }
 
-.card {
-  background-color: #323842;
-  color: white;
-  font-family: roboto;
-}
+  .card {
+    color: white;
+    font-family: roboto;
+  }
 
   .form-control::placeholder {
     color: #6c757d;
