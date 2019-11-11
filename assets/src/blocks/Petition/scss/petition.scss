@@ -3,6 +3,28 @@
 
 $checkbox-size: 1.1em;
 
+.page-header-title,
+.page-header-subtitle,
+.page-header-content {
+  display: none;
+}
+
+.skewed-overlay {
+  display: none;
+}
+
+.gpnl-petition-wrapper {
+  .card-body {
+    background-color: $anthracite;
+    color: white;
+
+    @include large-and-up {
+      margin-left: -15px;
+      border-radius: .25rem;
+    }
+  }
+}
+
 .petition-block {
   .counter {
     width: 100%;
@@ -51,6 +73,8 @@ $checkbox-size: 1.1em;
     width: 100%;
 
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
   }
 
   /* back side of the card */
@@ -61,6 +85,8 @@ $checkbox-size: 1.1em;
 
     transform: rotateY(180deg);
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
   }
 
   /* flipping the card on hover */
@@ -96,22 +122,6 @@ $checkbox-size: 1.1em;
   .gpnl-share-whatsapp {
     background-color: #48c251;
   }
-
-  .page-header-title,
-  .page-header-subtitle,
-  .page-header-content {
-    display: none;
-  }
-
-  .skewed-overlay {
-    display: none;
-  }
-
-.card {
-  background-color: #323842;
-  color: white;
-  font-family: roboto;
-}
 
   .form-control::placeholder {
     color: #6c757d;

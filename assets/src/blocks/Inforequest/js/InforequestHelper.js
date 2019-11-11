@@ -16,6 +16,7 @@ $(document).ready(function() {
     $('.inforequest__message').html('<p>Je kan nu gebruikmaken van de lesmaterialen.</p>');
     $('.inforequest__wrapper').nextAll().show(1000);
     $('.fallbackbtn').show(1000);
+    enableDownloadlinks();
   }
   else{
     $('.hideshowbtn').show(1000);
@@ -176,4 +177,6 @@ function enableDownloadlinks() {
       $(link).attr('href', href + '?e=1');
     });
   });
+  let backBtn = $('.educationrequest__button');
+  backBtn.attr('href', backBtn.attr('href') + '?e=1');
 }
