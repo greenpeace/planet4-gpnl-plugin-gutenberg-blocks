@@ -50,6 +50,7 @@
           line-height: 2.5;
           color: $black;
           box-decoration-break: clone;
+          -webkit-box-decoration-break: clone;
           width: max-content;
           max-width: 100%;
           @include medium-and-up {
