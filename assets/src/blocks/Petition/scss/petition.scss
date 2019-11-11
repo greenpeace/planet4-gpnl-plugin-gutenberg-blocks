@@ -73,6 +73,8 @@ $checkbox-size: 1.1em;
     width: 100%;
 
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
   }
 
   /* back side of the card */
@@ -83,6 +85,8 @@ $checkbox-size: 1.1em;
 
     transform: rotateY(180deg);
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
   }
 
   /* flipping the card on hover */
