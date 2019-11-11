@@ -16,6 +16,7 @@ $(document).ready(function() {
     $('.inforequest__message').html('<p>Je kan nu gebruikmaken van de lesmaterialen.</p>');
     $('.inforequest__wrapper').nextAll().show(1000);
     $('.fallbackbtn').show(1000);
+    enableDownloadlinks();
   }
   else{
     $('.hideshowbtn').show(1000);
