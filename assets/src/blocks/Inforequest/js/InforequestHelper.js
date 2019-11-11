@@ -176,4 +176,6 @@ function enableDownloadlinks() {
       $(link).attr('href', href + '?e=1');
     });
   });
+  let backBtn = $('.educationrequest__button');
+  backBtn.attr('href', backBtn.attr('href') + '?e=1');
 }
