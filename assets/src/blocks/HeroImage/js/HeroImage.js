@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {RichText, MediaUpload, MediaUploadCheck, InspectorControls, BlockControls} from "@wordpress/editor";
 import {Button, PanelBody, ToggleControl, FocalPointPicker} from '@wordpress/components';
-import "../../../base/_variables_gpnl.scss";
+import variables from "../../../base/_variables_gpnl.scss";
 
 export default class HeroImage extends Component {
 
@@ -63,7 +63,7 @@ export default class HeroImage extends Component {
             tagName={'p'}
             className={'hero__description'}
             style={{
-              backgroundColor: isDescriptionTooLong == true ? '#f0b112' : ''
+              display: 'block', backgroundColor: isDescriptionTooLong == true ? '#f0b112' : ''
             }}
             placeholder={'Abstract / description (optional)'}
           />
@@ -73,9 +73,9 @@ export default class HeroImage extends Component {
             <RichText
               onChange={onValueChange.bind('link_text')}
               value={link_text}
-              tagName={'button'}
-              className={'btn btn-small btn-medium btn-primary hero__button something'}
+              tagName={'p'}
               placeholder={'button text (optional)'}
+              style={{backgroundColor: variables.orange, padding: '0 30px', lineHeight: 3, color: '#fff'}}
             />
           </div>
           <div style={{width: '380px'}}>

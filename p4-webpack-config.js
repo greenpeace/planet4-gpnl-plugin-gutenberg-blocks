@@ -3,6 +3,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const TerserJSPlugin = require('terser-webpack-plugin');
 const DependencyExtractionWebpackPlugin = require( '@wordpress/dependency-extraction-webpack-plugin' );
+const autoprefixer = require('autoprefixer');
 
 module.exports = {
   ...defaultConfig,
@@ -60,45 +61,19 @@ module.exports = {
         use: ['babel-loader']
       },
       {
-        test: /\.(sass|scss)$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'resolve-url-loader', 'sass-loader']
-      },
-      {
         test: /\.(png|svg|jpg|jpeg|gif)$/,
         use:
           ['url-loader']
       },
       {
-        test: /\.css$/,
+        test: /\.(scss|css)$/,
         use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader?modules&importLoaders=1&localIdentName=[local]_[hash:base64:6]',
           {
-            loader: 'postcss-loader',
+            loader: MiniCssExtractPlugin.loader,
           },
-        ]
-      },
-      {
-        test: /\.css$/,
-        use: [
-          { loader: 'style-loader' },
-          {
-            loader: 'css-loader', options: {
-              sourceMap: true, modules: true,
-              localIdentName: '[local]_[hash:base64:5]'
-            }
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              localIdentName: "[name]__[local]___[hash:base64:5]",
-              modules: true,
-              sourceMap: true,
-            }
-          },
-          {
-            loader: 'sass-loader', options: { sourceMap: true }
-          }
+          'css-loader',
+          'postcss-loader',
+          'sass-loader',
         ]
       }
     ]

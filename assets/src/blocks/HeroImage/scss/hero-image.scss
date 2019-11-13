@@ -60,6 +60,7 @@
       }
 
       .hero__description {
+        display: table;
         background: $dark-green;
         color: $white;
         padding: $norm;
