@@ -4,6 +4,7 @@ $roboto: "Roboto", sans-serif;
 $black: #000000;
 $white: #ffffff;
 $blood-orange: #f3593c;
+$orange: #f36d3a;
 $light-green: #66cc00;
 $dark-green: #003300;
 $hover-green: #1d8c61;
@@ -41,3 +42,8 @@ $small-width:        576px;
 $medium-width:       768px;
 $large-width:        992px;
 $extra-large-width:  1200px;
+
+// the :export directive is the magic sauce for webpack
+:export {
+  orange: $orange;
+}
