@@ -63,7 +63,7 @@ export default class HeroImage extends Component {
             tagName={'p'}
             className={'hero__description'}
             style={{
-              backgroundColor: isDescriptionTooLong == true ? '#f0b112' : ''
+              display: 'block', backgroundColor: isDescriptionTooLong == true ? '#f0b112' : ''
             }}
             placeholder={'Abstract / description (optional)'}
           />
