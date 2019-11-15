@@ -27,7 +27,7 @@
 					  </div>
 
 				  </div>
-				  <div class="col-md-{{ columnsize_1 }}"
+				  <div class="col-md-{{ columnsize_1 }} col-right"
 					  {% if fields.embed_option == 'iframe' %}
 						  style="height: {{ fields.iframe_height }}px"
 					  {% endif %}
@@ -40,7 +40,7 @@
 
 					  {% elseif fields.embed_option == 'image' %}
 						  <img
-							  class="img-fluid"
+							  class="img-fluid img-embedded"
 							  src="{{ fields.image }}"
 							  srcset="{{ fields.image_srcset }}"
 							  sizes="{{ fields.image_sizes }}"
