@@ -1,0 +1,29 @@
+@import "../../../base/base.scss";
+
+.wp-block-planet4-gpnl-blocks-collapsible {
+  margin: 32px 0;
+
+  & + & {
+    margin-top: -32px;
+  }
+
+  .title {
+    color: $white;
+    font-weight: 500;
+    font-size: 1.2rem;
+    background-color: $dark-blue;
+    padding: 8px 12px;
+    outline: none;
+    border-bottom: 1px solid $white;
+  }
+
+  .content {
+    padding: 15px;
+    background-color: $white;
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+}

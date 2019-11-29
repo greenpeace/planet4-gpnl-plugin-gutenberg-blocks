@@ -105,6 +105,7 @@ final class Loader {
 			new Blocks\Inforequest(),
 			new Blocks\Noindex(),
 			new Blocks\Educationcovers(),
+			new Blocks\Collapsible(),
 		];
 	}
 
@@ -305,7 +306,7 @@ final class Loader {
 		wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', [], $plugin_version );
 
 	}
-	
+
 	/**
 	 * Registers a new category for our blocks
 	 *

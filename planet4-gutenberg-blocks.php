@@ -122,6 +122,7 @@ const BLOCK_WHITELIST = [
 		'planet4-gpnl-blocks/newsletter',
 		'planet4-gpnl-blocks/noindex',
 		'planet4-gpnl-blocks/quote',
+		'planet4-gpnl-blocks/collapsible',
 	],
 	'page'     => [
 //		'planet4-gpnl-blocks/donation',
@@ -133,6 +134,7 @@ const BLOCK_WHITELIST = [
 		'planet4-gpnl-blocks/petition',
 		'planet4-gpnl-blocks/quote',
 		'planet4-gpnl-blocks/two-column-embed',
+		'planet4-gpnl-blocks/collapsible',
 	],
 	'campaign' => [],
 ];
@@ -165,6 +167,7 @@ const BLOCK_BLACKLIST = [
 	],
 	'campaign' => [],
 ];
+
 function set_child_theme_allowed_block_types( $allowed_block_types, $post ) {
 	if ( ! empty( BLOCK_WHITELIST[ $post->post_type ] ) ) {
 		$allowed_block_types = array_merge( $allowed_block_types, BLOCK_WHITELIST[ $post->post_type ] );
