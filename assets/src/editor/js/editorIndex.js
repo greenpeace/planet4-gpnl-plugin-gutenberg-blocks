@@ -30,3 +30,6 @@ new EducationcoversBlock();
 
 import { LiveblogBlock } from "../../blocks/Liveblog/js/LiveblogBlock";
 new LiveblogBlock();
+
+import { CollapsibleBlock } from "../../blocks/Collapsible/js/CollapsibleBlock";
+new CollapsibleBlock();
