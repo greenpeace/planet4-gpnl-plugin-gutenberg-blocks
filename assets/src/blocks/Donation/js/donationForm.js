@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import Vue from 'vue/dist/vue.esm.browser.min';
+import Vue from 'vue/dist/vue.esm.browser';
 import Vuelidate from 'vuelidate';
 import VueFormWizard from 'vue-form-wizard';
 import {
