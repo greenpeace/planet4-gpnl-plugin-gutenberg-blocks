@@ -44,6 +44,8 @@ module.exports = {
 
     newsletterFormSubmit: './assets/src/blocks/Newsletter/js/NewsletterFormSubmit.js',
 
+    // Assets for the collapsible block.
+    'collapsible': './assets/src/blocks/Collapsible/scss/collapsible.scss',
   },
 
   output: {
