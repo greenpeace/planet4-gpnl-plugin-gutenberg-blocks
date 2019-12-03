@@ -13,12 +13,10 @@ import {
   requiredUnless
 } from 'vuelidate/lib/validators';
 
-Vue.config.devtools = true;
 
-var donationformVue = {};
 var url_vars = {};
-
 var address_object = 'get_address_object';
+var donationformVue = {};
 
 // REFACTOR IE11 doesn't support UrlSearchParams, so custom UrlParam function.
 // 	Consider polyfilling it now? or wait until we drop IE11 support and switch then?
@@ -145,80 +143,121 @@ $(document).ready(function() {
     }
   });
 
-  Vue.use(Vuelidate);
-  Vue.use(VueFormWizard);
+
 
   Vue.component('step1', {
     template: `
         <div>
-          <fieldset >
-            <legend class="sr-only">Periodiek van de donatie</legend>
-                <div class="form-group" v-bind:class="{ 'has-error': $v.machtigingType }">
-                  <template v-if="formconfig.allow_frequency_override == 1">
-                      <label for="machtigingType">Ja ik steun Greenpeace:</label>
-                      <div id="machtigingType" class="radio-list" role="radiogroup">
-          
-                          <input class="form-check-input" v-model.trim="machtigingType" type="radio" name="eenmalig" id="eenmalig" value="E" role="radio"       v-on:change="changePeriodic">
-                          <label class="form-check-label form-control ml-0" for="eenmalig">Eenmalig</label>
-          
-                          <input class="form-check-input" v-model.trim="machtigingType" type="radio" name="maandelijks" id="maandelijks" value="M" role="radio" v-on:change="changePeriodic">
-                          <label class="form-check-label form-control" for="maandelijks">Maandelijks</label>
-                      </div>
+            <fieldset>
+                <legend class="sr-only">Periodiek van de donatie</legend>
+                <div class="form-group"
+                     v-bind:class="{ 'has-error': $v.machtigingType }">
+                    <template v-if="formconfig.allow_frequency_override == 1">
+                        <label for="machtigingType">Ja ik steun
+                            Greenpeace:</label>
+                        <div id="machtigingType" class="radio-list"
+                             role="radiogroup">
+
+                            <input class="form-check-input"
+                                   v-model.trim="machtigingType" type="radio"
+                                   name="eenmalig" id="eenmalig" value="E"
+                                   role="radio" v-on:change="changePeriodic">
+                            <label class="form-check-label form-control ml-0"
+                                   for="eenmalig">Eenmalig</label>
+
+                            <input class="form-check-input"
+                                   v-model.trim="machtigingType" type="radio"
+                                   name="maandelijks" id="maandelijks" value="M"
+                                   role="radio" v-on:change="changePeriodic">
+                            <label class="form-check-label form-control"
+                                   for="maandelijks">Maandelijks</label>
+                        </div>
                     </template>
                     <label for="machtigingType" v-else>
-                        Ja ik steun Greenpeace <strong>{{ formconfig.suggested_frequency[1] }}</strong>:
-                    </label> 
-        
+                        Ja ik steun Greenpeace
+                        <strong>{{ formconfig.suggested_frequency[1] }}</strong>:
+                    </label>
+
                 </div>
-        </fieldset>
-          
-		<fieldset>
-		<legend class="sr-only">Bedrag</legend>
-            <div class="form-group" v-bind:class="{ 'has-error': $v.bedrag.$error }">
-              <label for="amountList">Ik geef:</label>
-              <div id="amountList" class="radio-list" role="radiogroup">
-                <input class="form-check-input" v-model.trim="bedrag" type="radio" name="transaction-amount" id="bedrag1" role="radio" v-bind:value="amount1">
-                <label class="form-check-label form-control ml-0" for="bedrag1">EUR {{ amount1 }}</label>
+            </fieldset>
 
-                <input class="form-check-input" v-model.trim="bedrag" type="radio" name="transaction-amount" id="bedrag2" role="radio" v-bind:value="amount2" checked="checked" tabindex="0">
-                <label class="form-check-label form-control" for="bedrag2">EUR {{ amount2 }}</label>
+            <fieldset>
+                <legend class="sr-only">Bedrag</legend>
+                <div class="form-group"
+                     v-bind:class="{ 'has-error': $v.bedrag.$error }">
+                    <label for="amountList">Ik geef:</label>
+                    <div id="amountList" class="radio-list" role="radiogroup">
+                        <input class="form-check-input" v-model.trim="bedrag"
+                               type="radio" name="transaction-amount"
+                               id="bedrag1" role="radio" v-bind:value="amount1">
+                        <label class="form-check-label form-control ml-0"
+                               for="bedrag1">EUR {{ amount1 }}</label>
 
-                <input class="form-check-input" v-model.trim="bedrag" type="radio" name="transaction-amount" id="bedrag3" role="radio" v-bind:value="amount3">
-                <label class="form-check-label form-control" for="bedrag3">EUR {{ amount3 }}</label>
-              </div>
-              <div class="amount__popular">Meest gekozen</div>
-            </div>
+                        <input class="form-check-input" v-model.trim="bedrag"
+                               type="radio" name="transaction-amount"
+                               id="bedrag2" role="radio" v-bind:value="amount2"
+                               checked="checked" tabindex="0">
+                        <label class="form-check-label form-control"
+                               for="bedrag2">EUR {{ amount2 }}</label>
 
-            <div class="form-group" v-bind:class="{ 'has-error': $v.bedrag.$error }">
-              <label for="customAmount" class="form-control form-check-label col-4 ml-0" v-on:click="toggleCustomamount">Ander bedrag:</label>
-              <div class="input-group col-8" id="input__customAmount">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">EUR</div>
+                        <input class="form-check-input" v-model.trim="bedrag"
+                               type="radio" name="transaction-amount"
+                               id="bedrag3" role="radio" v-bind:value="amount3">
+                        <label class="form-check-label form-control"
+                               for="bedrag3">EUR {{ amount3 }}</label>
+                    </div>
+                    <div class="amount__popular">Meest gekozen</div>
                 </div>
-                
-                <input type="number" id="customAmount" class="form-control" v-model.trim="bedrag" @input="$v.bedrag.$touch()" name="transaction-amount">
-                <span class="help-block" v-if="$v.bedrag.$error && !$v.bedrag.required">Bedrag is verplicht</span>
-                <span class="help-block" v-if="$v.bedrag.$error && $v.bedrag.required && !$v.bedrag.numeric">Bedrag moet een nummer zijn</span>
-                <span class="help-block" v-if="$v.bedrag.$error && $v.bedrag.required && $v.bedrag.numeric && !$v.bedrag.between">Het donatiebedrag moet liggen tussen {{ formconfig.min_amount }} en 100000 euro</span>
-              </div>
-            </div>
-		</fieldset>
-	  
-	  <fieldset v-if="machtigingType ==='E'">
-	  <legend class="sr-only">Betalingsmethode</legend>
-			<div class="form-group" v-bind:class="{ 'has-error': $v.betaling.$error }">
-			  <label for="paymentMethods">Betalingswijze:</label>
-			  <div id="paymentMethods" class="radio-list" role="radiogroup">
-				<input class="form-check-input" v-model.trim="betaling" type="radio" name="ideal" id="ideal" value="ID" checked="checked" tabindex="0" role="radio"
-				v-on:click="donationformVue.validateStep('step1');">
-				<label class="form-check-label form-control ml-0" for="ideal">iDeal</label>
-				<input class="form-check-input" v-model.trim="betaling" type="radio" name="machtiging" id="machtiging" value="EM" role="radio" v-on:click="donationformVue.validateStep('step1');">
-				<label class="form-check-label form-control" for="machtiging">Eenmalige machtiging</label>
-			  </div>
-			</div> 
-	  </fieldset>
-          
-           </div>`,
+
+                <div class="form-group"
+                     v-bind:class="{ 'has-error': $v.bedrag.$error }">
+                    <label for="customAmount"
+                           class="form-control form-check-label col-4 ml-0"
+                           v-on:click="toggleCustomamount">Ander bedrag:</label>
+                    <div class="input-group col-8" id="input__customAmount">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">EUR</div>
+                        </div>
+
+                        <input type="number" id="customAmount"
+                               class="form-control" v-model.trim="bedrag"
+                               @input="$v.bedrag.$touch()"
+                               name="transaction-amount">
+                        <span class="help-block"
+                              v-if="$v.bedrag.$error && !$v.bedrag.required">Bedrag is verplicht</span>
+                        <span class="help-block"
+                              v-if="$v.bedrag.$error && $v.bedrag.required && !$v.bedrag.numeric">Bedrag moet een nummer zijn</span>
+                        <span class="help-block"
+                              v-if="$v.bedrag.$error && $v.bedrag.required && $v.bedrag.numeric && !$v.bedrag.between">Het donatiebedrag moet liggen tussen {{ formconfig.min_amount }}
+                            en 100000 euro</span>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset v-if="machtigingType ==='E'">
+                <legend class="sr-only">Betalingsmethode</legend>
+                <div class="form-group"
+                     v-bind:class="{ 'has-error': $v.betaling.$error }">
+                    <label for="paymentMethods">Betalingswijze:</label>
+                    <div id="paymentMethods" class="radio-list"
+                         role="radiogroup">
+                        <input class="form-check-input" v-model.trim="betaling"
+                               type="radio" name="ideal" id="ideal" value="ID"
+                               checked="checked" tabindex="0" role="radio"
+                               v-on:click="validate()">
+                        <label class="form-check-label form-control ml-0"
+                               for="ideal">iDeal</label>
+                        <input class="form-check-input" v-model.trim="betaling"
+                               type="radio" name="machtiging" id="machtiging"
+                               value="EM" role="radio"
+                               v-on:click="validate()">
+                        <label class="form-check-label form-control"
+                               for="machtiging">Eenmalige machtiging</label>
+                    </div>
+                </div>
+            </fieldset>
+
+        </div>`,
     data() {
       return {
         machtigingType:  formconfig.suggested_frequency[0],
@@ -765,7 +804,9 @@ $(document).ready(function() {
     props: ['frequency'],
   });
 
-
+  // Vue.config.devtools = true;
+  Vue.use(Vuelidate);
+  Vue.use(VueFormWizard);
   donationformVue = new Vue({
     el: '#app',
     data: {

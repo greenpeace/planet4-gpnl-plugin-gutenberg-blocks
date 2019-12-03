@@ -119,21 +119,20 @@ class Donation extends Base_Block {
 	 */
 	public function enqueue_if_block_is_present() {
 
-
 		// Check if the block is present on the page that is requested.
 		if ( has_block( 'planet4-gpnl-blocks/' . $this->getKebabCaseClassName() ) ) {
 
-			Asset_Enqueuer::enqueue_external_asset(  'vueform_style', 'style', 'https://unpkg.com/vue-form-wizard@0.8.4/dist/vue-form-wizard.min.css');
-			Asset_Enqueuer::enqueue_asset('donation-form', 'style');
+			Asset_Enqueuer::enqueue_external_asset( 'vueform_style', 'style', 'https://unpkg.com/vue-form-wizard@0.8.4/dist/vue-form-wizard.min.css' );
+			Asset_Enqueuer::enqueue_asset( 'donation-form', 'style' );
 
-//			Asset_Enqueuer::enqueue_external_asset(  'vue', 'script','https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.15/vue.min.js', true );
-//			Asset_Enqueuer::enqueue_external_asset( 'vueresource', 'script', 'https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.5.0/vue-resource.min.js', true );
-//			Asset_Enqueuer::enqueue_asset('vue-form-wizard', 'style');
-//			Asset_Enqueuer::enqueue_asset('vueform', 'script', [ 'vue' ], true);
-//			Asset_Enqueuer::enqueue_asset('vuelidate', 'script', [ 'vue', 'vueform' ], true);
-//			Asset_Enqueuer::enqueue_asset('vuelidators', 'script', [ 'vue', 'vueform' ], true);
+			// Asset_Enqueuer::enqueue_external_asset(  'vue', 'script','https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.15/vue.min.js', true );
+			// Asset_Enqueuer::enqueue_external_asset( 'vueresource', 'script', 'https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.5.0/vue-resource.min.js', true );
+			// Asset_Enqueuer::enqueue_asset('vue-form-wizard', 'style');
+			// Asset_Enqueuer::enqueue_asset('vueform', 'script', [ 'vue' ], true);
+			// Asset_Enqueuer::enqueue_asset('vuelidate', 'script', [ 'vue', 'vueform' ], true);
+			// Asset_Enqueuer::enqueue_asset('vuelidators', 'script', [ 'vue', 'vueform' ], true);
 
-			Asset_Enqueuer::enqueue_asset('donationForm', 'script', ['jquery'], true);
+			Asset_Enqueuer::enqueue_asset( 'donationForm', 'script', [ 'jquery' ], true );
 		}
 	}
 
@@ -146,10 +145,10 @@ class Donation extends Base_Block {
 	 */
 	public function prepare_data( $fields ): array {
 
-		$fields['drplus_amount1']      = '';
-		$fields['drplus_amount2']      = '';
-		$fields['drplus_amount3']      = '';
-		$frequencies = [
+		$fields['drplus_amount1'] = '';
+		$fields['drplus_amount2'] = '';
+		$fields['drplus_amount3'] = '';
+		$frequencies              = [
 			'E' => 'Eenmalig',
 			'M' => 'Maandelijks',
 			'K' => 'Kwartaal',
@@ -193,7 +192,7 @@ class Donation extends Base_Block {
 			)
 		);
 
-//		 Pass option for address autofill to frontend code.
+		// Pass option for address autofill to frontend code.
 		wp_localize_script(
 			'donationForm',
 			'get_address_object',
