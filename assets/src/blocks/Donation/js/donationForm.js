@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import Vue from 'vue/dist/vue.esm.browser';
+import Vue from 'vue/dist/vue.esm.browser.min';
 import Vuelidate from 'vuelidate';
 import VueFormWizard from 'vue-form-wizard';
 import {
@@ -804,7 +804,7 @@ $(document).ready(function() {
     props: ['frequency'],
   });
 
-  Vue.config.devtools = true;
+  // Vue.config.devtools = true;
   Vue.use(Vuelidate);
   Vue.use(VueFormWizard);
   donationformVue = new Vue({
