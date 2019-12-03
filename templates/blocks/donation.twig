@@ -51,7 +51,7 @@
 								<tab-content
 									title="1 Donatie"
 									icon="icon-euro"
-									:before-change="function(){validateStep('step1')}"
+									:before-change="function(){return this.$children[0].validate();}"
 								>
 									<step1
 										ref="step1"
@@ -63,7 +63,7 @@
 								<tab-content
 									title="2 Gegevens"
 									icon="icon-user"
-									:before-change="function(){validateStep('step2')}"
+									:before-change="function(){return this.$children[0].validate();}"
 								>
 									<step2
 										ref="step2"
@@ -75,7 +75,7 @@
 								<tab-content
 									title="3 Adres"
 									icon="icon-home"
-									:before-change="function(){validateStep('step3')}"
+									:before-change="function(){return this.$children[0].validate();}"
 									v-if="!isiDeal()"
 								>
 									<step3
