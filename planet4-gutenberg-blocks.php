@@ -125,7 +125,7 @@ const BLOCK_WHITELIST = [
 		'planet4-gpnl-blocks/collapsible',
 	],
 	'page'     => [
-//		'planet4-gpnl-blocks/donation',
+		'planet4-gpnl-blocks/donation',
 		'planet4-gpnl-blocks/educationcovers',
 		'planet4-gpnl-blocks/hero-image',
 		'planet4-gpnl-blocks/inforequest',
