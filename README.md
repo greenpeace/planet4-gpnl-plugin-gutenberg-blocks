@@ -44,3 +44,29 @@ or
 ## Contribute
 
 Please read the [Contribution Guidelines](https://planet4.greenpeace.org/handbook/dev-contribute-to-planet4/) for Planet4.
+
+## Assets
+
+To watch the files run `npm start`. 
+To build files for production run `npm run-script build`. 
+
+## Dependencies
+
+Adding external dependencies for a block can be done by enqueueing an asset and enqueueing external assets like so:
+```
+		$external_assets = [
+			[
+				'handle' => 'swiper',
+				'src'    => 'https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.css',
+				'type'   => 'style'
+			],
+			[
+				'handle' => 'swiper',
+				'src'    => 'https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.js',
+				'type'   => 'script'
+			]
+		];
+		Asset_Enqueuer::enqueue_external_asset( $external_assets );
+
+```
+asd

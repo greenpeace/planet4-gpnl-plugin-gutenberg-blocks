@@ -1,0 +1,114 @@
+{% block donation %}
+
+	{% if ( fields ) %}
+
+		<section class="block donation">
+			<div class="row">
+				<div class="col-lg-6 order-last order-lg-first">
+					<div class="donationwrapper">
+						{% if ( fields.title ) %}
+							<div class="donationtitle">
+								<h2>{{ fields.title }}</h2>
+							</div>
+						{% endif %}
+						{% if ( fields.description ) %}
+							<div class="donationdescription">
+								<p>{{ fields.description|e('wp_kses_post')|raw }}</p>
+							</div>
+						{% endif %}
+					</div>
+				</div>
+				<div class="col-lg-6 order-first order-lg-last gpnl-donation-form-wrapper">
+					<script>
+						(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+								new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+							j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+							'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+						})(window,document,'script','dataLayer','GTM-8SXR');
+					</script>
+
+					<div id="app" class="card">
+						<div class="gp-donation-form card-body">
+							<noscript>
+								<p>
+									Uw browser ondersteunt geen Javascript.<br>
+									Het is hierdoor niet mogelijk om een donatie te doen via deze weg.<br>
+									Bel onze Supporter Care via 0800-4223344 of stuur een mail via <a href="https://www.greenpeace.org/nl/contact/contact-formulier/">dit contactformulier.</a>
+								</p>
+							</noscript>
+
+							<form-wizard
+								@on-complete="onComplete"
+								shape="tab"
+								color="#F36D3A"
+								error-color="#FF0000"
+								title=""
+								subtitle=""
+								back-button-text="Vorige"
+								next-button-text="Volgende"
+								finish-button-text="Donatie voltooien"
+							>
+								<tab-content
+									title="1 Donatie"
+									icon="icon-euro"
+									:before-change="function(){return this.$children[0].validate();}"
+								>
+									<step1
+										ref="step1"
+										@on-validate="mergePartialModels"
+
+									></step1>
+								</tab-content>
+
+								<tab-content
+									title="2 Gegevens"
+									icon="icon-user"
+									:before-change="function(){return this.$children[0].validate();}"
+								>
+									<step2
+										ref="step2"
+										@on-validate="mergePartialModels"
+										v-bind:ideal="isiDeal()"
+									></step2>
+								</tab-content>
+
+								<tab-content
+									title="3 Adres"
+									icon="icon-home"
+									:before-change="function(){return this.$children[0].validate();}"
+									v-if="!isiDeal()"
+								>
+									<step3
+										ref="step3"
+										@on-validate="mergePartialModels"
+										v-bind:frequency="getFrequency()"
+									></step3>
+								</tab-content>
+
+								<div class="row">
+									<small class="col-6">Greenpeace beschermt je gegevens en geeft ze niet aan derden voor commerciële doeleinden. Lees ook ons <a href="https://www.greenpeace.org/nl/privacystatement/" target="_blank">privacy-beleid</a>.</small>
+									<div class="col-6 secure-icons">
+										<img class="privacywaarborg" src="{{ image('PW-logo.png') }}">
+										<img src="{{ image('secure.png') }}"/>
+										<img src="{{ image('logoanbi_kl.png') }}"/>
+									</div>
+								</div>
+							</form-wizard>
+						</div>
+					</div>
+<!-- end #app -->
+
+					<script>
+						dataLayer.push({
+							'event': 'virtualPageViewDonatie',
+							'virtualPageviewStep': 'Stap 0', //Vul hier de stap in. E.g. Stap 1, Stap 2, Stap 3, Bedankt
+							'virtuelPageviewName': 'Landing' // Vul hier de stapnaam in. E.g. Donatie, gegevens, adres, Bedankt
+						});
+					</script>
+				</div>
+
+
+			</div>
+		</section>
+	{% endif %}
+{% endblock %}

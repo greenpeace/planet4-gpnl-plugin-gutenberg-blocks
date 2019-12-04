@@ -1,0 +1,35 @@
+// All the JS of our blocks have to be imported and instantiated in this file so they can all be used in the Gutenberg editor.
+// Styles of the blocks are imported separately in the 'editor-styles.scss' file.
+
+import { QuoteBlock } from "../../blocks/Quote/js/QuoteBlock";
+new QuoteBlock();
+
+import { HeroImageBlock } from "../../blocks/HeroImage/js/HeroImageBlock";
+new HeroImageBlock();
+
+import { NewsletterBlock } from "../../blocks/Newsletter/js/NewsletterBlock";
+new NewsletterBlock();
+
+import { PetitionBlock } from "../../blocks/Petition/js/PetitionBlock";
+new PetitionBlock();
+
+import { DonationBlock } from "../../blocks/Donation/js/DonationBlock";
+new DonationBlock();
+
+import { TwoColumnEmbedBlock } from "../../blocks/TwoColumnEmbed/js/TwoColumnEmbedBlock";
+new TwoColumnEmbedBlock();
+
+import { NoindexBlock } from "../../blocks/Noindex/js/NoindexBlock";
+new NoindexBlock();
+
+import { InforequestBlock } from "../../blocks/Inforequest/js/InforequestBlock";
+new InforequestBlock();
+
+import { EducationcoversBlock } from "../../blocks/Educationcovers/js/EducationcoversBlock";
+new EducationcoversBlock();
+
+import { LiveblogBlock } from "../../blocks/Liveblog/js/LiveblogBlock";
+new LiveblogBlock();
+
+import { CollapsibleBlock } from "../../blocks/Collapsible/js/CollapsibleBlock";
+new CollapsibleBlock();

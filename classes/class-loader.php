@@ -63,12 +63,12 @@ final class Loader {
 	 * Singleton creational pattern.
 	 * Makes sure there is only one instance at all times.
 	 *
-	 * @param array  $services The Controller services to inject.
+	 * @param array $services The Controller services to inject.
 	 * @param string $view_class The View class name.
 	 *
 	 * @return Loader
 	 */
-	public static function get_instance( $services, $view_class ) : Loader {
+	public static function get_instance( $services, $view_class ): Loader {
 		if ( ! isset( self::$instance ) ) {
 			self::$instance = new self( $services, $view_class );
 		}
@@ -82,7 +82,7 @@ final class Loader {
 	 * after WordPress has finished loading but before any headers are sent.
 	 * Most of WP is loaded at this stage (but not all) and the user is authenticated.
 	 *
-	 * @param array  $services The Controller services to inject.
+	 * @param array $services The Controller services to inject.
 	 * @param string $view_class The View class name.
 	 */
 	private function __construct( $services, $view_class ) {
@@ -90,10 +90,22 @@ final class Loader {
 		$this->load_files();
 		$this->check_requirements();
 
+		$this->services = [
+			new Services\Twig_helper()
+		];
+
 		// Load Blocks.
 		$this->blocks = [
-			new Blocks\Covers(),
-			new Blocks\SubMenu(),
+			new Blocks\Quote(),
+			new Blocks\HeroImage(),
+			new Blocks\Newsletter(),
+			new Blocks\Petition(),
+			new Blocks\Donation(),
+			new Blocks\TwoColumnEmbed(),
+			new Blocks\Inforequest(),
+			new Blocks\Noindex(),
+			new Blocks\Educationcovers(),
+			new Blocks\Collapsible(),
 		];
 	}
 
@@ -114,8 +126,8 @@ final class Loader {
 
 						$namespace = implode( '\\', $class_name_parts );
 						$path      = str_ireplace(
-							[ 'P4NL_GB_BKS', 'Blocks', 'Controllers', 'Views', '_', '\\' ],
-							[ '', 'blocks', 'controller', 'view', '-', '/' ],
+							[ 'P4NL_GB_BKS', 'Blocks', 'Controllers', 'Views', 'Services', '_', '\\' ],
+							[ '', 'blocks', 'controller', 'view', 'services', '-', '/' ],
 							strtolower( $namespace )
 						);
 						require_once __DIR__ . '/' . $path . '/' . $file_name . '.php';
@@ -130,7 +142,7 @@ final class Loader {
 	/**
 	 * Loads all shortcake blocks registered from within this plugin.
 	 *
-	 * @param array  $services The Controller services to inject.
+	 * @param array $services The Controller services to inject.
 	 * @param string $view_class The View class name.
 	 */
 	public function load_services( $services, $view_class ) {
@@ -164,12 +176,8 @@ final class Loader {
 	 * Hooks the plugin.
 	 */
 	private function hook_plugin() {
-		add_action( 'admin_menu', [ $this, 'load_i18n' ] );
 		// Load the editor scripts
-		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_editor_scripts' ] );
-
-		add_action( 'plugins_loaded', [ $this, 'load_i18n' ] );
-		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_public_assets' ] );
+		add_action( 'enqueue_block_assets', [ $this, 'enqueue_editor_scripts' ] );
 
 		// Register a block category.
 		add_filter( 'block_categories', [ $this, 'register_block_category' ], 10, 2 );
@@ -197,15 +205,15 @@ final class Loader {
 					deactivate_plugins( P4NL_GB_BKS_PLUGIN_BASENAME );
 					$count   = 0;
 					$message = '<div class="error fade">' .
-							'<u>' . esc_html( P4NL_GB_BKS_PLUGIN_NAME ) . ' > ' . esc_html__( 'Requirements Error(s)', 'planet4-blocks-backend' ) . '</u><br /><br />';
+					           '<u>' . esc_html( P4NL_GB_BKS_PLUGIN_NAME ) . ' > ' . esc_html__( 'Requirements Error(s)', 'planet4-gpnl-blocks-backend' ) . '</u><br /><br />';
 
 					foreach ( $plugins['not_found'] as $plugin ) {
-						$message .= '<br/><strong>' . ( ++ $count ) . '. ' . esc_html( $plugin['Name'] ) . '</strong> ' . esc_html__( 'plugin needs to be installed and activated.', 'planet4-blocks-backend' ) . '<br />';
+						$message .= '<br/><strong>' . ( ++ $count ) . '. ' . esc_html( $plugin['Name'] ) . '</strong> ' . esc_html__( 'plugin needs to be installed and activated.', 'planet4-gpnl-blocks-backend' ) . '<br />';
 					}
 					foreach ( $plugins['not_updated'] as $plugin ) {
 						$message .= '<br/><strong>' . ( ++ $count ) . '. ' . esc_html( $plugin['Name'] ) . '</strong><br />' .
-									esc_html__( 'Minimum version ', 'planet4-blocks-backend' ) . '<strong>' . esc_html( $plugin['min_version'] ) . '</strong>' .
-									'<br/>' . esc_html__( 'Current version ', 'planet4-blocks-backend' ) . '<strong>' . esc_html( $plugin['Version'] ) . '</strong><br />';
+						            esc_html__( 'Minimum version ', 'planet4-gpnl-blocks-backend' ) . '<strong>' . esc_html( $plugin['min_version'] ) . '</strong>' .
+						            '<br/>' . esc_html__( 'Current version ', 'planet4-gpnl-blocks-backend' ) . '<strong>' . esc_html( $plugin['Version'] ) . '</strong><br />';
 					}
 
 					$message .= '</div><br />';
@@ -213,7 +221,8 @@ final class Loader {
 						$message, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						'Plugin Requirements Error',
 						[
-							'response'  => \WP_Http::OK, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							'response'  => \WP_Http::OK,
+							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 							'back_link' => true,
 						]
 					);
@@ -222,9 +231,9 @@ final class Loader {
 				deactivate_plugins( P4NL_GB_BKS_PLUGIN_BASENAME );
 				wp_die( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					'<div class="error fade">' .
-					'<strong>' . esc_html__( 'PHP Requirements Error', 'planet4-blocks-backend' ) . '</strong><br /><br />' . esc_html( P4NL_GB_BKS_PLUGIN_NAME . __( ' requires a newer version of PHP.', 'planet4-blocks-backend' ) ) . '<br />' .
-					'<br/>' . esc_html__( 'Minimum required version of PHP: ', 'planet4-blocks-backend' ) . '<strong>' . esc_html( $this->required_php ) . '</strong>' .
-					'<br/>' . esc_html__( 'Running version of PHP: ', 'planet4-blocks-backend' ) . '<strong>' . esc_html( phpversion() ) . '</strong>' .
+					'<strong>' . esc_html__( 'PHP Requirements Error', 'planet4-gpnl-blocks-backend' ) . '</strong><br /><br />' . esc_html( P4NL_GB_BKS_PLUGIN_NAME . __( ' requires a newer version of PHP.', 'planet4-gpnl-blocks-backend' ) ) . '<br />' .
+					'<br/>' . esc_html__( 'Minimum required version of PHP: ', 'planet4-gpnl-blocks-backend' ) . '<strong>' . esc_html( $this->required_php ) . '</strong>' .
+					'<br/>' . esc_html__( 'Running version of PHP: ', 'planet4-gpnl-blocks-backend' ) . '<strong>' . esc_html( phpversion() ) . '</strong>' .
 					'</div>',
 					'Plugin Requirements Error',
 					[
@@ -280,100 +289,22 @@ final class Loader {
 	 *
 	 * @param string $hook The slug name of the current admin page.
 	 */
-	public function enqueue_editor_scripts( $hook ) {
+	public function enqueue_editor_scripts() {
 
 		wp_enqueue_style( 'wp-components' );
+		wp_enqueue_style( 'bootstrap', 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.min.css', array(), '4.1.1' );
 
-		// These styles from the master theme are enqueued on the frontend
-		// but not in the admin side.
+		// Enqueueing asset files for the editor.
+		$enque = new Services\Asset_Enqueuer();
+		$enque->enqueue_asset( 'editor-style', 'style' );
+		$enque->enqueue_asset( 'editorIndex', 'script', [], true );
 
-		wp_enqueue_style(
-			'P4NL_GB_BKS_admin_style',
-			P4NL_GB_BKS_PLUGIN_URL . 'react-blocks/build/editorStyle.min.css', // - Bundled CSS for the blocks
-			[  ],
-			'0.1'
-		);
+		$plugin_version        = wp_get_theme()->get( 'Version' );
+		$parent_plugin_version = filectime( get_template_directory() . '/style.css' );
 
-		wp_enqueue_style(
-			'P4NL_GB_BKS_style',
-			P4NL_GB_BKS_PLUGIN_URL . 'react-blocks/build/style.min.css', // - Bundled CSS for the blocks
-			[  ],
-			'0.1'
-		);
+		wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css', [], $parent_plugin_version );
+		wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', [], $plugin_version );
 
-		// Enqueue editor script for all Blocks in this Plugin.
-		wp_enqueue_script(
-			'planet4-blocks-script',                       // - Script handler
-			P4NL_GB_BKS_PLUGIN_URL . 'react-blocks/build/editorIndex.js',                                     // - Bundled JS for the editor
-			[
-				'wp-blocks',      // - Helpers for registering blocks
-				'wp-components',  // - Wordpress components
-				'wp-element',     // - WP React wrapper
-				'wp-data',        // - WP data helpers
-				'wp-i18n',        // - Exports the __() function
-			],
-			'0.1',
-			true
-		);
-
-		// Variables exposed from PHP to JS,
-		// WP calls this "localizing a script"...
-		$reflection_vars = [
-			'home' => P4NL_GB_BKS_PLUGIN_URL . '/public/',
-		];
-		wp_localize_script( 'planet4-blocks-script', 'p4ge_vars', $reflection_vars );
-	}
-
-	/**
-	 * Load assets for the frontend.
-	 */
-	public function enqueue_public_assets() {
-		// plugin-blocks assets.
-		$css_blocks_creation = filectime( P4NL_GB_BKS_PLUGIN_DIR . '/style.css' );
-		$js_blocks_creation  = filectime( P4NL_GB_BKS_PLUGIN_DIR . '/main.js' );
-		// Add master theme's main css as dependency for blocks css.
-		wp_enqueue_style(
-			'plugin-blocks',
-			plugins_url( P4NL_GB_BKS_PLUGIN_DIRNAME ) . '/style.css',
-			[
-				'bootstrap',
-				'slick',
-				'parent-style',
-			],
-			$css_blocks_creation
-		);
-		// Add master theme's main js as dependency for blocks js.
-		wp_register_script(
-			'plugin-blocks',
-			plugins_url( P4NL_GB_BKS_PLUGIN_DIRNAME ) . '/main.js',
-			[
-				'jquery',
-				'main',
-				'slick',
-				'popperjs',
-				'bootstrapjs',
-				'hammer',
-			],
-			$js_blocks_creation,
-			true
-		);
-		wp_localize_script(
-			'plugin-blocks',
-			'p4_vars',
-			[
-				'ajaxurl' => admin_url( 'admin-ajax.php' ),
-			]
-		);
-		wp_enqueue_script( 'plugin-blocks' );
-	}
-
-	/**
-	 * Load internationalization (i18n) for this plugin.
-	 * References: http://codex.wordpress.org/I18n_for_WordPress_Developers
-	 */
-	public function load_i18n() {
-		load_plugin_textdomain( 'planet4-blocks', false, P4NL_GB_BKS_PLUGIN_DIRNAME . '/languages/' );
-		load_plugin_textdomain( 'planet4-blocks-backend', false, P4NL_GB_BKS_PLUGIN_DIRNAME . '/languages/' );
 	}
 
 	/**
@@ -388,8 +319,8 @@ final class Loader {
 			$categories,
 			[
 				[
-					'slug'  => 'planet4-blocks',
-					'title' => __( 'Planet4 Blocks', 'planet4-blocks' ),
+					'slug'  => 'planet4-gpnl-blocks',
+					'title' => __( 'GPNL Blocks', 'planet4-gpnl-blocks' ),
 				],
 			]
 		);
@@ -407,4 +338,3 @@ final class Loader {
 	private function __wakeup() {
 	}
 }
-

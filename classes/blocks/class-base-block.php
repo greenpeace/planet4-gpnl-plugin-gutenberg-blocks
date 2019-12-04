@@ -14,6 +14,15 @@ namespace P4NL_GB_BKS\Blocks;
  */
 class Base_Block {
 
+	protected function getClassName() {
+		$array = explode( '\\', get_class( $this ) );
+		return end( $array );
+	}
+
+	protected function getKebabCaseClassName() {
+		return strtolower( preg_replace( '%([a-z])([A-Z])%', '\1-\2', $this->getClassName() ) );
+	}
+
 	/**
 	 * @param $attributes
 	 *
@@ -25,10 +34,23 @@ class Base_Block {
 
 		\Timber::$locations = P4NL_GB_BKS_PLUGIN_DIR . '/templates/blocks';
 
-		$coversBlock = \Timber::compile( static::BLOCK_NAME. '.twig', $data );
+		// underscore name for twig files.
+		$underscore_block_name = str_replace( '-', '_', $this->getKebabCaseClassName() );
+
+		$public_dir = [
+			'public' => P4NL_GB_BKS_PUBLIC_DIR,
+			'images' => P4NL_GB_BKS_PUBLIC_DIR . '/images/',
+		];
+		if ( gettype( $data ) === 'array' ) {
+			$data = array_merge( $data, $public_dir );
+		} else {
+			$data = $public_dir;
+		}
+
+		$block = \Timber::compile( $underscore_block_name . '.twig', $data );
 
 		// Return empty string if rendered output contains only whitespace or new lines.
-		return ctype_space( $coversBlock ) ? '' : $coversBlock;
+		return ctype_space( $block ) ? '' : $block;
 	}
 
 	/**
@@ -40,9 +62,9 @@ class Base_Block {
 		// Ensure only editors see the error, not visitors to the website.
 		if ( current_user_can( 'edit_posts' ) ) {
 			\Timber::render(
-				P4NL_GB_BKS_PLUGIN_DIR . 'templates/block-error-message.twig',
+				P4NL_GB_BKS_PLUGIN_NAME . 'templates/block-error-message.twig',
 				array(
-					'category' => __( 'Error', 'planet4-blocks' ),
+					'category' => __( 'Error', 'planet4-gpnl-blocks' ),
 					'message'  => $message,
 				)
 			);
