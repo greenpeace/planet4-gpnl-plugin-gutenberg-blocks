@@ -39,6 +39,11 @@ class Base_Block {
 
 		$public_dir = ['public' => P4NL_GB_BKS_PUBLIC_DIR, 'images' => P4NL_GB_BKS_PUBLIC_DIR.'/images/'];
 		$data = array_merge($data, $public_dir);
+		if ( gettype( $data ) === 'array' ) {
+			$data = array_merge( $data, $public_dir );
+		} else {
+			$data = $public_dir;
+		}
 
 		$block = \Timber::compile( $underscoreBlockName. '.twig', $data );
 
