@@ -15,12 +15,12 @@ namespace P4NL_GB_BKS\Blocks;
 class Base_Block {
 
 	protected function getClassName() {
-		$array = explode('\\', get_class($this));
-		return end($array);
+		$array = explode( '\\', get_class( $this ) );
+		return end( $array );
 	}
 
-	protected function getKebabCaseClassName(){
-		return strtolower(preg_replace('%([a-z])([A-Z])%', '\1-\2', $this->getClassName()));
+	protected function getKebabCaseClassName() {
+		return strtolower( preg_replace( '%([a-z])([A-Z])%', '\1-\2', $this->getClassName() ) );
 	}
 
 	/**
@@ -34,18 +34,20 @@ class Base_Block {
 
 		\Timber::$locations = P4NL_GB_BKS_PLUGIN_DIR . '/templates/blocks';
 
-		// underscore name for twig files
-		$underscoreBlockName = str_replace("-", "_", $this->getKebabCaseClassName());
+		// underscore name for twig files.
+		$underscore_block_name = str_replace( '-', '_', $this->getKebabCaseClassName() );
 
-		$public_dir = ['public' => P4NL_GB_BKS_PUBLIC_DIR, 'images' => P4NL_GB_BKS_PUBLIC_DIR.'/images/'];
-		$data = array_merge($data, $public_dir);
+		$public_dir = [
+			'public' => P4NL_GB_BKS_PUBLIC_DIR,
+			'images' => P4NL_GB_BKS_PUBLIC_DIR . '/images/',
+		];
 		if ( gettype( $data ) === 'array' ) {
 			$data = array_merge( $data, $public_dir );
 		} else {
 			$data = $public_dir;
 		}
 
-		$block = \Timber::compile( $underscoreBlockName. '.twig', $data );
+		$block = \Timber::compile( $underscore_block_name . '.twig', $data );
 
 		// Return empty string if rendered output contains only whitespace or new lines.
 		return ctype_space( $block ) ? '' : $block;
