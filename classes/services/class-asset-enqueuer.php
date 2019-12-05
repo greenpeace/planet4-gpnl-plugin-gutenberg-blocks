@@ -22,15 +22,13 @@ class Asset_Enqueuer {
 		// Bootstrap as a dependency
 		wp_enqueue_style( 'bootstrap', 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.min.css', array(), '4.1.1' );
 
-
-
 		if ( 'style' === $asset_type ) {
 			$file_path = $build_path . $filename . '.min.css';
 		} elseif ( 'script' === $asset_type ) {
 			$file_path = $build_path . $filename . '.min.js';
 		}
 
-		$file_asset_path = $build_path . $filename . '.asset.php';
+		$file_asset_path = $build_path . $filename . '.min.asset.php';
 		$file_asset      = file_exists( $file_asset_path ) ? require $file_asset_path : [
 			'dependencies' => [],
 			'version'      => filemtime( $file_path ),
@@ -41,8 +39,7 @@ class Asset_Enqueuer {
 			$dependencies = array_merge( $file_asset['dependencies'], [ 'child-style', 'bootstrap' ], $dependencies );
 			wp_enqueue_style( $filename, P4NL_GB_BKS_PLUGIN_URL . 'assets/build/' . $filename . '.min.css', $dependencies, $file_asset['version'] );
 		} elseif ( 'script' === $asset_type ) {
-			$dependencies = array_merge( $file_asset['dependencies'], $dependencies );
-			wp_enqueue_script( $filename, P4NL_GB_BKS_PLUGIN_URL . 'assets/build/' . $filename . '.min.js', $dependencies, $file_asset['version'], $in_footer );
+			wp_enqueue_script( $filename, P4NL_GB_BKS_PLUGIN_URL . 'assets/build/' . $filename . '.min.js',  $file_asset['dependencies'], $file_asset['version'], $in_footer );
 		}
 	}
 
