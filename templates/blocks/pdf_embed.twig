@@ -1,6 +1,7 @@
 {% block pdf_embed %}
+
 	{% if ( fields ) %}
-		<iframe src="http://flowpaper.com/flipbook/{{ file(fields.document_url ) }}" width="100%" height="600" style="border: none;" allowFullScreen>
-		</iframe>
+		<iframe style="width: 100%; height: 500px;" width="100%" height="500" allowfullscreen
+				src="https://docs.google.com/viewer?url=https://storage.googleapis.com/planet4-netherlands-stateless/2019/07/68806798-docenten_vo_de_energierevolutie.pdf&embedded=true" frameborder="0"></iframe>
 	{% endif %}
 {% endblock %}
