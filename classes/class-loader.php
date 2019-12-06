@@ -106,6 +106,7 @@ final class Loader {
 			new Blocks\Noindex(),
 			new Blocks\Educationcovers(),
 			new Blocks\Collapsible(),
+			new Blocks\PdfEmbed(),
 		];
 	}
 
