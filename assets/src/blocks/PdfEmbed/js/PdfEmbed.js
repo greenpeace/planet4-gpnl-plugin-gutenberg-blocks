@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {RichText, MediaUpload, MediaUploadCheck, InspectorControls, BlockControls} from "@wordpress/editor";
-import {Button, PanelBody, ToggleControl, FocalPointPicker} from '@wordpress/components';
+import {Button, PanelBody, RangeControl } from '@wordpress/components';
 import variables from "../../../base/_variables_gpnl.scss";
 import PdfImage from './PdfImage.js'
 
@@ -12,11 +12,11 @@ export default class PdfEmbed extends Component {
       title,
       description,
       document_id,
-      document_url,
+      height,
       onSelectMedia,
       onValueChange,
+      onNumberChange
     } = this.props;
-
 
     const fields =
       <div className="pdf-embed__wrapper">
@@ -25,20 +25,18 @@ export default class PdfEmbed extends Component {
             <RichText
               onChange={onValueChange.bind('title')}
               value={title}
-              placeholder={'Enter a title'}
+              placeholder={'Voeg een titel toe (optioneel)'}
             />
           </h3>
-
           <RichText
             onChange={onValueChange.bind('description')}
             value={description}
             tagName={'p'}
             className={''}
-            placeholder={'Abstract / description (optional)'}
+            placeholder={'Voeg een ondertitel toe (optioneel)'}
           />
         </div>
         {PdfImage}
-
       </div>
     ;
 
@@ -48,13 +46,11 @@ export default class PdfEmbed extends Component {
           <div style={{
             minHeight: "inherit",
             overflow: "hidden",
-            // backgroundImage: `url(${image_url})`,
             backgroundSize: "cover",
-            // backgroundPosition: `${focus_image}`
           }}>
             <BlockControls>
               <div className={'components-toolbar'}>
-                <a className={'components-toolbar-text-button'} onClick={openEvent}>verander doc</a>
+                <a className={'components-toolbar-text-button'} onClick={openEvent}>verander document</a>
               </div>
             </BlockControls>
             {fields}
@@ -83,10 +79,21 @@ export default class PdfEmbed extends Component {
             render={({open}) => getMediaOrButton(open)}
           />
         </MediaUploadCheck>
-      </div>
+      </div>,
+      <InspectorControls>
+        <PanelBody title={'Height'}>
+          <RangeControl
+            label={'Height in pixels'}
+            min={0}
+            max={1080}
+            initialPosition={800}
+            value={height}
+            onChange={onNumberChange.bind('height')}
+          />
+        </PanelBody>
+      </InspectorControls>
     ])
   }
-
 }
 
 

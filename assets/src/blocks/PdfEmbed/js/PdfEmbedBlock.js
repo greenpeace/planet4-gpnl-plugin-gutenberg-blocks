@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React from 'react';
 import BaseBlock from "../../BaseBlock";
 import {ServerSideRender} from "@wordpress/components";
 import PdfEmbed from "./PdfEmbed";
@@ -14,6 +14,7 @@ export class PdfEmbedBlock extends BaseBlock {
     const {__} = wp.i18n;
     const {registerBlockType} = wp.blocks;
 
+    // TODO: icon for this block.
     // Register the block
     registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
       title: 'Pdf Embed',
@@ -31,6 +32,10 @@ export class PdfEmbedBlock extends BaseBlock {
         },
         document_id: {
           type: 'number'
+        },
+        height: {
+          type: 'number',
+          default: 800
         }
       },
 
@@ -59,6 +64,10 @@ export class PdfEmbedBlock extends BaseBlock {
           setAttributes({[this]: value});
         }
 
+        function onNumberChange(value) {
+          setAttributes({[this]: Number(value)});
+        }
+
         function onSelectMedia(media) {
           setAttributes({
             document_id: media.id
@@ -72,6 +81,7 @@ export class PdfEmbedBlock extends BaseBlock {
               {...attributes}
               document_url={document_url}
               onValueChange={onValueChange}
+              onNumberChange={onNumberChange}
               onSelectMedia={onSelectMedia}
             />
           )
