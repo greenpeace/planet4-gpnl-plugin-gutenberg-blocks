@@ -39,7 +39,8 @@ class Asset_Enqueuer {
 			$dependencies = array_merge( $file_asset['dependencies'], [ 'child-style', 'bootstrap' ], $dependencies );
 			wp_enqueue_style( $filename, P4NL_GB_BKS_PLUGIN_URL . 'assets/build/' . $filename . '.min.css', $dependencies, $file_asset['version'] );
 		} elseif ( 'script' === $asset_type ) {
-			wp_enqueue_script( $filename, P4NL_GB_BKS_PLUGIN_URL . 'assets/build/' . $filename . '.min.js',  $file_asset['dependencies'], $file_asset['version'], $in_footer );
+			$dependencies = array_merge( $file_asset['dependencies'], $dependencies );
+			wp_enqueue_script( $filename, P4NL_GB_BKS_PLUGIN_URL . 'assets/build/' . $filename . '.min.js',  $dependencies, $file_asset['version'], $in_footer );
 		}
 	}
 
