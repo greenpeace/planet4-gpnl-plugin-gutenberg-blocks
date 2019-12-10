@@ -47,7 +47,6 @@ module.exports = {
     // Assets for the collapsible block.
     'collapsible': './assets/src/blocks/Collapsible/scss/collapsible.scss',
   },
-
   output: {
     filename: "[name].min.js",
     path: __dirname + '/assets/build'
@@ -58,7 +57,7 @@ module.exports = {
     rules: [
       ...defaultConfig.module.rules,
       {
-        test: /\.(js)$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ['babel-loader']
       },
@@ -104,7 +103,6 @@ module.exports = {
         },
       }),
       new OptimizeCSSAssetsPlugin({})
-
     ]
   }
 };
