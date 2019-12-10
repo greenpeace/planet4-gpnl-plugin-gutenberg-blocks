@@ -42,6 +42,10 @@ class PdfEmbed extends Base_Block {
 						'type'    => 'number',
 						'default' => '',
 					],
+					'height'       => [
+						'type'    => 'number',
+						'default' => 800,
+					]
 				],
 			]
 		);
