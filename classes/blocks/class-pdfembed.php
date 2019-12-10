@@ -57,11 +57,9 @@ class PdfEmbed extends Base_Block {
 	 */
 	public function enqueue_if_block_is_present() {
 
-
 		// Check if the block is present on the page that is requested.
 		if ( has_block( 'planet4-gpnl-blocks/' . $this->getKebabCaseClassName() ) ) {
-
-//			Asset_Enqueuer::enqueue_asset( 'pdfRender', 'script' , [], true);
+			return null;
 		}
 	}
 
