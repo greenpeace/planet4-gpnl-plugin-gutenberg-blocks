@@ -123,6 +123,7 @@ const BLOCK_WHITELIST = [
 		'planet4-gpnl-blocks/noindex',
 		'planet4-gpnl-blocks/quote',
 		'planet4-gpnl-blocks/collapsible',
+		'planet4-gpnl-blocks/pdf-embed',
 	],
 	'page'     => [
 		'planet4-gpnl-blocks/donation',
@@ -135,6 +136,7 @@ const BLOCK_WHITELIST = [
 		'planet4-gpnl-blocks/quote',
 		'planet4-gpnl-blocks/two-column-embed',
 		'planet4-gpnl-blocks/collapsible',
+		'planet4-gpnl-blocks/pdf-embed',
 	],
 	'campaign' => [],
 ];
