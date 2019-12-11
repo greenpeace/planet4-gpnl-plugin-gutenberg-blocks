@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import {RichText, MediaUpload, MediaUploadCheck, InspectorControls, BlockControls} from "@wordpress/editor";
+import {RichText, MediaUpload, MediaUploadCheck, InspectorControls, BlockControls} from '@wordpress/editor';
 import {Button, PanelBody, ToggleControl, FocalPointPicker} from '@wordpress/components';
-import variables from "../../../base/_variables_gpnl.scss";
+import {URLInput} from '@wordpress/block-editor';
+import variables from '../../../base/_variables_gpnl.scss';
+
 
 export default class HeroImage extends Component {
 
@@ -46,47 +48,65 @@ export default class HeroImage extends Component {
         <div className="hero__text">
           <h2 className="hero__title" style={{marginBottom: '0'}}>
             <RichText
-              style={{display: 'inline-block', size: '2rem',
-                backgroundColor: isTitleTooLong == true ? '#f0b112' : 'white',
-                color: isTitleTooLong == true ? 'white' : '',
-                padding: '15px' }}
+              style={{
+                display: 'inline-block', size: '2rem',
+                backgroundColor: isTitleTooLong === true ? '#f0b112' : 'white',
+                color: isTitleTooLong === true ? 'white' : '',
+                padding: '15px'
+              }}
               onChange={onValueChange.bind('title')}
               value={title}
-              placeholder={'Enter a title'}
+              placeholder={'Voer een titel in'}
             />
           </h2>
-          <p className={"warning-message"}>  { isTitleTooLong == true ? "De titel is erg lang en dit kan problemen opleveren op kleinere displays." : ""  }</p>
+
+          {isTitleTooLong === true &&
+          <p className={'warning-message'}>De titel is erg lang en dit kan problemen opleveren op kleinere displays.</p>
+          }
 
           <RichText
             onChange={onValueChange.bind('description')}
             value={description}
-            tagName={'p'}
+            tagName={'span'}
             className={'hero__description'}
             style={{
-              display: 'block', backgroundColor: isDescriptionTooLong == true ? '#f0b112' : ''
+              display: 'block', marginTop: '30px', backgroundColor: isDescriptionTooLong === true ? '#f0b112' : ''
             }}
-            placeholder={'Abstract / description (optional)'}
+            placeholder={'Abstract / omschrijving (optioneel)'}
           />
-          <p className={"warning-message"}>  { isDescriptionTooLong == true ? "De omschrijving is erg lang en dit kan problemen opleveren op kleinere displays." : ""  }</p>
+
+          {isDescriptionTooLong === true &&
+          <p className={'warning-message'}>De omschrijving is erg lang en dit kan problemen opleveren op kleinere
+            displays.</p>
+          }
 
           <div style={{width: '280px'}}>
             <RichText
               onChange={onValueChange.bind('link_text')}
               value={link_text}
               tagName={'p'}
-              placeholder={'button text (optional)'}
+              placeholder={'Tekst op knop (optioneel)'}
               style={{backgroundColor: variables.orange, padding: '0 30px', lineHeight: 3, color: '#fff'}}
             />
           </div>
-          <div style={{width: '380px'}}>
-            <RichText
-              onChange={onValueChange.bind('link_url')}
-              value={link_url}
-              tagName={'p'}
-              placeholder={'button URL (optional unless button is used)'}
-              style={{backgroundColor: 'white', padding: '3px 30px', color: '#666'}}
-            />
+
+          {link_text &&
+          <div>
+            <label>URL van knop (optioneel tenzij de knop wordt gebruikt):</label>
+            <div style={{width: '380px'}}>
+              <URLInput
+                label={'test'}
+                autoFocus={false}
+                onChange={onValueChange.bind('link_url')}
+                value={link_url}
+                tagName={'p'}
+                placeholder={'URL van knop (kan een interne of externe link zijn)'}
+                style={{backgroundColor: 'white', padding: '3px 30px', color: '#666'}}
+              />
+            </div>
           </div>
+          }
+
         </div>
       </div>
     ;
@@ -95,10 +115,10 @@ export default class HeroImage extends Component {
       if (image) {
         return (
           <div style={{
-            minHeight: "inherit",
-            overflow: "hidden",
+            minHeight: 'inherit',
+            overflow: 'hidden',
             backgroundImage: `url(${image_url})`,
-            backgroundSize: "cover",
+            backgroundSize: 'cover',
             backgroundPosition: `${focus_image}`
           }}>
             <BlockControls>
@@ -114,7 +134,7 @@ export default class HeroImage extends Component {
           <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
             <Button
               onClick={openEvent}
-              style={{position: "absolute", top: "50%", left: "50%", transform: 'translateX(-50%) translateY(-50%)'}}
+              style={{position: 'absolute', top: '50%', left: '50%', transform: 'translateX(-50%) translateY(-50%)'}}
               className="btn btn-large btn-primary">
               selecteer een afbeelding
             </Button>
@@ -123,13 +143,13 @@ export default class HeroImage extends Component {
       }
     };
 
-    let heroClass = "hero";
+    let heroClass = 'hero';
     if (small === true) {
-      heroClass = "hero hero__small"
+      heroClass = 'hero hero__small';
     }
     return ([
       <div className={heroClass}
-           style={{maxWidth: "100%", margin: "0"}}>
+           style={{maxWidth: '100%', margin: '0'}}>
         <MediaUploadCheck>
           <MediaUpload
             type="image"
@@ -159,7 +179,7 @@ export default class HeroImage extends Component {
           />
         </PanelBody>
       </InspectorControls>
-    ])
+    ]);
   }
 
 }
