@@ -113,3 +113,8 @@ input[type="checkbox"], input[type="radio"] {
   max-width: 100%;
   margin: 0;
 }
+
+// Display in editor. Combine with 'd-none' for hiding outside of the editor.
+.d-editor-only {
+  display: inline-block !important;
+}

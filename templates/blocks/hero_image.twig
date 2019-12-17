@@ -9,17 +9,19 @@
 			<div class="page-template hero__wrapper ">
 				<div class="hero__text">
 					{% if not fields.image_url | default %}
-						<p>
-							<em>
-								Dit is het block "Hero afbeelding" en heeft nu nog geen afbeelding of tekst.<br>
-								Selecteer dit blok om aanpassinging te maken.
-							</em>
-						</p>
-						<p>
-							<em>
-								Als je dit blok niet wil gebruiken dan kun je het verwijderen.
-							</em>
-						</p>
+						<div class="d-none d-editor-only">
+							<p>
+								<em>
+									Dit is het block "Hero afbeelding" en heeft nu nog geen afbeelding of tekst.<br>
+									Selecteer dit blok om aanpassinging te maken.
+								</em>
+							</p>
+							<p>
+								<em>
+									Als je dit blok niet wil gebruiken dan kun je het verwijderen.
+								</em>
+							</p>
+						</div>
 					{% endif %}
 					{% if ( fields.title ) %}
 						<h2 class="hero__title">
