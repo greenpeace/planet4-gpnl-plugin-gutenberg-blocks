@@ -74,7 +74,7 @@ class PdfEmbed extends Base_Block {
 	public function prepare_data( $fields ): array {
 
 		// If an image is selected
-		if ( isset( $fields['document_id'] ) && $document = get_attached_file( $fields['document_id'] ) ) {
+		if ( isset( $fields['document_id'] ) && $document = wp_get_attachment_url( $fields['document_id'] ) ) {
 
 			$fields['document_url']    = $document;
 		}
