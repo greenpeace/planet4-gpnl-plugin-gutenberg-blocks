@@ -32,7 +32,6 @@ class Noindex extends Base_Block {
 		add_action( 'template_redirect', [ $this, 'pre_render_if_block_is_present' ] );
 	}
 
-
 	/**
 	 * This will run before determining which template to load.
 	 */
@@ -42,12 +41,16 @@ class Noindex extends Base_Block {
 		// Check if the block is present on the page that is requested.
 		if ( has_block( 'planet4-gpnl-blocks/' . $this->getKebabCaseClassName() ) ) {
 
-			if ( is_admin() ) {
-				// add a function on saving of a post.
-				add_action( 'save_post', [ $this, 'delete_tags_and_categories' ] );
-			} else {
-				// add a no-index to the head tag.
-				add_action( 'wp_head', 'wp_no_robots' );
+			// Add a no-index to the head tag.
+			add_action( 'wp_head', 'wp_no_robots' );
+
+			// Check if there are categories or tags and remove them.
+			$post_id = get_the_ID();
+			if (null !== get_the_tags($post_id)) {
+				wp_set_post_tags($post_id, null);
+			}
+			if (null !== get_the_category($post_id)) {
+				wp_set_post_categories($post_id, null);
 			}
 		}
 	}
@@ -59,21 +62,9 @@ class Noindex extends Base_Block {
 	 */
 	/** @noinspection PhpUnused */
 	public function prepare_data() {
+		
 		// nothing has to be rendered, so we return null.
 		return null;
-	}
-
-	/**
-	 * Should only run on saving of pages/posts.
-	 * Checks if the noindex block is used, if so, removes the categories and tags
-	 */
-	/** @noinspection PhpUnused */
-	public function delete_tags_and_categories() {
-		// TODO: what about these shortcake/shortcode checks? Can we remove these?
-		if ( ! empty( $_POST ) && defined( $_POST['content'] ) && has_shortcode( $_POST['content'], 'shortcake_noindex' ) ) {
-			wp_set_post_terms( $_POST['post_ID'], [], 'post_tag' );
-			wp_set_post_terms( $_POST['post_ID'], [], 'category' );
-		}
 	}
 
 }
