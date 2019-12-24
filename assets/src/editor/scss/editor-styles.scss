@@ -72,6 +72,7 @@
   color: #f0b112;
   background-color: white;
   font-style: italic;
+  margin-top: 0 !important;
   padding: 0 15px;
   display: inline-block;
 }
@@ -111,4 +112,9 @@ input[type="checkbox"], input[type="radio"] {
 .edit-post-visual-editor .wp-block {
   max-width: 100%;
   margin: 0;
+}
+
+// Display in editor. Combine with 'd-none' for hiding outside of the editor.
+.d-editor-only {
+  display: inline-block !important;
 }

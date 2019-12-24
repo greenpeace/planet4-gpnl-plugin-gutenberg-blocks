@@ -30,7 +30,7 @@ export class NoindexBlock extends BaseBlock {
 
 			edit( {} ) {
         return <h4 style={{"color": "red"}}>
-                  Deze pagina wordt met dit blok 'verborgen'. Gebruik dit enkel voor dingen als kopie-pagina's voor petities en speciale pagina's maar mailmarketing. Wat dit doet? Een instructie aan zoekmachines om deze pagina niet te indexeren. Verwijderen van tags. Verwijderen van categorien.
+                  Deze pagina wordt met dit blok 'verborgen'. Gebruik dit enkel voor dingen als kopie-pagina's voor petities en speciale pagina's maar mailmarketing. Wat dit doet? Een instructie aan zoekmachines om deze pagina niet te indexeren. Ook worden alle categorieën en tags verwijderd.
                </h4>;
 			},
 

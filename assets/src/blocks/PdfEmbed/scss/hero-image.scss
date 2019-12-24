@@ -21,11 +21,6 @@
     margin-top: 0;
   }
 
-  &:last-child {
-    // set margin to zero and add extra -3 for the green line that should not show (because the footer already has one on top).
-    margin-bottom: -3px;
-  }
-
   &.hero__small {
     min-height: 250px;
 
