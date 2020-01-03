@@ -1,14 +1,22 @@
-import React, {Component, Fragment} from 'react';
-import BaseBlock from "../../BaseBlock";
-import {ServerSideRender} from "@wordpress/components";
-import {Icon} from './HeroImageIcon';
-import HeroImage from "./HeroImage";
-import Transform from "./Transform";
-
-const {withSelect} = wp.data;
+import React from 'react';
+import BaseBlock from '../../BaseBlock';
+import FacebookComments from './FacebookComments';
 
 
-export class HeroImageBlock extends BaseBlock {
+export class FacebookCommentsBlock extends BaseBlock {
+
+  getHTML(attributes) {
+    return (
+      <section className={'block'}>
+        <h2 className={'page-section-header'}>{attributes.title}</h2>
+        <p className={'page-section-description'}>{attributes.description}</p>
+        <div id="fb-root"/>
+        <script async="" defer="" crossOrigin="anonymous"
+                src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&amp;version=v5.0"/>
+        <div className="fb-comments" data-href={attributes.url} data-width={attributes.width} data-numposts="5"/>
+      </section>
+    );
+  };
 
   constructor() {
     super();
@@ -19,19 +27,16 @@ export class HeroImageBlock extends BaseBlock {
 
     // Register the block
     registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
-      title: 'Hero afbeelding',
-      icon: Icon,
+      title: 'Facebook Commentaar',
+      description: 'Geef bezoekers de mogelijkheid tot reageren op deze pagina via Facebook.',
+      // icon: Icon,
       category: 'planet4-gpnl-blocks',
       keywords: [
         __(this.blockName),
-        __('hero'),
-        __('banner'),
-        __('header'),
-        __('image'),
-        __('afbeelding'),
-        __('held'),
+        __('discussie'),
+        __('reageer'),
+        __('comments'),
       ],
-      transforms: Transform,
       attributes: {
         title: {
           type: 'string',
@@ -39,86 +44,47 @@ export class HeroImageBlock extends BaseBlock {
         description: {
           type: 'string',
         },
-        image: {
-          type: 'number'
-        },
-        link_text: {
-          type: 'string'
-        },
-        link_url: {
+        url: {
           type: 'string',
+          // default: permalink
         },
-        small: {
-          type: 'boolean',
-          default: false
-        },
-        focus_image: {
+        width: {
           type: 'string',
-          default: '50% 50%'
+          default: '100%'
+        },
+        numberOfPosts: {
+          type: 'number',
+          default: 10
         },
       },
 
-      edit: withSelect((select, props) => {
-        const {attributes} = props;
-        const {image} = attributes;
-
-        let image_url = '';
-
-        if (image && (0 < image)) {
-          const image_object = wp.data.select('core').getMedia(image);
-          if (image_object) {
-            image_url = image_object.source_url;
-          }
-        }
-
-        return {
-          image_url
-        };
-      })(({
-            attributes, setAttributes, isSelected, image_url
-          }) => {
+      edit: ({ attributes, setAttributes, isSelected }) => {
 
         // Functions we want to call while editing to change attributes.
         function onValueChange(value) {
           setAttributes({[this]: value});
         }
 
-        function onSelectImage(media) {
-          setAttributes({
-            image: media.id
-          });
-        }
-
-        function onFocalPointChange({x, y}) {
-          x = parseFloat(x).toFixed(2);
-          y = parseFloat(y).toFixed(2);
-          setAttributes({focus_image: (x * 100) + '% ' + (y * 100) + '%'});
+        function onNumberChange(value) {
+          setAttributes({[this]: Number(value)});
         }
 
         // if the block is selected, the block-editor is rendered, otherwise the block is rendered server-side.
         if (isSelected) {
           return (
-            <HeroImage
+            <FacebookComments
               {...attributes}
-              image_url={image_url}
               onValueChange={onValueChange}
-              onSelectImage={onSelectImage}
-              onFocalPointChange={onFocalPointChange}
+              onNumberChange={onNumberChange}
             />
-          )
+          );
         } else {
-          return (
-            <ServerSideRender
-              block={'planet4-gpnl-blocks/' + this.blockNameKebabCase}
-              attributes={attributes}
-            />
-          )
+          return ([this.getHTML({...attributes}),
+            <div style={{backgroundColor: 'f3f3f3', padding: "10px"}}><em>hier worden de reacties via Facebook getoond aan de "voorkant"</em></div>]);
         }
-      })
-      ,
+      },
 
-      // This is not used, because rendering is done server-side. The method has to be defined though for wordpress.
-      save: () => null,
+      save: ({attributes}) => this.getHTML({...attributes})
 
     });
   };
