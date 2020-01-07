@@ -46,7 +46,6 @@ export class FacebookCommentsBlock extends BaseBlock {
         },
         url: {
           type: 'string',
-          // default: permalink
         },
         width: {
           type: 'string',
