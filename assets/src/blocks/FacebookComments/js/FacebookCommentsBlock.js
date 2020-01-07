@@ -13,7 +13,7 @@ export class FacebookCommentsBlock extends BaseBlock {
         <div id="fb-root"/>
         <script async="" defer="" crossOrigin="anonymous"
                 src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&amp;version=v5.0"/>
-        <div className="fb-comments" data-href={attributes.url} data-width={attributes.width} data-numposts="5"/>
+        <div className="fb-comments" data-href={attributes.url} data-width={attributes.width} data-numposts={attributes.numberOfPosts}/>
       </section>
     );
   };
