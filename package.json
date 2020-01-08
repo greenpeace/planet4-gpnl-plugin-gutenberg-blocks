@@ -26,6 +26,7 @@
 		"lint:css": "wp-scripts lint-style"
 	},
 	"devDependencies": {
+		"@babel/plugin-proposal-class-properties": "^7.7.4",
 		"@babel/preset-env": "^7.7.1",
 		"@babel/preset-react": "^7.7.0",
 		"@wordpress/dependency-extraction-webpack-plugin": "^2.0.0",
