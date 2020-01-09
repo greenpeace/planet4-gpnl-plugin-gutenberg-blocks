@@ -59,6 +59,13 @@ $(document).ready(function() {
     this.counter_max = Number(window[form_config].countermax);
     this.counter_text = window[form_config].countertext;
 
+    let url_vars = {
+      'marketingcode'       : getUrlVars()['mcode'],
+      'literaturecode'      : getUrlVars()['lcode'],
+    };
+    $(form).find('input[name=\'marketingcode\']').val(url_vars['marketingcode']);
+    $(form).find('input[name=\'literaturecode\']').val(url_vars['literaturecode']);
+
     let form_disabled = $(form).find(':submit').prop('disabled');
 
     // Check if the submit button is disabled.
