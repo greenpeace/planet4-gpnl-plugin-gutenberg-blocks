@@ -43,9 +43,12 @@ module.exports = {
     'inforequest': './assets/src/blocks/Inforequest/scss/inforequest.scss',
 
     newsletterFormSubmit: './assets/src/blocks/Newsletter/js/NewsletterFormSubmit.js',
-
     // Assets for the collapsible block.
     'collapsible': './assets/src/blocks/Collapsible/scss/collapsible.scss',
+
+    periodicDonationForm: './assets/src/blocks/PeriodicDonation/form/index.js',
+
+
   },
   output: {
     filename: "[name].min.js",

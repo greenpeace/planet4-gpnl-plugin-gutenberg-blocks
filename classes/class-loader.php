@@ -107,6 +107,7 @@ final class Loader {
 			new Blocks\Educationcovers(),
 			new Blocks\Collapsible(),
 			new Blocks\PdfEmbed(),
+			new Blocks\PeriodicDonation(),
 		];
 	}
 
