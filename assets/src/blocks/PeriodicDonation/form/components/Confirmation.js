@@ -20,20 +20,18 @@ class Confirmation extends Component {
                 <h3>Bevestiging</h3>
               <table>
                 <tbody>
-
-
-{this.props.bedrag && <tr><th>Bedrag per jaar</th><td>{this.props.bedrag}</td> </tr>}
-{this.props.jaar && <tr><th>Ingaande in</th><td>{this.props.jaar}</td> </tr>}
-{this.props.geslacht && <tr><th>Geslacht</th><td>{ geslacht() }</td> </tr>}
-{this.props.voornamen && <tr><th>Voornamen</th><td>{this.props.voornamen}</td> </tr>}
-{this.props.tussenvoegsel && <tr><th>Tussenvoegsel</th><td>{this.props.tussenvoegsel}</td> </tr>}
-{this.props.achternaam && <tr><th>Achternaam</th><td>{this.props.achternaam}</td> </tr>}
-{this.props.geboortedatum && <tr><th>Geboortedatum</th><td>{this.props.geboortedatum.toLocaleDateString("nl-NL")}</td> </tr>}
-{this.props.geboorteplaats && <tr><th>Geboorteplaats</th><td>{this.props.geboorteplaats}</td> </tr>}
-{this.props.burgelijkestaat && <tr><th>Burgelijke staat</th><td>{this.props.burgelijkestaat}</td> </tr>}
+{/*Shorthand && gives errors: https://stackoverflow.com/questions/39914455/react-validatedomnesting-text-cannot-appear-as-a-child-of-tr so I use the ternary operator. */}
+{this.props.bedrag ? <tr><th>Bedrag per jaar</th><td>{this.props.bedrag}</td></tr> : null}
+{this.props.jaar ? <tr><th>Ingaande in</th><td>{this.props.jaar}</td></tr> : null}
+{this.props.geslacht ? <tr><th>Geslacht</th><td>{ geslacht() }</td></tr> : null}
+{this.props.voornamen ? <tr><th>Voornamen</th><td>{this.props.voornamen}</td></tr> : null}
+{this.props.tussenvoegsel ? <tr><th>Tussenvoegsel</th><td>{this.props.tussenvoegsel}</td></tr> : null}
+{this.props.achternaam ? <tr><th>Achternaam</th><td>{this.props.achternaam}</td></tr> : null}
+{this.props.geboortedatum ? <tr><th>Geboortedatum</th><td>{this.props.geboortedatum.toLocaleDateString("nl-NL")}</td></tr> : null}
+{this.props.geboorteplaats ? <tr><th>Geboorteplaats</th><td>{this.props.geboorteplaats}</td></tr> : null}
+{this.props.burgelijkestaat ? <tr><th>Burgelijke staat</th><td>{this.props.burgelijkestaat}</td></tr> : null}
                 </tbody>
                 </table>
-
             </div>
         )
     }
