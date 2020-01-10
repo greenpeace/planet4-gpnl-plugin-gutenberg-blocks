@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
 import Schenking from './Schenking';
 import Gegevens from './Gegevens';
+import Name from './Name';
+import Postcode from './Postcode';
 import Steps from './Steps';
 import Confirmation from './Confirmation';
 import PartnerGegevens from './PartnerGegevens';
 import AdresGegevens from './AdresGegevens';
 import BetaalGegevens from './BetaalGegevens';
+import HeroImage from '../../../HeroImage/js/HeroImage';
 
 class Registration extends Component {
 
@@ -49,6 +52,9 @@ class Registration extends Component {
     case 'schenking':
         this.setState({step: 'gegevens'});
       break;
+    // case 'gegevens':
+    //   this.setState({step: 'adresgegevens'});
+    //   break;
     case 'gegevens':
       if (this.state.burgelijkestaat === "Gehuwd" || this.state.burgelijkestaat === "Partner" ) {
         this.setState({step: 'partnergegevens'});
@@ -98,6 +104,7 @@ class Registration extends Component {
 
 
   handleChange(event) {
+    console.log(event.target.value);
     this.setState({[event.target.name]: event.target.value});
   };
 
