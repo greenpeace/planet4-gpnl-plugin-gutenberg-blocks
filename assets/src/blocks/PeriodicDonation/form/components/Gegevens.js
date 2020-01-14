@@ -8,37 +8,37 @@ export default class Gegevens extends Component {
 
   render() {
 
-    return (
-      <div className="form-card">
 
-        <div className="form-check form-check-inline">
+    return (
+      <div className="card">
+
+
+        <label htmlFor={'geslacht'}>Geslacht</label>
+        <div id={'geslacht'} className="radio-inline-group">
           <input className="form-check-input" type="radio" name="geslacht" id="V" value="V"
                  onChange={this.props.handleChange} checked={this.props.geslacht === 'V'}/>
-          <label className="form-check-label" htmlFor="V">Vrouw</label>
-        </div>
+          <label htmlFor="V">Vrouw</label>
 
-        <div className="form-check form-check-inline">
           <input className="form-check-input" type="radio" name="geslacht" id="M" value="M"
                  onChange={this.props.handleChange} checked={this.props.geslacht === 'M'}/>
-          <label className="form-check-label" htmlFor="M">Man</label>
-        </div>
+          <label className="form-check-label radio-inline" htmlFor="M">Man</label>
 
-        <div className="form-check form-check-inline">
           <input className="form-check-input" type="radio" name="geslacht" id="O" value="O"
                  onChange={this.props.handleChange} checked={this.props.geslacht === 'O'}/>
-          <label className="form-check-label" htmlFor="O">Anders</label>
+          <label className="form-check-label radio-inline" htmlFor="O">Anders</label>
         </div>
 
         <InputField
           name={'initialen'}
           value={this.props.initialen}
           onChange={this.props.handleChange}
+          hidden={true}
         />
 
         <InputField
           name={'voornamen'}
           value={this.props.voornamen}
-          onChange={this.props.handleChange}
+          onChange={this.props.handleFirstNamesChange}
         />
 
         <InputField

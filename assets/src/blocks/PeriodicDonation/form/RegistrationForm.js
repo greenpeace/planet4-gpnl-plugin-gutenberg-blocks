@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
-import Schenking from './Schenking';
-import Gegevens from './Gegevens';
-import Steps from './Steps';
-import Confirmation from './Confirmation';
-import PartnerGegevens from './PartnerGegevens';
-import AdresGegevens from './AdresGegevens';
-import BetaalGegevens from './BetaalGegevens';
+import Schenking from './components/Schenking';
+import Gegevens from './components/Gegevens';
+import Steps from './components/Steps';
+import Controleer from './components/Controleer';
+import Bevestiging from './components/Bevestiging';
+import PartnerGegevens from './components/PartnerGegevens';
+import AdresGegevens from './components/AdresGegevens';
+import BetaalGegevens from './components/BetaalGegevens';
 
-class Registration extends Component {
+class RegistrationForm extends Component {
 
   constructor() {
     super();
@@ -34,7 +35,7 @@ class Registration extends Component {
       email: '',
       rekeningnummer: '',
       betalingstermijn: '',
-      landcode: '',
+      landcode: 'NL',
       voornamenPartner: '',
       achternaamPartner: '',
       geboortedatumPartner: '',
@@ -63,7 +64,10 @@ class Registration extends Component {
       this.setState({step: 'betaalgegevens'});
       break;
     case 'betaalgegevens':
+      this.setState({step: 'controleer'});
+    case 'controleer':
       this.setState({step: 'bevestiging'});
+      // TODO: Case 'controleer' naar API + melding dat het gelukt is.
     }
   }
 
@@ -85,22 +89,22 @@ class Registration extends Component {
     case 'betaalgegevens':
       this.setState({step: 'adresgegevens'});
       break;
-    case 'bevestigings':
+    case 'controleer':
       this.setState({step: 'betaalgegevens'});
     }
   }
-
-  // handleChange(event) {
-  //   console.log(event.target.id);
-  //   console.log(event.target.value);
-  //   this.setState({[event.target.id]: event.target.value});
-  // }
-
 
   handleChange(event) {
     this.setState({[event.target.name]: event.target.value});
   };
 
+  // This function sets the firstnames to the correct value and generates the initials with a dot (.).
+  handleFirstNamesChange(event) {
+    this.setState({[event.target.name]: event.target.value});
+    const firstNames = this.state.voornamen.split(" ");
+    const initials = firstNames.map(name => name.charAt(0).toUpperCase()+'.').join("");
+    this.setState({initialen: initials});
+  };
 
   handleDateChange(property, date) {
     this.setState({
@@ -108,10 +112,6 @@ class Registration extends Component {
     });
   };
 
-
-  handleOnCheck(e) {
-    this.setState({[e.target.id]: !this.state.terms});
-  }
 
   render() {
     switch (this.state.step) {
@@ -138,6 +138,7 @@ class Registration extends Component {
           burgelijkestaat={this.state.burgelijkestaat}
           handleChange={this.handleChange.bind(this)}
           handleDateChange={this.handleDateChange.bind(this)}
+          handleFirstNamesChange={this.handleFirstNamesChange.bind(this)}
           next={this.next.bind(this)}
           prev={this.prev.bind(this)}
         />
@@ -178,14 +179,18 @@ class Registration extends Component {
 
         />
       </div>;
-    case 'bevestiging':
-      return <Confirmation
+    case 'controleer':
+      return <Controleer
         {...this.state}
+        next={this.next.bind(this)}
+        prev={this.prev.bind(this)}
       />;
+    case 'bevestiging':
+      return <Bevestiging/>;
     default:
       return null;
     }
   }
 }
 
-export default Registration;
+export default RegistrationForm;

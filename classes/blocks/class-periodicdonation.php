@@ -40,13 +40,7 @@ class PeriodicDonation extends Base_Block {
 		// Check if the block is present on the page that is requested.
 		if ( has_block( 'planet4-gpnl-blocks/' . $this->getKebabCaseClassName() ) ) {
 
-//			Asset_Enqueuer::enqueue_external_asset( 'vueform_style', 'style', 'https://unpkg.com/vue-form-wizard@0.8.4/dist/vue-form-wizard.min.css' );
-//			Asset_Enqueuer::enqueue_asset( 'donation-form', 'style' );
-//			Asset_Enqueuer::enqueue_asset( 'PeriodicDonation', 'style');
 			Asset_Enqueuer::enqueue_asset( 'periodicDonationForm', 'style');
-			Asset_Enqueuer::enqueue_asset( 'quote', 'style' );
-
-
 			Asset_Enqueuer::enqueue_asset( 'periodicDonationForm', 'script', [], true );
 		}
 	}

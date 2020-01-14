@@ -8,7 +8,7 @@ export default class PartnerGegevens extends Component {
   render() {
 
     return (
-      <div className="form-card">
+      <div className="card">
 
         <InputField
           name={'voornamenPartner'}

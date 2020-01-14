@@ -1,6 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './App.scss'
-import App from './App';
+import RegistrationForm from './RegistrationForm';
+import './styles/form.scss'
 
-ReactDOM.render(<App />, document.getElementById('periodic-donation-form'));
+// Styles for the datepicker.
+import 'react-datepicker/dist/react-datepicker.css';
+import 'react-datepicker/dist/react-datepicker.css';
+
+
+ReactDOM.render(<RegistrationForm />, document.getElementById('periodic-donation-form'));

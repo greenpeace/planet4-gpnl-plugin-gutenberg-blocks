@@ -7,7 +7,7 @@ export default class BetaalGegevens extends Component {
   render() {
 
     return (
-      <div className="form-card">
+      <div className="card">
 
         <InputField
           name={'rekeningnummer'}
@@ -16,28 +16,27 @@ export default class BetaalGegevens extends Component {
           onChange={this.props.handleChange}
         />
 
-        <div className="form-check form-check-inline">
+
+        <label htmlFor={'betalingstermijn'}>Betalingstermijn</label>
+
+        <div id={'betalingstermijn'} className="radio-inline-group">
+
           <input className="form-check-input" type="radio" name="betalingstermijn" id="Maand" value="Maand"
                  onChange={this.props.handleChange} checked={this.props.betalingstermijn === 'Maand'}/>
           <label className="form-check-label" htmlFor="Maand">Maand</label>
-        </div>
 
-        <div className="form-check form-check-inline">
           <input className="form-check-input" type="radio" name="betalingstermijn" id="Kwartaal" value="Kwartaal"
                  onChange={this.props.handleChange} checked={this.props.betalingstermijn === 'Kwartaal'}/>
           <label className="form-check-label" htmlFor="Kwartaal">Elke drie maanden</label>
-        </div>
 
-        <div className="form-check form-check-inline">
           <input className="form-check-input" type="radio" name="betalingstermijn" id="Semester" value="Semester"
                  onChange={this.props.handleChange} checked={this.props.betalingstermijn === 'Semester'}/>
           <label className="form-check-label" htmlFor="Semester">Elk half jaar</label>
-        </div>
 
-        <div className="form-check form-check-inline">
           <input className="form-check-input" type="radio" name="betalingstermijn" id="Jaar" value="Jaar"
                  onChange={this.props.handleChange} checked={this.props.betalingstermijn === 'Jaar'}/>
           <label className="form-check-label" htmlFor="Jaar">Jaarlijks</label>
+
         </div>
 
 

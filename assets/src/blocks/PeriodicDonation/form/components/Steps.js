@@ -8,26 +8,31 @@ class Steps extends Component {
     let parterstep;
 
     if (this.props.burgelijkestaat === "Gehuwd" || this.props.burgelijkestaat === "Partner" ) {
-      parterstep = <div className={'col-xs-3 ' + (this.props.step === 'partnergegevens' ? 'active' : '')}>
-        Partnergegevens
+      parterstep =         <div className={'col ' + (this.props.step === 'partnergegevens' ? 'active' : '')}>
+        <div className={'tab'}>Partnergegevens</div>
+        <span>Partnergegevens</span>
       </div>
     }
 
 
       return (
       <div className="row form-steps">
-        <div className={'col-xs-3 ' + (this.props.step === 'schenking' ? 'active' : '')}>
-          Schenking
+        <div className={'col ' + (this.props.step === 'schenking' ? 'active' : '')}>
+          <div className={'tab'}>Schenking</div>
+          <span>Schenking</span>
         </div>
-        <div className={'col-xs-3 ' + (this.props.step === 'gegevens' ? 'active' : '')}>
-          Gegevens
+        <div className={'col ' + (this.props.step === 'gegevens' ? 'active' : '')}>
+          <div className={'tab'}>Gegevens</div>
+          <span>Gegevens</span>
         </div>
         { parterstep }
-        <div className={'col-xs-3 ' + (this.props.step === 'adresgegevens' ? 'active' : '')}>
-          Adresgegevens
+        <div className={'col ' + (this.props.step === 'adresgegevens' ? 'active' : '')}>
+          <div className={'tab'}>Adresgegevens</div>
+          <span>Adresgegevens</span>
         </div>
-        <div className={'col-xs-3 ' + (this.props.step === 'betaalgegevens' ? 'active' : '')}>
-          Betaalgegevens
+        <div className={'col ' + (this.props.step === 'betaalgegevens' ? 'active' : '')}>
+          <div className={'tab'}>Betaalgegevens</div>
+          <span>Betaalgegevens</span>
         </div>
       </div>
     );

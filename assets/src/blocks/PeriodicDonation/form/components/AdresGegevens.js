@@ -7,12 +7,12 @@ export default class AdresGegevens extends Component {
   render() {
 
     return (
-      <div className="form-card">
+      <div className="card">
 
         <InputField
           name={'postcode'}
           value={this.props.postcode}
-          placeholder={'1234XX'}
+          placeholder={'1234 XX'}
           onChange={this.props.handleChange}
         />
 

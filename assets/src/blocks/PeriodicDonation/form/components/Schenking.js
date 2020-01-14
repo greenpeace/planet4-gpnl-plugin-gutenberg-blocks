@@ -7,7 +7,7 @@ export default class Schenking extends Component {
     const currentYear = new Date().getFullYear();
 
     return (
-      <div className="form-card">
+      <div className="card">
         <div className="form-group">
           <label>Bedrag per jaar</label>
           <div className="input-group">
