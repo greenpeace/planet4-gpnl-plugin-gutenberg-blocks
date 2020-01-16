@@ -19,7 +19,12 @@ export default class Schenking extends Component {
                    id="bedrag"
                    name="bedrag"
                    value={this.props.bedrag}
-                   onChange={this.props.handleChange}/>
+                   onChange={this.props.handleChange}
+                   onBlur={this.props.handleValidation}
+            />
+
+            {this.props.errors.bedragError && <span className="error-message"> {this.props.errors.bedragError} </span>}
+
           </div>
         </div>
 
@@ -41,7 +46,7 @@ export default class Schenking extends Component {
         </div>
 
         <div className="form-group">
-          <button className="btn btn-success"
+          <button className="btn btn-next"
                   onClick={this.props.next}>Volgende
           </button>
         </div>

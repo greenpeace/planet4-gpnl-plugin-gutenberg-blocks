@@ -31,7 +31,7 @@ export default class Controleer extends Component {
         return (
           <div className="card">
             <h3>Controle</h3>
-            <p>Controleer of alle gegevens kloppen. Zo niet, dan kun je teruggaan in het formulier iets aan te passen.</p>
+            <p>Dit zijn de gegevens die je ingevuld hebt. Druk op bevestig als alles klopt.</p>
             <table>
               <tbody>
                 {/*Shorthand && gives errors: https://stackoverflow.com/questions/39914455/react-validatedomnesting-text-cannot-appear-as-a-child-of-tr so I use the ternary operator. */}
@@ -44,6 +44,10 @@ export default class Controleer extends Component {
                 {this.props.geboortedatum ? <tr><th>Geboortedatum</th><td>{this.props.geboortedatum.toLocaleDateString("nl-NL")}</td></tr> : null}
                 {this.props.geboorteplaats ? <tr><th>Geboorteplaats</th><td>{this.props.geboorteplaats}</td></tr> : null}
                 {this.props.burgelijkestaat ? <tr><th>Burgelijke staat</th><td>{this.props.burgelijkestaat}</td></tr> : null}
+                {this.props.voornamenPartner ? <tr><th>Voornamen van partner</th><td>{this.props.voornamenPartner}</td></tr> : null}
+                {this.props.achternaamPartner ? <tr><th>Achternaam partner</th><td>{this.props.achternaamPartner}</td></tr> : null}
+                {this.props.geboortedatumPartner ? <tr><th>Geboortedatum partner</th><td>{this.props.geboortedatumPartner.toLocaleDateString("nl-NL")}</td></tr> : null}
+                {this.props.geboorteplaatsPartner ? <tr><th>Geboorteplaats partner</th><td>{this.props.geboorteplaatsPartner}</td></tr> : null}
                 {this.props.postcode ? <tr><th>Postcode</th><td>{this.props.postcode}</td></tr> : null}
                 {this.props.huisnummer ? <tr><th>Huisnummer</th><td>{this.props.huisnummer}</td></tr> : null}
                 {this.props.huisnummertoevoeging ? <tr><th>Huisnummer toevoeging</th><td>{this.props.huisnummertoevoeging}</td></tr> : null}
@@ -53,17 +57,14 @@ export default class Controleer extends Component {
                 {this.props.email ? <tr><th>Email</th><td>{this.props.email}</td></tr> : null}
                 {this.props.rekeningnummer ? <tr><th>Rekeningnummer</th><td>{this.props.rekeningnummer}</td></tr> : null}
                 {this.props.betalingstermijn ? <tr><th>Betalingstermijn</th><td>{betalingstermijn()}</td></tr> : null}
-                {this.props.voornamenPartner ? <tr><th>Voornamen van partner</th><td>{this.props.voornamenPartner}</td></tr> : null}
-                {this.props.achternaamPartner ? <tr><th>Achternaam partner</th><td>{this.props.achternaamPartner}</td></tr> : null}
-                {this.props.geboortedatumPartner ? <tr><th>Geboortedatum partner</th><td>{this.props.geboortedatumPartner.toLocaleDateString("nl-NL")}</td></tr> : null}
-                {this.props.geboorteplaatsPartner ? <tr><th>Geboorteplaats partner</th><td>{this.props.geboorteplaatsPartner}</td></tr> : null}
+
               </tbody>
             </table>
             <div className="form-group">
-              <button className="btn btn-danger"
+              <button className="btn btn-previous"
                       onClick={this.props.prev}>Vorige
               </button>
-              <button className="btn btn-success"
+              <button className="btn btn-next"
                       onClick={this.props.next}>Bevestig
               </button>
             </div>

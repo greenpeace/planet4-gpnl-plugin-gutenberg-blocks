@@ -16,6 +16,7 @@ export default class PartnerGegevens extends Component {
           label={'voornamen van je partner'}
           placeholder={'voornamen van je partner'}
           onChange={this.props.handleChange}
+          errors={this.props.errors}
         />
 
         <InputField
@@ -24,6 +25,7 @@ export default class PartnerGegevens extends Component {
           label={'achternaam van je partner'}
           placeholder={'achternaam van je partner'}
           onChange={this.props.handleChange}
+          errors={this.props.errors}
         />
 
         <div className="form-group">
@@ -43,13 +45,14 @@ export default class PartnerGegevens extends Component {
           label={'geboorteplaats van je partner'}
           placeholder={'geboorteplaats van je partner'}
           onChange={this.props.handleChange}
+          errors={this.props.errors}
         />
 
         <div className="form-group">
-          <button className="btn btn-danger"
+          <button className="btn btn-previous"
                   onClick={this.props.prev}>Vorige
           </button>
-          <button className="btn btn-success"
+          <button className="btn btn-next"
                   onClick={this.props.next}>Volgende
           </button>
         </div>

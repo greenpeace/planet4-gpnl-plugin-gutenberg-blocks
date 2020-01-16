@@ -12,7 +12,6 @@ export default class Gegevens extends Component {
     return (
       <div className="card">
 
-
         <label htmlFor={'geslacht'}>Geslacht</label>
         <div id={'geslacht'} className="radio-inline-group">
           <input className="form-check-input" type="radio" name="geslacht" id="V" value="V"
@@ -26,32 +25,49 @@ export default class Gegevens extends Component {
           <input className="form-check-input" type="radio" name="geslacht" id="O" value="O"
                  onChange={this.props.handleChange} checked={this.props.geslacht === 'O'}/>
           <label className="form-check-label radio-inline" htmlFor="O">Anders</label>
+
         </div>
+
+        {this.props.errors.geslachtError && <span className="error-message"> {this.props.errors.geslachtError} </span>}
+
 
         <InputField
           name={'initialen'}
           value={this.props.initialen}
           onChange={this.props.handleChange}
           hidden={true}
+          errors={this.props.errors}
         />
 
         <InputField
           name={'voornamen'}
           value={this.props.voornamen}
           onChange={this.props.handleFirstNamesChange}
+          errors={this.props.errors}
         />
 
-        <InputField
-          name={'tussenvoegsel'}
-          value={this.props.tussenvoegsel}
-          onChange={this.props.handleChange}
-        />
+        <div className={'form-row'}>
+          <div className={'col-4'}>
+            <InputField
+              name={'tussenvoegsel'}
+              value={this.props.tussenvoegsel}
+              onChange={this.props.handleChange}
+              errors={this.props.errors}
+            />
+          </div>
+          <div className={'col-8'}>
+            <InputField
+              name={'achternaam'}
+              value={this.props.achternaam}
+              onChange={this.props.handleChange}
+              errors={this.props.errors}
+            />
+          </div>
+        </div>
 
-        <InputField
-          name={'achternaam'}
-          value={this.props.achternaam}
-          onChange={this.props.handleChange}
-        />
+
+
+
 
         <div className="form-group">
           <label htmlFor="geboortedatum">Geboortedatum</label>
@@ -69,6 +85,7 @@ export default class Gegevens extends Component {
           name={'geboorteplaats'}
           value={this.props.geboorteplaats}
           onChange={this.props.handleChange}
+          errors={this.props.errors}
         />
 
         <div className="form-group">
@@ -81,13 +98,16 @@ export default class Gegevens extends Component {
             <option value="Partner">Als partner geregistreerd</option>
             <option value="Nvt">N.v.t.</option>
           </select>
+
+          {this.props.errors.burgelijkestaatError && <span className="error-message"> {this.props.errors.burgelijkestaatError} </span>}
+
         </div>
 
         <div className="form-group">
-          <button className="btn btn-danger"
+          <button className="btn btn-previous"
                   onClick={this.props.prev}>Vorige
           </button>
-          <button className="btn btn-success"
+          <button className="btn btn-next"
                   onClick={this.props.next}>Volgende
           </button>
         </div>
