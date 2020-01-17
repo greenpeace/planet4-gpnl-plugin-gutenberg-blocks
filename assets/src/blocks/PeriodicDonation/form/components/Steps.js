@@ -7,32 +7,69 @@ class Steps extends Component {
 
     let parterstep;
 
-    if (this.props.burgelijkestaat === "Gehuwd" || this.props.burgelijkestaat === "Partner" ) {
-      parterstep =         <div className={'col ' + (this.props.step === 'partnergegevens' ? 'active' : '')}>
-        <div className={'tab'}>2.2.</div>
-        <span>Partner</span>
-      </div>
+    if (this.props.burgelijkestaat === 'Gehuwd' || this.props.burgelijkestaat === 'Partner') {
+      parterstep = <div className={'col ' + (this.props.step === 'partnergegevens' ? 'active' : '')}>
+        <div className={'tab'}>
+
+          <svg height="24" width="24">
+            <image href={'/wp-content/plugins/planet4-gpnl-plugin-gutenberg-blocks/public/images/icons/partner.svg'} height={'100%'} width={'100%'} />
+          </svg>
+
+        </div>
+        <span>2.2 Partner</span>
+      </div>;
     }
 
-
-      return (
+    return (
       <div className="row form-steps">
         <div className={'col ' + (this.props.step === 'schenking' ? 'active' : '')}>
-          <div className={'tab'}>1.</div>
+          <div className={'tab'}>
+
+            {/*<svg width="200" height="200" >*/}
+            <svg height="24" width="24">
+              <image href={'/wp-content/plugins/planet4-gpnl-plugin-gutenberg-blocks/public/images/icons/euro.svg'} height={'100%'} width={'100%'} />
+            </svg>
+
+            {/*<img src= height={'24'}/>*/}
+
+          </div>
           <span>Schenking</span>
         </div>
         <div className={'col ' + (this.props.step === 'gegevens' ? 'active' : '')}>
-          <div className={'tab'}>2.</div>
-          <span>Gegevens</span>
+          <div className={'tab'}>
+
+
+            <svg height="24" width="24">
+              <image href={'/wp-content/plugins/planet4-gpnl-plugin-gutenberg-blocks/public/images/icons/user.svg'} height={'100%'} width={'100%'} />
+            </svg>
+
+
+          </div>
+          <span>
+            2. Gegevens
+          </span>
         </div>
-        { parterstep }
+        {parterstep}
         <div className={'col ' + (this.props.step === 'adresgegevens' ? 'active' : '')}>
-          <div className={'tab'}>3.</div>
-          <span>Adres</span>
+          <div className={'tab'}>
+
+            <svg height="24" width="24">
+              <image href={'/wp-content/plugins/planet4-gpnl-plugin-gutenberg-blocks/public/images/icons/home.svg'} height={'100%'} width={'100%'} />
+            </svg>
+
+
+          </div>
+          <span>3. Adres</span>
         </div>
         <div className={'col ' + (this.props.step === 'betaalgegevens' ? 'active' : '')}>
-          <div className={'tab'}>4.</div>
-          <span>Betaling</span>
+          <div className={'tab'}>
+
+            <svg height="24" width="24">
+              <image href={'/wp-content/plugins/planet4-gpnl-plugin-gutenberg-blocks/public/images/icons/card.svg'} height={'100%'} width={'100%'} />
+            </svg>
+
+          </div>
+          <span>4. Betaling</span>
         </div>
       </div>
     );

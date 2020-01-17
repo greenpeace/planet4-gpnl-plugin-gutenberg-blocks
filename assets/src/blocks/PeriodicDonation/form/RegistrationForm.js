@@ -18,7 +18,7 @@ class RegistrationForm extends Component {
       step: 'schenking',
       marketingcode: '',
       screenId: 0,
-      bedrag: 50,
+      bedrag: '',
       jaar: new Date().getFullYear(),
       geslacht: '',
       initialen: '',
@@ -69,9 +69,6 @@ class RegistrationForm extends Component {
       }
     };
   }
-
-
-
 
   handleValidateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -145,6 +142,10 @@ class RegistrationForm extends Component {
         errors.achternaamError = 'Vul alsjeblieft je achternaam in.';
         hasErrors = true;
       }
+      if (new Date(this.state.geboortedatum).toString() === "Invalid Date" || this.state.geboortedatum === null) {
+        errors.geboortedatumError = 'Vul alsjeblieft je geboortedatum in.';
+        hasErrors = true;
+      }
       if (this.state.geboorteplaats.length < 1) {
         errors.geboorteplaatsError = 'Vul alsjeblieft je geboorteplaats in.';
         hasErrors = true;
@@ -164,6 +165,10 @@ class RegistrationForm extends Component {
         errors.achternaamPartnerError = 'Vul alsjeblieft de achternaam van je partner in.';
         hasErrors = true;
       }
+      if (new Date(this.state.geboortedatumPartner).toString() === "Invalid Date" || this.state.geboortedatumPartner === null) {
+        errors.geboortedatumPartnerError = 'Vul alsjeblieft de geboortedatum van je partner in.';
+        hasErrors = true;
+      }
       if (this.state.geboorteplaatsPartner.length < 1) {
         errors.geboorteplaatsPartnerError = 'Vul alsjeblieft de geboorteplaats van je partner in.';
         hasErrors = true;
@@ -171,7 +176,7 @@ class RegistrationForm extends Component {
     }
 
     if (this.state.step === 'adresgegevens') {
-      if (this.state.postcode.length !== 7) {
+      if (this.state.postcode.replace(/ /g,'').length !== 6) {
         errors.postcodeError =  'Vul alsjeblieft je postcode in volgens het formaat "1234 XX".';
         hasErrors = true;
       }
@@ -183,7 +188,7 @@ class RegistrationForm extends Component {
         errors.straatError = 'Vul alsjeblieft je straat in.';
         hasErrors = true;
       }
-      if (this.state.telefoonnummer.length !== 10) {
+      if (this.state.telefoonnummer.length < 10) {
         errors.telefoonnummerError = 'Vul alsjeblieft je 10-cijferige telefoonnummer in.';
         hasErrors = true;
       }

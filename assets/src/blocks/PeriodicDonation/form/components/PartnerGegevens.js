@@ -37,6 +37,8 @@ export default class PartnerGegevens extends Component {
             dateFormat="dd-MM-yyyy"
             placeholderText="dd-mm-yyyy"
           />
+          {this.props.errors.geboortedatumPartnerError && <span className="error-message"> {this.props.errors.geboortedatumPartnerError} </span>}
+
         </div>
 
         <InputField

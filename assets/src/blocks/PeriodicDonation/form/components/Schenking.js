@@ -14,15 +14,14 @@ export default class Schenking extends Component {
             <div className="input-group-prepend">
               <span className="input-group-text" id="addon-euro">€</span>
             </div>
-            <input className="form-control" aria-describedby="addon-euro"
+            <input className={'form-control'} aria-describedby="addon-euro"
                    type="text"
                    id="bedrag"
                    name="bedrag"
                    value={this.props.bedrag}
                    onChange={this.props.handleChange}
-                   onBlur={this.props.handleValidation}
             />
-
+            <small id={'bedragHelp'} className="form-help-text">Minimaal €50.- per jaar.</small>
             {this.props.errors.bedragError && <span className="error-message"> {this.props.errors.bedragError} </span>}
 
           </div>
@@ -35,13 +34,6 @@ export default class Schenking extends Component {
             <option value={currentYear}>{currentYear}</option>
             <option value={currentYear + 1}>{currentYear + 1}</option>
             <option value={currentYear + 2}>{currentYear + 2}</option>
-            <option value={currentYear + 3}>{currentYear + 3}</option>
-            <option value={currentYear + 4}>{currentYear + 4}</option>
-            <option value={currentYear + 5}>{currentYear + 5}</option>
-            <option value={currentYear + 6}>{currentYear + 6}</option>
-            <option value={currentYear + 7}>{currentYear + 7}</option>
-            <option value={currentYear + 8}>{currentYear + 8}</option>
-            <option value={currentYear + 9}>{currentYear + 9}</option>
           </select>
         </div>
 

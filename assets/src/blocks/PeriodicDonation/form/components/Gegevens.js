@@ -79,6 +79,7 @@ export default class Gegevens extends Component {
             placeholderText="dd-mm-yyyy"
             name="geboortedatum"
           />
+          {this.props.errors.geboortedatumError && <span className="error-message"> {this.props.errors.geboortedatumError} </span>}
         </div>
 
         <InputField

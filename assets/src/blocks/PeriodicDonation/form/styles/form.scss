@@ -33,7 +33,8 @@
   .tab {
     background-color: $white;
     border-radius: .5rem;
-    font-size: 24px;
+    height: 40px;
+    padding: 8px;
     font-weight: 600;
 
     &.active {
@@ -143,10 +144,16 @@
     display: block;
     color: white;
     width: 100%;
-    background-color: red;
-    padding: 3px 8px;
+    padding: 3px;
     font-weight: 600;
     border-radius: .25rem;
+    border-bottom: 4px solid red;
+  }
+
+  .form-help-text {
+    display: block;
+    color: $grey-20;
+    width: 100%;
   }
 
 }
@@ -250,6 +257,10 @@
   transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+
+  & .error {
+    border: 2px solid red;
+  }
 }
 
 body {
