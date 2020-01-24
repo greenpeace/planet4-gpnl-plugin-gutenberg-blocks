@@ -1,36 +1,34 @@
 import React, {Component} from 'react';
+import InputField from '../../../../components/forms/InputField';
+import {isValidNumber} from '../../../../components/forms/Validators';
 
 export default class Schenking extends Component {
 
   render() {
+    const { bedrag, jaar, handleChange, next } = {...this.props};
 
     const currentYear = new Date().getFullYear();
 
     return (
       <div className="card">
-        <div className="form-group">
-          <label>Bedrag per jaar</label>
-          <div className="input-group">
-            <div className="input-group-prepend">
-              <span className="input-group-text" id="addon-euro">€</span>
-            </div>
-            <input className={'form-control'} aria-describedby="addon-euro"
-                   type="text"
-                   id="bedrag"
-                   name="bedrag"
-                   value={this.props.bedrag}
-                   onChange={this.props.handleChange}
-            />
-            <small id={'bedragHelp'} className="form-help-text">Minimaal €50.- per jaar.</small>
-            {this.props.errors.bedragError && <span className="error-message"> {this.props.errors.bedragError} </span>}
 
-          </div>
-        </div>
+        <InputField
+          propertyName={'bedrag'}
+          label={'Bedrag per jaar'}
+          value={bedrag}
+          onChange={handleChange}
+          errors={this.props.errors}
+          prepend={'€'}
+          helpText={'Minimaal €50.-'}
+          isValidOnBlur={isValidNumber(bedrag, 50)}
+          errorMessage={'Vul een bedrag in van minimaal €50.-'}
+        />
+
 
         <div className="form-group">
           <label>Ingaande in</label>
-          <select className={'form-control'} id="jaar" name="jaar" value={this.props.jaar}
-                  onChange={this.props.handleChange}>
+          <select className={'form-control'} id="jaar" name="jaar" value={jaar}
+                  onChange={handleChange}>
             <option value={currentYear}>{currentYear}</option>
             <option value={currentYear + 1}>{currentYear + 1}</option>
             <option value={currentYear + 2}>{currentYear + 2}</option>
@@ -39,7 +37,7 @@ export default class Schenking extends Component {
 
         <div className="form-group">
           <button className="btn btn-next"
-                  onClick={this.props.next}>Volgende
+                  onClick={next}>Volgende
           </button>
         </div>
       </div>

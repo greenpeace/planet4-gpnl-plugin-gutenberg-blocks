@@ -15,7 +15,7 @@ class RegistrationForm extends Component {
   constructor() {
     super();
     this.state = {
-      step: 'schenking',
+      step: 'gegevens',
       marketingcode: '',
       screenId: 0,
       bedrag: '',
@@ -219,8 +219,8 @@ class RegistrationForm extends Component {
 
   next() {
 
-    const errors = this.handleValidation();
-    if (!errors) {
+    // const errors = this.handleValidation();
+    // if (!errors) {
 
       switch (this.state.step) {
       case 'schenking':
@@ -246,7 +246,7 @@ class RegistrationForm extends Component {
         this.setState({step: 'bevestiging'});
         // TODO: Case 'controleer' naar API + melding dat het gelukt is.
       }
-    }
+    // }
   }
 
   prev() {
@@ -273,6 +273,8 @@ class RegistrationForm extends Component {
   }
 
   handleChange(event) {
+    console.log(event.target.name);
+    console.log(event.target.value);
     this.setState({[event.target.name]: event.target.value});
   };
 
