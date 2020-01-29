@@ -4,10 +4,9 @@ class Steps extends Component {
 
   render() {
 
-
     let parterstep;
 
-    if (this.props.burgelijkestaat === 'Gehuwd' || this.props.burgelijkestaat === 'Partner') {
+    if (this.props.burgelijkestaat === 'gehuwd' || this.props.burgelijkestaat === 'partner') {
       parterstep = <div className={'col ' + (this.props.step === 'partnergegevens' ? 'active' : '')}>
         <div className={'tab'}>
 
@@ -33,7 +32,7 @@ class Steps extends Component {
             {/*<img src= height={'24'}/>*/}
 
           </div>
-          <span>Schenking</span>
+          <span>1. Schenking</span>
         </div>
         <div className={'col ' + (this.props.step === 'gegevens' ? 'active' : '')}>
           <div className={'tab'}>

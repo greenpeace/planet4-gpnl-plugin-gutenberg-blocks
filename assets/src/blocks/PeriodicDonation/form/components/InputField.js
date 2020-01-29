@@ -1,3 +1,6 @@
+// TODO: STOP USING THIS FIELD!
+
+
 import React, {Component} from 'react';
 
 export default class InputField extends Component {

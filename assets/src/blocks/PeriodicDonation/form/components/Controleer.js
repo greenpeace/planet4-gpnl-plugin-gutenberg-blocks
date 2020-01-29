@@ -17,13 +17,13 @@ export default class Controleer extends Component {
 
       const betalingstermijn = () => {
         switch (this.props.betalingstermijn){
-        case 'Maand':
+        case 'maand':
           return 'Maandelijks';
-        case 'Kwartaal':
+        case 'kwartaal':
           return 'Elke 3 maanden';
-        case 'Semester':
+        case 'semester':
           return 'Elk half jaar';
-        case 'Jaar':
+        case 'jaar':
           return 'Jaarlijks';
         }
       };

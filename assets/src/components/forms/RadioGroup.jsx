@@ -10,11 +10,24 @@ export default class RadioGroup extends Component {
 	  error: '',
 	};
 
-	this.validateOnBlur = this.validateOnBlur.bind(this);
+	this.handleIsValid = this.handleIsValid.bind(this);
+	this.handleOnBlur = this.handleOnBlur.bind(this);
   }
 
-  validateOnBlur() {
-	this.props.isValidOnBlur === false ? this.setState({error: this.props.errorMessage}) : this.setState({error: ''});
+  handleIsValid() {
+	if (this.props.isValid === false) {
+	  this.setState({error: this.props.errorMessage});
+	  return false;
+	} else {
+	  this.setState({error: ''});
+	  return true;
+	}
+  }
+  handleOnBlur(){
+	// By default validation is done onBlur. If you don't want this use "validateOnBlur={false}"
+	if (this.props.validateOnBlur === true || typeof this.props.validateOnBlur === 'undefined'){
+	  this.handleIsValid()
+	}
   }
 
   renderOptions() {
@@ -30,6 +43,7 @@ export default class RadioGroup extends Component {
 			onChange={this.props.onChange}
 			optionValue={option.value}
 			label={option.label}
+			onBlur={this.handleOnBlur}
 		  />
 		)
 	  }

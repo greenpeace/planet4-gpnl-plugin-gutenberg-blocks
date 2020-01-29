@@ -11,12 +11,33 @@ export default class SelectGroup extends Component {
 	  error: '',
 	};
 
-	this.validateOnBlur = this.validateOnBlur.bind(this);
+	this.handleIsValid = this.handleIsValid.bind(this);
   }
 
-  validateOnBlur() {
-	this.props.isValidOnBlur === false ? this.setState({error: this.props.errorMessage}) : this.setState({error: ''});
+  handleIsValid() {
+	if (this.props.isValid === false) {
+	  this.setState({error: this.props.errorMessage});
+	  return false
+	} else {
+	  this.setState({error: ''});
+	  return true
+	}
   }
+
+  handleOnBlur(){
+	// By default validation is done onBlur. If you don't want this use "validateOnBlur={false}"
+	if (this.props.validateOnBlur === true || typeof this.props.validateOnBlur === 'undefined'){
+	  this.handleIsValid()
+	}
+  }
+
+  renderHelpOrError() {
+	if (this.state.error === '' && this.props.helpText) {
+	  return <small id={this.props.propertyName + 'Help'} className="form-text text-muted">{this.props.helpText}</small>;
+	} else if (this.state.error !== '') {
+	  return <span className="error-message">{this.state.error}</span>;
+	}
+  };
 
   renderOptions() {
     const options = [];
@@ -53,18 +74,11 @@ export default class SelectGroup extends Component {
 				className="form-control"
 				onChange={onChange}
 				value={value}
-				onBlur={() => this.validateOnBlur()}
+				onBlur={() => this.handleOnBlur()}
 		>
 		  {this.renderOptions()}
 		</select>
-
-		{helpText &&
-		<small id={name + 'Help'} className="form-text text-muted">{helpText}</small>
-		}
-
-		{this.state.error &&
-		<span className="error-message">  {this.state.error} </span>
-		}
+		{this.renderHelpOrError()}
 	  </div>
 	);
   }

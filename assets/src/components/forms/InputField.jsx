@@ -9,11 +9,26 @@ export default class InputField extends Component {
 	  error: '',
 	};
 
-	this.validateOnBlur = this.validateOnBlur.bind(this);
+	this.handleIsValid = this.handleIsValid.bind(this);
+	this.handleOnBlur = this.handleOnBlur.bind(this);
   }
 
-  validateOnBlur() {
-    this.props.isValidOnBlur === false ? this.setState({error: this.props.errorMessage }) : this.setState({error: ''}) ;
+
+  handleIsValid() {
+	if (this.props.isValid === false) {
+	  this.setState({error: this.props.errorMessage});
+	  return false;
+	} else {
+	  this.setState({error: ''});
+	  return true;
+	}
+  }
+
+  handleOnBlur(){
+	// By default validation is done onBlur. If you don't want this use "validateOnBlur={false}"
+	if (this.props.validateOnBlur === true || typeof this.props.validateOnBlur === 'undefined'){
+      this.handleIsValid()
+	}
   }
 
   renderHelpOrError() {
@@ -54,7 +69,7 @@ export default class InputField extends Component {
 			name={propertyName}
 			onChange={onChange}
 			value={value}
-			onBlur={() => this.validateOnBlur()}
+			onBlur={() => this.handleOnBlur()}
 			hidden={hidden}
 		  />
 
