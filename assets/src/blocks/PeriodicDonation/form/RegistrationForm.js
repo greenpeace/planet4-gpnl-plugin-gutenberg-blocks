@@ -15,7 +15,7 @@ class RegistrationForm extends Component {
   constructor() {
     super();
     this.state = {
-      step: 'betaalgegevens',
+      step: 'schenking',
       marketingcode: '',
       screenId: 0,
       bedrag: '',
@@ -42,201 +42,10 @@ class RegistrationForm extends Component {
       achternaamPartner: '',
       geboortedatumPartner: '',
       geboorteplaatsPartner: '',
-      errors: {
-        bedragError: '',
-        geslachtError: '',
-        initialenError: '',
-        voornamenError: '',
-        tussenvoegselError: '',
-        achternaamError: '',
-        geboortedatumError: '',
-        geboorteplaatsError: '',
-        burgelijkestaatError: '',
-        postcodeError: '',
-        huisnummerError: '',
-        huisnummertoevoegingError: '',
-        straatError: '',
-        woonplaatsError: '',
-        telefoonnummerError: '',
-        emailError: '',
-        rekeningnummerError: '',
-        betalingstermijnError: '',
-        landcodeError: '',
-        voornamenPartnerError: '',
-        achternaamPartnerError: '',
-        geboortedatumPartnerError: '',
-        geboorteplaatsPartnerError: '',
-      }
-    };
-  }
-
-  handleValidateEmail(email) {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-  }
-
-
-  handleValidation() {
-
-    const errors = {};
-    let hasErrors = false;
-
-    if (this.state.step === 'schenking') {
-      if (this.state.bedrag.length < 1) {
-        errors.bedragError = 'Vul alsjeblieft een bedrag in.';
-        hasErrors = true;
-      } else if (this.state.bedrag % 1 !== 0) {
-        errors.bedragError = 'Vul alsjeblieft een rond bedrag in.';
-        hasErrors = true;
-      }
-    }
-
-    if (this.state.step === 'gegevens') {
-      if (this.state.geslacht !== 'M' && this.state.geslacht !== 'V' && this.state.geslacht !== 'O') {
-        errors.geslachtError = 'Vul alsjeblieft je geslacht in.';
-        hasErrors = true;
-      }
-      if (this.state.voornamen.length < 1) {
-        errors.voornamenError =  'Vul alsjeblieft je voornaam of voornamen in.';
-        hasErrors = true;
-      }
-      if (this.state.achternaam.length < 1) {
-        errors.achternaamError = 'Vul alsjeblieft je achternaam in.';
-        hasErrors = true;
-      }
-      if (new Date(this.state.geboortedatum).toString() === "Invalid Date" || this.state.geboortedatum === null) {
-        errors.geboortedatumError = 'Vul alsjeblieft je geboortedatum in.';
-        hasErrors = true;
-      }
-      if (this.state.geboorteplaats.length < 1) {
-        errors.geboorteplaatsError = 'Vul alsjeblieft je geboorteplaats in.';
-        hasErrors = true;
-      }
-      if (this.state.burgelijkestaat === 0 || this.state.burgelijkestaat === null || this.state.burgelijkestaat === '' ) {
-        errors.burgelijkestaatError = 'Vul alsjeblieft je burgelijke staat in.';
-        hasErrors = true;
-      }
-    }
-
-    if (this.state.step === 'partnergegevens') {
-      if (this.state.voornamenPartner.length < 1) {
-        errors.voornamenPartnerError =  'Vul alsjeblieft de voornaam of voornamen van je partner in.';
-        hasErrors = true;
-      }
-      if (this.state.achternaamPartner.length < 1) {
-        errors.achternaamPartnerError = 'Vul alsjeblieft de achternaam van je partner in.';
-        hasErrors = true;
-      }
-      if (new Date(this.state.geboortedatumPartner).toString() === "Invalid Date" || this.state.geboortedatumPartner === null) {
-        errors.geboortedatumPartnerError = 'Vul alsjeblieft de geboortedatum van je partner in.';
-        hasErrors = true;
-      }
-      if (this.state.geboorteplaatsPartner.length < 1) {
-        errors.geboorteplaatsPartnerError = 'Vul alsjeblieft de geboorteplaats van je partner in.';
-        hasErrors = true;
-      }
-    }
-
-    if (this.state.step === 'adresgegevens') {
-      if (this.state.postcode.replace(/ /g,'').length !== 6) {
-        errors.postcodeError =  'Vul alsjeblieft je postcode in volgens het formaat "1234 XX".';
-        hasErrors = true;
-      }
-      if (this.state.huisnummer.length < 1) {
-        errors.huisnummerError = 'Vul alsjeblieft je huisnummer in.';
-        hasErrors = true;
-      }
-      if (this.state.straat.length < 1) {
-        errors.straatError = 'Vul alsjeblieft je straat in.';
-        hasErrors = true;
-      }
-      if (this.state.telefoonnummer.length < 10) {
-        errors.telefoonnummerError = 'Vul alsjeblieft je 10-cijferige telefoonnummer in.';
-        hasErrors = true;
-      }
-      if (this.state.email.length < 1) {
-        errors.emailError = 'Vul alsjeblieft je emailadres in.';
-        hasErrors = true;
-      } else if (this.handleValidateEmail(this.state.email) === false){
-        errors.emailError = 'Vul alsjeblieft een geldig emailadres in.';
-        hasErrors = true;
-      }
-    }
-
-    if (this.state.step === 'betaalgegevens') {
-      if (this.handleValidateIban(this.state.rekeningnummer) !== 1 ) {
-        errors.rekeningnummerError =  'Het ingevulde IBAN-rekeningnummer bestaat niet.';
-        hasErrors = true;
-      }
-
-      if (this.state.betalingstermijn !== 'Maand' && this.state.betalingstermijn !== 'Jaar' && this.state.betalingstermijn !== 'Kwartaal' && this.state.betalingstermijn !== 'Semester') {
-        errors.betalingstermijnError = 'Vul alsjeblieft een betalingstermijn in.';
-        hasErrors = true;
-      }
-    }
-
-    this.setState({errors: errors});
-    return hasErrors;
-  }
-
-  next() {
-
-    // const errors = this.handleValidation();
-    // if (!errors) {
-
-      switch (this.state.step) {
-      case 'schenking':
-        this.setState({step: 'gegevens'});
-        break;
-      case 'gegevens':
-        if (this.state.burgelijkestaat === 'Gehuwd' || this.state.burgelijkestaat === 'Partner') {
-          this.setState({step: 'partnergegevens'});
-        } else {
-          this.setState({step: 'adresgegevens'});
-        }
-        break;
-      case 'partnergegevens':
-        this.setState({step: 'adresgegevens'});
-        break;
-      case 'adresgegevens':
-        this.setState({step: 'betaalgegevens'});
-        break;
-      case 'betaalgegevens':
-        this.setState({step: 'controleer'});
-        break;
-      case 'controleer':
-        this.setState({step: 'bevestiging'});
-        // TODO: Case 'controleer' naar API + melding dat het gelukt is.
-      }
-    // }
-  }
-
-  prev() {
-    switch (this.state.step) {
-    case 'gegevens':
-      this.setState({step: 'schenking'});
-      break;
-    case 'partnergegevens':
-      this.setState({step: 'gegevens'});
-      break;
-    case 'adresgegevens':
-      if (this.state.burgelijkestaat === 'Gehuwd' || this.state.burgelijkestaat === 'Partner') {
-        this.setState({step: 'partnergegevens'});
-      } else {
-        this.setState({step: 'gegevens'});
-      }
-      break;
-    case 'betaalgegevens':
-      this.setState({step: 'adresgegevens'});
-      break;
-    case 'controleer':
-      this.setState({step: 'betaalgegevens'});
     }
   }
 
   handleChange(event) {
-    console.log("event.target.name: "+event.target.name);
-    console.log("event.target.value: "+event.target.value);
     this.setState({[event.target.name]: event.target.value});
   };
 
@@ -263,8 +72,6 @@ class RegistrationForm extends Component {
         <Schenking
           {...this.state}
           handleChange={this.handleChange.bind(this)}
-          handleValidation={this.handleValidation.bind(this)}
-          next={this.next.bind(this)}
         />
       </div>;
     case 'gegevens':
@@ -275,8 +82,6 @@ class RegistrationForm extends Component {
           handleChange={this.handleChange.bind(this)}
           handleDateChange={this.handleDateChange.bind(this)}
           handleFirstNamesChange={this.handleFirstNamesChange.bind(this)}
-          next={this.next.bind(this)}
-          prev={this.prev.bind(this)}
         />
       </div>;
     case 'partnergegevens':
@@ -286,8 +91,6 @@ class RegistrationForm extends Component {
           {...this.state}
           handleChange={this.handleChange.bind(this)}
           handleDateChange={this.handleDateChange.bind(this)}
-          next={this.next.bind(this)}
-          prev={this.prev.bind(this)}
         />
       </div>;
     case 'adresgegevens':
@@ -309,8 +112,7 @@ class RegistrationForm extends Component {
     case 'controleer':
       return <Controleer
         {...this.state}
-        next={this.next.bind(this)}
-        prev={this.prev.bind(this)}
+        handleChange={this.handleChange.bind(this)}
       />;
     case 'bevestiging':
       return <Bevestiging/>;

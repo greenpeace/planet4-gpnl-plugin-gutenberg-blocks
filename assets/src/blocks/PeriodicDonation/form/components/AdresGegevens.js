@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
 import InputField from '../../../../components/forms/InputField';
-import {isValidString, isValidEmail} from '../../../../components/forms/Validators';
+import {isValidString, isValidEmail, isValidAny} from '../../../../components/forms/Validators';
 
 export default class AdresGegevens extends Component {
   constructor(props) {
@@ -100,7 +100,7 @@ export default class AdresGegevens extends Component {
           value={telefoonnummer}
           placeholder={'0612345678'}
           onChange={handleChange}
-          isValid={isValidString(telefoonnummer, 10, 16)}
+          isValid={isValidAny(telefoonnummer, 10, 16)}
           errorMessage={'Vul alsjeblieft je telefoonnummer in.'}
         />
 
@@ -126,7 +126,7 @@ export default class AdresGegevens extends Component {
             className="btn btn-next"
             onClick={this.handleNextClick}
             name={'step'}
-            value={'adresgegevens'}
+            value={'betaalgegevens'}
           >
             Volgende
           </button>

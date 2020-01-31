@@ -7,21 +7,24 @@ export function isValidNumber(number, min = null, max = null) {
   if (isNaN(number) || min && number < min || max && number > max){
     return false;
   }
-
 }
 
 // Check if value is a string (not a number). By default a minimum length of 1 characters is required.
 export function isValidString(value, minLength = 1, maxLength = null) {
-
   if (!isNaN(value) || value.length < minLength || maxLength && value.length > maxLength){
     return false;
   }
+}
 
+// Check if value is a string (not a number). By default a minimum length of 1 characters is required.
+export function isValidAny(value, minLength = 1, maxLength = null) {
+  if (value.length < minLength || maxLength && value.length > maxLength){
+    return false;
+  }
 }
 
 // Simply checking if the field is not empty
 export function isValidNotEmpty(value) {
-
   if (value.length < 1) {
     return false;
   }
@@ -33,7 +36,7 @@ export function isValidEmail(email) {
 }
 
 /*
-* Returns 1 if the IBAN is valid
+* Returns 1 if the IBAN is valid. Whitespaces are not counted as characters.
 * Returns FALSE if the IBAN's length is not as should be (for CY the IBAN Should be 28 chars long starting with CY )
 * Returns any other number (checksum) when the IBAN is invalid (check digits do not match)
 */

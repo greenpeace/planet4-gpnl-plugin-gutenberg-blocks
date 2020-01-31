@@ -39,10 +39,8 @@ export default class BetaalGegevens extends Component {
 
     const {rekeningnummer, betalingstermijn, handleChange} = this.props;
 
-
     return (
       <div className="card">
-
         <InputField
           ref={this.getOrCreateRef('rekeningnummer')}
           propertyName={'rekeningnummer'}
@@ -52,7 +50,6 @@ export default class BetaalGegevens extends Component {
           isValid={isValidIban(rekeningnummer)}
           errorMessage={'Vul alsjeblieft een geldig IBAN rekeningnummer is.'}
         />
-
         <RadioGroup
           ref={this.getOrCreateRef('betalingstermijn')}
           propertyName={'betalingstermijn'}
@@ -67,25 +64,6 @@ export default class BetaalGegevens extends Component {
           isValid={isValidNotEmpty(betalingstermijn)}
           errorMessage={'Vul alsjeblieft je gewenste betalingstermijn in.'}
         />
-
-        {/*<label htmlFor={'betalingstermijn'}>Betalingstermijn</label>*/}
-        {/*<div id={'betalingstermijn'} className="radio-inline-group">*/}
-        {/*  <input className="form-check-input" type="radio" name="betalingstermijn" id="Maand" value="Maand"*/}
-        {/*         onChange={handleChange} checked={betalingstermijn === 'Maand'}/>*/}
-        {/*  <label className="form-check-label" htmlFor="Maand">Maandelijks</label>*/}
-
-        {/*  <input className="form-check-input" type="radio" name="betalingstermijn" id="Kwartaal" value="Kwartaal"*/}
-        {/*         onChange={handleChange} checked={betalingstermijn === 'Kwartaal'}/>*/}
-        {/*  <label className="form-check-label" htmlFor="Kwartaal">Elke drie maanden</label>*/}
-
-        {/*  <input className="form-check-input" type="radio" name="betalingstermijn" id="Semester" value="Semester"*/}
-        {/*         onChange={handleChange} checked={betalingstermijn === 'Semester'}/>*/}
-        {/*  <label className="form-check-label" htmlFor="Semester">Elk half jaar</label>*/}
-
-        {/*  <input className="form-check-input" type="radio" name="betalingstermijn" id="Jaar" value="Jaar"*/}
-        {/*         onChange={handleChange} checked={betalingstermijn === 'Jaar'}/>*/}
-        {/*  <label className="form-check-label" htmlFor="Jaar">Jaarlijks</label>*/}
-        {/*</div>*/}
 
         <div className="form-group">
           <button
