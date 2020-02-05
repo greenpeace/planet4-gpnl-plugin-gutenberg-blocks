@@ -51,7 +51,7 @@ export default class AdresGegevens extends Component {
               placeholder={'1234XX'}
               value={postcode}
               onChange={handleChange}
-              isValid={isValidString(postcode, 6, 7)}
+              isValid={isValidString(postcode, 6, 6)}
               errorMessage={'Vul alsjeblieft je postcode in. Bijvoorbeeld "1234XX"'}
             />
           </div>

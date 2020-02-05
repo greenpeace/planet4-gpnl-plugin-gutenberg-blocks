@@ -1,8 +1,10 @@
 // Return false (not valid) if not a number of not within optional min-max range.
-export function isValidNumber(number, min = null, max = null) {
+export function isValidNumber(number, min = null, max = null, removeWhiteSpace = true) {
 
   // Replace comma with dot.
-  number = number.replace(/,/g, '.')
+  number = number.replace(/,/g, '.');
+
+  removeWhiteSpace === true ? number = number.replace(/\s+/g, '') : '';
 
   if (isNaN(number) || min && number < min || max && number > max){
     return false;
@@ -10,14 +12,20 @@ export function isValidNumber(number, min = null, max = null) {
 }
 
 // Check if value is a string (not a number). By default a minimum length of 1 characters is required.
-export function isValidString(value, minLength = 1, maxLength = null) {
+export function isValidString(value, minLength = 1, maxLength = null, removeWhiteSpace = true) {
+
+  removeWhiteSpace === true ? value = value.replace(/\s+/g, '') : '';
+
   if (!isNaN(value) || value.length < minLength || maxLength && value.length > maxLength){
     return false;
   }
 }
 
-// Check if value is a string (not a number). By default a minimum length of 1 characters is required.
-export function isValidAny(value, minLength = 1, maxLength = null) {
+// Check if value is a string or a number. By default a minimum length of 1 characters is required.
+export function isValidAny(value, minLength = 1, maxLength = null, removeWhiteSpace = true) {
+
+  removeWhiteSpace === true ? value = value.replace(/\s+/g, '') : '';
+
   if (value.length < minLength || maxLength && value.length > maxLength){
     return false;
   }
@@ -25,6 +33,7 @@ export function isValidAny(value, minLength = 1, maxLength = null) {
 
 // Simply checking if the field is not empty
 export function isValidNotEmpty(value) {
+
   if (value.length < 1) {
     return false;
   }
