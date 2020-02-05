@@ -26,7 +26,20 @@ class PeriodicDonation extends Base_Block {
 			[
 				'editor_script'   => 'planet4-gpnl-blocks',
 				'render_callback' => [ $this, 'render' ],
-				'attributes'      => [],
+				'attributes'      => [
+					'title'                      => [
+						'type'    => 'string',
+						'default' => '',
+					],
+					'description'                => [
+						'type'    => 'string',
+						'default' => '',
+					],
+					'marketingCode'    => [
+						'type'    => 'string',
+						'default' => 'TODO: ////',
+					],
+				],
 			]
 		);
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_if_block_is_present' ] );
