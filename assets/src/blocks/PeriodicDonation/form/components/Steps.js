@@ -11,7 +11,7 @@ class Steps extends Component {
         <div className={'tab'}>
 
           <svg height="24" width="24">
-            <image href={'/wp-content/plugins/planet4-gpnl-plugin-gutenberg-blocks/public/images/icons/partner.svg'} height={'100%'} width={'100%'} />
+            <image href={'/wp-content/plugins/planet4-gpnl-plugin-gutenberg-blocks/public/images/icons/partner' + (this.props.step === 'partnergegevens' ? '-white' : '') + '.svg'} height={'100%'} width={'100%'} />
           </svg>
 
         </div>
@@ -24,12 +24,9 @@ class Steps extends Component {
         <div className={'col ' + (this.props.step === 'schenking' ? 'active' : '')}>
           <div className={'tab'}>
 
-            {/*<svg width="200" height="200" >*/}
             <svg height="24" width="24">
-              <image href={'/wp-content/plugins/planet4-gpnl-plugin-gutenberg-blocks/public/images/icons/euro.svg'} height={'100%'} width={'100%'} />
+              <image href={'/wp-content/plugins/planet4-gpnl-plugin-gutenberg-blocks/public/images/icons/euro' + (this.props.step === 'schenking' ? '-white' : '') + '.svg'} height={'100%'} width={'100%'} />
             </svg>
-
-            {/*<img src= height={'24'}/>*/}
 
           </div>
           <span>1. Schenking</span>
@@ -39,7 +36,7 @@ class Steps extends Component {
 
 
             <svg height="24" width="24">
-              <image href={'/wp-content/plugins/planet4-gpnl-plugin-gutenberg-blocks/public/images/icons/user.svg'} height={'100%'} width={'100%'} />
+              <image href={'/wp-content/plugins/planet4-gpnl-plugin-gutenberg-blocks/public/images/icons/user' + (this.props.step === 'gegevens' ? '-white' : '') + '.svg'} height={'100%'} width={'100%'} />
             </svg>
 
 
@@ -53,7 +50,7 @@ class Steps extends Component {
           <div className={'tab'}>
 
             <svg height="24" width="24">
-              <image href={'/wp-content/plugins/planet4-gpnl-plugin-gutenberg-blocks/public/images/icons/home.svg'} height={'100%'} width={'100%'} />
+              <image href={'/wp-content/plugins/planet4-gpnl-plugin-gutenberg-blocks/public/images/icons/home' + (this.props.step === 'adresgegevens' ? '-white' : '') + '.svg'} height={'100%'} width={'100%'} />
             </svg>
 
 
@@ -64,7 +61,7 @@ class Steps extends Component {
           <div className={'tab'}>
 
             <svg height="24" width="24">
-              <image href={'/wp-content/plugins/planet4-gpnl-plugin-gutenberg-blocks/public/images/icons/card.svg'} height={'100%'} width={'100%'} />
+              <image href={'/wp-content/plugins/planet4-gpnl-plugin-gutenberg-blocks/public/images/icons/card' + (this.props.step === 'betaalgegevens' ? '-white' : '') + '.svg'} height={'100%'} width={'100%'} />
             </svg>
 
           </div>

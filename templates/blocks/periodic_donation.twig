@@ -1,3 +1,15 @@
-<h1>Hier is je formulier:</h1>
-<div id="periodic-donation-form" class="form">
-</div>
+{% block periodic_donation %}
+	{% if ( fields ) %}
+		{% if ( fields.title ) %}
+			<section class="block period-donation">
+			<h2 class="page-section-header"> {{ fields.title }}</h2>
+		{% endif %}
+		{% if ( fields.description ) %}
+			<div class="donationdescription">
+				<p class="page-section-description">{{ fields.description|raw }}</p>
+			</div>
+		{% endif %}
+		<div id="periodic-donation-form" class="form"></div>
+		</section>
+	{% endif %}
+{% endblock %}

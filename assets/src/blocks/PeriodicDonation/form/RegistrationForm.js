@@ -10,7 +10,7 @@ import AdresGegevens from './components/AdresGegevens';
 import BetaalGegevens from './components/BetaalGegevens';
 
 
-class RegistrationForm extends Component {
+export default class RegistrationForm extends Component {
 
   constructor() {
     super();
@@ -121,5 +121,3 @@ class RegistrationForm extends Component {
     }
   }
 }
-
-export default RegistrationForm;
