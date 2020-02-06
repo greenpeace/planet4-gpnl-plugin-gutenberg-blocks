@@ -8,7 +8,6 @@
  * @since 0.1
  */
 
-// TODO: Make the Vue form render!
 namespace P4NL_GB_BKS\Blocks;
 
 use P4NL_GB_BKS\Services\Asset_Enqueuer;
@@ -229,7 +228,7 @@ function get_address_donation_form() {
 	$data = wp_json_encode( $data_array );
 
 	// URL for production
-	$url = $options['register_url'] . '/validate/postcode';
+	$url = $options['register_url'] . '/validate/postcode?api_key='.$options['gpnl_api_key'];
 
 	$curl = curl_init( $url );
 
@@ -283,9 +282,9 @@ function validate_zipcode_donation_form( $zipcode ) {
 }
 
 // call php function whenever the ajax call is made to get the address for non-logged in users
-add_action( 'wp_ajax_nopriv_get_address_donation_form', 'P4NLBKS\Controllers\Blocks\get_address_donation_form' );
+add_action( 'wp_ajax_nopriv_get_address_donation_form', 'P4NL_GB_BKS\Blocks\get_address_donation_form' );
 // call php function whenever the ajax call is made to get the address for logged in users
-add_action( 'wp_ajax_get_address_donation_form', 'P4NLBKS\Controllers\Blocks\get_address_donation_form' );
+add_action( 'wp_ajax_get_address_donation_form', 'P4NL_GB_BKS\Blocks\get_address_donation_form' );
 
 /**
  * Store donation for analytics
@@ -317,9 +316,9 @@ function cache_donation() {
 
 
 // call php function whenever the ajax call is made to get the address for non-logged in users
-add_action( 'wp_ajax_nopriv_cache_donation', 'P4NLBKS\Controllers\Blocks\cache_donation' );
+add_action( 'wp_ajax_nopriv_cache_donation', 'P4NL_GB_BKS\Blocks\cache_donation' );
 // call php function whenever the ajax call is made to get the address for logged in users
-add_action( 'wp_ajax_cache_donation', 'P4NLBKS\Controllers\Blocks\cache_donation' );
+add_action( 'wp_ajax_cache_donation', 'P4NL_GB_BKS\Blocks\cache_donation' );
 
 /**
  * Store donation for analytics
