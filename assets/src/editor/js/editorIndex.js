@@ -33,3 +33,9 @@ new LiveblogBlock();
 
 import { CollapsibleBlock } from "../../blocks/Collapsible/js/CollapsibleBlock";
 new CollapsibleBlock();
+
+import { PdfEmbedBlock } from "../../blocks/PdfEmbed/js/PdfEmbedBlock";
+new PdfEmbedBlock();
+
+import { FacebookCommentsBlock } from "../../blocks/FacebookComments/js/FacebookCommentsBlock";
+new FacebookCommentsBlock();

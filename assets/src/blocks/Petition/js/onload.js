@@ -11,6 +11,7 @@ $(document).ready(function() {
 
   let clangct=getUrlVars()['clangct'];
 
+  // TODO Reference to old-plugin
   if(clangct != undefined){
     $.ajax({
       url: '/wp-content/plugins/planet4-gpnl-plugin-blocks/includes/assets/js/clang-landing.js?clangct='+clangct,
@@ -58,6 +59,26 @@ $(document).ready(function() {
     this.counter_min = Number(window[form_config].countermin);
     this.counter_max = Number(window[form_config].countermax);
     this.counter_text = window[form_config].countertext;
+
+    let url_vars = {
+      'marketingcode'       : getUrlVars()['mcode'],
+      'literaturecode'      : getUrlVars()['lcode'],
+    };
+
+    $.each(url_vars, function(key, value){
+      if (value !== undefined){
+        switch (key) {
+          case 'marketingcode':
+            $(form).find('input[name=\'marketingcode\']').val(value);
+            break;
+          case 'literaturecode':
+            $(form).find('input[name=\'literaturecode\']').val(value);
+            break;
+        }
+      }
+    });
+
+
 
     let form_disabled = $(form).find(':submit').prop('disabled');
 

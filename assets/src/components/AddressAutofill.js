@@ -5,7 +5,6 @@ $(document).ready(function () {
   // this will get the address object that is inserted with the wp_localize_script() function in the controller
   var address_object = 'get_address_object';
 
-
   var zipcodeInput = document.getElementById('postal-code');
   var houseNoInput = document.getElementById('housenumber');
 
@@ -39,6 +38,9 @@ $(document).ready(function () {
           streetInput.val(t.data.cUrlresult.result.straat);
           cityInput.val(t.data.cUrlresult.result.woonplaats);
 
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+          alert(thrownError+'. Status code: '+ xhr.status);
         }
       });
 

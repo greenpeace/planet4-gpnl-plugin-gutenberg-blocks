@@ -263,7 +263,7 @@ function get_address() {
 
 	// Get data from form and validate
 	$zipcode = wp_strip_all_tags( $_POST['zipcode'] );
-	\P4NLBKS\Controllers\Blocks\validate_zipcode( $zipcode ) or die();
+	\P4NL_GB_BKS\Blocks\validate_zipcode( $zipcode ) or die();
 	$house_no = wp_strip_all_tags( $_POST['house_no'] );
 	is_numeric($house_no) or die();
 
@@ -276,7 +276,7 @@ function get_address() {
 	$data = wp_json_encode( $data_array );
 
 	// URL for production
-	$url = $options['register_url'] . '/validate/postcode';
+	$url = $options['register_url'] . '/validate/postcode?api_key='.$options['gpnl_api_key'];
 
 	$curl = curl_init( $url );
 
@@ -305,6 +305,7 @@ function get_address() {
 	if ( false === $result || 200 !== $http_code ) {
 		wp_send_json_error(
 			[
+				'url' => $url,
 				'statuscode' => $http_code,
 			],
 			$http_code
@@ -359,11 +360,11 @@ function validate_zipcode($zipcode)
 }
 
 // use this version for if you want the callback to work for users who are logged in
-add_action( 'wp_ajax_check_form_process', 'P4NLBKS\Controllers\Blocks\check_form_process' );
+add_action( 'wp_ajax_check_form_process', 'P4NL_GB_BKS\Blocks\check_form_process' );
 // use this version for if you want the callback to work for users who are not logged in
-add_action( 'wp_ajax_nopriv_check_form_process', 'P4NLBKS\Controllers\Blocks\check_form_process' );
+add_action( 'wp_ajax_nopriv_check_form_process', 'P4NL_GB_BKS\Blocks\check_form_process' );
 
 // call php function whenever the ajax call is made to get the address for non-logged in users
-add_action( 'wp_ajax_nopriv_get_address', 'P4NLBKS\Controllers\Blocks\get_address' );
+add_action( 'wp_ajax_nopriv_get_address', 'P4NL_GB_BKS\Blocks\get_address' );
 // call php function whenever the ajax call is made to get the address for logged in users
-add_action( 'wp_ajax_get_address', 'P4NLBKS\Controllers\Blocks\get_address' );
+add_action( 'wp_ajax_get_address', 'P4NL_GB_BKS\Blocks\get_address' );
