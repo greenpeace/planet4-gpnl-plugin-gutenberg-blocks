@@ -1,0 +1,55 @@
+@import "../../../base/base.scss";
+@import "../../../base/variables_gpnl.scss";
+
+.block-testimonial {
+  padding: 0 15px;
+  display: block;
+  clear: both;
+  width: 100%;
+  color: $black;
+
+  .title {
+    width: 100%;
+    font-size: 1.4rem;
+    display: block;
+  }
+
+  .name {
+    display: block;
+    margin-bottom: 10px;
+
+    @include small-and-up {
+      margin-bottom: 2px;
+    }
+    }
+
+  .image-container {
+    width: 100%;
+
+    @include small-and-up {
+      width: 40%;
+      float: left;
+      margin-right: 15px;
+    }
+
+      @include medium-and-up {
+      width: 35%;
+    }
+
+    @include large-and-up {
+      width: 25%;
+    }
+
+    @include x-large-and-up {
+      width: 20%;
+    }
+  }
+
+  @include small-and-up {
+    padding: 0;
+  }
+
+  @include large-and-up {
+    //height: 190px !important;
+  }
+}
