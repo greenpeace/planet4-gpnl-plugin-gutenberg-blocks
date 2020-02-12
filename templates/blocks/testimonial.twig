@@ -1,8 +1,6 @@
 {% block testimonial %}
-
 	{% if ( fields  ) %}
-
-		<div class="block container block-testimonial" style="background-color: red">
+		<section class="block block-testimonial">
 			<h4 class="title">{{ fields.title }}</h4>
 			<div class="image-container"{{ fields.image_right == true ? 'style="float: right; margin: 0 0 0 15px"' : '' }}>
 			<img src="{{ fields.image_url }}"
@@ -10,15 +8,10 @@
 				 srcset="{{ fields.image_srcset }}"
 				 alt="{{ fields.image_alt_text }}"
 			>
-
 			<em class="name">{{ fields.name }}</em>
 			</div>
-
-
 			<span>{{ fields.content }}</span>
-			{{ fields.image_right }}
-		</div>
-
-
+			<p style="clear:both"></p>
+		</section>
 	{% endif %}
 {% endblock %}

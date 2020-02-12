@@ -2,9 +2,9 @@
 @import "../../../base/variables_gpnl.scss";
 
 .block-testimonial {
+  margin: 16px 0;
   padding: 0 15px;
   display: block;
-  clear: both;
   width: 100%;
   color: $black;
 
@@ -23,8 +23,10 @@
     }
     }
 
+
   .image-container {
     width: 100%;
+    clear: both;
 
     @include small-and-up {
       width: 40%;
