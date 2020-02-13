@@ -244,167 +244,169 @@ class Petition extends Base_Block {
 
 	}
 
-}
+	/**
+	 * AJAX callback for the frontend code for submitting petition data
+	 *
+	 * @return void
+	 */
+	public function petition_form_process() {
+		if ( ! defined( $_POST ) ) {
+			return;
+		}
+		$nonce        = htmlspecialchars( wp_strip_all_tags( $_POST['nonce'] ) );
+		$key_in_cache = wp_cache_get( $nonce, 'gpnl_cache' );
+		if ( ! $key_in_cache ) {
+			wp_send_json_error(
+				[
+					'statuscode' => 400,
+				],
+				500
+			);
+		}
+		wp_cache_delete( $nonce, 'gpnl_cache' );
 
-/**
- * AJAX callback for the frontend code for submitting petition data
- *
- * @return void
- */
-function petition_form_process() {
-	if ( ! defined( $_POST ) ) {
-		return;
-	}
-	$nonce        = htmlspecialchars( wp_strip_all_tags( $_POST['nonce'] ) );
-	$key_in_cache = wp_cache_get( $nonce, 'gpnl_cache' );
-	if ( ! $key_in_cache ) {
-		wp_send_json_error(
+		$_POST          = wp_unslash( $_POST );
+		$marketingcode  = htmlspecialchars( wp_strip_all_tags( $_POST['marketingcode'] ) );
+		$literatuurcode = htmlspecialchars( wp_strip_all_tags( $_POST['literaturecode'] ) );
+
+		// Get and sanitize the formdata
+		$naam        = wp_strip_all_tags( $_POST['name'] );
+		$email       = wp_strip_all_tags( $_POST['mail'] );
+		$phonenumber = $this->validate_phonenumber( wp_strip_all_tags( $_POST['phone'] ) );
+
+		$known = $this->check_known( 'mail', $email );
+		$mail  = $known['response'];
+		if ( intval( $known['code'] ) >= 400 ) {
+			$mail = $known['code'];
+		}
+
+		$known = $this->check_known( 'telnr', $phonenumber );
+		$tel   = $known['response'];
+		if ( intval( $known['code'] ) >= 400 ) {
+			$tel = $known['code'];
+		}
+
+		// Flip the consent checkbox
+		$consent = htmlspecialchars( wp_strip_all_tags( $_POST['consent'] ) );
+		$consent = ( 'on' === $consent ? 0 : 1 );
+
+		$data_array = [
+			'source' => $marketingcode,
+			'per'    => $literatuurcode,
+			'fn'     => $naam,
+			'email'  => $email,
+			'tel'    => $phonenumber,
+			'stop'   => $consent,
+		];
+
+		$options     = get_option( 'planet4nl_options' );
+		$baseurl     = $options['petitionpixel_url'];
+		$querystring = http_build_query( $data_array );
+
+		// initiate a cUrl request to the database.
+		// phpcs:disable
+		$request = curl_init( $baseurl . $querystring );
+		curl_setopt( $request, CURLOPT_FOLLOWLOCATION, 1 );
+		curl_setopt( $request, CURLOPT_HEADER, 0 );
+		curl_setopt( $request, CURLOPT_RETURNTRANSFER, 1 );
+
+		$result   = curl_exec( $request );
+		$httpcode = intval( curl_getinfo( $request, CURLINFO_HTTP_CODE ) );
+		curl_close( $request );
+		// phpcs:enable
+
+		// Give the appropriate response to the frontend.
+		if ( $httpcode >= 400 || false === $result ) {
+			wp_send_json_error(
+				[
+					'statuscode' => $httpcode,
+				],
+				500
+			);
+		}
+		wp_send_json_success(
 			[
-				'statuscode' => 400,
+				'statuscode'     => $httpcode,
+				'phonesanitized' => $phonenumber,
+				'mailresult'     => $mail,
+				'phoneresult'    => $tel,
 			],
-			500
+			200
 		);
 	}
-	wp_cache_delete( $nonce, 'gpnl_cache' );
 
-	$_POST          = wp_unslash( $_POST );
-	$marketingcode  = htmlspecialchars( wp_strip_all_tags( $_POST['marketingcode'] ) );
-	$literatuurcode = htmlspecialchars( wp_strip_all_tags( $_POST['literaturecode'] ) );
+	/**
+	 * Make sure the submitted phonenumber complies with the database requirements
+	 *
+	 * @param string $phonenumber The submitted data.
+	 *
+	 * @return string $phonenumber The validated data
+	 */
+	function validate_phonenumber( $phonenumber ) : string {
+		// Accept only numeric characters in the phonenumber.
+		$phonenumber = preg_replace( '/[^0-9]/', '', $phonenumber );
 
-	// Get and sanitize the formdata
-	$naam        = wp_strip_all_tags( $_POST['name'] );
-	$email       = wp_strip_all_tags( $_POST['mail'] );
-	$phonenumber = validate_phonenumber( wp_strip_all_tags( $_POST['phone'] ) );
+		// Remove countrycode from phonenumber.
+		if ( strlen( $phonenumber ) === 13 && ! strpos( $phonenumber, '0031' ) ) {
+			$phonenumber = substr( $phonenumber, 2 );
+		}
+		if ( strlen( $phonenumber ) === 11 && ! strpos( $phonenumber, '31' ) ) {
+			$phonenumber = str_replace( '31', '0', $phonenumber );
+		}
 
-	$known = check_known( 'mail', $email );
-	$mail  = $known['response'];
-	if ( intval( $known['code'] ) >= 400 ) {
-		$mail = $known['code'];
+		// Accept only phonenumbers of 10 characters long.
+		$phonenumber = ( strlen( $phonenumber ) === 10 ? $phonenumber : '' );
+
+		return $phonenumber;
 	}
 
-	$known = check_known( 'telnr', $phonenumber );
-	$tel   = $known['response'];
-	if ( intval( $known['code'] ) >= 400 ) {
-		$tel = $known['code'];
-	}
+	/**
+	 *  Checks whether the submitted data is already present in the backend.
+	 *
+	 * @param string $request The case (phone/mail) which should be processed.
+	 * @param string $data The data to be checked.
+	 *
+	 * @return array Return an array indicating if the data was already present
+	 */
+	function check_known( $request, $data ) {
+		$options  = get_option( 'planet4nl_options' );
+		$base_url = '';
 
-	// Flip the consent checkbox
-	$consent = htmlspecialchars( wp_strip_all_tags( $_POST['consent'] ) );
-	$consent = ( 'on' === $consent ? 0 : 1 );
+		switch ( $request ) {
+			case 'mail':
+				$base_url = $options['knownemail_url'];
+				break;
+			case 'telnr':
+				$base_url = $options['knownphone_url'];
+				break;
+		}
 
-	$data_array = [
-		'source' => $marketingcode,
-		'per'    => $literatuurcode,
-		'fn'     => $naam,
-		'email'  => $email,
-		'tel'    => $phonenumber,
-		'stop'   => $consent,
-	];
+		$url             = $base_url . '?' . $request . '=' . rawurlencode( $data );
+		$args['headers'] = [
+			'Origin' => 'https://www.greenpeace.org',
+		];
 
-	$options     = get_option( 'planet4nl_options' );
-	$baseurl     = $options['petitionpixel_url'];
-	$querystring = http_build_query( $data_array );
-
-	// initiate a cUrl request to the database.
-	// phpcs:disable
-	$request = curl_init( $baseurl . $querystring );
-	curl_setopt( $request, CURLOPT_FOLLOWLOCATION, 1 );
-	curl_setopt( $request, CURLOPT_HEADER, 0 );
-	curl_setopt( $request, CURLOPT_RETURNTRANSFER, 1 );
-
-	$result   = curl_exec( $request );
-	$httpcode = intval( curl_getinfo( $request, CURLINFO_HTTP_CODE ) );
-	curl_close( $request );
-	// phpcs:enable
-
-	// Give the appropriate response to the frontend.
-	if ( $httpcode >= 400 || false === $result ) {
-		wp_send_json_error(
-			[
-				'statuscode' => $httpcode,
-			],
-			500
-		);
-	}
-	wp_send_json_success(
-		[
-			'statuscode'     => $httpcode,
-			'phonesanitized' => $phonenumber,
-			'mailresult'     => $mail,
-			'phoneresult'    => $tel,
-		],
-		200
-	);
-
-}
-// Add AJAX callbacks for both logged-in and public users.
-add_action( 'wp_ajax_petition_form_process', 'P4NL_GB_BKS\Controllers\Blocks\petition_form_process' );
-add_action( 'wp_ajax_nopriv_petition_form_process', 'P4NL_GB_BKS\Controllers\Blocks\petition_form_process' );
-
-/**
- * Make sure the submitted phonenumber complies with the database requirements
- *
- * @param string $phonenumber The submitted data.
- *
- * @return string $phonenumber The validated data
- */
-function validate_phonenumber( $phonenumber ) : string {
-	// Accept only numeric characters in the phonenumber.
-	$phonenumber = preg_replace( '/[^0-9]/', '', $phonenumber );
-
-	// Remove countrycode from phonenumber.
-	if ( strlen( $phonenumber ) === 13 && ! strpos( $phonenumber, '0031' ) ) {
-		$phonenumber = substr( $phonenumber, 2 );
-	}
-	if ( strlen( $phonenumber ) === 11 && ! strpos( $phonenumber, '31' ) ) {
-		$phonenumber = str_replace( '31', '0', $phonenumber );
-	}
-
-	// Accept only phonenumbers of 10 characters long.
-	$phonenumber = ( strlen( $phonenumber ) === 10 ? $phonenumber : '' );
-
-	return $phonenumber;
-}
-
-/**
- *  Checks whether the submitted data is already present in the backend.
- *
- * @param string $request The case (phone/mail) which should be processed.
- * @param string $data The data to be checked.
- *
- * @return array Return an array indicating if the data was already present
- */
-function check_known( $request, $data ) {
-	$options  = get_option( 'planet4nl_options' );
-	$base_url = '';
-
-	switch ( $request ) {
-		case 'mail':
-			$base_url = $options['knownemail_url'];
-			break;
-		case 'telnr':
-			$base_url = $options['knownphone_url'];
-			break;
-	}
-
-	$url             = $base_url . '?' . $request . '=' . rawurlencode( $data );
-	$args['headers'] = [
-		'Origin' => 'https://www.greenpeace.org',
-	];
-
-	$response = wp_remote_get( $url, $args );
-	if ( is_array( $response ) ) {
-		$http_code = wp_remote_retrieve_response_code( $response );
-		$body      = substr( wp_remote_retrieve_body( $response ), 5 );
-		$success   = substr( $body, 0, strlen( $body ) - 2 );
-		$success   = 'true' === $success ? true : false;
+		$response = wp_remote_get( $url, $args );
+		if ( is_array( $response ) ) {
+			$http_code = wp_remote_retrieve_response_code( $response );
+			$body      = substr( wp_remote_retrieve_body( $response ), 5 );
+			$success   = substr( $body, 0, strlen( $body ) - 2 );
+			$success   = 'true' === $success ? true : false;
+			return [
+				'code'     => $http_code,
+				'response' => $success,
+			];
+		}
 		return [
-			'code'     => $http_code,
-			'response' => $success,
+			'code'     => 500,
+			'response' => null,
 		];
 	}
-	return [
-		'code'     => 500,
-		'response' => null,
-	];
+
+
+
 }
+
+// Add AJAX callbacks for both logged-in and public users.
+add_action( 'wp_ajax_petition_form_process', 'P4NL_GB_BKS\Blocks\Petition\petition_form_process' );
+add_action( 'wp_ajax_nopriv_petition_form_process', 'P4NL_GB_BKS\Blocks\Petition\petition_form_process' );
