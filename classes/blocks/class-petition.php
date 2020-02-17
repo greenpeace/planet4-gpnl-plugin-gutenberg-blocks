@@ -110,6 +110,8 @@ class Petition extends Base_Block {
 			]
 		);
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_if_block_is_present' ] );
+		add_action( 'wp_ajax_petition_form_process', [ $this, 'petition_form_process'] );
+		add_action( 'wp_ajax_nopriv_petition_form_process', [ $this, 'petition_form_process'] );
 	}
 
 	/**
@@ -406,7 +408,6 @@ class Petition extends Base_Block {
 
 
 }
-
+//\P4NL_GB_BKS\Blocks\Petition::petition_form_process
 // Add AJAX callbacks for both logged-in and public users.
-add_action( 'wp_ajax_petition_form_process', 'P4NL_GB_BKS\Blocks\Petition\petition_form_process' );
-add_action( 'wp_ajax_nopriv_petition_form_process', 'P4NL_GB_BKS\Blocks\Petition\petition_form_process' );
+
