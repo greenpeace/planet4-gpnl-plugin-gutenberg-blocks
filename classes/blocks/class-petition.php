@@ -252,7 +252,7 @@ class Petition extends Base_Block {
 	 * @return void
 	 */
 	public function petition_form_process() {
-		if ( ! defined( $_POST ) ) {
+		if ( ! isset( $_POST ) ) {
 			return;
 		}
 		$nonce        = htmlspecialchars( wp_strip_all_tags( $_POST['nonce'] ) );
