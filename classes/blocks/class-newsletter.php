@@ -236,7 +236,7 @@ function request_id() {
 	);
 }
 
-
+// TODO make reference to function as : [ $this, 'function']
 // use this version for if you want the callback to work for users who are logged in
 add_action( 'wp_ajax_request_id', 'P4NL_GB_BKS\Blocks\request_id' );
 // use this version for if you want the callback to work for users who are not logged in

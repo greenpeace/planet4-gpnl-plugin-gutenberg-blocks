@@ -247,7 +247,7 @@ function request_form_process() {
 		200
 	);
 }
-
+// TODO make reference to function as : [ $this, 'function']
 // use this version for if you want the callback to work for users who are logged in
 add_action( 'wp_ajax_request_form_process', 'P4NLBKS\Controllers\Blocks\request_form_process' );
 // use this version for if you want the callback to work for users who are not logged in
@@ -358,12 +358,12 @@ function validate_zipcode($zipcode)
 		return true;
 	}
 }
-
+// TODO make reference to function as : [ $this, 'function']
 // use this version for if you want the callback to work for users who are logged in
 add_action( 'wp_ajax_check_form_process', 'P4NL_GB_BKS\Blocks\check_form_process' );
 // use this version for if you want the callback to work for users who are not logged in
 add_action( 'wp_ajax_nopriv_check_form_process', 'P4NL_GB_BKS\Blocks\check_form_process' );
-
+// TODO make reference to function as : [ $this, 'function']
 // call php function whenever the ajax call is made to get the address for non-logged in users
 add_action( 'wp_ajax_nopriv_get_address', 'P4NL_GB_BKS\Blocks\get_address' );
 // call php function whenever the ajax call is made to get the address for logged in users

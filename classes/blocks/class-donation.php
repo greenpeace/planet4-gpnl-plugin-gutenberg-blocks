@@ -280,7 +280,7 @@ function validate_zipcode_donation_form( $zipcode ) {
 		return true;
 	}
 }
-
+// TODO make reference to function as : [ $this, 'function']
 // call php function whenever the ajax call is made to get the address for non-logged in users
 add_action( 'wp_ajax_nopriv_get_address_donation_form', 'P4NL_GB_BKS\Blocks\get_address_donation_form' );
 // call php function whenever the ajax call is made to get the address for logged in users
@@ -314,7 +314,7 @@ function cache_donation() {
 	);
 }
 
-
+// TODO make reference to function as : [ $this, 'function']
 // call php function whenever the ajax call is made to get the address for non-logged in users
 add_action( 'wp_ajax_nopriv_cache_donation', 'P4NL_GB_BKS\Blocks\cache_donation' );
 // call php function whenever the ajax call is made to get the address for logged in users
@@ -351,7 +351,7 @@ function get_donation() {
 	);
 }
 
-
+// TODO make reference to function as : [ $this, 'function']
 // call php function whenever the ajax call is made to get the address for non-logged in users
 add_action( 'wp_ajax_nopriv_get_donation', 'P4NLBKS\Controllers\Blocks\get_donation' );
 // call php function whenever the ajax call is made to get the address for logged in users
