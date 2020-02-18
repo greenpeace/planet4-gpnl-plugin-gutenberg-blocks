@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import RadioOption from './RadioOption';
 import SelectOption from './SelectOption';
-
 
 export default class SelectGroup extends Component {
   constructor(props) {
