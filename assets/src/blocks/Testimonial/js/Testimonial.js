@@ -78,6 +78,8 @@ export class Testimonial extends Component {
           className="content"
           placeholder="Vul de aanbeveling of ervaring in."
         />
+        <p style={{clear: 'both'}}></p>
+
 
         <InspectorControls>
           <PanelBody title={'Positie van de afbeelding'}>
@@ -88,7 +90,6 @@ export class Testimonial extends Component {
               onChange={handleValueChange.bind('image_right')}
             />
           </PanelBody>
-
         </InspectorControls>
 
       </section>
