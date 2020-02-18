@@ -12,15 +12,15 @@ import BetaalGegevens from './components/BetaalGegevens';
 
 export default class RegistrationForm extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       step: 'schenking',
-      marketingcode: '',
+      marketingcode: this.props.mcode,
       screenId: 0,
       bedrag: '',
       jaar: new Date().getFullYear(),
-      geslacht: '',
+      geslacht: 'V',
       initialen: '',
       voornamen: '',
       tussenvoegsel: '',
@@ -42,11 +42,19 @@ export default class RegistrationForm extends Component {
       achternaamPartner: '',
       geboortedatumPartner: '',
       geboorteplaatsPartner: '',
-    }
+      machtiging: true
+    };
   }
 
-  handleChange(event) {
-    this.setState({[event.target.name]: event.target.value});
+  handleChange(event, type = 'string') {
+
+    let value = event.target.value;
+
+    if (type === 'boolean' ) {
+      value = value !== "false";
+    }
+
+    this.setState({[event.target.name]: value});
   };
 
   // This function sets the firstnames to the correct value and generates the initials with a dot (.).

@@ -113,7 +113,7 @@ export default class AdresGegevens extends Component {
           errorMessage={'Vul alsjeblieft een geldig emailadres in.'}
         />
 
-        <div className="form-group">
+        <div>
           <button
             className="btn btn-previous"
             onClick={handleChange}

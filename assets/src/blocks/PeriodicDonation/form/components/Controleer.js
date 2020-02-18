@@ -60,7 +60,7 @@ export default class Controleer extends Component {
 
               </tbody>
             </table>
-            <div className="form-group">
+            <div>
               <button
                 className="btn btn-previous"
                 onClick={this.props.handleChange}

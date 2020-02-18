@@ -100,7 +100,7 @@ export default class PartnerGegevens extends Component {
           {this.state.geboortedatumPartnerError && <span className="error-message"> {this.state.geboortedatumPartnerError} </span>}
         </div>
 
-        <div className="form-group">
+        <div>
           <button
             className="btn btn-previous"
             onClick={handleChange}

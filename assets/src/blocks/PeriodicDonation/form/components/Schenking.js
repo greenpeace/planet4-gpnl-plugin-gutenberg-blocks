@@ -49,7 +49,7 @@ export default class Schenking extends Component {
           </select>
         </div>
 
-        <div className="form-group">
+        <div>
           <button
             className="btn btn-next"
             onClick={this.handleNextClick}

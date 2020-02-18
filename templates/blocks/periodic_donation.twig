@@ -9,7 +9,7 @@
 				<p class="page-section-description">{{ fields.description|raw }}</p>
 			</div>
 		{% endif %}
-		<div id="periodic-donation-form" class="form"></div>
+		<div id="periodic-donation-form" data-mcode="{{ fields.marketingCode }}" data-requestedItemId="{{ fields.marketingCode }}" class="form col-md-8 col-lg-6"></div>
 		</section>
 	{% endif %}
 {% endblock %}

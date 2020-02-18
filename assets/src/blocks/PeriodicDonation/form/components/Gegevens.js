@@ -64,15 +64,15 @@ export default class Gegevens extends Component {
     return (
       <div className="card">
 
-        <RadioGroup
+        <SelectGroup
           ref={this.getOrCreateRef('geslacht')}
           propertyName={'geslacht'}
+          label={'Aanhef'}
           value={geslacht}
           onChange={handleChange}
-          errors={errors}
-          options={{1: {value: 'V', label: 'Vrouw'}, 2: {value: 'M', label: 'Man'}, 3: {value: 'O', label: 'Anders'}}}
+          options={{1: {value: 'V', label: 'Mevrouw'}, 2: {value: 'M', label: 'Meneer'}, 3: {value: 'O', label: 'N.v.t.'}}}
           isValid={isValidNotEmpty(geslacht)}
-          errorMessage={'Vul alsjeblieft je geslacht in.'}
+          errorMessage={'Vul alsjeblieft je aanhef in.'}
         />
 
         <InputField
@@ -141,7 +141,7 @@ export default class Gegevens extends Component {
           errorMessage={'Vul alsjeblieft je burgelijke staat in.'}
         />
 
-        <div className="form-group">
+        <div>
           <button
             className="btn btn-previous"
             onClick={handleChange}
