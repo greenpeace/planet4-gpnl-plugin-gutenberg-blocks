@@ -73,14 +73,12 @@ export class PeriodicDonationBlock extends BaseBlock {
                 />
                 <TextControl
                   label={'Marketingcode'}
-                  onChange={onValueChange.bind('marketingcode')}
+                  onChange={onValueChange.bind('marketingCode')}
                   value={attributes.marketingCode}
                 />
               </div>,
               <Preview showBar={isSelected}>
-
                 {serverRender}
-
               </Preview>
             ]
           )
