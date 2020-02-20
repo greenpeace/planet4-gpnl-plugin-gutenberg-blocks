@@ -18,6 +18,12 @@
 			"email": "dfaber@greenpeace.org"
 		}
 	],
+	"repositories": [
+		{
+			"url": "https://github.com/greenpeace/gpnl-database-interface.git",
+			"type": "git"
+		}
+	],
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.5",
     "wp-coding-standards/wpcs": "^2.1.0",
@@ -26,7 +32,9 @@
     "phpunit/phpunit": "^6.2",
     "phpmd/phpmd": "^2.7"
   },
-  "require": {},
+  "require": {
+		"greenpeace/gpnl-database-interface": "dev-develop"
+	},
   "scripts": {
     "fixes": "vendor/bin/phpcbf",
     "sniffs": "vendor/bin/phpcs"
