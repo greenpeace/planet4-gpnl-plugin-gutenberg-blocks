@@ -71,7 +71,7 @@ export default class Controleer extends Component {
               </button>
               <button
                 className="btn btn-next"
-                onClick={this.props.handleChange}
+                onClick={this.props.handleFormSubmit}
                 name={'step'}
                 value={'bevestiging'}
               >

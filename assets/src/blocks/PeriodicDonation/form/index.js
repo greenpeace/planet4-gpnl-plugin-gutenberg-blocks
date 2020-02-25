@@ -7,7 +7,6 @@ import './styles/form.scss'
 import 'react-datepicker/dist/react-datepicker.css';
 import 'react-datepicker/dist/react-datepicker.css';
 
-
 var root = document.getElementById('periodic-donation-form');
 ReactDOM.render(<RegistrationForm {...(root.dataset)} />, root);
 

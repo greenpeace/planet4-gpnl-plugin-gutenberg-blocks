@@ -72,6 +72,30 @@ export default class RegistrationForm extends Component {
   };
 
 
+  handleFormSubmit(){
+    jQuery.ajax({
+      type: "POST",
+      data: {
+        action: 'periodic_donation_form_process', // This is the action in your server-side code (PHP) that will be triggered
+        state: this.state
+      },
+      url: window.p4nl_vars.ajaxurl,
+      success: function(result)
+      {
+        console.log(result);
+      },
+      error:function (xhr, statusText, thrownError) {
+        console.log(xhr);
+        console.log(xhr.status);
+        console.log(statusText);
+        console.log(thrownError);
+      }
+    });
+  }
+
+
+
+
   render() {
     switch (this.state.step) {
     case 'schenking':
@@ -120,6 +144,7 @@ export default class RegistrationForm extends Component {
     case 'controleer':
       return <Controleer
         {...this.state}
+        handleFormSubmit={this.handleFormSubmit.bind(this)}
         handleChange={this.handleChange.bind(this)}
       />;
     case 'bevestiging':
