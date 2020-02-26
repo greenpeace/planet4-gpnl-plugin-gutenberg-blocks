@@ -17,15 +17,30 @@ export default class Controleer extends Component {
 
       const betalingstermijn = () => {
         switch (this.props.betalingstermijn){
-        case 'maand':
+        case 'Maand':
           return 'Maandelijks';
-        case 'kwartaal':
+        case 'Kwartaal':
           return 'Elke 3 maanden';
-        case 'semester':
+        case 'Semester':
           return 'Elk half jaar';
-        case 'jaar':
+        case 'Jaar':
           return 'Jaarlijks';
         }
+      };
+
+      const confirmButton = () => {
+        const buttonValue = this.props.isSubmitting ?  <span className={'loader'}/> : 'Bevestig';
+
+        return (
+          <button
+          className="btn btn-next"
+          onClick={this.props.handleFormSubmit}
+          name={'step'}
+          value={'bevestiging'}
+        >
+            {buttonValue}
+        </button>
+        )
       };
 
         return (
@@ -69,14 +84,7 @@ export default class Controleer extends Component {
               >
                 Vorige
               </button>
-              <button
-                className="btn btn-next"
-                onClick={this.props.handleFormSubmit}
-                name={'step'}
-                value={'bevestiging'}
-              >
-                Volgende
-              </button>
+              {confirmButton()}
             </div>
           </div>
         )

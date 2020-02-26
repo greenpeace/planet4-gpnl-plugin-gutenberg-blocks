@@ -8,6 +8,8 @@ export default class AdresGegevens extends Component {
     super(props);
 
     this.references = {};
+
+    this.handleAddressAutofill = this.handleAddressAutofill.bind(this);
   }
 
   // Creating a map of references.
@@ -33,6 +35,32 @@ export default class AdresGegevens extends Component {
       this.props.handleChange(e)
     }
   };
+
+  handleAddressAutofill(){
+    jQuery.ajax({
+      type: "POST",
+      data: {
+        action: 'periodic_donation_address_autofill', // This is the action in your server-side code (PHP) that will be triggered
+        postcode: this.props.postcode,
+        huisnummer: this.props.huisnummer,
+      },
+      url: window.p4nl_vars.ajaxurl,
+      success: function(response)
+      {
+        const result = response.data.output.result;
+        this.props.handleManualChange({straat: result.straat, woonplaats: result.woonplaats })
+
+      }.bind(this),
+      error:function (xhr, statusText, thrownError) {
+        //TODO: some error handling.
+        console.log(xhr);
+        console.log(xhr.status);
+        console.log(statusText);
+        console.log(thrownError);
+      }.bind(this)
+    });
+  }
+
 
 
   render() {
@@ -61,6 +89,7 @@ export default class AdresGegevens extends Component {
               propertyName={'huisnummer'}
               value={huisnummer}
               onChange={handleChange}
+              onBlur={this.handleAddressAutofill}
             />
           </div>
           <div className={'col-12 col-md-3'}>

@@ -73,6 +73,7 @@ export default class RegistrationForm extends Component {
 
 
   handleFormSubmit(){
+    this.setState({isSubmitting: true});
     jQuery.ajax({
       type: "POST",
       data: {
@@ -82,14 +83,16 @@ export default class RegistrationForm extends Component {
       url: window.p4nl_vars.ajaxurl,
       success: function(result)
       {
+        this.setState({isSubmitting: false, step: 'bevestiging'});
         console.log(result);
-      },
+      }.bind(this),
       error:function (xhr, statusText, thrownError) {
+        this.setState({isSubmitting: false, step: 'bevestiging', submissionError: true});
         console.log(xhr);
         console.log(xhr.status);
         console.log(statusText);
         console.log(thrownError);
-      }
+      }.bind(this)
     });
   }
 
@@ -131,6 +134,7 @@ export default class RegistrationForm extends Component {
         <AdresGegevens
           {...this.state}
           handleChange={this.handleChange.bind(this)}
+          handleManualChange={this.handleManualChange.bind(this)}
         />
       </div>;
     case 'betaalgegevens':
@@ -148,7 +152,9 @@ export default class RegistrationForm extends Component {
         handleChange={this.handleChange.bind(this)}
       />;
     case 'bevestiging':
-      return <Bevestiging/>;
+      return <Bevestiging
+      submissionError = {this.state.submissionError}
+      />;
     default:
       return null;
     }

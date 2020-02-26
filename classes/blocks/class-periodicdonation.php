@@ -49,8 +49,15 @@ class PeriodicDonation extends Base_Block {
 			]
 		);
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_if_block_is_present' ] );
+
+		// Adding the form process actions
 		add_action( "wp_ajax_nopriv_periodic_donation_form_process", [ $this, "form_process" ] );
 		add_action( "wp_ajax_periodic_donation_form_process", [ $this, "form_process" ] );
+
+		// Adding the address autofill actions
+		add_action( "wp_ajax_nopriv_periodic_donation_address_autofill", [ $this, "address_autofill" ] );
+		add_action( "wp_ajax_periodic_donation_address_autofill", [ $this, "address_autofill" ] );
+
 	}
 
 	/**
@@ -70,30 +77,66 @@ class PeriodicDonation extends Base_Block {
 
 		$form_data = $_POST['state'];
 
-
 		// Step 1: remove whitespaces and strip all tags form data.
 		$clean_data = [];
 		foreach ( $form_data as $key => $value ) {
-			$value = preg_replace('/\s+/', '', $value);
+//			$value = preg_replace('/\s+/', '', $value);
 			$clean_data[ $key ] = wp_strip_all_tags( $value );
 		}
 
+		// Step 2: remove whitespaces from strings that should not have them
+		$clean_data['telefoonnummer'] = preg_replace( '/\s+/', '', $clean_data['telefoonnummer'] );
+		$clean_data['rekeningnummer'] = preg_replace( '/\s+/', '', $clean_data['rekeningnummer'] );
+
 		// Step 3: typecast all integers.
-		$clean_data['jaar'] = (int) $clean_data['jaar'];
-		$clean_data['bedrag'] = (int) $clean_data['bedrag'];
+		$clean_data['jaar']     = (int) $clean_data['jaar'];
+		$clean_data['bedrag']   = (int) $clean_data['bedrag'];
 		$clean_data['screenId'] = (int) $clean_data['screenId'];
 
-		wp_send_json($clean_data);
+		// Clean up dates and return them in the appropriate format.
+		$clean_data['geboortedatum'] = substr( $clean_data['geboortedatum'], 0, strpos( $clean_data['geboortedatum'], '(' ) );
+		$phpDob                      = new \DateTime( $clean_data['geboortedatum'] );
+		$phpDob->setTimeZone( new \DateTimeZone( 'UTC' ) );
+		$clean_data['geboortedatum'] = $phpDob->format( 'Y-m-d\TH-i-s.\0\0\0\Z' );
+
+		$clean_data['geboortedatumPartner'] = substr( $clean_data['geboortedatumPartner'], 0, strpos( $clean_data['geboortedatumPartner'], '(' ) );
+		$phpDobPartner                      = new \DateTime( $clean_data['geboortedatumPartner'] );
+		$phpDobPartner->setTimeZone( new \DateTimeZone( 'UTC' ) );
+		$clean_data['geboortedatumPartner'] = $phpDobPartner->format( 'Y-m-d\TH-i-s.\0\0\0\Z' );
+
+		wp_send_json( $clean_data );
 
 		// Call the API.
 		$conn = new ApiConnector();
 		try {
-			$result = $conn->call("Register", 'RegisterPeriodiekeSchenking', $clean_data);
+			$result = $conn->call( "Register", 'RegisterPeriodiekeSchenking', $clean_data );
 			wp_send_json_success( $result );
 			throw new ApiException();
-		} catch (ApiException $e) {
+		} catch ( ApiException $e ) {
 			// TODO: Make sure the URL of the API is not shown in the message.
-			wp_send_json_error($e->getMessage(), $e->getCode());
+			wp_send_json_error( $e->getMessage(), $e->getCode() );
+		}
+	}
+
+	public function address_autofill(){
+
+		// Call the API.
+		$conn = new ApiConnector();
+
+		$address_input_data = [
+			'postcode' => $_POST['postcode'],
+			'huisnummer' => $_POST['huisnummer']
+		];
+
+//		wp_send_json($address_input_data, 200);
+
+		try {
+			$result = $conn->call( "Validation", 'validatePostcode', $address_input_data );
+			wp_send_json_success( $result );
+			throw new ApiException();
+		} catch ( ApiException $e ) {
+			// TODO: Make sure the URL of the API is not shown in the message.
+			wp_send_json_error( $e->getMessage(), $e->getCode() );
 		}
 	}
 

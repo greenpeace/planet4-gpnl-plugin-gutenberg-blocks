@@ -72,10 +72,10 @@ export default class BetaalGegevens extends Component {
           value={betalingstermijn}
           onChange={handleChange}
           options={{
-            1: {value: 'maand', label: 'Maand'},
-            2: {value: 'kwartaal', label: 'Kwartaal'},
-            3: {value: 'semester', label: 'Elk half jaar'},
-            4: {value: 'jaar', label: 'Jaarlijks'},
+            1: {value: 'Maand', label: 'Maand'},
+            2: {value: 'Kwartaal', label: 'Kwartaal'},
+            3: {value: 'Semester', label: 'Elk half jaar'},
+            4: {value: 'Jaar', label: 'Jaarlijks'},
           }}
           isValid={isValidNotEmpty(betalingstermijn)}
           errorMessage={'Vul alsjeblieft je gewenste betalingstermijn in.'}
