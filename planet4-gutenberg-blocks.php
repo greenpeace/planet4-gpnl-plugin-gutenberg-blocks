@@ -98,6 +98,7 @@ if ( ! defined( 'P4NL_GB_BKS_PUBLIC_DIR' ) ) {
 
 
 require_once __DIR__ . '/classes/class-loader.php';
+require_once __DIR__ ."/../gpnl-database-interface/ApiConnector.php";
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
 
