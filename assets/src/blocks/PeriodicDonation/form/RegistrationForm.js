@@ -42,7 +42,8 @@ export default class RegistrationForm extends Component {
       achternaamPartner: '',
       geboortedatumPartner: '',
       geboorteplaatsPartner: '',
-      machtiging: true
+      machtiging: true,
+      isSubmitting: false
     };
   }
 
@@ -71,6 +72,10 @@ export default class RegistrationForm extends Component {
     });
   };
 
+  handleManualChange(data){
+    this.setState(data);
+  }
+
 
   handleFormSubmit(){
     this.setState({isSubmitting: true});
@@ -83,7 +88,7 @@ export default class RegistrationForm extends Component {
       url: window.p4nl_vars.ajaxurl,
       success: function(result)
       {
-        this.setState({isSubmitting: false, step: 'bevestiging'});
+        this.setState({isSubmitting: false, step: 'bevestiging', submissionError: false});
         console.log(result);
       }.bind(this),
       error:function (xhr, statusText, thrownError) {
@@ -95,8 +100,6 @@ export default class RegistrationForm extends Component {
       }.bind(this)
     });
   }
-
-
 
 
   render() {
