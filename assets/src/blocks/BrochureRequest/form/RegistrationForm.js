@@ -27,6 +27,8 @@ export default class RegistrationForm extends Component {
       requestedItemId: this.props.itemid,
       aantal: 0,
       optIn: false,
+      isSubmitting: false,
+      isConfirmed: false
     };
 
     this.references = {};
@@ -55,7 +57,7 @@ export default class RegistrationForm extends Component {
     this.setState({initialen: initials});
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = () => {
 
     let isValid = true;
     // Checking with the references if their inputs are valid.
@@ -67,8 +69,30 @@ export default class RegistrationForm extends Component {
 
     // Check isValid before moving to the next step.
     if (isValid === true) {
-      console.log("valid form!");
-      // TODO: handle request en show feedback
+      console.log("VALID!");
+
+      this.setState({isSubmitting: true});
+      jQuery.ajax({
+        type: "POST",
+        data: {
+          action: 'brochure_request__form_process', // This is the action in your server-side code (PHP) that will be triggered
+          state: this.state
+        },
+        url: window.p4nl_vars.ajaxurl,
+        success: function(result)
+        {
+          this.setState({isSubmitting: false, step: 'bevestiging', submissionError: false});
+          console.log(result);
+        }.bind(this),
+        error:function (xhr, statusText, thrownError) {
+          this.setState({isSubmitting: false, step: 'bevestiging', submissionError: true});
+          console.log(xhr);
+          console.log(xhr.status);
+          console.log(statusText);
+          console.log(thrownError);
+        }.bind(this)
+      });
+
     }
   };
 
@@ -76,6 +100,27 @@ export default class RegistrationForm extends Component {
   render() {
 
     const {geslacht, voornaam, initialen, achternaam, tussenvoegsel, postcode, huisnummer, huisnummertoevoeging, straat, woonplaats, telefoonnummer, email, optIn} = this.state;
+
+    if (this.state.isConfirmed === true ) {
+      return (
+        <div className={'card'}>
+          Good on ya matE!
+        </div>
+      )
+    }
+
+    const confirmButton = () => {
+      const buttonValue = this.state.isSubmitting ?  <span className={'loader'}/> : 'Verstuur';
+
+      return (
+        <button
+          className="btn btn-next"
+          onClick={this.handleSubmit}
+        >
+          {buttonValue}
+        </button>
+      )
+    };
 
     return (
       <div className="card">
@@ -209,14 +254,7 @@ export default class RegistrationForm extends Component {
         />
 
         <div className={'form-group'}>
-        <button
-          className="btn btn-next"
-          onClick={this.handleSubmit}
-          name={'verstuur'}
-          value={'verstuur'}
-        >
-          Verstuur
-        </button>
+          {confirmButton()}
         </div>
       </div>
     );

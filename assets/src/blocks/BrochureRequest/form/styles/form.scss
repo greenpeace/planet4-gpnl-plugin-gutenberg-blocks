@@ -1,4 +1,6 @@
 @import "../../../../base/base.scss";
+@import "../../../../components/forms/styles/loader.scss";
+
 
 .gpnl-brochure-form {
   margin: 32px 0 16px;
@@ -151,7 +153,10 @@
     .btn {
       margin-top: 15px;
       border-radius: .25rem;
-      line-height: 2.2;
+      height: 2.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       &.btn-previous {
         float: left;
@@ -318,10 +323,6 @@
         opacity: 1;
       }
     }
-    //
-    //.form-steps div {
-    //  text-align: center;
-    //}
 
     .form-group button:first-child {
       margin-right: 7px;
