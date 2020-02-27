@@ -75,7 +75,7 @@ export default class RegistrationForm extends Component {
       jQuery.ajax({
         type: "POST",
         data: {
-          action: 'brochure_request__form_process', // This is the action in your server-side code (PHP) that will be triggered
+          action: 'brochure_request_form_process', // This is the action in your server-side code (PHP) that will be triggered
           state: this.state
         },
         url: window.p4nl_vars.ajaxurl,
@@ -95,6 +95,32 @@ export default class RegistrationForm extends Component {
 
     }
   };
+
+  handleAddressAutofill(){
+    jQuery.ajax({
+      type: "POST",
+      data: {
+        action: 'brochure_request_address_autofill', // This is the action in your server-side code (PHP) that will be triggered
+        postcode: this.state.postcode,
+        huisnummer: this.state.huisnummer,
+      },
+      url: window.p4nl_vars.ajaxurl,
+      success: function(response)
+      {
+        // console.log(response)
+        const result = response.data.output.result;
+        this.setState({straat: result.straat, woonplaats: result.woonplaats })
+
+      }.bind(this),
+      error:function (xhr, statusText, thrownError) {
+        //TODO: some error handling.
+        console.log(xhr);
+        console.log(xhr.status);
+        console.log(statusText);
+        console.log(thrownError);
+      }.bind(this)
+    });
+  }
 
 
   render() {
@@ -195,6 +221,7 @@ export default class RegistrationForm extends Component {
               propertyName={'huisnummer'}
               value={huisnummer}
               onChange={this.handleChange}
+              onBlur={this.handleAddressAutofill}
             />
           </div>
           <div className={'col-12 col-md-3'}>
@@ -202,7 +229,7 @@ export default class RegistrationForm extends Component {
               label={'toevoeging'}
               propertyName={'huisnummertoevoeging'}
               value={huisnummertoevoeging}
-              onChange={this.handleChange}
+              onChange={this.handleChange.bind(this)}
             />
           </div>
         </div>

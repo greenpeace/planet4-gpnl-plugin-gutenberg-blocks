@@ -10,13 +10,15 @@
 
 namespace P4NL_GB_BKS\Blocks;
 
-require_once( plugin_dir_path( __FILE__ ) . '../../vendor/greenpeace/gpnl-database-interface/ApiConnector.php' );
 
-
-use P4NL_DATABASE_INTERFACE\Api\ApiConnector;
+use P4NL_DATABASE_INTERFACE\ApiConnector;
 use P4NL_DATABASE_INTERFACE\ApiException;
 use P4NL_GB_BKS\Services\Asset_Enqueuer;
 
+//var_dump(plugin_dir_path(__FILE__));
+//die();
+
+require_once ABSPATH . 'wp-content/plugins/gpnl-database-interface/ApiConnector.php';
 
 /**
  * @package P4BKS\Controllers\Blocks
@@ -57,6 +59,10 @@ class PeriodicDonation extends Base_Block {
 		// Adding the address autofill actions
 		add_action( "wp_ajax_nopriv_periodic_donation_address_autofill", [ $this, "address_autofill" ] );
 		add_action( "wp_ajax_periodic_donation_address_autofill", [ $this, "address_autofill" ] );
+
+//		$conn = new ApiConnector(true);
+//		echo '<pre>' , var_dump($conn->debug()) , '</pre>';
+//		var_dump($conn->call( "Validation", 'validatePostcode', ['postcode' => '1018VJ', 'huisnummer' => '105'] ));
 
 	}
 
@@ -121,7 +127,7 @@ class PeriodicDonation extends Base_Block {
 	public function address_autofill(){
 
 		// Call the API.
-		$conn = new ApiConnector();
+		$conn = new ApiConnector(true);
 
 		$address_input_data = [
 			'postcode' => $_POST['postcode'],
