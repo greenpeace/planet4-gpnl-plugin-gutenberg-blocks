@@ -39,6 +39,18 @@ export class BrochureRequestBlock extends BaseBlock {
         requestedItemId: {
           type: 'string',
           default: ''
+        },
+        marketingCodeNewsletter: {
+          type: 'string',
+          default: 'EN009'
+        },
+        literatureCodeNewsletter: {
+          type: 'string',
+          default: '04950'
+        },
+        thankYouText: {
+          type: 'string',
+          default: ''
         }
       },
 
@@ -84,6 +96,24 @@ export class BrochureRequestBlock extends BaseBlock {
                   label={'Item Id'}
                   onChange={onValueChange.bind('requestedItemId')}
                   value={attributes.requestedItemId}
+                />
+                <TextControl
+                  label={'Marketingcode nieuwsbrief'}
+                  help={'De marketingcode die bij het aanmelden voor de nieuwsbrief hoort.'}
+                  onChange={onValueChange.bind('marketingCodeNewsletter')}
+                  value={attributes.marketingCodeNewsletter}
+                />
+                <TextControl
+                  label={'Literatuurcode nieuwsbrief'}
+                  help={'De literatuurcode die bij het aanmelden voor de nieuwsbrief hoort.'}
+                  onChange={onValueChange.bind('literatureCodeNewsletter')}
+                  value={attributes.literatureCodeNewsletter}
+                />
+                <TextareaControl
+                  label={'Bedanktekst'}
+                  onChange={onValueChange.bind('thankYouText')}
+                  value={attributes.thankYouText}
+                  placeholder={'Tekst die de bezoeker ziet nadat het formulier verstuurd is.'}
                 />
               </div>,
               <Preview showBar={isSelected}>

@@ -5,4 +5,4 @@ import './styles/form.scss'
 
 var root = document.getElementById('brochure-request-form');
 
-ReactDOM.render(<RegistrationForm {...(root.dataset)} />, root);
+ReactDOM.render(<RegistrationForm {...root.dataset} />, root);

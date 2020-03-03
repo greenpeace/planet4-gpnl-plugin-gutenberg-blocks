@@ -23,18 +23,26 @@ export default class RegistrationForm extends Component {
       telefoonnummer: '',
       mobielnummer: '',
       email: '',
-      marketingcode: this.props.mcode,
+      marketingcode: this.props.marketingcode,
       requestedItemId: this.props.itemid,
-      aantal: 0,
+      marketingCodeNewsletter: this.props.marketingcodenewsletter,
+      literatureCodeNewsletter: this.props.literaturecodenewsletter,
+      screenIdNewsletter: 250,
+      thankYouText: this.props.thankyoutext,
+      aantal: 1,
       optIn: false,
       isSubmitting: false,
       isConfirmed: false
     };
 
+    console.log(this.props);
+
     this.references = {};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleFirstNamesChange = this.handleFirstNamesChange.bind(this);
+    this.handleAddressAutofill = this.handleAddressAutofill.bind(this);
+    this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
   }
 
   // Creating a map of references.
@@ -45,8 +53,18 @@ export default class RegistrationForm extends Component {
     return this.references[reference];
   }
 
-  handleChange(event) {
-    this.setState({[event.target.name]: event.target.value});
+  handleChange(event, type = 'string') {
+    let value = event.target.value;
+    if (type === 'boolean' ) {
+      value = value !== "false";
+    }
+    this.setState({[event.target.name]: value});
+  };
+
+  handleCheckboxChange = () => {
+    this.setState({
+      optIn: !this.state.optIn,
+    });
   };
 
   // This function sets the firstnames to the correct value and generates the initials with a dot (.).
@@ -130,7 +148,7 @@ export default class RegistrationForm extends Component {
     if (this.state.isConfirmed === true ) {
       return (
         <div className={'card'}>
-          Good on ya matE!
+          <div dangerouslySetInnerHTML={{__html: this.state.thankYouText}} />
         </div>
       )
     }
@@ -276,8 +294,9 @@ export default class RegistrationForm extends Component {
           ref={this.getOrCreateRef('optIn')}
           propertyName={'optIn'}
           value={optIn}
+          checked={optIn}
           label={'Ja, ik meld mij aan voor de actiemails en ontvang een e-mail zodra mijn hulp nodig is!'}
-          onChange={this.handleChange}
+          onChange={this.handleCheckboxChange}
         />
 
         <div className={'form-group'}>

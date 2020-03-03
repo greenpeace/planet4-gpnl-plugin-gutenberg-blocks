@@ -9,7 +9,14 @@
 				<p class="page-section-description">{{ fields.description|raw }}</p>
 			</div>
 		{% endif %}
-		<div id="brochure-request-form" data-mcode="{{ fields.marketingCode }}" data-itemid="{{ fields.requestedItemId }}" class="form gpnl-brochure-form col-md-8 col-lg-6"></div>
+		<div id="brochure-request-form"
+			 class="form gpnl-brochure-form col-md-8 col-lg-6"
+			 data-marketingcode="{{ fields.marketingCode }}"
+			 data-itemid="{{ fields.requestedItemId }}"
+			 data-marketingcodenewsletter="{{ fields.marketingCodeNewsletter }}"
+			 data-literaturecodenewsletter="{{ fields.literatureCodeNewsletter }}"
+			 data-thankyoutext="{{ fields.thankYouText }}"
+		></div>
 		</section>
 	{% endif %}
 {% endblock %}

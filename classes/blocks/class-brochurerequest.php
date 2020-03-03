@@ -29,19 +29,31 @@ class BrochureRequest extends Base_Block {
 				'editor_script'   => 'planet4-gpnl-blocks',
 				'render_callback' => [ $this, 'render' ],
 				'attributes'      => [
-					'title'                      => [
+					'title'                    => [
 						'type'    => 'string',
 						'default' => '',
 					],
-					'description'                => [
+					'description'              => [
 						'type'    => 'string',
 						'default' => '',
 					],
-					'marketingCode'    => [
+					'marketingcode'            => [
 						'type'    => 'string',
 						'default' => '',
 					],
-					'requestedItemId'    => [
+					'requestedItemId'          => [
+						'type'    => 'string',
+						'default' => '',
+					],
+					'marketingCodeNewsletter'  => [
+						'type'    => 'string',
+						'default' => '04950',
+					],
+					'literatureCodeNewsletter' => [
+						'type'    => 'string',
+						'default' => 'EN009',
+					],
+					'thankYouText'             => [
 						'type'    => 'string',
 						'default' => '',
 					],
@@ -68,7 +80,7 @@ class BrochureRequest extends Base_Block {
 		// Check if the block is present on the page that is requested.
 		if ( has_block( 'planet4-gpnl-blocks/' . $this->getKebabCaseClassName() ) ) {
 
-			Asset_Enqueuer::enqueue_asset( 'brochureRequestForm', 'style');
+			Asset_Enqueuer::enqueue_asset( 'brochureRequestForm', 'style' );
 			Asset_Enqueuer::enqueue_asset( 'brochureRequestForm', 'script', [], true );
 		}
 	}
@@ -97,35 +109,33 @@ class BrochureRequest extends Base_Block {
 		// Step 1: remove whitespaces and strip all tags form data.
 		$clean_data = [];
 		foreach ( $form_data as $key => $value ) {
-//			$value = preg_replace('/\s+/', '', $value);
 			$clean_data[ $key ] = wp_strip_all_tags( $value );
 		}
 
 		// Step 2: remove whitespaces from strings that should not have them
 		$clean_data['telefoonnummer'] = preg_replace( '/\s+/', '', $clean_data['telefoonnummer'] );
-		$clean_data['rekeningnummer'] = preg_replace( '/\s+/', '', $clean_data['rekeningnummer'] );
 
 		// Step 3: typecast all integers.
-		$clean_data['jaar']     = (int) $clean_data['jaar'];
-		$clean_data['bedrag']   = (int) $clean_data['bedrag'];
-		$clean_data['screenId'] = (int) $clean_data['screenId'];
+		$clean_data['aantal']   = (int) $clean_data['aantal'];
 
-		// Clean up dates and return them in the appropriate format.
-		$clean_data['geboortedatum'] = substr( $clean_data['geboortedatum'], 0, strpos( $clean_data['geboortedatum'], '(' ) );
-		$phpDob                      = new \DateTime( $clean_data['geboortedatum'] );
-		$phpDob->setTimeZone( new \DateTimeZone( 'UTC' ) );
-		$clean_data['geboortedatum'] = $phpDob->format( 'Y-m-d\TH-i-s.\0\0\0\Z' );
 
-		$clean_data['geboortedatumPartner'] = substr( $clean_data['geboortedatumPartner'], 0, strpos( $clean_data['geboortedatumPartner'], '(' ) );
-		$phpDobPartner                      = new \DateTime( $clean_data['geboortedatumPartner'] );
-		$phpDobPartner->setTimeZone( new \DateTimeZone( 'UTC' ) );
-		$clean_data['geboortedatumPartner'] = $phpDobPartner->format( 'Y-m-d\TH-i-s.\0\0\0\Z' );
+		$newsletter_data = [
+			"voornaam"       => $clean_data["voornaam"],
+			"email"          => $clean_data["email"],
+			"marketingcode"  => $clean_data["marketingCodeNewsletter"],
+			"literatuurcode" => $clean_data["literatureCodeNewsletter"],
+			"screenId"       => $clean_data["screenIdNewsletter"],
+			"registreerEmailNiewsbrief" => true
+		];
+//		wp_send_json( $newsletter_data );
 
-		wp_send_json( $clean_data );
 
 		// Call the API.
 		$conn = new ApiConnector();
 		try {
+			if ( $clean_data['optIn'] === "true" ) {
+				$conn->call( "Register", 'RegisterEmail', $newsletter_data );
+			}
 			$result = $conn->call( "Register", 'RegisterPeriodiekeSchenking', $clean_data );
 			wp_send_json_success( $result );
 			throw new ApiException();
@@ -135,13 +145,13 @@ class BrochureRequest extends Base_Block {
 		}
 	}
 
-	public function address_autofill(){
+	public function address_autofill() {
 
 		// Call the API.
-		$conn = new ApiConnector(true);
+		$conn = new ApiConnector( true );
 
 		$address_input_data = [
-			'postcode' => $_POST['postcode'],
+			'postcode'   => $_POST['postcode'],
 			'huisnummer' => $_POST['huisnummer']
 		];
 
