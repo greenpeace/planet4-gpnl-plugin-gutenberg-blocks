@@ -868,6 +868,8 @@ $(document).ready(function() {
           this.submitiDeal();
         }
         else{
+          // TODO Forces are machtigingType M now, should maybe convert to F to distinguish better
+          this.finalModel.bedrag = this.finalModel.bedrag * 10.8;
           this.submit();
         }
       },

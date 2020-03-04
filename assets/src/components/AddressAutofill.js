@@ -40,7 +40,7 @@ $(document).ready(function () {
 
         },
         error: function (xhr, ajaxOptions, thrownError) {
-          alert(thrownError+'. Status code: '+ xhr.status);
+          console.log(thrownError+'. Status code: '+ xhr.status);
         }
       });
 
