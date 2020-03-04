@@ -2,7 +2,7 @@
   "name": "greenpeace/planet4-gpnl-plugin-gutenberg-blocks",
   "description": "This repository contains the WordPress plugin that provides the gutenberg blocks for Planet4 project",
   "type": "wordpress-plugin",
-  "version": "1.6.3",
+  "version": "1.6.4",
   "license": "GPL-3.0+",
   "authors": [
 		{
