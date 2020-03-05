@@ -3,7 +3,6 @@ import DatePicker from 'react-datepicker';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import InputField from '../../../../components/forms/InputField';
-import RadioGroup from '../../../../components/forms/RadioGroup';
 import SelectGroup from '../../../../components/forms/SelectGroup';
 import {isValidString, isValidNotEmpty} from '../../../../components/forms/Validators';
 
@@ -136,7 +135,7 @@ export default class Gegevens extends Component {
           value={burgelijkestaat}
           onChange={handleChange}
           errors={errors}
-          options={{1: {value: 0, label: 'Selecteer je burgelijke staat'}, 2: {value: 'ongehuwd', label: 'Ongehuwd'}, 3: {value: 'gehuwd', label: 'Gehuwd'}, 4: {value: 'partner', label: 'Als partner geregistreerd'}}}
+          options={{1: {value: 0, label: 'Selecteer je burgelijke staat'}, 2: {value: 'Ongehuwd', label: 'Ongehuwd'}, 3: {value: 'Gehuwd', label: 'Gehuwd'}, 4: {value: 'Partner', label: 'Als partner geregistreerd'}}}
           isValid={isValidString(burgelijkestaat)}
           errorMessage={'Vul alsjeblieft je burgelijke staat in.'}
         />
@@ -154,7 +153,7 @@ export default class Gegevens extends Component {
             className="btn btn-next"
             onClick={this.handleNextClick}
             name={'step'}
-            value={ burgelijkestaat === 'gehuwd' || burgelijkestaat === 'partner' ? 'partnergegevens' : 'adresgegevens'}
+            value={ burgelijkestaat === 'Gehuwd' || burgelijkestaat === 'Partner' ? 'partnergegevens' : 'adresgegevens'}
           >
             Volgende
           </button>

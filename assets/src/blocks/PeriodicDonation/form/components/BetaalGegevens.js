@@ -40,8 +40,6 @@ export default class BetaalGegevens extends Component {
 
     const {rekeningnummer, betalingstermijn, machtiging, handleChange} = this.props;
 
-    console.log(machtiging);
-
     return (
       <div className="card">
         <InputField

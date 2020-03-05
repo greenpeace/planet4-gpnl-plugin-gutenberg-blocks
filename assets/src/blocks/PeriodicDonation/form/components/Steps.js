@@ -6,7 +6,7 @@ class Steps extends Component {
 
     let parterstep;
 
-    if (this.props.burgelijkestaat === 'gehuwd' || this.props.burgelijkestaat === 'partner') {
+    if (this.props.burgelijkestaat === 'Gehuwd' || this.props.burgelijkestaat === 'Partner') {
       parterstep = <div className={'col ' + (this.props.step === 'partnergegevens' ? 'active' : '')}>
         <div className={'tab'}>
 
