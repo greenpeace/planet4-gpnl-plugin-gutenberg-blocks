@@ -13,15 +13,13 @@ export default class Bevestiging extends Component {
             <p>Veel dank voor het invullen van de schenkingsovereenkomst. Voor hetzelfde geld geef je nu meer en draag
               je nog meer bij aan de bescherming van onze natuur!</p>
             <p>De ingevulde overeenkomst is verstuurd naar het door jou opgegeven e-mailadres. Stuur deze overeenkomst
-              ondertekend, gratis op aan ons antwoordnummer:</p>
+              ondertekend, gratis op naar het volgende adres:</p>
             <p> Greenpeace Nederland<br/>
-              Antwoordnummer 11330<br/>
-              1000 PJ Amsterdam</p>
+              Antwoordnummer 9357<br/>
+              1000 XH Amsterdam</p>
             <p> Je ontvangt vervolgens de ondertekende overeenkomst retour.
             </p>
-            <p>Is iets nog niet duidelijk of wil je meer informatie? Aarzel dan niet om contact met onze Supporter Care
-              op te
-              nemen via ons gratis telefoonnummer 0800 422 33 44 of via <a
+            <p>Heb je nog vragen? Aarzel dan niet om contact op te nemen met onze Supporter Care via ons gratis telefoonnummer 0800 422 33 44 of via <a
                 href={'mailto:schenkingen@greenpeace.nl'}>schenkingen@greenpeace.nl</a>.
             </p>
             <p>

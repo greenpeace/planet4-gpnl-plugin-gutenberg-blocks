@@ -52,11 +52,7 @@ export default class AdresGegevens extends Component {
 
       }.bind(this),
       error:function (xhr, statusText, thrownError) {
-        //TODO: some error handling.
-        console.log(xhr);
-        console.log(xhr.status);
-        console.log(statusText);
-        console.log(thrownError);
+        console.error(xhr.status, statusText, thrownError);
       }.bind(this)
     });
   }
@@ -122,14 +118,13 @@ export default class AdresGegevens extends Component {
           errorMessage={'Vul alsjeblieft je straatnaam in.'}
         />
 
-
         <InputField
           ref={this.getOrCreateRef('telefoonnummer')}
           propertyName={'telefoonnummer'}
           value={telefoonnummer}
           placeholder={'0612345678'}
           onChange={handleChange}
-          isValid={isValidAny(telefoonnummer, 10, 16)}
+          isValid={isValidAny(telefoonnummer, 10, 13)}
           errorMessage={'Vul alsjeblieft je telefoonnummer in.'}
         />
 

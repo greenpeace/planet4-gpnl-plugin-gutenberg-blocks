@@ -17,7 +17,7 @@ export default class RegistrationForm extends Component {
     this.state = {
       step: 'schenking',
       marketingcode: this.props.mcode,
-      screenId: 0,
+      screenId: 3769,
       bedrag: '',
       jaar: new Date().getFullYear(),
       geslacht: 'V',
@@ -43,7 +43,8 @@ export default class RegistrationForm extends Component {
       geboortedatumPartner: '',
       geboorteplaatsPartner: '',
       machtiging: true,
-      isSubmitting: false
+      isSubmitting: false,
+      submissionError: false
     };
   }
 
@@ -86,17 +87,13 @@ export default class RegistrationForm extends Component {
         state: this.state
       },
       url: window.p4nl_vars.ajaxurl,
-      success: function(result)
+      success: function()
       {
         this.setState({isSubmitting: false, step: 'bevestiging', submissionError: false});
-        console.log(result);
       }.bind(this),
       error:function (xhr, statusText, thrownError) {
         this.setState({isSubmitting: false, step: 'bevestiging', submissionError: true});
-        console.log(xhr);
-        console.log(xhr.status);
-        console.log(statusText);
-        console.log(thrownError);
+        console.error(xhr.status, statusText, thrownError);
       }.bind(this)
     });
   }
@@ -157,6 +154,7 @@ export default class RegistrationForm extends Component {
     case 'bevestiging':
       return <Bevestiging
       submissionError = {this.state.submissionError}
+      handleChange={this.handleChange.bind(this)}
       />;
     default:
       return null;

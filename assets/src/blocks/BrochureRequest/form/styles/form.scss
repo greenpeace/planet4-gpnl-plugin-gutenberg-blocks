@@ -265,96 +265,106 @@
     & .error {
       border: 2px solid red;
     }
+  }
 
+  a {
+    color: #6c0;
+    text-decoration: none;
+    background-color: transparent;
+  }
 
-    .form-card {
-      -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
-      -moz-animation: fadein 1s; /* Firefox < 16 */
-      -ms-animation: fadein 1s; /* Internet Explorer */
-      -o-animation: fadein 1s; /* Opera < 12.1 */
-      animation: fadein 1s;
+  a:hover {
+    color: #408000;
+    text-decoration: underline;
+  }
+
+  .form-card {
+    -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 1s; /* Firefox < 16 */
+    -ms-animation: fadein 1s; /* Internet Explorer */
+    -o-animation: fadein 1s; /* Opera < 12.1 */
+    animation: fadein 1s;
+  }
+
+  @keyframes fadein {
+    from {
+      opacity: 0;
     }
-
-    @keyframes fadein {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+    to {
+      opacity: 1;
     }
+  }
 
-    /* Firefox < 16 */
-    @-moz-keyframes fadein {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+  /* Firefox < 16 */
+  @-moz-keyframes fadein {
+    from {
+      opacity: 0;
     }
-
-    /* Safari, Chrome and Opera > 12.1 */
-    @-webkit-keyframes fadein {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+    to {
+      opacity: 1;
     }
+  }
 
-    /* Internet Explorer */
-    @-ms-keyframes fadein {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+  /* Safari, Chrome and Opera > 12.1 */
+  @-webkit-keyframes fadein {
+    from {
+      opacity: 0;
     }
-
-    /* Opera < 12.1 */
-    @-o-keyframes fadein {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+    to {
+      opacity: 1;
     }
+  }
 
-    .form-group button:first-child {
-      margin-right: 7px;
+  /* Internet Explorer */
+  @-ms-keyframes fadein {
+    from {
+      opacity: 0;
     }
-
-    .form-group input[type=checkbox] {
-      margin-left: 7px;
+    to {
+      opacity: 1;
     }
+  }
 
-    label::first-letter {
-      text-transform: uppercase;
+  /* Opera < 12.1 */
+  @-o-keyframes fadein {
+    from {
+      opacity: 0;
     }
-
-    /*
-    Fixing z-index issues. Mind you, all page's children z-index is 2, see _page.scss of the master theme, but also the footer is set at 2 by default,
-    making it impossible for children to overflow over the footer.
-     */
-    footer {
-      z-index: 1 !important;
+    to {
+      opacity: 1;
     }
+  }
 
-    .react-datepicker-wrapper {
-      width: 100%;
-    }
+  .form-group button:first-child {
+    margin-right: 7px;
+  }
+
+  .form-group input[type=checkbox] {
+    margin-left: 7px;
+  }
+
+  label::first-letter {
+    text-transform: uppercase;
+  }
+
+  /*
+  Fixing z-index issues. Mind you, all page's children z-index is 2, see _page.scss of the master theme, but also the footer is set at 2 by default,
+  making it impossible for children to overflow over the footer.
+   */
+  footer {
+    z-index: 1 !important;
+  }
+
+  .react-datepicker-wrapper {
+    width: 100%;
+  }
 
 
-    input[type="checkbox"] {
-      position: relative !important;
+  input[type="checkbox"] {
+    position: relative !important;
 
-      + label {
-        margin: .4rem 0 .8rem;
-      }
+    + label {
+      margin: .4rem 0 .8rem;
     }
   }
 }

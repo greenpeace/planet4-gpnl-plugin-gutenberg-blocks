@@ -15,8 +15,6 @@ use P4NL_DATABASE_INTERFACE\ApiConnector;
 use P4NL_DATABASE_INTERFACE\ApiException;
 use P4NL_GB_BKS\Services\Asset_Enqueuer;
 
-//var_dump(plugin_dir_path(__FILE__));
-//die();
 
 require_once ABSPATH . 'wp-content/plugins/gpnl-database-interface/ApiConnector.php';
 
@@ -59,11 +57,6 @@ class PeriodicDonation extends Base_Block {
 		// Adding the address autofill actions
 		add_action( "wp_ajax_nopriv_periodic_donation_address_autofill", [ $this, "address_autofill" ] );
 		add_action( "wp_ajax_periodic_donation_address_autofill", [ $this, "address_autofill" ] );
-
-//		$conn = new ApiConnector(true);
-//		echo '<pre>' , var_dump($conn->debug()) , '</pre>';
-//		var_dump($conn->call( "Validation", 'validatePostcode', ['postcode' => '1018VJ', 'huisnummer' => '105'] ));
-
 	}
 
 	/**
@@ -81,12 +74,11 @@ class PeriodicDonation extends Base_Block {
 
 	public function form_process() {
 
-		$form_data = $_POST['state'];
+		$form_data = $_POST['state']; // Put all state from the React form in a variable.
 
 		// Step 1: remove whitespaces and strip all tags form data.
 		$clean_data = [];
 		foreach ( $form_data as $key => $value ) {
-//			$value = preg_replace('/\s+/', '', $value);
 			$clean_data[ $key ] = wp_strip_all_tags( $value );
 		}
 
@@ -99,42 +91,36 @@ class PeriodicDonation extends Base_Block {
 		$clean_data['bedrag']   = (int) $clean_data['bedrag'];
 		$clean_data['screenId'] = (int) $clean_data['screenId'];
 
-		// Clean up dates and return them in the appropriate format.
+		// Step 4: Clean up dates and return them in the appropriate format.
 		$clean_data['geboortedatum'] = substr( $clean_data['geboortedatum'], 0, strpos( $clean_data['geboortedatum'], '(' ) );
-		$phpDob                      = new \DateTime( $clean_data['geboortedatum'] );
-		$phpDob->setTimeZone( new \DateTimeZone( 'UTC' ) );
-		$clean_data['geboortedatum'] = $phpDob->format( 'Y-m-d\TH-i-s.\0\0\0\Z' );
-
+		$clean_data['geboortedatum'] = (new \DateTime( $clean_data['geboortedatum'] ))->format( 'Y-m-d' );
 		$clean_data['geboortedatumPartner'] = substr( $clean_data['geboortedatumPartner'], 0, strpos( $clean_data['geboortedatumPartner'], '(' ) );
-		$phpDobPartner                      = new \DateTime( $clean_data['geboortedatumPartner'] );
-		$phpDobPartner->setTimeZone( new \DateTimeZone( 'UTC' ) );
-		$clean_data['geboortedatumPartner'] = $phpDobPartner->format( 'Y-m-d\TH-i-s.\0\0\0\Z' );
+		$clean_data['geboortedatumPartner'] = (new \DateTime( $clean_data['geboortedatumPartner'] ) )->format( 'Y-m-d' );
 
-		wp_send_json( $clean_data );
+		// TODO: Create a service for validators. It currently lives in class-petition.php outside of the class.
+		// Step 5: Validate / Validate the phone number.
+		$clean_data['telefoonnummer'] = validate_phonenumber($clean_data['telefoonnummer']);
 
-		// Call the API.
+ 		// Step 6: Call the API.
 		$conn = new ApiConnector();
 		try {
 			$result = $conn->call( "Register", 'RegisterPeriodiekeSchenking', $clean_data );
 			wp_send_json_success( $result );
 			throw new ApiException();
 		} catch ( ApiException $e ) {
-			// TODO: Make sure the URL of the API is not shown in the message.
-			wp_send_json_error( $e->getMessage(), $e->getCode() );
+			wp_send_json_error( "error thrown", $e->getCode() );
 		}
 	}
 
-	public function address_autofill(){
+	public function address_autofill() {
 
 		// Call the API.
-		$conn = new ApiConnector(true);
+		$conn = new ApiConnector( true );
 
 		$address_input_data = [
-			'postcode' => $_POST['postcode'],
+			'postcode'   => $_POST['postcode'],
 			'huisnummer' => $_POST['huisnummer']
 		];
-
-//		wp_send_json($address_input_data, 200);
 
 		try {
 			$result = $conn->call( "Validation", 'validatePostcode', $address_input_data );
@@ -158,7 +144,6 @@ class PeriodicDonation extends Base_Block {
 		$data = [
 			'fields' => $fields,
 		];
-
 
 		return $data;
 	}

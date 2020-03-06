@@ -46,7 +46,7 @@ export default class Controleer extends Component {
         return (
           <div className="card">
             <h3>Controle</h3>
-            <p>Dit zijn de gegevens die je ingevuld hebt. Druk op bevestig als alles klopt.</p>
+            <p>Dit zijn de gegevens die je ingevuld hebt. Druk op bevestig als alles klopt of ga terug om een aanpassing te maken.</p>
             <table>
               <tbody>
                 {/*Shorthand && gives errors: https://stackoverflow.com/questions/39914455/react-validatedomnesting-text-cannot-appear-as-a-child-of-tr so I use the ternary operator. */}

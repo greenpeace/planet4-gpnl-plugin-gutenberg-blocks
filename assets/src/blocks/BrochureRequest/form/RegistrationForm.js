@@ -19,7 +19,7 @@ export default class RegistrationForm extends Component {
       huisnummer: '',
       huisnummertoevoeging: '',
       straat: '',
-      woonplaats: '',
+      plaats: '',
       telefoonnummer: '',
       mobielnummer: '',
       email: '',
@@ -32,10 +32,9 @@ export default class RegistrationForm extends Component {
       aantal: 1,
       optIn: false,
       isSubmitting: false,
-      isConfirmed: false
+      isSubmitted: false,
+      submissionError: false
     };
-
-    console.log(this.props);
 
     this.references = {};
 
@@ -55,7 +54,7 @@ export default class RegistrationForm extends Component {
 
   handleChange(event, type = 'string') {
     let value = event.target.value;
-    if (type === 'boolean' ) {
+    if (type === 'boolean') {
       value = value !== "false";
     }
     this.setState({[event.target.name]: value});
@@ -80,81 +79,77 @@ export default class RegistrationForm extends Component {
     let isValid = true;
     // Checking with the references if their inputs are valid.
     for (const reference in this.references) {
-      if (this.references[reference]['current'].handleIsValid() !== true){
+      if (this.references[reference]['current'] !== null && this.references[reference]['current'].handleIsValid() !== true) {
         isValid = false;
       }
     }
 
     // Check isValid before moving to the next step.
     if (isValid === true) {
-      console.log("VALID!");
-
       this.setState({isSubmitting: true});
       jQuery.ajax({
         type: "POST",
         data: {
-          action: 'brochure_request_form_process', // This is the action in your server-side code (PHP) that will be triggered
+          action: 'brochure_request_form_process',
           state: this.state
         },
         url: window.p4nl_vars.ajaxurl,
-        success: function(result)
-        {
-          this.setState({isSubmitting: false, step: 'bevestiging', submissionError: false});
-          console.log(result);
+        success: function (response) {
+          this.setState({isSubmitting: false, isSubmitted: true, submissionError: false});
         }.bind(this),
-        error:function (xhr, statusText, thrownError) {
-          this.setState({isSubmitting: false, step: 'bevestiging', submissionError: true});
-          console.log(xhr);
-          console.log(xhr.status);
-          console.log(statusText);
-          console.log(thrownError);
+        error: function (xhr, statusText, thrownError) {
+          this.setState({isSubmitting: false, submissionError: true});
+          console.error(xhr.status, statusText, thrownError);
         }.bind(this)
       });
-
     }
   };
 
-  handleAddressAutofill(){
+  handleAddressAutofill() {
     jQuery.ajax({
       type: "POST",
       data: {
-        action: 'brochure_request_address_autofill', // This is the action in your server-side code (PHP) that will be triggered
+        action: 'brochure_request_address_autofill',
         postcode: this.state.postcode,
         huisnummer: this.state.huisnummer,
       },
       url: window.p4nl_vars.ajaxurl,
-      success: function(response)
-      {
-        // console.log(response)
+      success: function (response) {
         const result = response.data.output.result;
-        this.setState({straat: result.straat, woonplaats: result.woonplaats })
+        this.setState({straat: result.straat, plaats: result.plaats})
 
       }.bind(this),
-      error:function (xhr, statusText, thrownError) {
-        //TODO: some error handling.
-        console.log(xhr);
-        console.log(xhr.status);
-        console.log(statusText);
-        console.log(thrownError);
+      error: function (xhr, statusText, thrownError) {
+        console.error(xhr.status, statusText, thrownError);
       }.bind(this)
     });
   }
 
-
   render() {
 
-    const {geslacht, voornaam, initialen, achternaam, tussenvoegsel, postcode, huisnummer, huisnummertoevoeging, straat, woonplaats, telefoonnummer, email, optIn} = this.state;
+    const {geslacht, voornaam, initialen, achternaam, tussenvoegsel, postcode, huisnummer, huisnummertoevoeging, straat, plaats, telefoonnummer, email, optIn} = this.state;
 
-    if (this.state.isConfirmed === true ) {
+    if (this.state.submissionError === true) {
       return (
-        <div className={'card'}>
-          <div dangerouslySetInnerHTML={{__html: this.state.thankYouText}} />
+        <div className="card">
+          <h3>Fout</h3>
+          <p>
+            Er is iets mis gegaan. Probeer het later nog eens. Excuses voor het ongemak.
+          </p>
+        </div>
+      )
+    }
+
+    if (this.state.isSubmitted === true) {
+      return (
+        <div className="card">
+          <div dangerouslySetInnerHTML={{__html: this.state.thankYouText}}/>
         </div>
       )
     }
 
     const confirmButton = () => {
-      const buttonValue = this.state.isSubmitting ?  <span className={'loader'}/> : 'Verstuur';
+      const buttonValue = this.state.isSubmitting ? <span className={'loader'}/> : 'Verstuur';
 
       return (
         <button
@@ -174,7 +169,11 @@ export default class RegistrationForm extends Component {
           label={'Aanhef'}
           value={geslacht}
           onChange={this.handleChange}
-          options={{1: {value: 'V', label: 'Mevrouw'}, 2: {value: 'M', label: 'Meneer'}, 3: {value: 'O', label: 'N.v.t.'}}}
+          options={{
+            1: {value: 'V', label: 'Mevrouw'},
+            2: {value: 'M', label: 'Meneer'},
+            3: {value: 'O', label: 'N.v.t.'}
+          }}
           isValid={isValidNotEmpty(geslacht)}
           errorMessage={'Vul alsjeblieft je aanhef in.'}
         />
@@ -262,13 +261,13 @@ export default class RegistrationForm extends Component {
         />
 
         <InputField
-          ref={this.getOrCreateRef('woonplaats')}
-          propertyName={'woonplaats'}
+          ref={this.getOrCreateRef('plaats')}
+          propertyName={'plaats'}
           label={'plaats'}
-          value={woonplaats}
+          value={plaats}
           onChange={this.handleChange}
-          isValid={isValidString(woonplaats)}
-          errorMessage={'Vul alsjeblieft je woonplaats in.'}
+          isValid={isValidString(plaats)}
+          errorMessage={'Vul alsjeblieft je plaats in.'}
         />
 
         <InputField
@@ -277,7 +276,7 @@ export default class RegistrationForm extends Component {
           value={telefoonnummer}
           placeholder={'0612345678'}
           onChange={this.handleChange}
-          isValid={isValidAny(telefoonnummer, 10, 16)}
+          isValid={isValidAny(telefoonnummer, 10, 13)}
           errorMessage={'Vul alsjeblieft je telefoonnummer in.'}
         />
 

@@ -25,7 +25,7 @@ export default class BetaalGegevens extends Component {
     let isValid = true;
     // Checking with the references if their inputs are valid.
     for (const reference in this.references) {
-      if (this.references[reference]['current'].handleIsValid() !== true) {
+      if (this.references[reference]['current'] !== null && this.references[reference]['current'].handleIsValid() !== true) {
         isValid = false;
       }
     }
@@ -79,7 +79,6 @@ export default class BetaalGegevens extends Component {
           errorMessage={'Vul alsjeblieft je gewenste betalingstermijn in.'}
         />
         }
-
 
         <div>
           <button

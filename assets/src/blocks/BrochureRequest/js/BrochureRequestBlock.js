@@ -42,11 +42,11 @@ export class BrochureRequestBlock extends BaseBlock {
         },
         marketingCodeNewsletter: {
           type: 'string',
-          default: 'EN009'
+          default: '04950'
         },
         literatureCodeNewsletter: {
           type: 'string',
-          default: '04950'
+          default: 'EN009'
         },
         thankYouText: {
           type: 'string',
