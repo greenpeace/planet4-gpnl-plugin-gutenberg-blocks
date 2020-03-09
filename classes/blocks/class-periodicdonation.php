@@ -94,9 +94,9 @@ class PeriodicDonation extends Base_Block {
 		$clean_data['geboortedatumPartner'] = substr( $clean_data['geboortedatumPartner'], 0, strpos( $clean_data['geboortedatumPartner'], '(' ) );
 		$clean_data['geboortedatumPartner'] = (new \DateTime( $clean_data['geboortedatumPartner'] ) )->format( 'Y-m-d' );
 
-		// TODO: Create a service for validators. It currently lives in class-petition.php outside of the class.
+		// TODO: Create a service for validators. 
 		// Step 5: Validate / Validate the phone number.
-		$clean_data['telefoonnummer'] = validate_phonenumber($clean_data['telefoonnummer']);
+		$clean_data['telefoonnummer'] = $this->validate_phonenumber($clean_data['telefoonnummer']);
 
  		// Step 6: Call the API.
 		$conn = new ApiConnector();
@@ -143,6 +143,31 @@ class PeriodicDonation extends Base_Block {
 		];
 
 		return $data;
+	}
+
+	/**
+	 * Make sure the submitted phonenumber complies with the database requirements
+	 *
+	 * @param string $phonenumber The submitted data.
+	 *
+	 * @return string $phonenumber The validated data
+	 */
+	function validate_phonenumber( $phonenumber ) : string {
+		// Accept only numeric characters in the phonenumber.
+		$phonenumber = preg_replace( '/[^0-9]/', '', $phonenumber );
+
+		// Remove countrycode from phonenumber.
+		if ( strlen( $phonenumber ) === 13 && ! strpos( $phonenumber, '0031' ) ) {
+			$phonenumber = substr( $phonenumber, 2 );
+		}
+		if ( strlen( $phonenumber ) === 11 && ! strpos( $phonenumber, '31' ) ) {
+			$phonenumber = str_replace( '31', '0', $phonenumber );
+		}
+
+		// Accept only phonenumbers of 10 characters long.
+		$phonenumber = ( strlen( $phonenumber ) === 10 ? $phonenumber : '' );
+
+		return $phonenumber;
 	}
 }
 
