@@ -15,9 +15,6 @@ use P4NL_DATABASE_INTERFACE\ApiConnector;
 use P4NL_DATABASE_INTERFACE\ApiException;
 use P4NL_GB_BKS\Services\Asset_Enqueuer;
 
-
-require_once ABSPATH . 'wp-content/plugins/gpnl-database-interface/ApiConnector.php';
-
 /**
  * @package P4BKS\Controllers\Blocks
  * @since 0.1
