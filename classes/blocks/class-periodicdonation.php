@@ -70,7 +70,7 @@ class PeriodicDonation extends Base_Block {
 	}
 
 	public function form_process() {
-
+		// TODO Add (custom) nonce validation
 		$form_data = $_POST['state']; // Put all state from the React form in a variable.
 
 		// Step 1: remove whitespaces and strip all tags form data.

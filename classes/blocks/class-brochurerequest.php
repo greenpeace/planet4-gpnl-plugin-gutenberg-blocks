@@ -101,7 +101,7 @@ class BrochureRequest extends Base_Block {
 	}
 
 	public function form_process() {
-
+		// TODO Add (custom) nonce validation
 		$form_data = $_POST['state'];
 
 		// Step 1: strip all tags from data.
