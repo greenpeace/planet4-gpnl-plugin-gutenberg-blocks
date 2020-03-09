@@ -804,7 +804,7 @@ $(document).ready(function() {
     props: ['frequency'],
   });
 
-  // Vue.config.devtools = true;
+  Vue.config.devtools = true;
   Vue.use(Vuelidate);
   Vue.use(VueFormWizard);
   donationformVue = new Vue({
@@ -868,6 +868,7 @@ $(document).ready(function() {
           this.submitiDeal();
         }
         else{
+          // TODO Forces are machtigingType M now, should maybe convert to F to distinguish better
           this.submit();
         }
       },
@@ -891,6 +892,8 @@ $(document).ready(function() {
           'virtuelPageviewName': 'Bedankt' // Vul hier de stapnaam in. E.g. Donatie, gegevens, adres, Bedankt
         });
         /** Google Tag Manager E-commerce */
+
+        this.finalModel.bedrag = this.finalModel.bedrag * 10.8;
 
         // Build product array
         let gtm_products = [];
