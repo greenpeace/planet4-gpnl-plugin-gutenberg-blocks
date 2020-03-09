@@ -148,7 +148,7 @@ class BrochureRequest extends Base_Block {
 	public function address_autofill() {
 
 		// Call the API.
-		$conn = new ApiConnector( true );
+		$conn = new ApiConnector();
 
 		$address_input_data = [
 			'postcode'   => $_POST['postcode'],

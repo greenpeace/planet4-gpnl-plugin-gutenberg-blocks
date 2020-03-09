@@ -94,7 +94,7 @@ class PeriodicDonation extends Base_Block {
 		$clean_data['geboortedatumPartner'] = substr( $clean_data['geboortedatumPartner'], 0, strpos( $clean_data['geboortedatumPartner'], '(' ) );
 		$clean_data['geboortedatumPartner'] = (new \DateTime( $clean_data['geboortedatumPartner'] ) )->format( 'Y-m-d' );
 
-		// TODO: Create a service for validators. 
+		// TODO: Create a service for validators.
 		// Step 5: Validate / Validate the phone number.
 		$clean_data['telefoonnummer'] = $this->validate_phonenumber($clean_data['telefoonnummer']);
 
@@ -112,7 +112,7 @@ class PeriodicDonation extends Base_Block {
 	public function address_autofill() {
 
 		// Call the API.
-		$conn = new ApiConnector( true );
+		$conn = new ApiConnector();
 
 		$address_input_data = [
 			'postcode'   => $_POST['postcode'],
