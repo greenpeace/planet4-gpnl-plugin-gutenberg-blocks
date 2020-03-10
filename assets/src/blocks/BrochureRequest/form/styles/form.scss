@@ -339,10 +339,6 @@
     margin-right: 7px;
   }
 
-  .form-group input[type=checkbox] {
-    margin-left: 7px;
-  }
-
   label::first-letter {
     text-transform: uppercase;
   }
@@ -359,12 +355,4 @@
     width: 100%;
   }
 
-
-  input[type="checkbox"] {
-    position: relative !important;
-
-    + label {
-      margin: .4rem 0 .8rem;
-    }
-  }
 }
