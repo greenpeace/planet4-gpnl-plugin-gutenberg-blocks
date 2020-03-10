@@ -116,7 +116,7 @@ export default class RegistrationForm extends Component {
       url: window.p4nl_vars.ajaxurl,
       success: function (response) {
         const result = response.data.output.result;
-        this.setState({straat: result.straat, plaats: result.plaats})
+        this.setState({straat: result.straat, plaats: result.woonplaats})
 
       }.bind(this),
       error: function (xhr, statusText, thrownError) {
