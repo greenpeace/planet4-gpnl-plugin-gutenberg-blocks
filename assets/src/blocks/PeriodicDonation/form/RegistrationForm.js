@@ -46,8 +46,6 @@ export default class RegistrationForm extends Component {
       isSubmitting: false,
       submissionError: false
     };
-
-    console.log(this.props)
   }
 
   handleChange(event, type = 'string') {
