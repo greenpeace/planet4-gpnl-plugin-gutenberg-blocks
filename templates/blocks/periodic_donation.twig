@@ -1,0 +1,15 @@
+{% block periodic_donation %}
+	{% if ( fields ) %}
+		{% if ( fields.title ) %}
+			<section class="block period-donation">
+			<h2 class="page-section-header"> {{ fields.title }}</h2>
+		{% endif %}
+		{% if ( fields.description ) %}
+			<div class="donationdescription">
+				<p class="page-section-description">{{ fields.description|raw }}</p>
+			</div>
+		{% endif %}
+		<div id="periodic-donation-form" data-mcode="{{ fields.marketingCode }}" data-requestedItemId="{{ fields.marketingCode }}" class="form col-md-8 col-lg-6"></div>
+		</section>
+	{% endif %}
+{% endblock %}
