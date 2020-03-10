@@ -17,16 +17,19 @@ export class Testimonial extends Component {
     const getImageOrButton = (openEvent) => {
       if (image_id) {
         return (
-          [<img
-            src={image_url}
-            onClick={openEvent}
-            className="quote__img"
-          />,
+          <div className="image-container" style={this.props.image_right === true ? {float: 'right'} : null}>
+            <img
+              src={image_url}
+              onClick={openEvent}
+              className="quote__img"
+            />
             <BlockControls>
               <div className={'components-toolbar'}>
                 <a className={'components-toolbar-text-button'} onClick={openEvent}>verander afbeelding</a>
               </div>
-            </BlockControls>]
+            </BlockControls>
+          </div>
+
         );
       } else {
         return (
@@ -34,7 +37,7 @@ export class Testimonial extends Component {
             <Button
               onClick={openEvent}
               className="button">
-              + image
+              + afbeelding
             </Button>
           </div>
         );
@@ -51,24 +54,23 @@ export class Testimonial extends Component {
           placeholder="Vul een titel in."
           keepPlaceholderOnFocus
         />
-        <div className="image-container" style={this.props.image_right === true ? {float: 'right'} : null}>
-          <MediaUploadCheck>
-            <MediaUpload
-              type="image"
-              onSelect={this.props.onSelectImage}
-              value={this.props.image_id}
-              render={({open}) => getImageOrButton(open)}
-            />
-          </MediaUploadCheck>
-          <RichText
-            onChange={handleValueChange.bind('name')}
-            value={name}
-            name="name"
-            tagName="p"
-            className="name"
-            placeholder="Vul de naam en eventueel de leeftijd in."
+        <MediaUploadCheck>
+          <MediaUpload
+            type="image"
+            onSelect={this.props.onSelectImage}
+            value={this.props.image_id}
+            render={({open}) => getImageOrButton(open)}
           />
-        </div>
+        </MediaUploadCheck>
+        <RichText
+          onChange={handleValueChange.bind('name')}
+          value={name}
+          name="name"
+          tagName="p"
+          className="name"
+          placeholder="Vul de naam en eventueel de leeftijd in."
+          keepPlaceholderOnFocus
+        />
 
         <RichText
           onChange={handleValueChange.bind('content')}
