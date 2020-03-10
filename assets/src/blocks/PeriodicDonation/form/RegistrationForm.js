@@ -46,6 +46,8 @@ export default class RegistrationForm extends Component {
       isSubmitting: false,
       submissionError: false
     };
+
+    console.log(this.props)
   }
 
   handleChange(event, type = 'string') {
@@ -103,7 +105,7 @@ export default class RegistrationForm extends Component {
     switch (this.state.step) {
     case 'schenking':
       return <div>
-        <Steps step={this.state.step} burgelijkestaat={this.state.burgelijkestaat}/>
+        <Steps step={this.state.step} burgelijkestaat={this.state.burgelijkestaat} imagesPath={this.props.imagespath}/>
         <Schenking
           {...this.state}
           handleChange={this.handleChange.bind(this)}
@@ -111,7 +113,7 @@ export default class RegistrationForm extends Component {
       </div>;
     case 'gegevens':
       return <div>
-        <Steps step={this.state.step} burgelijkestaat={this.state.burgelijkestaat}/>
+        <Steps step={this.state.step} burgelijkestaat={this.state.burgelijkestaat} imagesPath={this.props.imagespath}/>
         <Gegevens
           {...this.state}
           handleChange={this.handleChange.bind(this)}
@@ -121,7 +123,7 @@ export default class RegistrationForm extends Component {
       </div>;
     case 'partnergegevens':
       return <div>
-        <Steps step={this.state.step} burgelijkestaat={this.state.burgelijkestaat}/>
+        <Steps step={this.state.step} burgelijkestaat={this.state.burgelijkestaat} imagesPath={this.props.imagespath}/>
         <PartnerGegevens
           {...this.state}
           handleChange={this.handleChange.bind(this)}
@@ -130,7 +132,7 @@ export default class RegistrationForm extends Component {
       </div>;
     case 'adresgegevens':
       return <div>
-        <Steps step={this.state.step} burgelijkestaat={this.state.burgelijkestaat}/>
+        <Steps step={this.state.step} burgelijkestaat={this.state.burgelijkestaat} imagesPath={this.props.imagespath}/>
         <AdresGegevens
           {...this.state}
           handleChange={this.handleChange.bind(this)}
@@ -139,7 +141,7 @@ export default class RegistrationForm extends Component {
       </div>;
     case 'betaalgegevens':
       return <div>
-        <Steps step={this.state.step} burgelijkestaat={this.state.burgelijkestaat}/>
+        <Steps step={this.state.step} burgelijkestaat={this.state.burgelijkestaat} imagesPath={this.props.imagespath}/>
         <BetaalGegevens
           {...this.state}
           handleChange={this.handleChange.bind(this)}
