@@ -276,8 +276,6 @@ export default class RegistrationForm extends Component {
           value={telefoonnummer}
           placeholder={'0612345678'}
           onChange={this.handleChange}
-          isValid={isValidAny(telefoonnummer, 10, 13)}
-          errorMessage={'Vul alsjeblieft je telefoonnummer in.'}
         />
 
         <InputField
@@ -285,8 +283,6 @@ export default class RegistrationForm extends Component {
           propertyName={'email'}
           value={email}
           onChange={this.handleChange}
-          isValid={isValidEmail(email)}
-          errorMessage={'Vul alsjeblieft een geldig emailadres in.'}
         />
 
         <CheckBox
