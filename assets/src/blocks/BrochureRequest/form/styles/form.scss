@@ -114,10 +114,14 @@
       }
     }
 
-    input[type="checkbox"] + label {
+    input[type="checkbox"] {
+      position: absolute;
+
+    + label {
       color: $white;
       background-color: transparent;
       margin-left: 24px;
+    }
     }
 
     table {
