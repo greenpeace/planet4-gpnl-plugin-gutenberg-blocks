@@ -110,9 +110,12 @@ class BrochureRequest extends Base_Block {
 			$clean_data[ $key ] = wp_strip_all_tags( $value );
 		}
 
-		// Step 2: remove whitespaces from strings that should not have them
+		// Step 2: remove whitespaces from strings that should not have them and remove email field if empty.
 		$clean_data['telefoonnummer'] = preg_replace( '/\s+/', '', $clean_data['telefoonnummer'] );
 
+		if ($clean_data['email'] === '') {
+			unset($clean_data['email']);
+		}
 		// Step 3: typecast all integers.
 		$clean_data['aantal']   = (int) $clean_data['aantal'];
 		$clean_data['requestedItemId']   = (int) $clean_data['requestedItemId'];
