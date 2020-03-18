@@ -123,6 +123,9 @@ export default class Gegevens extends Component {
             dateFormat="dd-MM-yyyy"
             placeholderText="dd-mm-yyyy"
             name="geboortedatum"
+            showMonthDropdown
+            showYearDropdown
+            dropdownMode="select"
             onBlur={() => this.handleBirthDateValidation()}
           />
           {this.state.geboortedatumError && <span className="error-message"> {this.state.geboortedatumError} </span>}

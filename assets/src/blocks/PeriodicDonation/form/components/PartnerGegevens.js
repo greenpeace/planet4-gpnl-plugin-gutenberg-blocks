@@ -95,6 +95,9 @@ export default class PartnerGegevens extends Component {
             dateFormat="dd-MM-yyyy"
             placeholderText="dd-mm-yyyy"
             name="geboortedatumPartner"
+            showMonthDropdown
+            showYearDropdown
+            dropdownMode="select"
             onBlur={() => this.handleBirthDateValidation()}
           />
           {this.state.geboortedatumPartnerError && <span className="error-message"> {this.state.geboortedatumPartnerError} </span>}
