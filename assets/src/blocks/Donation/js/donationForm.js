@@ -893,7 +893,9 @@ $(document).ready(function() {
         });
         /** Google Tag Manager E-commerce */
 
-        this.finalModel.bedrag = this.finalModel.bedrag * 10.8;
+        if (this.finalModel.machtigingType === "M"){
+          this.finalModel.bedrag = this.finalModel.bedrag * 10.8;
+        }
 
         // Build product array
         let gtm_products = [];

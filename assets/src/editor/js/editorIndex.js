@@ -39,3 +39,12 @@ new PdfEmbedBlock();
 
 import { FacebookCommentsBlock } from "../../blocks/FacebookComments/js/FacebookCommentsBlock";
 new FacebookCommentsBlock();
+
+import { PeriodicDonationBlock } from "../../blocks/PeriodicDonation/js/PeriodicDonationBlock";
+new PeriodicDonationBlock();
+
+import { BrochureRequestBlock } from "../../blocks/BrochureRequest/js/BrochureRequestBlock";
+new BrochureRequestBlock();
+
+import { TestimonialBlock } from "../../blocks/Testimonial/js/TestimonialBlock";
+new TestimonialBlock();

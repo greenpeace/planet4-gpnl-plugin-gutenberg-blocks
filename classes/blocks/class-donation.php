@@ -111,6 +111,16 @@ class Donation extends Base_Block {
 			]
 		);
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_if_block_is_present' ] );
+
+		add_action( 'wp_ajax_nopriv_get_donation', [ $this, 'get_donation' ]);
+		add_action( 'wp_ajax_get_donation', [ $this, 'get_donation' ] );
+
+		add_action( 'wp_ajax_nopriv_cache_donation', [ $this, 'cache_donation' ] );
+		add_action( 'wp_ajax_cache_donation', [ $this, 'cache_donation' ] );
+
+		add_action( 'wp_ajax_nopriv_get_address_donation_form', [ $this, 'get_address_donation_form' ] );
+		add_action( 'wp_ajax_get_address_donation_form', [ $this, 'get_address_donation_form' ]);
+
 	}
 
 	/**
@@ -123,14 +133,6 @@ class Donation extends Base_Block {
 
 			Asset_Enqueuer::enqueue_external_asset( 'vueform_style', 'style', 'https://unpkg.com/vue-form-wizard@0.8.4/dist/vue-form-wizard.min.css' );
 			Asset_Enqueuer::enqueue_asset( 'donation-form', 'style' );
-
-			// Asset_Enqueuer::enqueue_external_asset(  'vue', 'script','https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.15/vue.min.js', true );
-			// Asset_Enqueuer::enqueue_external_asset( 'vueresource', 'script', 'https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.5.0/vue-resource.min.js', true );
-			// Asset_Enqueuer::enqueue_asset('vue-form-wizard', 'style');
-			// Asset_Enqueuer::enqueue_asset('vueform', 'script', [ 'vue' ], true);
-			// Asset_Enqueuer::enqueue_asset('vuelidate', 'script', [ 'vue', 'vueform' ], true);
-			// Asset_Enqueuer::enqueue_asset('vuelidators', 'script', [ 'vue', 'vueform' ], true);
-
 			Asset_Enqueuer::enqueue_asset( 'donationForm', 'script', [ 'jquery' ], true );
 		}
 	}
@@ -203,156 +205,141 @@ class Donation extends Base_Block {
 
 		return $data;
 	}
-}
 
-/**
- * Get address with API call.
- */
-function get_address_donation_form() {
+	/**
+	 * Get address with API call.
+	 */
+	public function get_address_donation_form() {
 
-	// getting the options from the gnnp-settings where the API-key and API-URL are stored.
-	$options = get_option( 'planet4nl_options' );
+		// getting the options from the gnnp-settings where the API-key and API-URL are stored.
+		$options = get_option( 'planet4nl_options' );
 
-	// Get data from form and validate
-	$zipcode = wp_strip_all_tags( $_POST['zipcode'] );
-	validate_zipcode_donation_form( $zipcode ) or die();
-	$house_no = wp_strip_all_tags( $_POST['house_no'] );
-	is_numeric( $house_no ) or die();
+		// Get data from form and validate
+		$zipcode = wp_strip_all_tags( $_POST['zipcode'] );
+		validate_zipcode_donation_form( $zipcode ) or die();
+		$house_no = wp_strip_all_tags( $_POST['house_no'] );
+		is_numeric( $house_no ) or die();
 
-	$data_array = [
-		'postcode'   => $zipcode,
-		'huisnummer' => $house_no,
-		'wachtwoord' => $options['gpnl_api_key'],
-	];
+		$data_array = [
+			'postcode'   => $zipcode,
+			'huisnummer' => $house_no,
+			'wachtwoord' => $options['gpnl_api_key'],
+		];
 
-	$data = wp_json_encode( $data_array );
+		$data = wp_json_encode( $data_array );
 
-	// URL for production
-	$url = $options['register_url'] . '/validate/postcode?api_key='.$options['gpnl_api_key'];
+		// URL for production
+		$url = $options['register_url'] . '/validate/postcode?api_key='.$options['gpnl_api_key'];
 
-	$curl = curl_init( $url );
+		$curl = curl_init( $url );
 
-	// API call options:
-	curl_setopt( $curl, CURLOPT_POSTFIELDS, $data );
-	curl_setopt( $curl, CURLOPT_URL, $url );
-	curl_setopt(
-		$curl,
-		CURLOPT_HTTPHEADER,
-		[
-			'Content-Type:application/json',
-			'Content-Length: ' . strlen( $data ),
-		]
-	);
-	curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, 'POST' );
-	curl_setopt( $curl, CURLOPT_RETURNTRANSFER, 1 );
-	curl_setopt( $curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC );
+		// API call options:
+		curl_setopt( $curl, CURLOPT_POSTFIELDS, $data );
+		curl_setopt( $curl, CURLOPT_URL, $url );
+		curl_setopt(
+			$curl,
+			CURLOPT_HTTPHEADER,
+			[
+				'Content-Type:application/json',
+				'Content-Length: ' . strlen( $data ),
+			]
+		);
+		curl_setopt( $curl, CURLOPT_CUSTOMREQUEST, 'POST' );
+		curl_setopt( $curl, CURLOPT_RETURNTRANSFER, 1 );
+		curl_setopt( $curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC );
 
-	// Execute API call
-	$result = json_decode( curl_exec( $curl ) );
-	// Get HTTP statuscode
-	$http_code = curl_getinfo( $curl, CURLINFO_HTTP_CODE );
+		// Execute API call
+		$result = json_decode( curl_exec( $curl ) );
+		// Get HTTP statuscode
+		$http_code = curl_getinfo( $curl, CURLINFO_HTTP_CODE );
 
-	curl_close( $curl );
+		curl_close( $curl );
 
-	// Give the appropriate response to the frontend
-	if ( false === $result || 200 !== $http_code ) {
-		wp_send_json_error(
+		// Give the appropriate response to the frontend
+		if ( false === $result || 200 !== $http_code ) {
+			wp_send_json_error(
+				[
+					'statuscode' => $http_code,
+				],
+				$http_code
+			);
+		}
+
+		wp_send_json_success(
 			[
 				'statuscode' => $http_code,
+				'cUrlresult' => $result,
 			],
 			$http_code
 		);
 	}
 
-	wp_send_json_success(
-		[
-			'statuscode' => $http_code,
-			'cUrlresult' => $result,
-		],
-		$http_code
-	);
-}
+	public function validate_zipcode_donation_form( $zipcode ) {
+		$regex = '/^(?:NL-)?(\d{4})\s*([A-Z]{2})$/i';
 
-function validate_zipcode_donation_form( $zipcode ) {
-	$regex = '/^(?:NL-)?(\d{4})\s*([A-Z]{2})$/i';
-
-	if ( preg_match( $regex, $zipcode ) ) {
-		return true;
+		if ( preg_match( $regex, $zipcode ) ) {
+			return true;
+		}
 	}
-}
 
-// call php function whenever the ajax call is made to get the address for non-logged in users
-add_action( 'wp_ajax_nopriv_get_address_donation_form', 'P4NL_GB_BKS\Blocks\get_address_donation_form' );
-// call php function whenever the ajax call is made to get the address for logged in users
-add_action( 'wp_ajax_get_address_donation_form', 'P4NL_GB_BKS\Blocks\get_address_donation_form' );
 
-/**
- * Store donation for analytics
- */
-function cache_donation() {
+	/**
+	 * Store donation for analytics
+	 */
+	public function cache_donation() {
 
-	$nonce        = htmlspecialchars( wp_strip_all_tags( $_POST['nonce'] ) );
-	$key_in_cache = wp_cache_get( $nonce, 'gpnl_cache' );
-	if ( ! $key_in_cache ) {
-		wp_send_json_error(
-			[
-				'statuscode' => 400,
-			],
-			500
+		$nonce        = htmlspecialchars( wp_strip_all_tags( $_POST['nonce'] ) );
+		$key_in_cache = wp_cache_get( $nonce, 'gpnl_cache' );
+		if ( ! $key_in_cache ) {
+			wp_send_json_error(
+				[
+					'statuscode' => 400,
+				],
+				500
+			);
+		}
+		wp_cache_delete( $nonce, 'gpnl_cache' );
+
+		$transaction = wp_strip_all_tags( $_POST['transaction'] );
+		$data        = wp_strip_all_tags( $_POST['data'] );
+
+		wp_cache_add( $transaction, $data, 'gpnl_cache', 900 );
+
+		wp_send_json_success(
+			[],
+			200
 		);
 	}
-	wp_cache_delete( $nonce, 'gpnl_cache' );
-
-	$transaction = wp_strip_all_tags( $_POST['transaction'] );
-	$data        = wp_strip_all_tags( $_POST['data'] );
-
-	wp_cache_add( $transaction, $data, 'gpnl_cache', 900 );
-
-	wp_send_json_success(
-		[],
-		200
-	);
-}
 
 
-// call php function whenever the ajax call is made to get the address for non-logged in users
-add_action( 'wp_ajax_nopriv_cache_donation', 'P4NL_GB_BKS\Blocks\cache_donation' );
-// call php function whenever the ajax call is made to get the address for logged in users
-add_action( 'wp_ajax_cache_donation', 'P4NL_GB_BKS\Blocks\cache_donation' );
+	/**
+	 * Store donation for analytics
+	 */
+	public function get_donation() {
 
-/**
- * Store donation for analytics
- */
-function get_donation() {
+		$nonce        = htmlspecialchars( wp_strip_all_tags( $_POST['nonce'] ) );
+		$key_in_cache = wp_cache_get( $nonce, 'gpnl_cache' );
+		if ( ! $key_in_cache ) {
+			wp_send_json_error(
+				[
+					'statuscode' => 400,
+				],
+				500
+			);
+		}
+		wp_cache_delete( $nonce, 'gpnl_cache' );
 
-	$nonce        = htmlspecialchars( wp_strip_all_tags( $_POST['nonce'] ) );
-	$key_in_cache = wp_cache_get( $nonce, 'gpnl_cache' );
-	if ( ! $key_in_cache ) {
-		wp_send_json_error(
+		$transaction = wp_strip_all_tags( $_POST['transaction'] );
+
+		$donation_data = wp_cache_get( $transaction, 'gpnl_cache' );
+		$donation_data = str_replace( '\\', '', $donation_data );
+
+		wp_cache_delete( $transaction, 'gpnl_cache' );
+		wp_send_json_success(
 			[
-				'statuscode' => 400,
+				'data' => $donation_data,
 			],
-			500
+			200
 		);
 	}
-	wp_cache_delete( $nonce, 'gpnl_cache' );
-
-	$transaction = wp_strip_all_tags( $_POST['transaction'] );
-
-	$donation_data = wp_cache_get( $transaction, 'gpnl_cache' );
-	$donation_data = str_replace( '\\', '', $donation_data );
-
-	wp_cache_delete( $transaction, 'gpnl_cache' );
-	wp_send_json_success(
-		[
-			'data' => $donation_data,
-		],
-		200
-	);
 }
-
-
-// call php function whenever the ajax call is made to get the address for non-logged in users
-add_action( 'wp_ajax_nopriv_get_donation', 'P4NLBKS\Controllers\Blocks\get_donation' );
-// call php function whenever the ajax call is made to get the address for logged in users
-add_action( 'wp_ajax_get_donation', 'P4NLBKS\Controllers\Blocks\get_donation' );

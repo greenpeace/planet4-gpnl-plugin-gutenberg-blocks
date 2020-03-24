@@ -43,9 +43,14 @@ module.exports = {
     'inforequest': './assets/src/blocks/Inforequest/scss/inforequest.scss',
 
     newsletterFormSubmit: './assets/src/blocks/Newsletter/js/NewsletterFormSubmit.js',
-
     // Assets for the collapsible block.
     'collapsible': './assets/src/blocks/Collapsible/scss/collapsible.scss',
+
+    periodicDonationForm: './assets/src/blocks/PeriodicDonation/form/index.js',
+    brochureRequestForm: './assets/src/blocks/BrochureRequest/form/index.js',
+    'testimonial': './assets/src/blocks/Testimonial/scss/testimonial.scss',
+
+
   },
   output: {
     filename: "[name].min.js",
@@ -59,6 +64,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
+        resolve: { extensions: [".js", ".jsx"] },
         use: ['babel-loader']
       },
       {
