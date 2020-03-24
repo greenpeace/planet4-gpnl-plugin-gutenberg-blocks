@@ -119,8 +119,10 @@
 							<div class="gpnl-petition-thank back">
 										<h5 class="card-title">{{ fields.thanktitle|e('wp_kses_post')|raw }}</h5>
 										<p class="card-text">{{ fields.thanktext|e('wp_kses_post')|raw }}</p>
-										<a class="btn btn-primary btn-block" href="{{ fields.donatebuttonlink }}"
-										   role="button">{{ fields.donatebuttontext }}</a>
+										{% if fields.donatebuttontext %}
+											<a class="btn btn-primary btn-block" href="{{ fields.donatebuttonlink }}"
+											   role="button">{{ fields.donatebuttontext }}</a>
+										{% endif %}
 										{% if not fields.hidesharingbuttons %}
 											<h5 class="card-title mt-2 mb-0">Deel dit via:</h5>
 											<div class="gpnl-petitionshare row mx-0 mt-0">
