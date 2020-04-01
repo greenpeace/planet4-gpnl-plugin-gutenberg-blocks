@@ -76,6 +76,7 @@ class HeroImage extends Base_Block {
 		if ( has_block( 'planet4-gpnl-blocks/' . $this->getKebabCaseClassName() ) ) {
 
 			Asset_Enqueuer::enqueue_asset( 'hero-image', 'style' );
+			Asset_Enqueuer::enqueue_asset( 'heroImageRendering', 'script', [], true );
 		}
 	}
 

@@ -36,6 +36,8 @@ module.exports = {
     // assets for the two-column-embed block
     'two-column-embed': './assets/src/blocks/TwoColumnEmbed/scss/two-column-embed.scss',
 
+    heroImageRendering: './assets/src/blocks/HeroImage/js/heroImageRendering.js',
+
     // Separate css files are generated for the blocks so they can be used only when required on public pages.
     'hero-image': './assets/src/blocks/HeroImage/scss/hero-image.scss',
     'quote': './assets/src/blocks/Quote/scss/quote.scss',
