@@ -288,6 +288,10 @@ $(document).ready(function() {
       $('.privacy-text').hide();
       this.toggleCustomamount();
     },
+    updated:function(){
+      $('.privacy-text').hide();
+      this.toggleCustomamount();
+    },
     methods: {
       validate() {
         $('.privacy-text').show();
