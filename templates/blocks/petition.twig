@@ -64,17 +64,41 @@
 										<input id="name" name="name" required type="text" class="form-control"
 											   placeholder="Voornaam">
 										<label for="name">Voornaam</label>
+										<div class="info-icon-container">
+											<div class="info-icon">
+												<span>i</span>
+												<div class="hover-information">
+													Greenpeace gaat zorgvuldig om met jouw persoonsgegevens.
+												</div>
+											</div>
+										</div>
 									</div>
 									<div class="text-field-container">
 										<input id="email" name="mail" required type="email" class="form-control"
 											   placeholder="E-mail">
 										<label for="mail">E-mail</label>
+										<div class="info-icon-container">
+											<div class="info-icon">
+												<span>i</span>
+												<div class="hover-information">
+													Alleen als je ook het selectievakje hieronder aanvinkt houden we je per e-mail op de hoogte van de campagne.
+												</div>
+											</div>
+										</div>
 									</div>
 
 									<div class="text-field-container">
 										<input id="phone" name="phone" type="text" class="form-control"
 											   placeholder="Telefoonnummer" pattern="(([0-9])|-|\+|( )){10,18}">
 										<label for="phone">Telefoonnummer</label>
+										<div class="info-icon-container">
+											<div class="info-icon" onmouseenter="petition_hover(this)">
+												<span>i</span>
+												<div class="hover-information">
+													Als je je telefoonnummer invult kunnen we je telefonisch benaderen voor updates of giftverzoeken.
+												</div>
+											</div>
+										</div>
 									</div>
 
 									<div class="checkbox-container optin">
@@ -82,9 +106,6 @@
 											<input type="checkbox" class="consent-checkbox" name="consent" id="consent">
 											{{ fields.consent }}
 										</label>
-										<label for="phone">Vul je je telefoonnummer in? Dan kan Greenpeace jou
-											telefonisch benaderen voor giftverzoeken of updates rondom lopende
-											campagnes.</label>
 									</div>
 
 
