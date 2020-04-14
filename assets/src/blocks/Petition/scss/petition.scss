@@ -188,6 +188,79 @@ $checkbox-size: 1.1em;
         }
       }
     }
+
+    .info-icon-container {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 30;
+      display: flex;
+      width: 45px;
+
+      // Start OV code
+      .info-icon {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+
+        &:before {
+          position: absolute;
+          content: "";
+          width: calc(60% - 10px);
+          height: calc(60% - 10px);
+          bottom: 0;
+          border: 1px solid rgba(0, 0, 0, 0.3);
+          border-radius: 50%;
+          top: 50%;
+          left: 0;
+          right: 0;
+          margin-left: auto;
+          margin-right: auto;
+          transform: translateY(-50%);
+        }
+
+        .hover-information {
+          display: none;
+          border-radius: 5px;
+          right: 100%;
+          padding: 10px;
+          font-size: 12px;
+          width: 180px;
+          margin-right: 6px;
+          top: 50%;
+          transform: translateY(-50%);
+          box-shadow: 3px 4px 3px rgba(0, 0, 0, 0.5), -2px -2px 3px rgba(0, 0, 0, 0.2);
+          background: #323842;
+          color: white;
+        }
+
+        &:hover, &:active, &:focus {
+          cursor: pointer;
+          transform: scale(1.1);
+
+          .hover-information {
+            display: flex;
+            position: absolute;
+          }
+        }
+
+        span {
+          display: flex;
+          text-align: center;
+          justify-content: center;
+          align-items: center;
+          margin: 5px;
+          font-weight: bold;
+          padding: 0px 5px;
+          font-size: 10px;
+          color: rgba(0, 0, 0, 0.3);
+        }
+      }
+      // End OV code
+    }
   }
 
   .checkbox-container {

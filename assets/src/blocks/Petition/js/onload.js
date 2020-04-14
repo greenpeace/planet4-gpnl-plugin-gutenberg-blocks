@@ -237,3 +237,18 @@ function cardflip(el) {
 function flip_positionattribute (el){
   return $(el).css('position') === 'absolute' ? 'relative' : 'absolute';
 }
+
+function send_ga_event (target){
+  let label = $(target).parents().eq(1).find('label').text()
+  if(typeof window.ga !== 'undefined'){
+    window.ga('create', 'UA-24275211-1', 'auto');
+    window.ga(
+      'send',
+      'event',
+      'OV-ab-test',
+      'TE-06-var2',
+      label
+    );
+  }
+}
+window.petition_hover = send_ga_event;
