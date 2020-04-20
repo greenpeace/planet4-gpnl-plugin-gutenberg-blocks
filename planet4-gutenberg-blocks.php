@@ -3,7 +3,7 @@
  * Plugin Name: Planet4 - GPNL Gutenberg Blocks
  * Description: Contains the Gutenberg blocks that are used by Planet4 project.
  * Plugin URI: https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks
- * Version: 1.6.2
+ * Version: 1.6.9
  * Php Version: 7.0
  *
  * Author: Greenpeace Netherlands
@@ -18,7 +18,6 @@
 
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || die( 'Direct access is forbidden !' );
-
 
 /*
 ========================
@@ -98,6 +97,11 @@ if ( ! defined( 'P4NL_GB_BKS_PUBLIC_DIR' ) ) {
 
 
 require_once __DIR__ . '/classes/class-loader.php';
+$api_loader = __DIR__ ."/../gpnl-database-interface/ApiConnector.php";
+if (file_exists( $api_loader )) {
+	require_once $api_loader;
+};
+
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
 
@@ -138,6 +142,9 @@ const BLOCK_WHITELIST = [
 		'planet4-gpnl-blocks/collapsible',
 		'planet4-gpnl-blocks/pdf-embed',
 		'planet4-gpnl-blocks/facebook-comments',
+		'planet4-gpnl-blocks/periodic-donation',
+		'planet4-gpnl-blocks/brochure-request',
+		'planet4-gpnl-blocks/testimonial',
 	],
 	'campaign' => [],
 ];
@@ -187,3 +194,11 @@ function set_child_theme_allowed_block_types( $allowed_block_types, $post ) {
 	return array_values( $allowed_block_types );
 }
 add_filter( 'allowed_block_types', 'set_child_theme_allowed_block_types', 15, 2 );
+//
+//require_once('vendor/greenpeace/gpnl-database-interface/ApiConnector.php');
+//use P4NL_DATABASE_INTERFACE\Api\ApiConnector;
+//$conn = new ApiConnector();
+//var_dump($conn->call("Contact", 'getContactByGuid', "C9231ADC-F7D7-4014-BB5E-EAAD10F41809"));
+
+//$dir_path = plugin_dir_path( __FILE__ );
+

@@ -47,10 +47,11 @@
       }
 
       .hero__title {
+        margin: 0 0 15px 0;
+
         span {
           padding: 15px;
           font-size: 1.625rem;
-          margin-bottom: 15px;
           background-color: $white;
           line-height: 2.5;
           color: $black;

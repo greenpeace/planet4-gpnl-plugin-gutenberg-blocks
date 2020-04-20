@@ -2,7 +2,7 @@
   "name": "greenpeace/planet4-gpnl-plugin-gutenberg-blocks",
   "description": "This repository contains the WordPress plugin that provides the gutenberg blocks for Planet4 project",
   "type": "wordpress-plugin",
-  "version": "1.6.2",
+  "version": "1.6.9",
   "license": "GPL-3.0+",
   "authors": [
 		{
@@ -16,6 +16,12 @@
 		{
 			"name": "Dirk Faber",
 			"email": "dfaber@greenpeace.org"
+		}
+	],
+	"repositories": [
+		{
+			"url": "https://github.com/greenpeace/gpnl-database-interface.git",
+			"type": "git"
 		}
 	],
   "require-dev": {

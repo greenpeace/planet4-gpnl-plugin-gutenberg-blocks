@@ -163,6 +163,8 @@ function fireShareEvent (platform, form_id){
     console.log('GTM not defined?');
   }
 }
+
+window.fireShareEvent = fireShareEvent;
 /* eslint-enable */
 
 /* eslint-disable */

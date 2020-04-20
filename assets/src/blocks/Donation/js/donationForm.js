@@ -206,15 +206,16 @@ $(document).ready(function() {
                         <label class="form-check-label form-control"
                                for="bedrag3">EUR {{ amount3 }}</label>
                     </div>
-                    <div class="amount__popular">Meest gekozen</div>
+                    <!-- Hiding 'meest gekozen'. -->
+                    <!-- <div class="amount__popular">Meest gekozen</div>-->
                 </div>
 
                 <div class="form-group"
                      v-bind:class="{ 'has-error': $v.bedrag.$error }">
                     <label for="customAmount"
-                           class="form-control form-check-label col-4 ml-0"
+                           class="form-control form-check-label col-4 ml-0 mt-2"
                            v-on:click="toggleCustomamount">Ander bedrag:</label>
-                    <div class="input-group col-8" id="input__customAmount">
+                    <div class="input-group col-8 mt-2" id="input__customAmount">
                         <div class="input-group-prepend">
                             <div class="input-group-text">EUR</div>
                         </div>
@@ -284,10 +285,16 @@ $(document).ready(function() {
       form: ['machtigingType', 'bedrag', 'betaling' ]
     },
     mounted:function(){
+      $('.privacy-text').hide();
+      this.toggleCustomamount();
+    },
+    updated:function(){
+      $('.privacy-text').hide();
       this.toggleCustomamount();
     },
     methods: {
       validate() {
+        $('.privacy-text').show();
         this.$v.form.$reset();
         this.$v.form.$touch();
         var isValid = !this.$v.form.$invalid;
@@ -804,7 +811,7 @@ $(document).ready(function() {
     props: ['frequency'],
   });
 
-  // Vue.config.devtools = true;
+  Vue.config.devtools = true;
   Vue.use(Vuelidate);
   Vue.use(VueFormWizard);
   donationformVue = new Vue({
@@ -868,6 +875,7 @@ $(document).ready(function() {
           this.submitiDeal();
         }
         else{
+          // TODO Forces are machtigingType M now, should maybe convert to F to distinguish better
           this.submit();
         }
       },
@@ -891,6 +899,10 @@ $(document).ready(function() {
           'virtuelPageviewName': 'Bedankt' // Vul hier de stapnaam in. E.g. Donatie, gegevens, adres, Bedankt
         });
         /** Google Tag Manager E-commerce */
+
+        if (this.finalModel.machtigingType === "M"){
+          this.finalModel.bedrag = this.finalModel.bedrag * 10.8;
+        }
 
         // Build product array
         let gtm_products = [];

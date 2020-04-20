@@ -36,6 +36,8 @@ module.exports = {
     // assets for the two-column-embed block
     'two-column-embed': './assets/src/blocks/TwoColumnEmbed/scss/two-column-embed.scss',
 
+    heroImageRendering: './assets/src/blocks/HeroImage/js/heroImageRendering.js',
+
     // Separate css files are generated for the blocks so they can be used only when required on public pages.
     'hero-image': './assets/src/blocks/HeroImage/scss/hero-image.scss',
     'quote': './assets/src/blocks/Quote/scss/quote.scss',
@@ -43,9 +45,14 @@ module.exports = {
     'inforequest': './assets/src/blocks/Inforequest/scss/inforequest.scss',
 
     newsletterFormSubmit: './assets/src/blocks/Newsletter/js/NewsletterFormSubmit.js',
-
     // Assets for the collapsible block.
     'collapsible': './assets/src/blocks/Collapsible/scss/collapsible.scss',
+
+    periodicDonationForm: './assets/src/blocks/PeriodicDonation/form/index.js',
+    brochureRequestForm: './assets/src/blocks/BrochureRequest/form/index.js',
+    'testimonial': './assets/src/blocks/Testimonial/scss/testimonial.scss',
+
+
   },
   output: {
     filename: "[name].min.js",
@@ -59,6 +66,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
+        resolve: { extensions: [".js", ".jsx"] },
         use: ['babel-loader']
       },
       {
