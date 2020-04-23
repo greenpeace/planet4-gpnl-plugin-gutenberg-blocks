@@ -216,7 +216,7 @@ class Donation extends Base_Block {
 
 		// Get data from form and validate
 		$zipcode = wp_strip_all_tags( $_POST['zipcode'] );
-		validate_zipcode_donation_form( $zipcode ) or die();
+		$this->validate_zipcode_donation_form( $zipcode ) or die();
 		$house_no = wp_strip_all_tags( $_POST['house_no'] );
 		is_numeric( $house_no ) or die();
 
