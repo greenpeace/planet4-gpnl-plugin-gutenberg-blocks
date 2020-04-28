@@ -285,16 +285,11 @@ $(document).ready(function() {
       form: ['machtigingType', 'bedrag', 'betaling' ]
     },
     mounted:function(){
-      $('.privacy-text').hide();
       this.toggleCustomamount();
-    },
-    updated:function(){
       $('.privacy-text').hide();
-      this.toggleCustomamount();
     },
     methods: {
-      validate() {
-        $('.privacy-text').show();
+      validate( hidePrivacy ) {
         this.$v.form.$reset();
         this.$v.form.$touch();
         var isValid = !this.$v.form.$invalid;
@@ -307,6 +302,13 @@ $(document).ready(function() {
             'virtuelPageviewName': 'Donatie' // Vul hier de stapnaam in. E.g. Donatie, gegevens, adres, Bedankt
           });
         }
+        if(hidePrivacy){
+          $('.privacy-text').hide();
+        }
+        else {
+          $('.privacy-text').show();
+        }
+
         return isValid;
       },
       changePeriodic() {
@@ -316,7 +318,7 @@ $(document).ready(function() {
         this.$data.bedrag     = (this.$data.machtigingType === 'M') ? formconfig.recurring_suggested_amount : formconfig.oneoff_suggested_amount ;
         this.$data.min_amount = (this.$data.machtigingType === 'M') ? formconfig.recurring_min_amount       : formconfig.oneoff_min_amount ;
         this.$data.betaling   = (this.$data.machtigingType === 'M') ? 'EM' : 'ID';
-        this.validate();
+        this.validate( true );
       },
       toggleCustomamount() {
         $('#input__customAmount').toggle();
