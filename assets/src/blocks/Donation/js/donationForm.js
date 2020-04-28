@@ -70,6 +70,10 @@ $(document).ready(function() {
           formconfig.allow_frequency_override = 0;
           formconfig.suggested_frequency = ['M', 'maandelijks voor 12 maanden'];
           break;
+        case 'J':
+          formconfig.allow_frequency_override = 0;
+          formconfig.suggested_frequency = ['J', 'jaarlijks'];
+          break;
         default:
           formconfig.suggested_frequency = ['M', 'Maandelijks'];
           break;
@@ -713,7 +717,8 @@ $(document).ready(function() {
             Ik machtig hierbij Greenpeace 
             <template v-if="frequency === 'M'">tot wederopzegging</template> 
             <template v-if="frequency === 'E'">éénmalig</template> 
-            <template v-if="frequency === 'F'">12 maanden</template> 
+            <template v-if="frequency === 'F'">12 maanden</template>
+            <template v-if="frequency === 'J'">jaarlijks</template>
             bovengenoemd bedrag van mijn rekening af te schrijven. <br/><br/>
           </small>
         </div>`,
