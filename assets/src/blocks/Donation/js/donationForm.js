@@ -266,11 +266,11 @@ $(document).ready(function() {
     data() {
       return {
         machtigingType:  formconfig.suggested_frequency[0],
-        amount1:        (formconfig.suggested_frequency[0] === 'M') ? formconfig.recurring_amount1          : formconfig.oneoff_amount1,
-        amount2:        (formconfig.suggested_frequency[0] === 'M') ? formconfig.recurring_amount2          : formconfig.oneoff_amount2,
-        amount3:        (formconfig.suggested_frequency[0] === 'M') ? formconfig.recurring_amount3          : formconfig.oneoff_amount3,
-        bedrag:         (formconfig.suggested_frequency[0] === 'M') ? formconfig.recurring_suggested_amount : formconfig.oneoff_suggested_amount,
-        betaling:       (formconfig.suggested_frequency[0] === 'M') ? 'EM' : 'ID',
+        amount1:        (formconfig.suggested_frequency[0] !== 'E') ? formconfig.recurring_amount1          : formconfig.oneoff_amount1,
+        amount2:        (formconfig.suggested_frequency[0] !== 'E') ? formconfig.recurring_amount2          : formconfig.oneoff_amount2,
+        amount3:        (formconfig.suggested_frequency[0] !== 'E') ? formconfig.recurring_amount3          : formconfig.oneoff_amount3,
+        bedrag:         (formconfig.suggested_frequency[0] !== 'E') ? formconfig.recurring_suggested_amount : formconfig.oneoff_suggested_amount,
+        betaling:       (formconfig.suggested_frequency[0] !== 'E') ? 'EM' : 'ID',
         formconfig:      formconfig,
       };
     },
@@ -316,12 +316,12 @@ $(document).ready(function() {
         return isValid;
       },
       changePeriodic() {
-        this.$data.amount1    = (this.$data.machtigingType === 'M') ? formconfig.recurring_amount1          : formconfig.oneoff_amount1 ;
-        this.$data.amount2    = (this.$data.machtigingType === 'M') ? formconfig.recurring_amount2          : formconfig.oneoff_amount2 ;
-        this.$data.amount3    = (this.$data.machtigingType === 'M') ? formconfig.recurring_amount3          : formconfig.oneoff_amount3 ;
-        this.$data.bedrag     = (this.$data.machtigingType === 'M') ? formconfig.recurring_suggested_amount : formconfig.oneoff_suggested_amount ;
-        this.$data.min_amount = (this.$data.machtigingType === 'M') ? formconfig.recurring_min_amount       : formconfig.oneoff_min_amount ;
-        this.$data.betaling   = (this.$data.machtigingType === 'M') ? 'EM' : 'ID';
+        this.$data.amount1    = (this.$data.machtigingType !== 'E') ? formconfig.recurring_amount1          : formconfig.oneoff_amount1 ;
+        this.$data.amount2    = (this.$data.machtigingType !== 'E') ? formconfig.recurring_amount2          : formconfig.oneoff_amount2 ;
+        this.$data.amount3    = (this.$data.machtigingType !== 'E') ? formconfig.recurring_amount3          : formconfig.oneoff_amount3 ;
+        this.$data.bedrag     = (this.$data.machtigingType !== 'E') ? formconfig.recurring_suggested_amount : formconfig.oneoff_suggested_amount ;
+        this.$data.min_amount = (this.$data.machtigingType !== 'E') ? formconfig.recurring_min_amount       : formconfig.oneoff_min_amount ;
+        this.$data.betaling   = (this.$data.machtigingType !== 'E') ? 'EM' : 'ID';
         this.validate( true );
       },
       toggleCustomamount() {
@@ -825,10 +825,10 @@ $(document).ready(function() {
     el: '#app',
     data: {
       finalModel: {
-        marketingcode: (formconfig.suggested_frequency[0] === 'M') ? formconfig.marketingcode_recurring : formconfig.marketingcode_oneoff ,
+        marketingcode: (formconfig.suggested_frequency[0] !== 'E') ? formconfig.marketingcode_recurring : formconfig.marketingcode_oneoff ,
         literatuurcode: formconfig.literatuurcode,
         guid: '',
-        betaling: (formconfig.suggested_frequency[0] === 'M') ? 'EM' : 'ID'
+        betaling: (formconfig.suggested_frequency[0] !== 'E') ? 'EM' : 'ID'
       },
       result: {
         msg: '',
@@ -965,7 +965,7 @@ $(document).ready(function() {
 
         this.result.msg = '';
         this.result.hasError = false;
-        this.finalModel.marketingcode = (this.finalModel.machtigingType === 'M') ? formconfig.marketingcode_recurring : formconfig.marketingcode_oneoff;
+        this.finalModel.marketingcode = (this.finalModel.machtigingType !== 'E') ? formconfig.marketingcode_recurring : formconfig.marketingcode_oneoff;
         $.ajax({
           method: 'POST',
           url: 'https://www.mygreenpeace.nl/GPN.RegistrerenApi/machtiging/register',
