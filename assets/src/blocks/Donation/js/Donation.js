@@ -69,6 +69,7 @@ export default class Donation extends Component {
               { label: 'Eenmalig', value: 'E' },
               { label: 'Maandelijks', value: 'M' },
               { label: 'Maandelijks voor 12 maanden (forces)', value: 'F' },
+              { label: 'Jaarlijks', value: 'J' },
             ] }
           />
           <CheckboxControl
@@ -76,7 +77,7 @@ export default class Donation extends Component {
             onChange={onValueChange.bind('allow_frequency_override')}
             value={allow_frequency_override}
             checked={allow_frequency_override}
-            help={'Als dit aangevinkt is kan de donateur zelf bepalen of deze eenmalig of eens per maand doneert.'}
+            help={'Als dit aangevinkt is kan de donateur zelf bepalen of deze eenmalig of terugkerend doneert.'}
           />
         </PanelBody>
         <PanelBody title={'Bedragen'}
