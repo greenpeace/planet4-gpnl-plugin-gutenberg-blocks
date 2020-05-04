@@ -146,35 +146,6 @@ class Petition extends Base_Block {
 	}
 
 	/**
-	 * Get the defined menu with social accounts for usage in sharing buttons
-	 *
-	 * @return array
-	 */
-	private function get_social_accounts(): array {
-		$social_menu     = wp_get_nav_menu_items( 'Footer Social' );
-		$social_accounts = [];
-		if ( null !== $social_menu ) {
-
-			$brands = [
-				'facebook',
-				'twitter',
-				'youtube',
-				'instagram',
-			];
-			foreach ( $social_menu as $social_menu_item ) {
-				$url_parts = explode( '/', rtrim( $social_menu_item->url, '/' ) );
-				foreach ( $brands as $brand ) {
-					if ( false !== strpos( $social_menu_item->url, $brand ) ) {
-						$social_accounts[ $brand ] = count( $url_parts ) > 0 ? $url_parts[ count( $url_parts ) - 1 ] : '';
-					}
-				}
-			}
-		}
-
-		return $social_accounts;
-	}
-
-	/**
 	 * Callback for the shortcake_twocolumn shortcode.
 	 * It renders the shortcode based on supplied attributes.
 	 *
@@ -205,7 +176,6 @@ class Petition extends Base_Block {
 		}
 
 		// Fetch the data from the social accounts and the current url for sharing buttons.
-		$fields['social_accounts'] = $this->get_social_accounts();
 		$fields['current_url']     = $this->current_url( $_SERVER );
 		$fields['twittertext']     = rawurlencode( $fields['twittertext'] );
 
