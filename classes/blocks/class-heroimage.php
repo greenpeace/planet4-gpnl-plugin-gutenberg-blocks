@@ -69,9 +69,6 @@ class HeroImage extends Base_Block {
 	 */
 	public function enqueue_if_block_is_present() {
 
-		// Always hide the (GPI) h1 title that is otherwise rendered (though hidden).
-		add_post_meta(get_post()->ID, "p4_hide_page_title_checkbox", "on");
-
 		// Check if the block is present on the page that is requested.
 		if ( has_block( 'planet4-gpnl-blocks/' . $this->getKebabCaseClassName() ) ) {
 
