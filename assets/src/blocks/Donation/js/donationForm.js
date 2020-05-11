@@ -177,9 +177,12 @@ $(document).ready(function() {
                                    for="maandelijks">Maandelijks</label>
                         </div>
                     </template>
+                    <label for="machtigingType" v-else-if="formconfig.suggested_frequency[0] == 'J'">
+                        <div>Ja ik word Vriend van Greenpeace</div>
+                        Ik geef <strong>{{ formconfig.suggested_frequency[1] }}</strong>:
+                    </label>
                     <label for="machtigingType" v-else>
-                        Ja ik steun Greenpeace
-                        <strong>{{ formconfig.suggested_frequency[1] }}</strong>:
+                        Ja ik steun Greenpeace <strong>{{ formconfig.suggested_frequency[1] }}</strong>:
                     </label>
 
                 </div>
