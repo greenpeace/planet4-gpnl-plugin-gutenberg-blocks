@@ -10,7 +10,7 @@
   }
 }
 
-.cover-card .educationcovers__card__p {
+.cover-card > p.educationcovers__card__p {
   display: block;
   position: absolute;
   bottom: 0;
@@ -21,6 +21,6 @@
   padding-bottom: 1.6rem;
 
   &:hover {
-    color: $white;
+    display: block;
   }
 }
