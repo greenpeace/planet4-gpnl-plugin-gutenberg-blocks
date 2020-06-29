@@ -107,8 +107,8 @@ final class Loader {
 			new Blocks\Educationcovers(),
 			new Blocks\Collapsible(),
 			new Blocks\PdfEmbed(),
-			new Blocks\PeriodicDonation(),
-			new Blocks\BrochureRequest(),
+//			new Blocks\PeriodicDonation(),
+//			new Blocks\BrochureRequest(),
 			new Blocks\Testimonial(),
 		];
 	}

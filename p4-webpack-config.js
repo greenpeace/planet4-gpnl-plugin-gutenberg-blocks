@@ -48,8 +48,8 @@ module.exports = {
     // Assets for the collapsible block.
     'collapsible': './assets/src/blocks/Collapsible/scss/collapsible.scss',
 
-    periodicDonationForm: './assets/src/blocks/PeriodicDonation/form/index.js',
-    brochureRequestForm: './assets/src/blocks/BrochureRequest/form/index.js',
+    // periodicDonationForm: './assets/src/blocks/PeriodicDonation/form/index.js',
+    // brochureRequestForm: './assets/src/blocks/BrochureRequest/form/index.js',
     'testimonial': './assets/src/blocks/Testimonial/scss/testimonial.scss',
 
 
