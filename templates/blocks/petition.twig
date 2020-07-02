@@ -37,122 +37,12 @@
 								<h2 class="card-title">{{ fields.title }}</h2>
 							</div>
 						{% endif %}
-						{% if ( fields.subtitle ) %}
-							<div class="petition-subtitle">
-								<p>{{ fields.subtitle|e('wp_kses_post')|raw }}</p>
-							</div>
-						{% endif %}
 						<div class="gpnl-petition">
-							<noscript class="gpnl-petition-form front">
-								<p>
-									Uw browser ondersteunt geen Javascript.<br>
-									Het is hierdoor niet mogelijk om een petitie te ondertekenen via deze weg.<br>
-									Bel onze Supporter Care via 0800-4223344 of stuur een mail via <a
-											href="https://www.greenpeace.org/nl/contact/contact-formulier/">dit
-										contactformulier.</a>
-								</p>
-							</noscript>
-							<div class="gpnl-petition-form front hidden-when-no-js-enabled">
-								<div class="counter">
-									<div class="counter__slider"></div>
-									<div class="counter__text">
-										<span class="counter__gettext"></span>
-									</div>
-								</div>
-								<form class="gpnl-petitionform" onsubmit="return false;">
-									<div class="text-field-container">
-										<input id="name" name="name" required type="text" class="form-control"
-											   placeholder="Voornaam">
-										<label for="name">Voornaam</label>
-										<div class="info-icon-container">
-											<div class="info-icon">
-												<span>i</span>
-												<div class="hover-information">
-													Greenpeace gaat zorgvuldig om met jouw persoonsgegevens.
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="text-field-container">
-										<input id="email" name="mail" required type="email" class="form-control"
-											   placeholder="E-mail">
-										<label for="mail">E-mail</label>
-										<div class="info-icon-container">
-											<div class="info-icon">
-												<span>i</span>
-												<div class="hover-information">
-													Alleen als je ook het selectievakje hieronder aanvinkt houden we je per e-mail op de hoogte van de campagne.
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="text-field-container">
-										<input id="phone" name="phone" type="text" class="form-control"
-											   placeholder="Telefoonnummer" pattern="(([0-9])|-|\+|( )){10,18}">
-										<label for="phone">Telefoonnummer</label>
-										<div class="info-icon-container">
-											<div class="info-icon" onmouseenter="petition_hover(this)">
-												<span>i</span>
-												<div class="hover-information">
-													Als je je telefoonnummer invult kunnen we je telefonisch benaderen voor updates of giftverzoeken.
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="checkbox-container optin">
-										<label for="consent">
-											<input type="checkbox" class="consent-checkbox" name="consent" id="consent">
-											{{ fields.consent }}
-										</label>
-									</div>
-
-
-									<input type="text" name="marketingcode" value="{{ fields.marketingcode }}" hidden
-										   readonly>
-									<input type="text" name="literaturecode" value="{{ fields.literaturecode }}" hidden
-										   readonly>
-									<input type="text" name="form_id" value="{{ fields.form_id }}" hidden readonly>
-									<input type="submit" class="btn btn-primary btn-block signBtn"
-										   value="{{ fields.sign }}" disabled>
-									<div class="small policies">
-										<div class="row">
-											<div class="col-8">
-												Greenpeace beschermt je gegevens en geeft ze niet aan derden voor
-												commerci&euml;le
-												doeleinden. Lees ook ons
-												<a href="https://www.greenpeace.org/nl/privacystatement/"
-												   target="_blank">privacy-beleid</a> en
-												de <a href="{{ fields.campaignpolicy }}" target="_blank">algemene
-													voorwaarden</a> van deze actie.
-											</div>
-											<div class="col-4">
-												<a href="https://privacywaarborg.nl/bedrijven/stichting-greenpeace-nederland/"
-												   target="_blank" class="privacywaarborg">
-													<img class="img-fluid" src="{{ image('PW-logo.png') }}">
-												</a>
-											</div>
-										</div>
-									</div>
-								</form>
-							</div>
-							<div class="gpnl-petition-thank back">
-								<h5 class="card-title">{{ fields.thanktitle|e('wp_kses_post')|raw }}</h5>
-								<p class="card-text">{{ fields.thanktext|e('wp_kses_post')|raw }}</p>
-								{% if fields.donatebuttontext and fields.donatebuttonlink  %}
-									<a class="btn btn-primary btn-block" href="{{ fields.donatebuttonlink }}"
-									   role="button">{{ fields.donatebuttontext }}</a>
-								{% elseif fields.donatebuttonlink %}
-									<a class="btn btn-primary btn-block" href="{{ fields.donatebuttonlink }}"
-									   role="button">Doneer nu</a>
-								{% endif %}
-								{% if not fields.hidesharingbuttons %}
-									<a class="btn btn-block gpnl-share-whatsapp" target="_blank"
-									   href="https://api.whatsapp.com/send?text={{ fields.whatsapptext }}%20via%20{{ fields.current_url }}?utm_source=whatsapp"
-									   role="button" onclick="fireShareEvent('whatsapp');">DEEL OP WHATSAPP</a>
-								{% endif %}
-							</div>
+							<p class="">
+								Normaalgesproken had je hier je gegeven kunnen achterlaten.<br>
+								We zijn op dit moment bezig met het aanpassen van onze databasesoftware. <br>
+								Dit is vanaf maandagochtend weer mogelijk.
+							</p>
 						</div>
 					</div>
 					{# Used for hiding the petitionform, unless JS is enabled #}
