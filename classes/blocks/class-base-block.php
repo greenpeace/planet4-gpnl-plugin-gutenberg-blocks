@@ -39,6 +39,8 @@ class Base_Block {
 
 		$options     = get_option( 'planet4nl_options' );
 		$notification= $options['gpnl_sf_notification'];
+		$system_status= $options['gpnl_system_status'];
+
 		$partial_permalink = get_permalink();
 
 		if (strpos($underscore_block_name, "Donation") || strpos($underscore_block_name, "Petition")) {
@@ -64,6 +66,16 @@ class Base_Block {
 		} else {
 			$data = $base_data;
 		}
+
+		switch ($system_status) {
+			case 'systemfreeze':
+				$underscore_block_name = "systemfreeze/" . $underscore_block_name;
+				break;
+			case 'salesforce':
+				$underscore_block_name = "salesforce/" . $underscore_block_name;
+				break;
+		}
+
 
 		$block = \Timber::compile( $underscore_block_name . '.twig', $data );
 
