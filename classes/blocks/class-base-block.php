@@ -37,14 +37,25 @@ class Base_Block {
 		// underscore name for twig files.
 		$underscore_block_name = str_replace( '-', '_', $this->getKebabCaseClassName() );
 
-		$public_dir = [
+		$permalink = get_permalink();
+		if (strpos($permalink, "/acties/")) {
+			$partial_permalink = explode("/acties/", $permalink)[1];
+		}
+		else {
+			$partial_permalink = explode("/nl/", $permalink)[1];
+		}
+		$partial_permalink = rtrim($partial_permalink, '/');
+		$partial_permalink = str_replace("/", "-", $partial_permalink);
+
+		$base_data = [
 			'public' => P4NL_GB_BKS_PUBLIC_DIR,
 			'images' => P4NL_GB_BKS_PUBLIC_DIR . '/images/',
+			'permalink'	 => $partial_permalink,
 		];
 		if ( gettype( $data ) === 'array' ) {
-			$data = array_merge( $data, $public_dir );
+			$data = array_merge( $data, $base_data );
 		} else {
-			$data = $public_dir;
+			$data = $base_data;
 		}
 
 		$block = \Timber::compile( $underscore_block_name . '.twig', $data );
