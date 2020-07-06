@@ -37,10 +37,14 @@ class Base_Block {
 		// underscore name for twig files.
 		$underscore_block_name = str_replace( '-', '_', $this->getKebabCaseClassName() );
 
+		$options     = get_option( 'planet4nl_options' );
+		$notification= $options['gpnl_sf_notification'];
 		$public_dir = [
 			'public' => P4NL_GB_BKS_PUBLIC_DIR,
 			'images' => P4NL_GB_BKS_PUBLIC_DIR . '/images/',
+			'notification' => $notification,
 		];
+
 		if ( gettype( $data ) === 'array' ) {
 			$data = array_merge( $data, $public_dir );
 		} else {
