@@ -37,15 +37,18 @@ class Base_Block {
 		// underscore name for twig files.
 		$underscore_block_name = str_replace( '-', '_', $this->getKebabCaseClassName() );
 
-		$permalink = get_permalink();
-		if (strpos($permalink, "/acties/")) {
-			$partial_permalink = explode("/acties/", $permalink)[1];
+		$partial_permalink = get_permalink();
+
+		if (strpos($underscore_block_name, "Donation") || strpos($underscore_block_name, "Petition")) {
+			if (strpos($partial_permalink, "/acties/")) {
+				$partial_permalink = explode("/acties/", $partial_permalink)[1];
+			}
+			else {
+				$partial_permalink = explode("/nl/", $partial_permalink)[1];
+			}
+			$partial_permalink = rtrim($partial_permalink, '/');
+			$partial_permalink = str_replace("/", "-", $partial_permalink);
 		}
-		else {
-			$partial_permalink = explode("/nl/", $permalink)[1];
-		}
-		$partial_permalink = rtrim($partial_permalink, '/');
-		$partial_permalink = str_replace("/", "-", $partial_permalink);
 
 		$base_data = [
 			'public' => P4NL_GB_BKS_PUBLIC_DIR,
