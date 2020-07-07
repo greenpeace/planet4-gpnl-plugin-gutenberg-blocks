@@ -58,7 +58,7 @@ class Base_Block {
 			'public' => P4NL_GB_BKS_PUBLIC_DIR,
 			'images' => P4NL_GB_BKS_PUBLIC_DIR . '/images/',
 			'notification' => $notification,
-			'permalink'	 => $this->get_full_slug(),
+			'fs_page'	 => "https://steun.greenpeace.nl/".$this->get_full_slug(),
 		];
 
 		if ( gettype( $data ) === 'array' ) {
