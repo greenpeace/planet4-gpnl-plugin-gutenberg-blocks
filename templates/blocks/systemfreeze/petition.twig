@@ -39,12 +39,10 @@
 						{% endif %}
 						<div class="gpnl-petition">
 							<p class="">
-								{{ notification|nl2br }}
+								{{ fn('wpautop', notification)|e('wp_kses_post')|raw }}
 							</p>
 						</div>
 					</div>
-					{# Used for hiding the petitionform, unless JS is enabled #}
-					<script>jQuery('.gpnl-petition-form').removeClass('hidden-when-no-js-enabled');</script>
 				</div>
 			</div>
 		</section>

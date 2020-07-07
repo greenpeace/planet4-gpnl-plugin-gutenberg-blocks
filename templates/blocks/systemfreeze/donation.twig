@@ -23,7 +23,7 @@
 					<div id="app" class="card">
 						<div class="gp-donation-form card-body custom-control col-12">
 							<p class="">
-								{{ notification|nl2br }}
+								{{ fn('wpautop', notification)|e('wp_kses_post')|raw }}
 							</p>
 						</div>
 					</div>
