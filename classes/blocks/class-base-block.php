@@ -41,24 +41,24 @@ class Base_Block {
 		$notification= $options['gpnl_sf_notification'];
 		$system_status= $options['gpnl_system_status'];
 
-		$partial_permalink = get_permalink();
-
-		if (strpos($underscore_block_name, "Donation") || strpos($underscore_block_name, "Petition")) {
-			if (strpos($partial_permalink, "/acties/")) {
-				$partial_permalink = explode("/acties/", $partial_permalink)[1];
-			}
-			else {
-				$partial_permalink = explode("/nl/", $partial_permalink)[1];
-			}
-			$partial_permalink = rtrim($partial_permalink, '/');
-			$partial_permalink = str_replace("/", "-", $partial_permalink);
+		switch ($system_status) {
+			case 'systemfreeze':
+				if (file_exists(\Timber::$locations . "/systemfreeze/" . $underscore_block_name . '.twig')){
+					$underscore_block_name = "/systemfreeze/" . $underscore_block_name;
+				}
+				break;
+			case 'salesforce':
+				if (file_exists(\Timber::$locations . "/salesforce/" . $underscore_block_name . '.twig')){
+					$underscore_block_name = "/salesforce/" . $underscore_block_name;
+				}
+				break;
 		}
 
 		$base_data = [
 			'public' => P4NL_GB_BKS_PUBLIC_DIR,
 			'images' => P4NL_GB_BKS_PUBLIC_DIR . '/images/',
 			'notification' => $notification,
-			'permalink'	 => $partial_permalink,
+			'permalink'	 => $this->get_full_slug(),
 		];
 
 		if ( gettype( $data ) === 'array' ) {
@@ -66,16 +66,6 @@ class Base_Block {
 		} else {
 			$data = $base_data;
 		}
-
-		switch ($system_status) {
-			case 'systemfreeze':
-				$underscore_block_name = "systemfreeze/" . $underscore_block_name;
-				break;
-			case 'salesforce':
-				$underscore_block_name = "salesforce/" . $underscore_block_name;
-				break;
-		}
-
 
 		$block = \Timber::compile( $underscore_block_name . '.twig', $data );
 
@@ -99,5 +89,19 @@ class Base_Block {
 				)
 			);
 		}
+	}
+
+	private function get_full_slug(){
+		$partial_permalink = get_permalink();
+		if (strpos($partial_permalink, "/acties/")) {
+			$partial_permalink = explode("/acties/", $partial_permalink)[1];
+		}
+		elseif (strpos($partial_permalink, "/nl/")) {
+			$partial_permalink = explode("/nl/", $partial_permalink)[1];
+		}
+		$partial_permalink = rtrim($partial_permalink, '/');
+		$partial_permalink = str_replace("/", "-", $partial_permalink);
+
+		return $partial_permalink;
 	}
 }
