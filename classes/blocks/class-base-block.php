@@ -96,6 +96,9 @@ class Base_Block {
 		if (strpos($partial_permalink, "/acties/")) {
 			$partial_permalink = explode("/acties/", $partial_permalink)[1];
 		}
+		elseif (strpos($partial_permalink, "/doneer/")) {
+			$partial_permalink = explode("/doneer/", $partial_permalink)[1];
+		}
 		elseif (strpos($partial_permalink, "/nl/")) {
 			$partial_permalink = explode("/nl/", $partial_permalink)[1];
 		}
