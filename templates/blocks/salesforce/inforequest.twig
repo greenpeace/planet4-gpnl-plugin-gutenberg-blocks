@@ -1,0 +1,21 @@
+{% block gpnl_inforequest %}
+	{% if ( fields ) %}
+		{% if (fields.hider) and (parent) %}
+			<a class="educationrequest__button btn btn-primary btn-block" href="{{ parent }}">
+				Naar overzicht
+			</a>
+		{% endif %}
+		<section class="block inforequest__wrapper">
+			<p class="inforequest__title">
+				Wat een pech! Kom jij naar onze website, zijn we die nét aan het verbouwen! <br><br>
+				Normaalgesproken had je je hier kun aanmelden als docent voor onze lesmaterialen.<br>
+				Wil je je in de tussentijd aanmelden? Stuur dan een mailtje naar Anne van de Ven via educatie.nl@greenpeace.org
+			</p>
+			{% if (fields.hider) %}
+				<div id="downloads"></div>
+			{% endif %}
+		</section>
+
+
+	{% endif %}
+{% endblock %}
