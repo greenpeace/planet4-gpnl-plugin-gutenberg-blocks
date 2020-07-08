@@ -37,14 +37,34 @@ class Base_Block {
 		// underscore name for twig files.
 		$underscore_block_name = str_replace( '-', '_', $this->getKebabCaseClassName() );
 
-		$public_dir = [
+		$options     = get_option( 'planet4nl_options' );
+		$notification= $options['gpnl_sf_notification'];
+		$system_status= $options['gpnl_system_status'];
+
+		switch ($system_status) {
+			case 'systemfreeze':
+				if (file_exists(\Timber::$locations . "/systemfreeze/" . $underscore_block_name . '.twig')){
+					$underscore_block_name = "/systemfreeze/" . $underscore_block_name;
+				}
+				break;
+			case 'salesforce':
+				if (file_exists(\Timber::$locations . "/salesforce/" . $underscore_block_name . '.twig')){
+					$underscore_block_name = "/salesforce/" . $underscore_block_name;
+				}
+				break;
+		}
+
+		$base_data = [
 			'public' => P4NL_GB_BKS_PUBLIC_DIR,
 			'images' => P4NL_GB_BKS_PUBLIC_DIR . '/images/',
+			'notification' => $notification,
+			'fs_page'	 => "https://steun.greenpeace.nl/".$this->get_full_slug(),
 		];
+
 		if ( gettype( $data ) === 'array' ) {
-			$data = array_merge( $data, $public_dir );
+			$data = array_merge( $data, $base_data );
 		} else {
-			$data = $public_dir;
+			$data = $base_data;
 		}
 
 		$block = \Timber::compile( $underscore_block_name . '.twig', $data );
@@ -69,5 +89,19 @@ class Base_Block {
 				)
 			);
 		}
+	}
+
+	private function get_full_slug(){
+		$partial_permalink = get_permalink();
+		if (strpos($partial_permalink, "/acties/")) {
+			$partial_permalink = explode("/acties/", $partial_permalink)[1];
+		}
+		elseif (strpos($partial_permalink, "/nl/")) {
+			$partial_permalink = explode("/nl/", $partial_permalink)[1];
+		}
+		$partial_permalink = rtrim($partial_permalink, '/');
+		$partial_permalink = str_replace("/", "-", $partial_permalink);
+
+		return $partial_permalink;
 	}
 }

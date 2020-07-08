@@ -1,0 +1,51 @@
+{% block petition %}
+	{% if ( fields ) %}
+		<section class="block petition-block">
+			<div class="row">
+				<div class="col-lg-6 order-last order-lg-first petition-img">
+					{% if fields.isloggedin and fields.ad_campaign != 'GP' %}
+						<h3>Let op: Dit is een pagina met een externe advertentiecampagne!</h3>
+						<table class="table table-dark">
+							<tr>
+								<td>Laatste edit door:</td>
+								<td>{{ fields.lastedit }}</td>
+							</tr>
+							<tr>
+								<td>Origineel aangemaakt door:</td>
+								<td>{{ fields.author }}</td>
+							</tr>
+							<tr>
+								<td>Advertentiebureau:</td>
+								<td>{{ fields.ad_campaign }}</td>
+							</tr>
+						</table>
+					{% endif %}
+					{% if ( fields.image ) and ( fields.image == 0 ) %}
+						<img
+								class="img-fluid"
+								src="{{ fields.image }}"
+								srcset="{{ fields.image_srcset }}"
+								sizes="{{ fields.image_sizes }}"
+								alt="{{ fields.alt_text }}"
+						>
+					{% endif %}
+				</div>
+				<div class="col-lg-6 order-first order-lg-last gpnl-petition-wrapper">
+					<div class="card-body">
+						{% if ( fields.title ) %}
+							<div class="petition-title">
+								<h2 class="card-title">{{ fields.title }}</h2>
+							</div>
+						{% endif %}
+						<div class="gpnl-petition">
+							<p class="">
+								{{ fn('wpautop', notification)|e('wp_kses_post')|raw }}
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	{% endif %}
+{% endblock %}
+
