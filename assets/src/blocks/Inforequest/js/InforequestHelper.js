@@ -8,8 +8,8 @@ $(document).ready(function() {
   let auth = new URLSearchParams(window.location.search).has('e');
   if ( '1' === window[form_config].hider ) {
     $('.inforequest__wrapper').nextAll().hide();
-    $('.inforequest__title').html('<h3>Lesmateriaal downloaden</h3>');
-    $('.inforequest__title').after('<p class="inforequest__message">Registreer of log in om het lesmateriaal te downloaden.</p>');
+    // $('.inforequest__title').html('<h3>Lesmateriaal downloaden</h3>');
+    // $('.inforequest__title').after('<p class="inforequest__message">Registreer of log in om het lesmateriaal te downloaden.</p>');
   }
   if (null !== readCookie('gpnl_education') || auth ){
     $('.inforequest__title').html('<h3>Welkom terug!</h3>');
