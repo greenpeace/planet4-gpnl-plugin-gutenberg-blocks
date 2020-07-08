@@ -12,9 +12,7 @@
 			</div>
 			<div class="page-template gpnl-newsletter__wrapper">
 				<div class="gpnl-newsletter__text">
-					<p class="gpnl-newsletter__description">
-						{{ fn('wpautop', notification)|e('wp_kses_post')|raw }}
-					</p>
+					<div class="gpnl-newsletter__description">{{ fn('wpautop', notification)|e('wp_kses_post')|raw }}</div>
 				</div>
 			</div>
 		</section>
