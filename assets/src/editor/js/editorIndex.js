@@ -1,50 +1,53 @@
 // All the JS of our blocks have to be imported and instantiated in this file so they can all be used in the Gutenberg editor.
 // Styles of the blocks are imported separately in the 'editor-styles.scss' file.
 
-import { QuoteBlock } from "../../blocks/Quote/js/QuoteBlock";
+import { QuoteBlock } from '../../blocks/Quote/js/QuoteBlock';
 new QuoteBlock();
 
-import { HeroImageBlock } from "../../blocks/HeroImage/js/HeroImageBlock";
+import { HeroImageBlock } from '../../blocks/HeroImage/js/HeroImageBlock';
 new HeroImageBlock();
 
-import { NewsletterBlock } from "../../blocks/Newsletter/js/NewsletterBlock";
+import { NewsletterBlock } from '../../blocks/Newsletter/js/NewsletterBlock';
 new NewsletterBlock();
 
-import { PetitionBlock } from "../../blocks/Petition/js/PetitionBlock";
+import { PetitionBlock } from '../../blocks/Petition/js/PetitionBlock';
 new PetitionBlock();
 
-import { DonationBlock } from "../../blocks/Donation/js/DonationBlock";
+import { DonationBlock } from '../../blocks/Donation/js/DonationBlock';
 new DonationBlock();
 
-import { TwoColumnEmbedBlock } from "../../blocks/TwoColumnEmbed/js/TwoColumnEmbedBlock";
+import { TwoColumnEmbedBlock } from '../../blocks/TwoColumnEmbed/js/TwoColumnEmbedBlock';
 new TwoColumnEmbedBlock();
 
-import { NoindexBlock } from "../../blocks/Noindex/js/NoindexBlock";
+import { NoindexBlock } from '../../blocks/Noindex/js/NoindexBlock';
 new NoindexBlock();
 
-import { InforequestBlock } from "../../blocks/Inforequest/js/InforequestBlock";
+import { InforequestBlock } from '../../blocks/Inforequest/js/InforequestBlock';
 new InforequestBlock();
 
-import { EducationcoversBlock } from "../../blocks/Educationcovers/js/EducationcoversBlock";
+import { EducationcoversBlock } from '../../blocks/Educationcovers/js/EducationcoversBlock';
 new EducationcoversBlock();
 
-import { LiveblogBlock } from "../../blocks/Liveblog/js/LiveblogBlock";
+import { LiveblogBlock } from '../../blocks/Liveblog/js/LiveblogBlock';
 new LiveblogBlock();
 
-import { CollapsibleBlock } from "../../blocks/Collapsible/js/CollapsibleBlock";
+import { CollapsibleBlock } from '../../blocks/Collapsible/js/CollapsibleBlock';
 new CollapsibleBlock();
 
-import { PdfEmbedBlock } from "../../blocks/PdfEmbed/js/PdfEmbedBlock";
+import { PdfEmbedBlock } from '../../blocks/PdfEmbed/js/PdfEmbedBlock';
 new PdfEmbedBlock();
 
-import { FacebookCommentsBlock } from "../../blocks/FacebookComments/js/FacebookCommentsBlock";
+import { FacebookCommentsBlock } from '../../blocks/FacebookComments/js/FacebookCommentsBlock';
 new FacebookCommentsBlock();
 
-import { PeriodicDonationBlock } from "../../blocks/PeriodicDonation/js/PeriodicDonationBlock";
+import { PeriodicDonationBlock } from '../../blocks/PeriodicDonation/js/PeriodicDonationBlock';
 new PeriodicDonationBlock();
 
-import { BrochureRequestBlock } from "../../blocks/BrochureRequest/js/BrochureRequestBlock";
+import { BrochureRequestBlock } from '../../blocks/BrochureRequest/js/BrochureRequestBlock';
 new BrochureRequestBlock();
 
-import { TestimonialBlock } from "../../blocks/Testimonial/js/TestimonialBlock";
+import { TestimonialBlock } from '../../blocks/Testimonial/js/TestimonialBlock';
 new TestimonialBlock();
+
+import { TweetBlock } from '../../blocks/Tweet/TweetBlock';
+new TweetBlock();

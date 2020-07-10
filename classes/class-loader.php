@@ -110,6 +110,7 @@ final class Loader {
 //			new Blocks\PeriodicDonation(),
 //			new Blocks\BrochureRequest(),
 			new Blocks\Testimonial(),
+			new Blocks\Tweet(),
 		];
 	}
 
