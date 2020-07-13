@@ -5,10 +5,12 @@
 				<div class="col">
 					<h3>Selecteer een thema: </h3>
 					{% if fields.tags %}
-						<div class="tagselector">
+						<div class="tagselector row no-gutters">
 							{% for tag in fields.tags %}
-								<input type="checkbox" id="{{ tag }}" name="{{ tag }}" style="opacity: unset; position:unset;">
-								<label for="{{ tag }}">{{ tag }}</label>
+								<div class="col-lg-6 col-xl-4">
+									<input type="checkbox" id="{{ tag }}" name="{{ tag }}" style="opacity: unset; position:unset;">
+									<label for="{{ tag }}">{{ tag }}</label>
+								</div>
 							{% endfor %}
 						</div>
 					{% endif %}
@@ -16,10 +18,13 @@
 				<div class="col">
 					<h3>Selecteer een doelgroep: </h3>
 					{% if fields.audiences %}
-						<div class="tagselector">
+						<div class="tagselector row">
 							{% for audience in fields.audiences %}
-								<input type="checkbox" id="{{ audience }}" name="{{ audience }}" style="opacity: unset; position:unset;">
-								<label for="{{ audience }}">{{ audience }}</label>
+								<div class="col-lg-6">
+									<input type="checkbox" id="{{ audience }}" name="{{ audience }}"
+										  style="opacity: unset; position:unset;">
+									<label for="{{ audience }}"> {{ audience }}</label>
+								</div>
 							{% endfor %}
 						</div>
 					{% endif %}
