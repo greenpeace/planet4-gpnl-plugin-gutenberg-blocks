@@ -3,14 +3,9 @@ import $ from 'jquery';
 let tags, audiences = [];
 let covers = $('.cover-card-column');
 let num_covers = covers.length;
-console.log("Covers total: "+num_covers);
 $( '.selector input[type=checkbox]' ).on( 'click', function () {
-  tags = $('.selector-tag').find('input[type="checkbox"]:checked')
-    .map(function() { return this.id; })
-    .get();
-  audiences = $('.selector-audience').find('input[type="checkbox"]:checked')
-    .map(function() { return this.id; })
-    .get();
+  tags = $('.selector-tag').find('input[type="checkbox"]:checked').map(function() { return this.id; }).get();
+  audiences = $('.selector-audience').find('input[type="checkbox"]:checked').map(function() { return this.id; }).get();
 
   if (tags.length === 0 && audiences.length === 0){
     covers.show();
@@ -21,10 +16,6 @@ $( '.selector input[type=checkbox]' ).on( 'click', function () {
 } );
 
 function filterCovers(themes, audiences) {
-  console.clear();
-  console.log("Tags: " + themes);
-  console.log("Audiences: " + audiences);
-  console.log("Covers total: "+num_covers);
   let visible = num_covers;
   covers.show();
   covers.map(function(){
@@ -57,5 +48,4 @@ function filterCovers(themes, audiences) {
        visible = visible - 1 ;
     }
   });
-  console.log("Covers visible: "+visible);
 }
