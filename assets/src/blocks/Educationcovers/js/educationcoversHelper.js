@@ -17,6 +17,10 @@ $( '.selector input[type=checkbox]' ).on( 'click', function () {
 
 function filterCovers(themes, audiences) {
   let visible = num_covers;
+  let notification_node = document.getElementsByClassName("notification-education");
+  if (notification_node) {
+    $(notification_node[0]).remove();
+  }
   covers.show();
   covers.map(function(){
     let cover = this;
@@ -46,6 +50,16 @@ function filterCovers(themes, audiences) {
 
     if (hidden) {
        visible = visible - 1 ;
+       if (visible === 0) {
+         // Regex to match the last comma in a string
+         // Matches ', ' and uses negative lookahead to ensure it's the last occurrence
+         const regex = /(, )(?!.*,)/gi;
+         // Make the arrays pretty and human readable
+         let pretty_print_themes = themes.join(', ').toLowerCase().replace(regex, ' of ' );
+         let pretty_print_audiences = audiences.join(', ').toLowerCase().replace(regex, ' of ' );
+         let notification = `<p class="notification-education"><strong>Onee! We hebben geen lesmaterialen over ${pretty_print_themes} bedoeld voor ${pretty_print_audiences}.</strong><br>Probeer anders nog eens andere zoekcriteria?</p>`
+         $('.row.limit-visibility').after(notification);
+       }
     }
   });
 }
