@@ -5,7 +5,7 @@
 				<div class="col">
 					<h3>Selecteer een thema: </h3>
 					{% if fields.tags %}
-						<div class="tagselector row no-gutters">
+						<div class="selector selector-tag row no-gutters">
 							{% for tag in fields.tags %}
 								<div class="col-lg-6 col-xl-4">
 									<input type="checkbox" id="{{ tag }}" name="{{ tag }}" style="opacity: unset; position:unset;">
@@ -18,7 +18,7 @@
 				<div class="col">
 					<h3>Selecteer een doelgroep: </h3>
 					{% if fields.audiences %}
-						<div class="tagselector row">
+						<div class="selector selector-audience row">
 							{% for audience in fields.audiences %}
 								<div class="col-lg-6">
 									<input type="checkbox" id="{{ audience }}" name="{{ audience }}"
