@@ -1,27 +1,61 @@
 import $ from 'jquery';
 
-var tags = [];
-var covers = $('.cover-card-column');
-$( '.tagselector input[type=checkbox]' ).on( 'click', function () {
-  tags = $('.tagselector').find('input[type="checkbox"]:checked')
+let tags, audiences = [];
+let covers = $('.cover-card-column');
+let num_covers = covers.length;
+console.log("Covers total: "+num_covers);
+$( '.selector input[type=checkbox]' ).on( 'click', function () {
+  tags = $('.selector-tag').find('input[type="checkbox"]:checked')
     .map(function() { return this.id; })
     .get();
-  if (tags.length == 0){
+  audiences = $('.selector-audience').find('input[type="checkbox"]:checked')
+    .map(function() { return this.id; })
+    .get();
+
+  if (tags.length === 0 && audiences.length === 0){
     covers.show();
   }
   else {
-    filterCovers(tags);
+    filterCovers(tags, audiences);
   }
 } );
 
-function filterCovers(tags) {
-  covers.hide();
+function filterCovers(themes, audiences) {
+  console.clear();
+  console.log("Tags: " + themes);
+  console.log("Audiences: " + audiences);
+  console.log("Covers total: "+num_covers);
+  let visible = num_covers;
+  covers.show();
   covers.map(function(){
     let cover = this;
-    $(tags).each(function () {
-      if ($(cover).data('tags').includes(this)) {
-        $(cover).show();
+    let hidden = 0;
+    let includes_theme =  true;
+    let includes_audience = true;
+    let covertags = $(cover).data('tags');
+
+    if (themes.length !== 0 ) {
+      includes_theme = covertags.some(covertag => themes.includes(covertag) )
+    }
+    if (audiences.length !== 0) {
+      includes_audience = covertags.some(covertag => audiences.includes(covertag) )
+    }
+
+    if (!includes_theme) {
+      $(cover).hide();
+      hidden = 1;
+    }
+
+    if (!hidden) {
+      if (!includes_audience) {
+        $(cover).hide();
+        hidden = 1;
       }
-    });
+    }
+
+    if (hidden) {
+       visible = visible - 1 ;
+    }
   });
+  console.log("Covers visible: "+visible);
 }
