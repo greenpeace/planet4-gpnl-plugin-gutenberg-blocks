@@ -16,13 +16,16 @@ export class TweetFrontend extends Component {
 
   render() {
 
+	let url = encodeURI(this.state.textareaValue);
+	url = url.replace(/#/g, '%23');
+
 	return (
 	  <Fragment>
 		<section>
 		  <h2>Verstuur een Tweet</h2>
 		  <form>
 			<textarea id="tweetTextarea" name="tweetTextarea" className="form-control" value={this.state.textareaValue} onChange={this.changeTextareaValue}/>
-			<a className="btn btn-primary" href={'https://twitter.com/intent/tweet?text=' + this.state.textareaValue}>Tweet</a>
+			<a className="btn btn-primary" href={'https://twitter.com/intent/tweet?text=' + url} target={'_blank'}>Tweet</a>
 		  </form>
 		</section>
 	  </Fragment>
