@@ -12,7 +12,7 @@ export class TweetFrontend extends Component {
 	}
 
 	this.allTweets = allTweets;
-	this.randomTweet = allTweets[Math.floor(Math.random()*allTweets.length)];
+	this.randomTweet = allTweets[Math.floor(Math.random() * allTweets.length)];
 
 	this.state = {
 	  textareaValue: props.alwaysRandom === false ? props.defaultTweet : this.randomTweet
@@ -26,20 +26,18 @@ export class TweetFrontend extends Component {
 	this.setState({textareaValue: event.target.value});
   }
 
+  // Update the textfield with a tweet different from the current one.
   getAnotherRandomTweet() {
-    let randomTweet = this.allTweets[Math.floor(Math.random()*this.allTweets.length)];
-	  if (randomTweet !== this.state.textareaValue) {
-		this.setState({textareaValue: randomTweet});
-	  } else {
-	    this.getAnotherRandomTweet();
-	  }
-	}
+	const arrayWithoutCurrentTweet = this.allTweets.filter((item) => item !== this.state.textareaValue);
+	this.setState({textareaValue: arrayWithoutCurrentTweet[Math.floor(Math.random() * arrayWithoutCurrentTweet.length)]});
+  }
+
 
   render() {
 
-    // Encoding the URL for sending the data to Twitter.
-	let url = encodeURI(this.state.textareaValue);
-	url = url.replace(/#/g, '%23');
+	// Encoding the URL for sending the data to Twitter.
+	const url = encodeURI(this.state.textareaValue);
+	url.replace(/#/g, '%23');
 
 	return (
 	  <Fragment>
@@ -47,10 +45,12 @@ export class TweetFrontend extends Component {
 		  <h2>Verstuur een Tweet</h2>
 		  <form>
 			<textarea id="tweetTextarea" name="tweetTextarea" className="form-control" value={this.state.textareaValue} onChange={this.changeTextareaValue}/>
-			<a className="btn btn-primary" href={'https://twitter.com/intent/tweet?text='+url} target={'_blank'}>Tweet</a>
+			<a className="btn btn-primary" href={'https://twitter.com/intent/tweet?text=' + url} target={'_blank'}>Tweet</a>
 		  </form>
-
-		  <button onClick={this.getAnotherRandomTweet}> andere tweet</button>
+		  { this.allTweets.length > 1 ?
+			<button onClick={this.getAnotherRandomTweet}> andere tweet</button>
+			: null
+		  }
 		</section>
 	  </Fragment>
 	);
