@@ -11,16 +11,29 @@ export class TweetFrontend extends Component {
 	  allTweets.push(tweet);
 	}
 
+	this.allTweets = allTweets;
+	this.randomTweet = allTweets[Math.floor(Math.random()*allTweets.length)];
+
 	this.state = {
-	  textareaValue: props.alwaysRandom === false ? props.defaultTweet : allTweets[Math.floor(Math.random()*allTweets.length)]
+	  textareaValue: props.alwaysRandom === false ? props.defaultTweet : this.randomTweet
 	};
 
 	this.changeTextareaValue = this.changeTextareaValue.bind(this);
+	this.getAnotherRandomTweet = this.getAnotherRandomTweet.bind(this);
   }
 
   changeTextareaValue(event) {
 	this.setState({textareaValue: event.target.value});
   }
+
+  getAnotherRandomTweet() {
+    let randomTweet = this.allTweets[Math.floor(Math.random()*this.allTweets.length)];
+	  if (randomTweet !== this.state.textareaValue) {
+		this.setState({textareaValue: randomTweet});
+	  } else {
+	    this.getAnotherRandomTweet();
+	  }
+	}
 
   render() {
 
@@ -36,6 +49,8 @@ export class TweetFrontend extends Component {
 			<textarea id="tweetTextarea" name="tweetTextarea" className="form-control" value={this.state.textareaValue} onChange={this.changeTextareaValue}/>
 			<a className="btn btn-primary" href={'https://twitter.com/intent/tweet?text='+url} target={'_blank'}>Tweet</a>
 		  </form>
+
+		  <button onClick={this.getAnotherRandomTweet}> andere tweet</button>
 		</section>
 	  </Fragment>
 	);
