@@ -2,7 +2,7 @@ import React from 'react';
 import {Component, Fragment} from '@wordpress/element';
 import {InspectorControls} from '@wordpress/block-editor';
 
-import {TextControl, TextareaControl, PanelBody} from '@wordpress/components';
+import {TextControl, TextareaControl, PanelBody, ToggleControl} from '@wordpress/components';
 
 import {TweetFrontend} from './TweetFrontend';
 
@@ -20,11 +20,26 @@ export class TweetEditor extends Component {
   renderEdit() {
 	const {__} = wp.i18n;
 
-	const {attributes, setAttributes} = this.props;
+	const {attributes, setAttributes, changeAlternativeTweet, removeAlternativeTweet, updateAttribute} = this.props;
 
-	const toAttribute = attributeName => value => {
-	  setAttributes({[attributeName]: value});
-	};
+	// const toAttribute = attributeName => value => {
+	//   setAttributes({[attributeName]: value});
+	// };
+
+	const alternativeTweets = attributes.alternativeTweets.map(function (value, index) {
+
+	  return (
+		<div key={index}>
+		  <TextareaControl
+			label={'Alternatieve Tweet ' + (index + 1)}
+			placeholder={'Typ hier een alternatieve tweet...'}
+			value={value}
+			onChange={(value) => changeAlternativeTweet(index, value)}
+		  />
+		  <button onClick={() => removeAlternativeTweet(index)}>verwijder</button>
+		</div>
+	  );
+	});
 
 	return (
 	  <Fragment>
@@ -32,25 +47,23 @@ export class TweetEditor extends Component {
 		  label={'Standaard Tweet'}
 		  placeholder={'Typ hier de tweet...'}
 		  value={attributes.defaultTweet}
-		  onChange={toAttribute('defaultTweet')}
+		  onChange={updateAttribute('defaultTweet')}
 		>
 
 		</TextareaControl>
 		<InspectorControls>
 		  <PanelBody title={'Alternatieve Tweets'}>
-			<TextControl
-			  label={'Tweet'}
-			  placeholder={'Typ hier de tweet...'}
-			/>
-			{/* TODO: alternatieve Tweets met +1 add/remove mogelijkheid. */}
+			{alternativeTweets}
+			<button onClick={this.props.addAlternativeTweet}>voeg tweet toe</button>
 
-			<div className="sidebar-blocks-help">
-			  <ul>
-				<li>
-				  Hier kan extra uitleg komen.
-				</li>
-			  </ul>
-			</div>
+			<ToggleControl
+			  label={'Willekeurig'}
+			  help={'Vink dit aan om elke keer een willekeurige tweet te tonen ipv de standaardtweet.'}
+			  value={attributes.alwaysRandom}
+			  checked={attributes.alwaysRandom}
+			  onChange={updateAttribute('alwaysRandom')}
+			/>
+
 		  </PanelBody>
 		</InspectorControls>
 	  </Fragment>
