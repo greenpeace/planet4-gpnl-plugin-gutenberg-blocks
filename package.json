@@ -50,7 +50,7 @@
 	"dependencies": {
 		"@wordpress/components": "^8.5.0",
 		"@wordpress/data": "^4.17.0",
-		"@wordpress/element": "^2.14.0",
+		"@wordpress/element": "^2.15.0",
 		"jquery": "^3.5.1",
 		"jquery-ui": "^1.12.1",
 		"react": "^16.13.1",
