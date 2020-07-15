@@ -86,7 +86,7 @@ class Educationcovers extends Base_Block {
 		}
 
 		// Filter out audiences, remove duplicates and sort the tags.
-		$audiences = [ 'PO', 'VO', 'MBO', 'DO' ];
+		$audiences = [ 'Primair onderwijs', 'Voortgezet onderwijs', 'MBO', 'Docenten' ];
 		$tagcloud  = array_diff( array_unique( $tagcloud ), $audiences );
 		sort( $tagcloud );
 
