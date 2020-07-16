@@ -1,4 +1,5 @@
 import {Component, Fragment} from '@wordpress/element';
+import TextareaAutosize from 'react-autosize-textarea';
 
 export class TweetFrontend extends Component {
   constructor(props) {
@@ -29,7 +30,8 @@ export class TweetFrontend extends Component {
   }
 
   // Update the textfield with a tweet different from the current one.
-  getAnotherRandomTweet() {
+  getAnotherRandomTweet(e) {
+    e.preventDefault();
 	const arrayWithoutCurrentTweet = this.allTweets.filter((item) => item !== this.state.textareaValue);
 	this.setState({textareaValue: arrayWithoutCurrentTweet[Math.floor(Math.random() * arrayWithoutCurrentTweet.length)]});
   }
@@ -54,13 +56,16 @@ export class TweetFrontend extends Component {
 			</div>
 			: <>
 			  <form>
-				<textarea id="tweetTextarea" name="tweetTextarea" className="form-control" value={this.state.textareaValue} onChange={this.changeTextareaValue}/>
-				<a className="btn btn-primary" href={'https://twitter.com/intent/tweet?text=' + url} target={'_blank'} onClick={this.showThankYouMessage}>Tweet</a>
+				<TextareaAutosize id="tweetTextarea" name="tweetTextarea" className="form-control" value={this.state.textareaValue} onChange={this.changeTextareaValue} rows={3}/>
+
+				<div className={'button-row'}>
+				  <a className="btn btn-primary btn-send-tweet" href={'https://twitter.com/intent/tweet?text=' + url} target={'_blank'} onClick={this.showThankYouMessage}/>
+				  {this.allTweets.length > 1 ?
+				  <button className={'btn btn-change-tweet'} onClick={this.getAnotherRandomTweet}/>
+				  : null
+				}
+				</div>
 			  </form>
-			  {this.allTweets.length > 1 ?
-				<button onClick={this.getAnotherRandomTweet}> andere tweet</button>
-				: null
-			  }
 			</>
 		  }
 		</section>

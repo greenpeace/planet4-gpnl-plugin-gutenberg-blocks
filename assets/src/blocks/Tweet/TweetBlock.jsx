@@ -16,7 +16,7 @@ export class TweetBlock extends BaseBlock {
       },
 	  thanksText: {
         type: 'string',
-        default: ''
+        default: 'Bedankt voor het versturen van de tweet!'
       },
       alternativeTweets: {
         type: 'array',
@@ -28,7 +28,7 @@ export class TweetBlock extends BaseBlock {
       }
     };
 
-    registerBlockType('planet4-gpnl-blocks/tweet', {
+    registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
       title: 'tweet',
       category: 'planet4-gpnl-blocks',
       attributes,
@@ -68,7 +68,7 @@ export class TweetBlock extends BaseBlock {
 		  changeAlternativeTweet={changeAlternativeTweet}
         />;
       },
-      save: frontendRendered( 'planet4-gpnl-blocks/tweet' )
+      save: frontendRendered( 'planet4-gpnl-blocks/' + this.blockNameKebabCase )
     } );
   }
 }
