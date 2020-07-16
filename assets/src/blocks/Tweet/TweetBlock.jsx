@@ -12,7 +12,11 @@ export class TweetBlock extends BaseBlock {
     const attributes = {
       defaultTweet: {
         type: 'string',
-        default: 'Duis varius ipsum sapien, et suscipit eros finibus et. Aenean fringilla sapien auctor tortor fermentum, nec hendrerit velit ullamcorper. Quisque sit amet nulla a ante condimentum tristique quis eu tortor. Curabitur suscipit augue vitae vestibulum tempus. Morbi venenatis finibus pretium. Nam vel tellus molestie, hendrerit quam nec, pretium metus. Sed vestibulum consequat eros. Suspendisse consequat dapibus sem sit amet porta.'
+        default: ''
+      },
+	  thanksText: {
+        type: 'string',
+        default: ''
       },
       alternativeTweets: {
         type: 'array',

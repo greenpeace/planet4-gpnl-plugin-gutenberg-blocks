@@ -15,11 +15,13 @@ export class TweetFrontend extends Component {
 	this.randomTweet = allTweets[Math.floor(Math.random() * allTweets.length)];
 
 	this.state = {
-	  textareaValue: props.alwaysRandom === false ? props.defaultTweet : this.randomTweet
+	  textareaValue: props.alwaysRandom === false ? props.defaultTweet : this.randomTweet,
+	  showThankYouMessage: false
 	};
 
 	this.changeTextareaValue = this.changeTextareaValue.bind(this);
 	this.getAnotherRandomTweet = this.getAnotherRandomTweet.bind(this);
+	this.showThankYouMessage = this.showThankYouMessage.bind(this);
   }
 
   changeTextareaValue(event) {
@@ -32,6 +34,10 @@ export class TweetFrontend extends Component {
 	this.setState({textareaValue: arrayWithoutCurrentTweet[Math.floor(Math.random() * arrayWithoutCurrentTweet.length)]});
   }
 
+  showThankYouMessage() {
+	this.setState({showThankYouMessage: true});
+  }
+
 
   render() {
 
@@ -42,14 +48,20 @@ export class TweetFrontend extends Component {
 	return (
 	  <Fragment>
 		<section>
-		  <h2>Verstuur een Tweet</h2>
-		  <form>
-			<textarea id="tweetTextarea" name="tweetTextarea" className="form-control" value={this.state.textareaValue} onChange={this.changeTextareaValue}/>
-			<a className="btn btn-primary" href={'https://twitter.com/intent/tweet?text=' + url} target={'_blank'}>Tweet</a>
-		  </form>
-		  { this.allTweets.length > 1 ?
-			<button onClick={this.getAnotherRandomTweet}> andere tweet</button>
-			: null
+		  {this.state.showThankYouMessage === true ?
+			<div>
+			  {this.props.thanksText}
+			</div>
+			: <>
+			  <form>
+				<textarea id="tweetTextarea" name="tweetTextarea" className="form-control" value={this.state.textareaValue} onChange={this.changeTextareaValue}/>
+				<a className="btn btn-primary" href={'https://twitter.com/intent/tweet?text=' + url} target={'_blank'} onClick={this.showThankYouMessage}>Tweet</a>
+			  </form>
+			  {this.allTweets.length > 1 ?
+				<button onClick={this.getAnotherRandomTweet}> andere tweet</button>
+				: null
+			  }
+			</>
 		  }
 		</section>
 	  </Fragment>

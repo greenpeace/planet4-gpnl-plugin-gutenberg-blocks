@@ -52,6 +52,16 @@ export class TweetEditor extends Component {
 
 		</TextareaControl>
 		<InspectorControls>
+
+		  <PanelBody title={'Bedanktekst'}>
+			<TextareaControl
+			  label={'Bedanktekst'}
+			  placeholder={''}
+			  value={attributes.thanksText}
+			  onChange={updateAttribute('thanksText')}
+			/>
+		  </PanelBody>
+
 		  <PanelBody title={'Alternatieve Tweets'}>
 			{alternativeTweets}
 			<button onClick={this.props.addAlternativeTweet}>voeg tweet toe</button>

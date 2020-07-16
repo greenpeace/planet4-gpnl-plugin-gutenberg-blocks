@@ -1,4 +1,5 @@
 import { TweetFrontend } from './TweetFrontend';
+import './styles/font-end.scss';
 
 document.querySelectorAll( '[data-render]' ).forEach(
   blockNode => {

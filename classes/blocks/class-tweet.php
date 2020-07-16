@@ -38,6 +38,8 @@ class Tweet extends Base_Block {
 		// Check if the block is present on the page that is requested.
 		if ( has_block( 'planet4-gpnl-blocks/' . $this->getKebabCaseClassName() ) )
 		{
+//			Asset_Enqueuer::enqueue_asset( 'hero-image', 'style' );
+			Asset_Enqueuer::enqueue_asset( 'tweet', 'style');
 			Asset_Enqueuer::enqueue_asset( 'tweet', 'script', ['wp-element'], true );
 		}
 	}
