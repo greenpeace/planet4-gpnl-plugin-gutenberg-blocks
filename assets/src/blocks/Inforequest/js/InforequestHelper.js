@@ -17,6 +17,9 @@ $(document).ready(function() {
     $('.inforequest__wrapper').nextAll().show(1000);
     $('.fallbackbtn').show(1000);
     enableDownloadlinks();
+    if (null !== readCookie('greenpeace') || null === readCookie('gpnl_education') ) {
+      createCookie('gpnl_education', 1, 365);
+    }
   }
   else{
     $('.hideshowbtn').show(1000);
