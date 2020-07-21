@@ -6,16 +6,17 @@
 			</a>
 		{% endif %}
 		<section class="block inforequest__wrapper">
-			<h3 class="inforequest__title">{{ fields.formtitle }}</h3>
 			{% if (fields.hider) %}
-				<p class="inforequest__title">
+				<h3 class="inforequest__title">{{ fields.formtitle }}</h3>
+				<p class="inforequest__message">
 					Wat een pech! Kom jij naar onze website, zijn we die nét aan het verbouwen! <br><br>
 					Normaalgesproken had je je hier kunnen aanmelden als docent voor de speciale educatienieuwsbrief, waarna je het gratis lesmateriaal had kunnen downloaden. <br>
 					Wil je je in de tussentijd toch aanmelden of lesmateriaal downloaden? Stuur dan een mailtje naar Anne van de Ven via <a href="mailto:educatie.nl@greenpeace.org?subject=Aanmelden nieuwsbrief">educatie.nl@greenpeace.org</a> met het onderwerp 'aanmelden nieuwsbrief'.
 				</p>
 				<div id="downloads"></div>
 			{% else %}
-				<p class="inforequest__title">
+				<h3 class="inforequest__title">{{ fields.formtitle }}</h3>
+				<p class="inforequest__message">
 					Wat een pech! Kom jij naar onze website, zijn we die nét aan het verbouwen! <br><br>
 					Normaalgesproken had je je hier kunnen aanmelden als docent voor de speciale educatienieuwsbrief en de gratis lesmaterialen.<br>
 					Wil je je in de tussentijd aanmelden of één van onze lespakketten downloaden?
