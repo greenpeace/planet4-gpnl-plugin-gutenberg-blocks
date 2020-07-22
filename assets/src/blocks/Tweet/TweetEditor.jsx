@@ -1,8 +1,7 @@
-import React from 'react';
 import {Component, Fragment} from '@wordpress/element';
 import {InspectorControls} from '@wordpress/block-editor';
 
-import {TextControl, TextareaControl, PanelBody, ToggleControl} from '@wordpress/components';
+import {TextareaControl, PanelBody, ToggleControl} from '@wordpress/components';
 
 import {TweetFrontend} from './TweetFrontend';
 
@@ -18,7 +17,6 @@ export class TweetEditor extends Component {
   }
 
   renderEdit() {
-	const {__} = wp.i18n;
 
 	const {attributes, setAttributes, changeAlternativeTweet, removeAlternativeTweet, updateAttribute} = this.props;
 
@@ -48,11 +46,9 @@ export class TweetEditor extends Component {
 		  placeholder={'Typ hier de tweet...'}
 		  value={attributes.defaultTweet}
 		  onChange={updateAttribute('defaultTweet')}
-		>
+		/>
 
-		</TextareaControl>
 		<InspectorControls>
-
 		  <PanelBody title={'Bedanktekst'}>
 			<TextareaControl
 			  label={'Bedanktekst'}
@@ -81,7 +77,6 @@ export class TweetEditor extends Component {
   }
 
   renderView() {
-	const {__} = wp.i18n;
 	const {attributes} = this.props;
 
 	return <Fragment>

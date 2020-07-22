@@ -1,4 +1,3 @@
-// import React from 'react';
 import { FrontendBlockNode } from '../components/FrontendBlockNode/FrontendBlockNode';
 
 /**

@@ -7,7 +7,6 @@ export class TweetBlock extends BaseBlock {
   constructor() {
     super();
 
-    const { __ } = wp.i18n;
     const { registerBlockType } = wp.blocks;
     const attributes = {
       defaultTweet: {
