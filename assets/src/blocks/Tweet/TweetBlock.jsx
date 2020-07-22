@@ -17,6 +17,10 @@ export class TweetBlock extends BaseBlock {
         type: 'string',
         default: 'Bedankt voor het versturen van de tweet!'
       },
+	  url: {
+		type: 'string',
+		default: ''
+	  },
       alternativeTweets: {
         type: 'array',
         default: [],

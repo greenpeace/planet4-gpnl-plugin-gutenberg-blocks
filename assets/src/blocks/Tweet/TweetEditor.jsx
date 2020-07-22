@@ -1,9 +1,9 @@
 import {Component, Fragment} from '@wordpress/element';
 import {InspectorControls} from '@wordpress/block-editor';
-
 import {TextareaControl, PanelBody, ToggleControl} from '@wordpress/components';
-
 import {TweetFrontend} from './TweetFrontend';
+import {URLInput} from '@wordpress/block-editor';
+
 
 export class TweetEditor extends Component {
   constructor(props) {
@@ -34,7 +34,8 @@ export class TweetEditor extends Component {
 			value={value}
 			onChange={(value) => changeAlternativeTweet(index, value)}
 		  />
-		  <button onClick={() => removeAlternativeTweet(index)}>verwijder</button>
+		  <button onClick={() => removeAlternativeTweet(index)}>verwijder alternatieve tweet</button>
+		  <hr/>
 		</div>
 	  );
 	});
@@ -49,21 +50,32 @@ export class TweetEditor extends Component {
 		/>
 
 		<InspectorControls>
-		  <PanelBody title={'Bedanktekst'}>
+		  <PanelBody title={'Opties'}>
 			<TextareaControl
 			  label={'Bedanktekst'}
 			  placeholder={''}
 			  value={attributes.thanksText}
 			  onChange={updateAttribute('thanksText')}
 			/>
+			<label className={'components-base-control__label'}><strong>URL</strong></label>
+			<URLInput
+			  value={attributes.url}
+			  onChange={updateAttribute('url')}
+			/>
+			<p className={'components-base-control__help'}>
+			  <em>
+				Voer een optionele URL in als je deze aan de tweet wil koppelen.
+			  </em>
+			</p>
 		  </PanelBody>
 
 		  <PanelBody title={'Alternatieve Tweets'}>
 			{alternativeTweets}
-			<button onClick={this.props.addAlternativeTweet}>voeg tweet toe</button>
+			<button onClick={this.props.addAlternativeTweet} className={'add'}>voeg alternatieve tweet toe</button>
+			<hr/>
 
 			<ToggleControl
-			  label={'Willekeurig'}
+			  label={'Toon willekeurig'}
 			  help={'Vink dit aan om elke keer een willekeurige tweet te tonen ipv de standaardtweet.'}
 			  value={attributes.alwaysRandom}
 			  checked={attributes.alwaysRandom}

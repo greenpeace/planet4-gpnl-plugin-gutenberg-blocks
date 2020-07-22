@@ -44,14 +44,17 @@ export class TweetFrontend extends Component {
   render() {
 
 	// Encoding the URL for sending the data to Twitter.
-	const url = encodeURI(this.state.textareaValue);
-	url.replace(/#/g, '%23');
+	let url = encodeURI(this.state.textareaValue);
+	url = url.replace(/#/g, '%23');
+
+	// This regex could be used to target all hashtags and @mentions. Perhaps to give them a blue color in the future.
+	// const hashAndMetionRegex = /\s([@#][\w_-]+)/g;
 
 	return (
 	  <Fragment>
 		<section>
 		  {this.state.showThankYouMessage === true ?
-			<div>
+			<div className={'thank-you-message'}>
 			  {this.props.thanksText}
 			</div>
 			: <>
@@ -59,7 +62,7 @@ export class TweetFrontend extends Component {
 				<TextareaAutosize id="tweetTextarea" name="tweetTextarea" className="form-control" value={this.state.textareaValue} onChange={this.changeTextareaValue} rows={3}/>
 
 				<div className={'button-row'}>
-				  <a className="btn btn-primary btn-send-tweet" href={'https://twitter.com/intent/tweet?text=' + url} target={'_blank'} onClick={this.showThankYouMessage}/>
+				  <a className="btn btn-primary btn-send-tweet" href={'https://twitter.com/intent/tweet?text=' + url + (this.props.url && '&url=' + this.props.url) } target={'_blank'} onClick={this.showThankYouMessage}/>
 				  {this.allTweets.length > 1 ?
 				  <button className={'btn btn-change-tweet'} onClick={this.getAnotherRandomTweet}/>
 				  : null
