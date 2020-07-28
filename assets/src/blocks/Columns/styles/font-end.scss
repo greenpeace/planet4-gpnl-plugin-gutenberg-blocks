@@ -1,0 +1,57 @@
+@import "../../../base/base.scss";
+@import "../../../base/variables_gpnl.scss";
+
+.page-template {
+  .wp-block-planet4-gpnl-blocks-tweet {
+    background-color: $anthracite;
+    padding: 16px !important;
+  }
+}
+
+.wp-block-planet4-gpnl-blocks-tweet, [data-type="planet4-gpnl-blocks/tweet"] {
+  margin: $sm 0;
+
+  textarea {
+    margin-bottom: $sm;
+  }
+
+  .button-row {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+
+  .btn {
+    border-radius: .25rem;
+  }
+
+  .btn-change-tweet {
+    border-color: $white;
+    background-color: transparent;
+    color: white;
+
+    &::after {
+      content: "VERANDER";
+
+      @include medium-and-up {
+        content: "VERANDER TWEET";
+      }
+    }
+  }
+
+  .btn-send-tweet {
+    display: flex;
+
+    &::after {
+      content: "VERSTUUR";
+
+      @include medium-and-up {
+        content: "VERSTUUR TWEET";
+      }
+    }
+  }
+
+  .thank-you-message {
+    color: $white;
+  }
+}

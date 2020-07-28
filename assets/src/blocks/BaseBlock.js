@@ -7,7 +7,7 @@ export default class BaseBlock {
 
 		this.className = className;
 		this.classNameLowerCase = className.toLowerCase();
-		this.blockName = className.split("Block")[0];
+		this.blockName = className.split('Block')[0];
 		this.blockNameLowerCase  = this.blockName.toLowerCase();
 		this.blockNameKebabCase = this.blockName.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
 	}

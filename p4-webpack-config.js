@@ -8,6 +8,8 @@ module.exports = {
   ...defaultConfig,
   entry: {
 
+    columns: './assets/src/blocks/Columns/render.jsx',
+
     // frontendIndex: './assets/src/blocks/frontendIndex.js',
     tweet: './assets/src/blocks/Tweet/render.jsx',
 

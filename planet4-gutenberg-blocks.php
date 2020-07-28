@@ -145,7 +145,8 @@ const BLOCK_WHITELIST = [
 		'planet4-gpnl-blocks/periodic-donation',
 		'planet4-gpnl-blocks/brochure-request',
 		'planet4-gpnl-blocks/testimonial',
-		'planet4-gpnl-blocks/tweet'
+		'planet4-gpnl-blocks/tweet',
+		'planet4-gpnl-blocks/columns'
 	],
 	'campaign' => [],
 ];
