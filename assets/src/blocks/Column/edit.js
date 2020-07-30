@@ -11,7 +11,6 @@ export class Editor extends Component {
 
     return (
       <div className={this.props.attributes.className}>
-        inner blok met class: <em>{this.props.attributes.className}</em>
         <InnerBlocks
           templateLock={false}
         />

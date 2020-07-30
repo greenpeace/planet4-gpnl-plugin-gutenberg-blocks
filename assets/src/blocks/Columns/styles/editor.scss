@@ -1,11 +1,36 @@
-@import "font-end";
+@import "front-end";
 
-.components-panel {
-  button.add {
-    margin: 16px 0;
+.wp-block-planet4-gpnl-blocks-columns {
+  background-color: #dfc9ff; // For development purposes.
+  display: flex;
+  flex-direction: column;
+
+  & > .block-editor-inner-blocks {
+    & > .block-editor-block-list__layout {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    div[id^="block"] {
+      background-color: rebeccapurple;
+      //position: absolute;
+      width: 100%;
+    }
+
+    div[class^="col"] {
+
+      & > * {
+        display: block;
+      }
+
+      background: #ffff00;
+      max-width: 100%;
+      //width: 100%;
+    }
   }
-}
 
-.block-editor-block-list__block .block-editor-url-input input[type="text"], .components-popover .block-editor-url-input input[type="text"], .block-editor-url-input input[type="text"] {
-  width: auto !important;
+  div {
+    height: auto;
+  }
 }

@@ -1,3 +1,8 @@
+/**
+ * External dependencies
+ */
+import classnames from 'classnames';
+
 import BaseBlock from '../BaseBlock';
 import EditorFunctional from './EditorFunctional';
 import { Editor } from './Editor';
@@ -81,10 +86,11 @@ export class ColumnsBlock extends BaseBlock {
 		// 	  removeColumn={removeColumn}
 		// 	/>;
 		//   }),
-	  save: (attributes) => {
+	  save: (block) => {
+
 		return (
 		  <section className={'container'}>
-			<div className={'row'}>
+			<div className={'row ' + block.attributes.background}>
 			  <InnerBlocks.Content/>
 			  {attributes.content}
 			</div>

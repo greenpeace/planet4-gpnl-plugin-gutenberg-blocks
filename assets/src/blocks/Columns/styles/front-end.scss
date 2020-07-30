@@ -3,16 +3,30 @@
 
 .page-template {
   & > .wp-block-planet4-gpnl-blocks-columns {
-    background-color: $white;
     padding: 0 16px !important;
     margin: 32px 0;
 
     .row {
-      div:nth-child(odd) {
-        background-color: #d1f1f7;
-      }
+      color: $anthracite;
+      background-color: white;
+
+      // Only for demonstration purposes
       div:nth-child(even) {
-        background-color: #aebdbd;
+        background-color: rgba(222, 222, 222, 0.5);
+      }
+
+      &.dark {
+        color: white;
+        background-color: $anthracite;
+      }
+    }
+
+    // Please note this is a selector for the inner blocks (column).
+    .wp-block-planet4-gpnl-blocks-column {
+      & > * {
+        margin: 8px 0;
+        margin-top: 8px; // duplication is on purpose to override wordpress defaults!
+        margin-bottom: 8px; // duplication on purpose.
       }
     }
   }

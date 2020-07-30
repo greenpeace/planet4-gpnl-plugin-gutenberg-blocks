@@ -18,7 +18,7 @@ function Edit(props) {
     setAttributes({[attributeName]: value});
   };
 
-
+  // For the inital template.
   const templates = {
     one: [
       ['planet4-gpnl-blocks/column', {className: 'col-12'}]
@@ -97,18 +97,6 @@ function Edit(props) {
     }
   };
 
-  const distributionOptions = [
-    {value: 'even', label: 'All columns same size'},
-  ];
-
-  if (attributes.numberOfColumns > 1 && attributes.numberOfColumns < 4) {
-    distributionOptions.push({value: 'leftBig', label: 'A bigger column on the left'}, {value: 'rightBig', label: 'A bigger column on the right'});
-  }
-
-  if (attributes.numberOfColumns == 3) {
-    distributionOptions.push({value: 'middleBig', label: 'A bigger column in the middle'});
-  }
-
   // Required for updating/replacing the inner blocks.
   const {replaceInnerBlocks} = useDispatch('core/block-editor');
   const {currentInnerBlocks} = useSelect(select => ({
@@ -121,6 +109,7 @@ function Edit(props) {
 
     const newInnerBlocks = [...currentInnerBlocks];
 
+    // Changing the classes for the current blocks accordingly.
     for (const [index, newInnerBlock] of newInnerBlocks.entries()) {
       if (n == 1) {
         newInnerBlock.attributes.className = 'col-12';
@@ -158,7 +147,7 @@ function Edit(props) {
         newInnerBlock.attributes.className = 'col-12 col-md-3';
       }
     }
-    replaceInnerBlocks(clientId, newInnerBlocks, true);
+    replaceInnerBlocks(clientId, newInnerBlocks, false);
   };
 
   const changeNumberOfColumns = (value) => {
@@ -171,14 +160,42 @@ function Edit(props) {
     updateInnerBlocks(value, attributes.numberOfColumns);
   };
 
+  const changeBackgroundColor = (value) => {
+    setAttributes({background: value});
+  }
+
+
+  // Create dynamic distribution options depending on the number of columns.
+  const distributionOptions = [
+    {value: 'even', label: 'All columns same size'},
+  ];
+  if (attributes.numberOfColumns > 1 && attributes.numberOfColumns < 4) {
+    distributionOptions.push({value: 'leftBig', label: 'A bigger column on the left'}, {value: 'rightBig', label: 'A bigger column on the right'});
+  }
+  if (attributes.numberOfColumns == 3) {
+    distributionOptions.push({value: 'middleBig', label: 'A bigger column in the middle'});
+  }
+
   return (
-    <>
+    <div className={'wp-block-planet4-gpnl-blocks-columns'}>
       <span>Columns Block (this is just to make it easier to select this block)</span>
       <InnerBlocks
         templateLock={'all'}
         template={activeTemplate()}
       />
       <InspectorControls>
+        <PanelBody title={'Theme'}>
+          <SelectControl
+            label={'Background color'}
+            value={attributes.background}
+            onChange={changeBackgroundColor}
+            options={[
+              {value: 'light', label: 'Light'},
+              {value: 'dark', label: 'Dark'}
+            ]}
+          />
+        </PanelBody>
+
         <PanelBody title={'Columns'}>
           <SelectControl
             label={'Number of columns'}
@@ -200,7 +217,7 @@ function Edit(props) {
           />
         </PanelBody>
       </InspectorControls>
-    </>
+    </div>
   );
 }
 

@@ -11,7 +11,7 @@ import { InnerBlocks } from '@wordpress/block-editor';
 export default function save( { attributes } ) {
 	const { verticalAlignment, width } = attributes;
 
-	const wrapperClasses = classnames( {
+	const wrapperClasses = classnames({
 		[ `is-vertically-aligned-${ verticalAlignment }` ]: verticalAlignment,
 	} );
 
