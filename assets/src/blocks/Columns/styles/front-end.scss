@@ -1,0 +1,19 @@
+@import "../../../base/base.scss";
+@import "../../../base/variables_gpnl.scss";
+
+.page-template {
+  & > .wp-block-planet4-gpnl-blocks-columns {
+    background-color: $white;
+    padding: 0 16px !important;
+    margin: 32px 0;
+
+    .row {
+      div:nth-child(odd) {
+        background-color: #d1f1f7;
+      }
+      div:nth-child(even) {
+        background-color: #aebdbd;
+      }
+    }
+  }
+}

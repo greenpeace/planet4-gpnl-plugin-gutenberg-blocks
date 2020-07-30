@@ -54,3 +54,6 @@ new TweetBlock();
 
 import { ColumnsBlock } from '../../blocks/Columns/ColumnsBlock';
 new ColumnsBlock();
+
+import { ColumnBlock } from '../../blocks/Column/ColumnBlock';
+new ColumnBlock();

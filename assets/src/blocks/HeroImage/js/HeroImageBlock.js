@@ -59,6 +59,7 @@ export class HeroImageBlock extends BaseBlock {
       },
 
       edit: withSelect((select, props) => {
+
         const {attributes} = props;
         const {image} = attributes;
 
