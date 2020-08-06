@@ -1,24 +1,14 @@
-import classNames from 'classnames'; // Used to to join classes together
-
-import {Component, Fragment} from '@wordpress/element';
-import {InnerBlocks, InspectorControls} from '@wordpress/block-editor';
-import {SelectControl, TextareaControl, PanelBody, ToggleControl} from '@wordpress/components';
-import {useSelect, useDispatch, withSelect} from '@wordpress/data';
-
-// import {Frontend} from './Frontend';
 import React from 'react';
+
+import {InnerBlocks, InspectorControls} from '@wordpress/block-editor';
+import {SelectControl, PanelBody, FocalPointPicker, ToggleControl} from '@wordpress/components';
+import {useSelect, useDispatch, withSelect} from '@wordpress/data';
 
 function Edit(props) {
 
-  console.log(props);
-
   const {attributes, setAttributes, clientId} = props;
 
-  const updateAttribute = (attributeName) => value => {
-    setAttributes({[attributeName]: value});
-  };
-
-  // For the inital template.
+  // Templates for the inital rendering of the column.
   const templates = {
     one: [
       ['planet4-gpnl-blocks/column', {className: 'col-12'}]
@@ -68,31 +58,31 @@ function Edit(props) {
     const n = attributes.numberOfColumns;
     const d = attributes.distributionOfColumns;
 
-    if (n == 1) {
+    if (n === 1) {
       return templates['one'];
     }
 
-    if (n == 2) {
-      if (d == 'even') {
+    if (n === 2) {
+      if (d === 'even') {
         return templates['twoEven'];
-      } else if (d == 'leftBig') {
+      } else if (d === 'leftBig') {
         return templates['twoLeftBigger'];
-      } else if (d == 'rightBig') {
+      } else if (d === 'rightBig') {
         return templates['twoRightBigger'];
       }
     }
-    if (n == 3) {
-      if (d == 'even') {
+    if (n === 3) {
+      if (d === 'even') {
         return templates['threeEven'];
-      } else if (d == 'leftBig') {
+      } else if (d === 'leftBig') {
         return templates['threeLeftBigger'];
-      } else if (d == 'rightBig') {
+      } else if (d === 'rightBig') {
         return templates['threeRightBigger'];
-      } else if (d == 'middleBig') {
+      } else if (d === 'middleBig') {
         return templates['middleBigger'];
       }
     }
-    if (n == 4) {
+    if (n === 4) {
       return templates['four'];
     }
   };
@@ -111,39 +101,39 @@ function Edit(props) {
 
     // Changing the classes for the current blocks accordingly.
     for (const [index, newInnerBlock] of newInnerBlocks.entries()) {
-      if (n == 1) {
+      if (n === 1) {
         newInnerBlock.attributes.className = 'col-12';
       }
-      if (n == 2 && d == 'even') {
+      if (n === 2 && d === 'even') {
         newInnerBlock.attributes.className = 'col-12 col-md-6';
       }
-      if (n == 2 && d == 'leftBig') {
+      if (n === 2 && d === 'leftBig') {
         index === 0 ? newInnerBlock.attributes.className = 'col-12 col-md-8' : '';
         index === 1 ? newInnerBlock.attributes.className = 'col-12 col-md-4' : '';
       }
-      if (n == 2 && d == 'rightBig') {
+      if (n === 2 && d === 'rightBig') {
         index === 0 ? newInnerBlock.attributes.className = 'col-12 col-md-4' : '';
         index === 1 ? newInnerBlock.attributes.className = 'col-12 col-md-8' : '';
       }
-      if (n == 3 && d == 'even') {
+      if (n === 3 && d === 'even') {
         newInnerBlock.attributes.className = 'col-12 col-md-4';
       }
-      if (n == 3 && d == 'leftBig') {
+      if (n === 3 && d === 'leftBig') {
         index === 0 ? newInnerBlock.attributes.className = 'col-12 col-md-6' : '';
         index === 1 ? newInnerBlock.attributes.className = 'col-12 col-md-3' : '';
         index === 2 ? newInnerBlock.attributes.className = 'col-12 col-md-3' : '';
       }
-      if (n == 3 && d == 'rightBig') {
+      if (n === 3 && d === 'rightBig') {
         index === 0 ? newInnerBlock.attributes.className = 'col-12 col-md-3' : '';
         index === 1 ? newInnerBlock.attributes.className = 'col-12 col-md-3' : '';
         index === 2 ? newInnerBlock.attributes.className = 'col-12 col-md-6' : '';
       }
-      if (n == 3 && d == 'middleBig') {
+      if (n === 3 && d === 'middleBig') {
         index === 0 ? newInnerBlock.attributes.className = 'col-12 col-md-3' : '';
         index === 1 ? newInnerBlock.attributes.className = 'col-12 col-md-6' : '';
         index === 2 ? newInnerBlock.attributes.className = 'col-12 col-md-3' : '';
       }
-      if (n == 4) {
+      if (n === 4) {
         newInnerBlock.attributes.className = 'col-12 col-md-3';
       }
     }
@@ -151,19 +141,27 @@ function Edit(props) {
   };
 
   const changeNumberOfColumns = (value) => {
-    setAttributes({numberOfColumns: value});
-    updateInnerBlocks(attributes.distributionOfColumns, value);
+
+    const numberOfColumns = Number(value);
+    let distributionOfColumns = attributes.distributionOfColumns;
+
+    // Only when there are 3 columns the middle can be bigger.
+    if (value !== 3 && attributes.distributionOfColumns === 'middleBig'){
+      distributionOfColumns = 'even';
+    }
+
+    setAttributes({numberOfColumns: numberOfColumns});
+    updateInnerBlocks(distributionOfColumns, numberOfColumns);
   };
 
   const changeDistributionOfColumns = (value) => {
     setAttributes({distributionOfColumns: value});
-    updateInnerBlocks(value, attributes.numberOfColumns);
+    updateInnerBlocks( value, attributes.numberOfColumns);
   };
 
   const changeBackgroundColor = (value) => {
     setAttributes({background: value});
-  }
-
+  };
 
   // Create dynamic distribution options depending on the number of columns.
   const distributionOptions = [
@@ -172,29 +170,47 @@ function Edit(props) {
   if (attributes.numberOfColumns > 1 && attributes.numberOfColumns < 4) {
     distributionOptions.push({value: 'leftBig', label: 'A bigger column on the left'}, {value: 'rightBig', label: 'A bigger column on the right'});
   }
-  if (attributes.numberOfColumns == 3) {
+  if (attributes.numberOfColumns === 3) {
     distributionOptions.push({value: 'middleBig', label: 'A bigger column in the middle'});
   }
 
+  // Function to check if the block is nested or not. Returns true if the block has no parent block.
+  const blockHasNoParent = ( clientId ) => clientId === wp.data.select( 'core/editor' ).getBlockHierarchyRootClientId( clientId );
+
   return (
-    <div className={'wp-block-planet4-gpnl-blocks-columns'}>
-      <span>Columns Block (this is just to make it easier to select this block)</span>
-      <InnerBlocks
-        templateLock={'all'}
-        template={activeTemplate()}
-      />
+    <div className={'wp-block-planet4-gpnl-blocks-columns' + ' ' + attributes.background}>
+      <div className={'inner-blocks-wrapper ' + 'number-of-columns-' + attributes.numberOfColumns + ' distribution-of-columns-' + attributes.distributionOfColumns}>
+        <InnerBlocks
+          templateLock={'all'}
+          template={activeTemplate()}
+        />
+      </div>
+
       <InspectorControls>
+
+
         <PanelBody title={'Theme'}>
+          { blockHasNoParent(clientId) === true
+          &&
           <SelectControl
             label={'Background color'}
+            help={'If you select \'none\' the content of the columns will appear as if there were no inner margin.'}
+
             value={attributes.background}
             onChange={changeBackgroundColor}
             options={[
               {value: 'light', label: 'Light'},
-              {value: 'dark', label: 'Dark'}
+              {value: 'dark', label: 'Dark'},
+              {value: 'no-background', label: 'None'}
             ]}
           />
+          }
+          {blockHasNoParent(clientId) === false
+          &&
+            <span>Nested column blocks inherit the theme from their parent block.</span>
+          }
         </PanelBody>
+
 
         <PanelBody title={'Columns'}>
           <SelectControl

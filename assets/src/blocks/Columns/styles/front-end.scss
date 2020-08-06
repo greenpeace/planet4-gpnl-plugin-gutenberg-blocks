@@ -1,33 +1,46 @@
 @import "../../../base/base.scss";
 @import "../../../base/variables_gpnl.scss";
 
-.page-template {
-  & > .wp-block-planet4-gpnl-blocks-columns {
-    padding: 0 16px !important;
-    margin: 32px 0;
+.wp-block-planet4-gpnl-blocks-columns {
+  color: $anthracite;
+  background-color: white;
+  padding: 16px;
+  margin: 32px 0;
 
-    .row {
-      color: $anthracite;
-      background-color: white;
+  &.dark {
+    color: white;
+    background-color: $anthracite;
+  }
 
-      // Only for demonstration purposes
-      div:nth-child(even) {
-        background-color: rgba(222, 222, 222, 0.5);
-      }
+  &.no-background {
+    color: unset;
+    background-color: unset;
 
-      &.dark {
-        color: white;
-        background-color: $anthracite;
-      }
+    @include small-and-up {
+      padding: 0 0;
+    }
+  }
+
+  // Please note this is a selector for the inner blocks (column).
+  .wp-block-planet4-gpnl-blocks-column {
+    & > * {
+      margin: 8px 0;
+      margin-top: 8px; // intentional to override wordpress defaults!
+      margin-bottom: 8px; // intentional.
     }
 
-    // Please note this is a selector for the inner blocks (column).
-    .wp-block-planet4-gpnl-blocks-column {
-      & > * {
-        margin: 8px 0;
-        margin-top: 8px; // duplication is on purpose to override wordpress defaults!
-        margin-bottom: 8px; // duplication on purpose.
+    p {
+      &:not(:last-child) {
+        margin-bottom: 16px;
       }
     }
+  }
+
+  // For when the columns are nested in another columns block.
+  .wp-block-planet4-gpnl-blocks-columns {
+    background-color: unset;
+    color: unset;
+    margin: 0;
+    padding: 0;
   }
 }

@@ -1,15 +1,7 @@
-/**
- * External dependencies
- */
-import classnames from 'classnames';
-
 import BaseBlock from '../BaseBlock';
-import EditorFunctional from './EditorFunctional';
-import { Editor } from './Editor';
-import Edit from './edit';
-// import {Frontend} from '../Frontend';
+import Edit from './Edit';
 import {InnerBlocks} from '@wordpress/block-editor';
-const {withSelect} = wp.data;
+import Save from './Save';
 
 export class ColumnsBlock extends BaseBlock {
 
@@ -20,7 +12,7 @@ export class ColumnsBlock extends BaseBlock {
 	const attributes = {
 	  numberOfColumns: {
 		type: 'number',
-		default: 3
+		default: 2
 	  },
 	  columns: {
 		type: 'array',
@@ -42,61 +34,7 @@ export class ColumnsBlock extends BaseBlock {
 	  attributes,
 
 	  edit: Edit,
-	  // withSelect((select, props) => {
-	  //
-		// // console.log(props);
-	  //
-	  // })(({isSelected, attributes, setAttributes}) => {
-	  //
-		// const updateAttribute = (attributeName) => value => {
-		// 	  setAttributes({[attributeName]: value});
-		// 	};
-	  //
-		// 	const addColumn = () => {
-		// 	  // let newArray = [...attributes.columns];
-		// 	  // newArray.push('');
-		// 	  setAttributes({numberOfColumns: attributes.numberOfColumns + 1});
-		// 	};
-	  //
-		// 	const removeColumn = (index) => {
-		// 	  let newArray = [...attributes.columns];
-		// 	  newArray.splice(index, 1);
-		// 	  setAttributes({columns: newArray});
-		// 	};
-	  //
-		// 	const changeColumn = (index, value) => {
-		// 	  let newArray = [...attributes.columns];
-		// 	  newArray[index] = value;
-		// 	  setAttributes({columns: newArray});
-		// 	};
-	  //
-		// 	const updateDistribution = (value) => {
-		// 	  setAttributes({distributionOfColumns: value});
-		// 	};
-	  //
-	  //
-		// 	return <Editor
-		// 	  attributes={attributes}
-		// 	  setAttributes={setAttributes}
-		// 	  isSelected={isSelected}
-		// 	  updateAttribute={updateAttribute}
-		// 	  updateDistribution={updateDistribution}
-		// 	  addColumn={addColumn}
-		// 	  changeColumn={changeColumn}
-		// 	  removeColumn={removeColumn}
-		// 	/>;
-		//   }),
-	  save: (block) => {
-
-		return (
-		  <section className={'container'}>
-			<div className={'row ' + block.attributes.background}>
-			  <InnerBlocks.Content/>
-			  {attributes.content}
-			</div>
-		  </section>
-		);
-	  }
+	  save: Save
 	});
   }
 }
