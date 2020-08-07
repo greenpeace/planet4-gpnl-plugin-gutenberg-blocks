@@ -2,7 +2,7 @@ import React from 'react';
 
 import {InnerBlocks} from '@wordpress/block-editor';
 
-function Save(props) {
+export default function Save(props) {
 
   const {attributes} = props;
 
@@ -15,5 +15,3 @@ function Save(props) {
   </section>
   )
 }
-
-export default Save;

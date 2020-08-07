@@ -1,0 +1,80 @@
+$column: 'div[data-type="planet4-gpnl-blocks/column"]';
+$column-first: 'div[data-type="planet4-gpnl-blocks/column"]:nth-child(1)';
+$column-second: 'div[data-type="planet4-gpnl-blocks/column"]:nth-child(2)';
+$column-third: 'div[data-type="planet4-gpnl-blocks/column"]:nth-child(3)';
+
+@mixin columns-widths {
+  &.number-of-columns-1 {
+    // In case you need styling for a single column.
+  }
+
+  &.number-of-columns-2 {
+    &.distribution-of-columns-leftBig {
+      #{$column-first} {
+        width: 66.66%;
+      }
+
+      #{$column-second} {
+        width: 33.33%;
+      }
+    }
+
+    &.distribution-of-columns-rightBig {
+      #{$column-first} {
+        width: 33.33%;
+      }
+
+      #{$column-second} {
+        width: 66.66%;
+      }
+    }
+  }
+
+  &.number-of-columns-3 {
+    &.distribution-of-columns-leftBig {
+      #{$column-first} {
+        width: 50%;
+      }
+
+      #{$column-second} {
+        width: 25%;
+      }
+
+      #{$column-third} {
+        width: 25%;
+      }
+    }
+
+    &.distribution-of-columns-rightBig {
+      #{$column-first} {
+        width: 25%;
+      }
+
+      #{$column-second} {
+        width: 25%;
+      }
+
+      #{$column-third} {
+        width: 50%;
+      }
+    }
+
+    &.distribution-of-columns-middleBig {
+      #{$column-first} {
+        width: 25%;
+      }
+
+      #{$column-second} {
+        width: 50%;
+      }
+
+      #{$column-third} {
+        width: 25%;
+      }
+    }
+  }
+
+  &.number-of-columns-4 {
+    // In case you need styling for four columns.
+  }
+}

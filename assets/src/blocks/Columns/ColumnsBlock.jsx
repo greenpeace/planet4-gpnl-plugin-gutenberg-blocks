@@ -1,6 +1,5 @@
 import BaseBlock from '../BaseBlock';
 import Edit from './Edit';
-import {InnerBlocks} from '@wordpress/block-editor';
 import Save from './Save';
 
 export class ColumnsBlock extends BaseBlock {
@@ -12,19 +11,15 @@ export class ColumnsBlock extends BaseBlock {
 	const attributes = {
 	  numberOfColumns: {
 		type: 'number',
-		default: 2
-	  },
-	  columns: {
-		type: 'array',
-		default: ['uno', 'due'],
+		default: 0
 	  },
 	  background: {
 		type: 'string',
-		default: 'light'
+		default: 'no-background'
 	  },
 	  distributionOfColumns: {
 		type: 'string',
-		default: 'even'
+		default: ''
 	  },
 	};
 
@@ -32,7 +27,6 @@ export class ColumnsBlock extends BaseBlock {
 	  title: 'Columns',
 	  category: 'planet4-gpnl-blocks',
 	  attributes,
-
 	  edit: Edit,
 	  save: Save
 	});
