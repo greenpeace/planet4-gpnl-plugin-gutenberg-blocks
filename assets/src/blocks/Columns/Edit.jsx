@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {InnerBlocks, InspectorControls} from '@wordpress/block-editor';
-import {SelectControl, PanelBody, FocalPointPicker, ToggleControl} from '@wordpress/components';
+import {SelectControl, PanelBody, FocalPointPicker, ToggleControl, Button} from '@wordpress/components';
 import {useSelect, useDispatch, withSelect} from '@wordpress/data';
 
 export default function Edit(props) {
@@ -152,7 +152,7 @@ export default function Edit(props) {
 
 	setAttributes({numberOfColumns: numberOfColumns});
 	setAttributes({distributionOfColumns: distributionOfColumns});
-	updateInnerBlocks(distributionOfColumns, distributionOfColumns);
+	updateInnerBlocks(distributionOfColumns, numberOfColumns);
   };
 
   const changeDistributionOfColumns = (value) => {
@@ -184,10 +184,10 @@ export default function Edit(props) {
 		<div className={'pre-select-columns-wrapper'}>
 		  <h2>How many columns would you like?</h2>
 		  <div className={'button-wrapper'}>
-			<a className={'button'} onClick={() => setAttributes({numberOfColumns: 1})}>1</a>
-			<a className={'button'} onClick={() => setAttributes({numberOfColumns: 2})}>2</a>
-			<a className={'button'} onClick={() => setAttributes({numberOfColumns: 3})}>3</a>
-			<a className={'button'} onClick={() => setAttributes({numberOfColumns: 4})}>4</a>
+			  <button className={'button'} onClick={() => setAttributes({numberOfColumns: 1})}>1</button>
+			<button className={'button'} onClick={() => setAttributes({numberOfColumns: 2})}>2</button>
+			<button className={'button'} onClick={() => setAttributes({numberOfColumns: 3})}>3</button>
+			<button className={'button'} onClick={() => setAttributes({numberOfColumns: 4})}>4</button>
 		  </div>
 		</div>
 	  );
@@ -198,19 +198,19 @@ export default function Edit(props) {
 		if (attributes.numberOfColumns === 2) {
 		  return (
 			<div className={'button-wrapper'}>
-			  <a className={'button'} onClick={() => setAttributes({distributionOfColumns: 'even'})}>50% / 50% <br/> (even)</a>
-			  <a className={'button'} onClick={() => setAttributes({distributionOfColumns: 'leftBig'})}>66% / 33% <br/> (left big)</a>
-			  <a className={'button'} onClick={() => setAttributes({distributionOfColumns: 'rightBig'})}>33% / 66% <br/> (right big)</a>
+			  <button className={'button'} onClick={() => setAttributes({distributionOfColumns: 'even'})}>50% / 50% <br/> (even)</button>
+			  <button className={'button'} onClick={() => setAttributes({distributionOfColumns: 'leftBig'})}>66% / 33% <br/> (left big)</button>
+			  <button className={'button'} onClick={() => setAttributes({distributionOfColumns: 'rightBig'})}>33% / 66% <br/> (right big)</button>
 			</div>
 		  );
 		}
 		if (attributes.numberOfColumns === 3) {
 		  return (
 			<div className={'button-wrapper'}>
-			  <a className={'button'} onClick={() => setAttributes({distributionOfColumns: 'even'})}>33% / 33% / 33% <br/> (even) </a>
-			  <a className={'button'} onClick={() => setAttributes({distributionOfColumns: 'leftBig'})}>50% / 25% / 25% <br/> (left big)</a>
-			  <a className={'button'} onClick={() => setAttributes({distributionOfColumns: 'middleBig'})}>25% / 50% / 25% <br/> (middle big)</a>
-			  <a className={'button'} onClick={() => setAttributes({distributionOfColumns: 'rightBig'})}>25% / 25% / 50% <br/> (right big)</a>
+			  <button className={'button'} onClick={() => setAttributes({distributionOfColumns: 'even'})}>33% / 33% / 33% <br/> (even) </button>
+			  <button className={'button'} onClick={() => setAttributes({distributionOfColumns: 'leftBig'})}>50% / 25% / 25% <br/> (left big)</button>
+			  <button className={'button'} onClick={() => setAttributes({distributionOfColumns: 'middleBig'})}>25% / 50% / 25% <br/> (middle big)</button>
+			  <button className={'button'} onClick={() => setAttributes({distributionOfColumns: 'rightBig'})}>25% / 25% / 50% <br/> (right big)</button>
 			</div>
 		  );
 		}
@@ -224,11 +224,13 @@ export default function Edit(props) {
 	  );
 	}
   };
-  
+
   return (
 	<div className={'wp-block-planet4-gpnl-blocks-columns' + ' ' + attributes.background}>
+
 	  <div className={'inner-blocks-wrapper ' + 'number-of-columns-' + attributes.numberOfColumns + ' distribution-of-columns-' + attributes.distributionOfColumns}>
 		{beforeChoosing()}
+
 		<InnerBlocks
 		  templateLock={'all'}
 		  template={activeTemplate()}
@@ -252,11 +254,9 @@ export default function Edit(props) {
 			]}
 		  />
 		  }
-
 		  {blockHasNoParent(clientId) === false &&
 		  <span>Nested column blocks inherit the theme from their parent block.</span>
 		  }
-
 		</PanelBody>
 		{attributes.numberOfColumns !== 0 && attributes.distributionOfColumns !== ''
 		&&

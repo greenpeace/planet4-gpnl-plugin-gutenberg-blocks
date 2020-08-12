@@ -1,21 +1,10 @@
 @import "front-end";
-@import "editor-columns-width";
+@import "editor-columns";
 
 .wp-block-planet4-gpnl-blocks-columns {
   display: flex;
   flex-direction: column;
-
-  // Overriding the default wp colors.
-  &.dark {
-    .block-editor-default-block-appender textarea.block-editor-default-block-appender__content {
-      color: lightgrey;
-    }
-
-    .block-editor-block-list__empty-block-inserter .block-editor-inserter__toggle:not(:hover),
-    .block-editor-default-block-appender .block-editor-inserter .block-editor-inserter__toggle:not(:hover) {
-      color: lightgrey;
-    }
-  }
+  padding: 0;
 
   // This may look strange, but it allows the nesting of the block in itself 3 levels deep without messing up the column width inside the editor.
   // Need more levels deep? Keep nesting 'columns-width'.
@@ -43,13 +32,11 @@
       }
 
       div[class^="col"] {
-        padding: 0;
+        max-width: 100%;
 
         & > * {
           display: block;
         }
-
-        max-width: 100%;
       }
     }
   }
@@ -67,7 +54,7 @@
       justify-content: center;
       align-items: center;
 
-      $color-wordpress-editor : #007cba;
+      $color-wordpress-editor: #007cba;
 
       .button {
         width: 180px;
@@ -94,4 +81,19 @@
       }
     }
   }
+
+  &.light, &.dark {
+    padding: 16px; // containing the columns
+  }
+
+  // Overriding the default wp colors.
+  &.dark {
+    .block-editor-default-block-appender textarea.block-editor-default-block-appender__content,
+    .block-editor-block-list__empty-block-inserter .block-editor-inserter__toggle:not(:hover),
+    .block-editor-default-block-appender .block-editor-inserter .block-editor-inserter__toggle:not(:hover),
+    {
+      color: lightgrey;
+    }
+  }
+
 }
