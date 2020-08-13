@@ -24,9 +24,9 @@
   // Please note this is a selector for the inner blocks (column).
   .wp-block-planet4-gpnl-blocks-column {
     & > * {
-      margin: 8px 0;
-      margin-top: 8px; // intentional to override wordpress defaults!
-      margin-bottom: 8px; // intentional.
+      margin: 0;
+      margin-top: 0; // intentional to override wordpress defaults!
+      margin-bottom: 0; // intentional.
     }
 
     p {

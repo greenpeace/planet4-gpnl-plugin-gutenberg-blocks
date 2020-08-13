@@ -8,7 +8,7 @@ module.exports = {
   ...defaultConfig,
   entry: {
 
-    'columns': './assets/src/blocks/Columns/styles/front-end.scss',
+    columns: './assets/src/blocks/Columns/Frontend.jsx',
     tweet: './assets/src/blocks/Tweet/Frontend.jsx',
 
     // frontendIndex: './assets/src/blocks/frontendIndex.js',

@@ -13,5 +13,5 @@ export default function Save(props) {
 	  {attributes.content}
 	</div>
   </section>
-  )
+  );
 }
