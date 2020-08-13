@@ -9,9 +9,9 @@ module.exports = {
   entry: {
 
     'columns': './assets/src/blocks/Columns/styles/front-end.scss',
+    tweet: './assets/src/blocks/Tweet/Frontend.jsx',
 
     // frontendIndex: './assets/src/blocks/frontendIndex.js',
-    tweet: './assets/src/blocks/Tweet/render.jsx',
 
     // assets for the editor (backend)
     editorIndex: './assets/src/editor/js/editorIndex.js',

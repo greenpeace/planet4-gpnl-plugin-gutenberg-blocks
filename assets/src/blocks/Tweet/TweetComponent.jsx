@@ -1,7 +1,10 @@
 import {Component, Fragment} from '@wordpress/element';
 import TextareaAutosize from 'react-autosize-textarea';
 
-export class TweetFrontend extends Component {
+import './styles/front-end.scss';
+
+
+export class TweetComponent extends Component {
   constructor(props) {
 	super();
 
