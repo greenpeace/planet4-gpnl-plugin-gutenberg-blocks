@@ -1,12 +1,14 @@
 import React from 'react';
 
 import {InnerBlocks, InspectorControls} from '@wordpress/block-editor';
-import {SelectControl, PanelBody, FocalPointPicker, ToggleControl, Button} from '@wordpress/components';
+import {SelectControl, PanelBody} from '@wordpress/components';
+import {useSelect, useDispatch } from '@wordpress/data';
+
 export default function Edit(props) {
 
 	const {attributes, setAttributes, clientId} = props;
 
-	// Templates for the inital rendering of the column.
+	// Templates for the initial rendering of the column.
 	const templates = {
 		one: [
 			['planet4-gpnl-blocks/column', {className: 'col-12'}]
@@ -24,30 +26,30 @@ export default function Edit(props) {
 			['planet4-gpnl-blocks/column', {className: 'col-12 col-md-8'}],
 		],
 		threeEven: [
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-md-4'}],
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-md-4'}],
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-md-4'}],
+			['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-4'}],
+			['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-4'}],
+			['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-4'}],
 		],
 		threeLeftBigger: [
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-md-6'}],
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-md-3'}],
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-md-3'}],
+			['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-6'}],
+			['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-3'}],
+			['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-3'}],
 		],
 		threeRightBigger: [
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-md-3'}],
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-md-3'}],
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-md-6'}],
+			['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-3'}],
+			['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-3'}],
+			['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-6'}],
 		],
 		threeMiddleBigger: [
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-md-3'}],
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-md-6'}],
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-md-3'}],
+			['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-3'}],
+			['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-6'}],
+			['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-3'}],
 		],
 		four: [
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-md-3'}],
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-md-3'}],
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-md-3'}],
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-md-3'}],
+			['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-3'}],
+			['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-3'}],
+			['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-3'}],
+			['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-3'}],
 		]
 	};
 
@@ -114,25 +116,25 @@ export default function Edit(props) {
 				index === 1 ? newInnerBlock.attributes.className = 'col-12 col-md-8' : '';
 			}
 			if (n === 3 && d === 'even') {
-				newInnerBlock.attributes.className = 'col-12 col-md-4';
+				newInnerBlock.attributes.className = 'col-12 col-lg-4';
 			}
 			if (n === 3 && d === 'leftBig') {
-				index === 0 ? newInnerBlock.attributes.className = 'col-12 col-md-6' : '';
-				index === 1 ? newInnerBlock.attributes.className = 'col-12 col-md-3' : '';
-				index === 2 ? newInnerBlock.attributes.className = 'col-12 col-md-3' : '';
+				index === 0 ? newInnerBlock.attributes.className = 'col-12 col-lg-6' : '';
+				index === 1 ? newInnerBlock.attributes.className = 'col-12 col-lg-3' : '';
+				index === 2 ? newInnerBlock.attributes.className = 'col-12 col-lg-3' : '';
 			}
 			if (n === 3 && d === 'rightBig') {
-				index === 0 ? newInnerBlock.attributes.className = 'col-12 col-md-3' : '';
-				index === 1 ? newInnerBlock.attributes.className = 'col-12 col-md-3' : '';
-				index === 2 ? newInnerBlock.attributes.className = 'col-12 col-md-6' : '';
+				index === 0 ? newInnerBlock.attributes.className = 'col-12 col-lg-3' : '';
+				index === 1 ? newInnerBlock.attributes.className = 'col-12 col-lg-3' : '';
+				index === 2 ? newInnerBlock.attributes.className = 'col-12 col-lg-6' : '';
 			}
 			if (n === 3 && d === 'middleBig') {
-				index === 0 ? newInnerBlock.attributes.className = 'col-12 col-md-3' : '';
-				index === 1 ? newInnerBlock.attributes.className = 'col-12 col-md-6' : '';
-				index === 2 ? newInnerBlock.attributes.className = 'col-12 col-md-3' : '';
+				index === 0 ? newInnerBlock.attributes.className = 'col-12 col-lg-3' : '';
+				index === 1 ? newInnerBlock.attributes.className = 'col-12 col-lg-6' : '';
+				index === 2 ? newInnerBlock.attributes.className = 'col-12 col-lg-3' : '';
 			}
 			if (n === 4) {
-				newInnerBlock.attributes.className = 'col-12 col-md-3';
+				newInnerBlock.attributes.className = 'col-12 col-lg-3';
 			}
 		}
 		replaceInnerBlocks(clientId, newInnerBlocks, false);
@@ -284,5 +286,3 @@ export default function Edit(props) {
 		</div>
 	);
 }
-
-import {useSelect, useDispatch, withSelect} from '@wordpress/data';

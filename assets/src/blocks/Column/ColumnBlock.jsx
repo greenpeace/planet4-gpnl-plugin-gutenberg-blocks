@@ -1,57 +1,35 @@
-/**
- * Internal dependencies
- */
-import edit from './edit';
-import {Editor} from './edit';
-import metadata from './block.json';
-import save from './save';
+import Edit from './Edit';
+import Save from './Save';
 import BaseBlock from '../BaseBlock';
 import React from 'react';
+import Icon from './Icon';
 
-// const {name} = metadata;
+/**
+ * This block only acts as a wrapper for the InnerBlocks that are used in the 'Columns Block'.
+ * Using this wrapper is required because it is not possible to use InnerBlocks more than once in a parent block.
+ */
+export class ColumnBlock extends BaseBlock {
 
-// export {metadata, name};
+	constructor() {
+		super();
 
-// export const settings = {
-//   title: __('Column'),
-//   icon,
-//   description: __('A single column within a columns block.'),
-//   edit,
-//   save,
-// };
+		const {registerBlockType} = wp.blocks;
 
-
-export class ColumnBlock extends BaseBlock{
-
-  constructor(props) {
-    super();
-
-    const { registerBlockType } = wp.blocks;
-
-    registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
-	  title: 'Column',
-	  category: 'planet4-gpnl-blocks',
-	  parent: [
-        'planet4-gpnl-blocks/columns'
-      ],
-      attributes: {
-        verticalAlignment: {
-          type: 'string'
-        },
-        width: {
-          type: 'number',
-          min: 0,
-          max: 100
-        }
-      },
-      supports: {
-        anchor: true,
-        reusable: false,
-        html: false,
-        lightBlockWrapper: true
-      },
-	  edit: Editor,
-	  save: save
-    });
-  }
+		registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
+			title: 'Column',
+			category: 'planet4-gpnl-blocks',
+			parent: [
+				'planet4-gpnl-blocks/columns'
+			],
+			supports: {
+				anchor: true,
+				reusable: false,
+				html: false,
+				lightBlockWrapper: true
+			},
+			icon: Icon,
+			edit: Edit,
+			save: Save
+		});
+	}
 }

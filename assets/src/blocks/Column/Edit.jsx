@@ -2,7 +2,7 @@ import React from 'react';
 import { InnerBlocks } from '@wordpress/block-editor';
 import { Component } from '@wordpress/element';
 
-export class Editor extends Component {
+export default class Edit extends Component {
   constructor() {
     super();
   }
@@ -18,5 +18,3 @@ export class Editor extends Component {
     );
   }
 }
-
-export default Editor;
