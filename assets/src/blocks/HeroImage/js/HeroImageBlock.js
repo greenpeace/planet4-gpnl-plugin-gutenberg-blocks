@@ -106,7 +106,7 @@ export class HeroImageBlock extends BaseBlock {
               onSelectImage={onSelectImage}
               onFocalPointChange={onFocalPointChange}
             />
-          )
+          );
         } else {
           return (
             <ServerSideRender
