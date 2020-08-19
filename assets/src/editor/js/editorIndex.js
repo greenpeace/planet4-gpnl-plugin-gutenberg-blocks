@@ -1,6 +1,9 @@
 // All the JS of our blocks have to be imported and instantiated in this file so they can all be used in the Gutenberg editor.
 // Styles of the blocks are imported separately in the 'editor-styles.scss' file.
 
+import '../scss/editor-styles.scss';
+
+
 import { QuoteBlock } from '../../blocks/Quote/js/QuoteBlock';
 new QuoteBlock();
 
