@@ -14,7 +14,7 @@ use P4NL_GB_BKS\Services\Asset_Enqueuer;
  * @package P4NL_GB_BKS\Controllers\Blocks
  * @since 0.1
  */
-class Tweet extends Base_Block {
+class SocialMessage extends Base_Block {
 
 	/**
 	 * Defines the fields and render callback for Gutenberg
@@ -39,8 +39,8 @@ class Tweet extends Base_Block {
 		if ( has_block( 'planet4-gpnl-blocks/' . $this->getKebabCaseClassName() ) )
 		{
 //			Asset_Enqueuer::enqueue_asset( 'hero-image', 'style' );
-			Asset_Enqueuer::enqueue_asset( 'tweet', 'style');
-			Asset_Enqueuer::enqueue_asset( 'tweet', 'script', ['wp-element'], true );
+			Asset_Enqueuer::enqueue_asset( 'socialMessage', 'style');
+			Asset_Enqueuer::enqueue_asset( 'socialMessage', 'script', ['wp-element'], true );
 		}
 	}
 }

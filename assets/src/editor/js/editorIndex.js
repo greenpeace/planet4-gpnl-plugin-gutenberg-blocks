@@ -49,5 +49,5 @@ new BrochureRequestBlock();
 import { TestimonialBlock } from '../../blocks/Testimonial/js/TestimonialBlock';
 new TestimonialBlock();
 
-import { TweetBlock } from '../../blocks/Tweet/TweetBlock';
-new TweetBlock();
+import { SocialMessageBlock } from '../../blocks/SocialMessage/SocialMessageBlock';
+new SocialMessageBlock();

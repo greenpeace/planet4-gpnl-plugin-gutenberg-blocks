@@ -1,11 +1,10 @@
 import {Component, Fragment} from '@wordpress/element';
-import {InspectorControls} from '@wordpress/block-editor';
+import {InspectorControls, URLInput} from '@wordpress/block-editor';
 import {TextareaControl, PanelBody, ToggleControl, SelectControl} from '@wordpress/components';
-import {TweetFrontend} from './TweetFrontend';
-import {URLInput} from '@wordpress/block-editor';
+import {Frontend} from './Frontend';
 
 
-export class TweetEditor extends Component {
+export class Edit extends Component {
   constructor(props) {
 	super(props);
 	this.handleErrors = this.handleErrors.bind(this);
@@ -106,7 +105,7 @@ export class TweetEditor extends Component {
 	const {attributes} = this.props;
 
 	return <Fragment>
-	  <TweetFrontend {...attributes} handleErrors={this.handleErrors}/>
+	  <Frontend {...attributes} handleErrors={this.handleErrors}/>
 	</Fragment>;
   }
 

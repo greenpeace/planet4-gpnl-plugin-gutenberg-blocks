@@ -2,13 +2,13 @@
 @import "../../../base/variables_gpnl.scss";
 
 .page-template {
-  .wp-block-planet4-gpnl-blocks-tweet {
+  .wp-block-planet4-gpnl-blocks-social-message {
     background-color: $anthracite;
     padding: 16px !important;
   }
 }
 
-.wp-block-planet4-gpnl-blocks-tweet, [data-type="planet4-gpnl-blocks/tweet"] {
+.wp-block-planet4-gpnl-blocks-social-message, [data-type="planet4-gpnl-blocks/social-message"] {
   margin: $sm 0;
 
   textarea {

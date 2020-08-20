@@ -1,8 +1,8 @@
 import BaseBlock from '../BaseBlock';
-import {TweetEditor} from './TweetEditor';
+import {Edit} from './Edit';
 import {frontendRendered} from '../frontendRendered';
 
-export class TweetBlock extends BaseBlock {
+export class SocialMessageBlock extends BaseBlock {
 
 	constructor() {
 		super();
@@ -36,7 +36,7 @@ export class TweetBlock extends BaseBlock {
 		};
 
 		registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
-			title: 'tweet',
+			title: 'social message',
 			category: 'planet4-gpnl-blocks',
 			attributes,
 
@@ -65,7 +65,7 @@ export class TweetBlock extends BaseBlock {
 					setAttributes({alternativeTweets: newArray});
 				};
 
-				return <TweetEditor
+				return <Edit
 						attributes={attributes}
 						setAttributes={setAttributes}
 						isSelected={isSelected}

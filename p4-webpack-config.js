@@ -9,7 +9,7 @@ module.exports = {
   entry: {
 
     // frontendIndex: './assets/src/blocks/frontendIndex.js',
-    tweet: './assets/src/blocks/Tweet/render.jsx',
+    socialMessage: './assets/src/blocks/SocialMessage/render.jsx',
 
     // assets for the editor (backend)
     editorIndex: './assets/src/editor/js/editorIndex.js',

@@ -3,7 +3,7 @@ import TextareaAutosize from 'react-autosize-textarea';
 
 import WhatsAppIcon from './styles/icons/whatsapp.svg';
 
-export class TweetFrontend extends Component {
+export class Frontend extends Component {
 	constructor(props) {
 		super();
 
