@@ -1,6 +1,6 @@
 import {Component, Fragment} from '@wordpress/element';
 import {InspectorControls} from '@wordpress/block-editor';
-import {TextareaControl, PanelBody, ToggleControl} from '@wordpress/components';
+import {TextareaControl, PanelBody, ToggleControl, SelectControl} from '@wordpress/components';
 import {TweetFrontend} from './TweetFrontend';
 import {URLInput} from '@wordpress/block-editor';
 
@@ -51,11 +51,25 @@ export class TweetEditor extends Component {
 
 		<InspectorControls>
 		  <PanelBody title={'Opties'}>
+
+				<SelectControl
+						label={'Medium bericht'}
+						help={'Selecteer het medium waarop dit bericht gedeeld kan worden.'}
+						value={attributes.medium}
+						onChange={updateAttribute('medium')}
+						options={[
+							{value: 'twitter', label: 'Twitter'},
+							{value: 'facebook', label: 'Facebook'},
+							{value: 'whatsapp', label: 'Whatsapp'}
+						]}
+				/>
+
 			<TextareaControl
 			  label={'Bedanktekst'}
 			  placeholder={''}
 			  value={attributes.thanksText}
 			  onChange={updateAttribute('thanksText')}
+				help={'Tekst die getoond wordt nadat iemand het bericht deelt.'}
 			/>
 			<label className={'components-base-control__label'}><strong>URL</strong></label>
 			<URLInput
@@ -64,7 +78,7 @@ export class TweetEditor extends Component {
 			/>
 			<p className={'components-base-control__help'}>
 			  <em>
-				Voer een optionele URL in als je deze aan de tweet wil koppelen.
+				Voer een URL in als je deze aan het bericht wil koppelen. <strong>Verplicht bij een Facebook bericht!</strong>
 			  </em>
 			</p>
 		  </PanelBody>
