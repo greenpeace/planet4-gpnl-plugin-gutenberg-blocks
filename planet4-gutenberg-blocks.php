@@ -97,11 +97,6 @@ if ( ! defined( 'P4NL_GB_BKS_PUBLIC_DIR' ) ) {
 
 
 require_once __DIR__ . '/classes/class-loader.php';
-$api_loader = __DIR__ ."/../gpnl-database-interface/ApiConnector.php";
-if (file_exists( $api_loader )) {
-	require_once $api_loader;
-};
-
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
 
@@ -198,11 +193,64 @@ function set_child_theme_allowed_block_types( $allowed_block_types, $post ) {
 	return array_values( $allowed_block_types );
 }
 add_filter( 'allowed_block_types', 'set_child_theme_allowed_block_types', 15, 2 );
-//
-//require_once('vendor/greenpeace/gpnl-database-interface/ApiConnector.php');
-//use P4NL_DATABASE_INTERFACE\Api\ApiConnector;
-//$conn = new ApiConnector();
-//var_dump($conn->call("Contact", 'getContactByGuid', "C9231ADC-F7D7-4014-BB5E-EAAD10F41809"));
 
-//$dir_path = plugin_dir_path( __FILE__ );
+#################################################################################################
 
+function sidebar_plugin_register() {
+	wp_register_script(
+		'plugin-sidebar-js',
+		plugins_url( 'admin/sidebar.js', __FILE__ ),
+		array( 'wp-plugins', 'wp-edit-post', 'wp-element', 'wp-data', 'wp-compose' )
+	);
+	wp_register_style(
+		'plugin-sidebar-css',
+		plugins_url( 'admin/sidebar.css', __FILE__ )
+	);
+
+	register_post_meta( 'page', 'sidebar_plugin_meta_block_field', array(
+		'show_in_rest' => true,
+		'single' => true,
+		'type' => 'string',
+	) );
+}
+add_action( 'init', 'sidebar_plugin_register' );
+
+#################################################################################################
+
+function sidebar_plugin_script_enqueue() {
+	wp_enqueue_script( 'plugin-sidebar-js' );
+}
+
+function sidebar_plugin_style_enqueue() {
+	wp_enqueue_style( 'plugin-sidebar-css' );
+}
+add_action( 'enqueue_block_editor_assets', 'sidebar_plugin_script_enqueue' );
+add_action( 'enqueue_block_assets', 'sidebar_plugin_style_enqueue' );
+
+#################################################################################################
+
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'myplugin/v1', '/author/(?P<id>\d+)', array(
+		'methods' => 'GET',
+		'callback' => 'my_awesome_func',
+		'permission_callback' => '__return_true',
+	) );
+} );
+
+/**
+ * Grab latest post title by an author!
+ *
+ * @param array $data Options for the function.
+ * @return string|null Post title for the latest, * or null if none.
+ */
+function my_awesome_func( $data ) {
+		$posts = get_posts( array(
+			'author' => $data['id'],
+		) );
+
+		if ( empty( $posts ) ) {
+			return '0';
+		}
+
+		return $posts[0]->post_title;
+}
