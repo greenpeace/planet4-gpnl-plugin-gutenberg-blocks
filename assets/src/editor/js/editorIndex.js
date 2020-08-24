@@ -52,11 +52,23 @@ new FacebookCommentsBlock();
 import { TestimonialBlock } from '../../blocks/Testimonial/js/TestimonialBlock';
 new TestimonialBlock();
 
-import { SocialMessageBlock } from '../../blocks/SocialMessage/SocialMessageBlock';
-new SocialMessageBlock();
-
-import { ColumnsBlock } from '../../blocks/Columns/ColumnsBlock';
 new ColumnsBlock();
+import { SocialMessageBlock } from '../../blocks/SocialMessage/SocialMessageBlock';
 
-import { ColumnBlock } from '../../blocks/Column/ColumnBlock';
-new ColumnBlock();
+/**
+ * WordPress dependencies.
+ */
+const { registerPlugin } = wp.plugins;
+
+/**
+ * Local dependencies.
+ */
+import Sidebar from './sidebar.js';
+
+/**
+ * Register the MetaTags plugin.
+ */
+registerPlugin("metatags", {
+  icon: 'editor-customchar',
+  render: Sidebar
+});
