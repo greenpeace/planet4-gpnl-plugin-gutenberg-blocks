@@ -10,6 +10,7 @@
 @import "../../blocks/Inforequest/scss/inforequest";
 @import "../../blocks/Collapsible/scss/collapsible";
 @import "../../blocks/Testimonial/scss/testimonial";
+@import "../../blocks/SocialMessage/styles/editor";
 
 // width of editor same as page width
 .wp-block {
@@ -36,8 +37,7 @@
     font-family: $roboto;
     font-size: 2.2rem;
     //margin: 3rem 0 0;
-    margin: 0;
-    margin-bottom: 40px;
+    margin: 0 0 40px;
     padding: 10px 15px;
     background-color: white;
     border: 1px solid rgb(141, 150, 160);
