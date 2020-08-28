@@ -2,23 +2,36 @@
 @import "../../../base/variables_gpnl.scss";
 
 .wp-block-planet4-gpnl-blocks-columns {
-  color: $anthracite;
+
+  // Defaults.
+  color: black;
   background-color: white;
   padding: 16px;
   margin: 32px 0;
 
-  &.dark {
-    color: white;
-    background-color: $anthracite;
-  }
-
-  &.no-background {
+  // When there is no background, the padding is removed on displays small and up.
+  &.bg-none {
     color: unset;
     background-color: unset;
 
     @include small-and-up {
       padding: 0 0;
     }
+  }
+
+  &.bg-anthracite {
+    color: white;
+    background-color: $anthracite;
+  }
+
+  &.bg-dark-blue {
+    color: white;
+    background-color: $dark-blue;
+  }
+
+  &.bg-sea-blue {
+    background-color: $sea-blue;
+    color: black;
   }
 
   // Please note this is a selector for the inner blocks (column).

@@ -16,7 +16,7 @@ export class ColumnsBlock extends BaseBlock {
 			},
 			background: {
 				type: 'string',
-				default: 'no-background'
+				default: 'bg-none'
 			},
 			distributionOfColumns: {
 				type: 'string',

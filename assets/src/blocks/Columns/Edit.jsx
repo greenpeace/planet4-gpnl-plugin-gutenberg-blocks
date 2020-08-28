@@ -248,9 +248,11 @@ export default function Edit(props) {
 						value={attributes.background}
 						onChange={changeBackgroundColor}
 						options={[
-							{value: 'light', label: 'Light'},
-							{value: 'dark', label: 'Dark'},
-							{value: 'no-background', label: 'None'}
+							{value: 'bg-anthracite', label: 'Anthracite'},
+							{value: 'bg-dark-blue', label: 'Dark blue'},
+							{value: 'bg-sea-blue', label: 'Sea blue'},
+							{value: 'bg-white', label: 'White'},
+							{value: 'bg-none', label: 'None'}
 						]}
 					/>
 					}
