@@ -79,6 +79,7 @@ class Sidebar extends React.Component {
             <h2>CTA Tracking</h2>
             <Toggle state={this.state.actionsTracking} handler={this.handleToggle}></Toggle>
 
+            { this.state.actionsTracking &&
               <Fragment>
                 <RefreshButton handler={this.handleRefresh}></RefreshButton>
 
@@ -88,6 +89,7 @@ class Sidebar extends React.Component {
                   <ul>{ listItems }</ul>
                 </div>
               </Fragment>
+            }
           </div>
         </PluginSidebar>
 
