@@ -14,7 +14,7 @@ class RefreshButton extends React.Component {
 
   render() {
     return (
-      <Button isSecondary onChange={this.handleChange}>Klik voor refresh</Button>
+      <Button isSecondary onClick={this.handleChange}>Klik voor refresh</Button>
     );
   }
 }
