@@ -42,26 +42,8 @@ class Sidebar extends React.Component {
   }
 
   parseContent(data) {
-    const regex = /(<a.*?a>)/gmi;
-    let matches =[];
-
-    let m;
-
-    while ((m = regex.exec(data)) !== null) {
-      // This is necessary to avoid infinite loops with zero-width matches
-      if (m.index === regex.lastIndex) {
-        regex.lastIndex++;
-      }
-
-      // The result can be accessed through the `m`-variable.
-      m.forEach((match, groupIndex) => {
-        if (match === matches[groupIndex] ) return;
-        matches.push(match)
-        console.log(`Found match, group ${groupIndex}: ${match}`);
-      });
-    }
-
-    return matches;
+    const regex = /<a .*?<\/a>/gi;
+    return data.match(regex);
   }
 
   handleToggle(){
@@ -83,7 +65,9 @@ class Sidebar extends React.Component {
 
   render() {
     console.log("Sidebar is being rendered")
-    const listItems = this.state.parsedContent.map((href, index) =>  <li key={index}>{href}</li>);
+    const listItems = this.state.parsedContent.map((href, index) =>
+      <li key={index}><input type="checkbox"></input> {href}</li>
+    );
     return (
       <Fragment>
 
@@ -103,10 +87,8 @@ class Sidebar extends React.Component {
                 <RefreshButton handler={this.handleRefresh}></RefreshButton>
 
                 <div>
-                  { this.state.APItest } <br></br>
-                  <h2>Editor Content</h2>
-                  { this.state.editorContent }
-                  <h2>Parsed Content</h2>
+                  <h2>Links op pagina:</h2>
+                  <p>Selecteer links om te tellen</p>
                   <ul>{ listItems }</ul>
                 </div>
               </Fragment>
