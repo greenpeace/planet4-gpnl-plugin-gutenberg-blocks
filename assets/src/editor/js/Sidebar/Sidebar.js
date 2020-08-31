@@ -37,7 +37,7 @@ var MetaBlockField = compose(
 /**
  * Sidebar component voor the gutenberg editor.
  */
-class Sidebar extends React.Component {
+class NL_Sidebar_E_activism extends React.Component {
 
   constructor(props) {
     super(props)
@@ -125,4 +125,4 @@ class Sidebar extends React.Component {
 
 }
 
-export default Sidebar
+export default NL_Sidebar_E_activism

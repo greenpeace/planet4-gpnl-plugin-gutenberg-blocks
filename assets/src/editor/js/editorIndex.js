@@ -59,9 +59,9 @@ import { SocialMessageBlock } from '../../blocks/SocialMessage/SocialMessageBloc
  * WordPress dependencies.
  */
 const { registerPlugin } = wp.plugins;
-import Sidebar from './Sidebar/Sidebar.js';
+import NL_Sidebar_E_activism from './Sidebar/Sidebar.js';
 
 registerPlugin("gpnl-sidebar", {
   icon: 'editor-customchar',
-  render: Sidebar
+  render: NL_Sidebar_E_activism
 });
