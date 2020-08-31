@@ -8,7 +8,6 @@ class RefreshButton extends React.Component {
   }
 
   handleChange(e) {
-    console.log("Refreshing content state")
     this.props.handler(e.target.value);
   }
 

@@ -51,7 +51,6 @@ class Sidebar extends React.Component {
   }
 
   handleRefresh() {
-    console.log("Sidebar: refresh")
     let newContent = this.getCurrentContent();
     let contentChanged = this.state.editorContent === newContent ? 0 : 1;
     if (contentChanged) {
@@ -60,11 +59,9 @@ class Sidebar extends React.Component {
         parsedContent: this.parseContent(newContent)
       } );
     }
-    console.log('Content changed? ' + contentChanged );
   }
 
   render() {
-    console.log("Sidebar is being rendered")
     const listItems = this.state.parsedContent.map((href, index) =>
       <li key={index}><input type="checkbox"></input> {href}</li>
     );

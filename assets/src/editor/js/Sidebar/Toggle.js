@@ -9,7 +9,6 @@ class Toggle extends React.Component {
 
     handleClick(e)
     {
-      console.log("Toggling actions tracker")
       this.props.handler(e.target.value);
     }
 
