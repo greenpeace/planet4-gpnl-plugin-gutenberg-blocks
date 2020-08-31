@@ -59,16 +59,9 @@ import { SocialMessageBlock } from '../../blocks/SocialMessage/SocialMessageBloc
  * WordPress dependencies.
  */
 const { registerPlugin } = wp.plugins;
+import Sidebar from './Sidebar/Sidebar.js';
 
-/**
- * Local dependencies.
- */
-import Sidebar from './sidebar.js';
-
-/**
- * Register the MetaTags plugin.
- */
-registerPlugin("metatags", {
+registerPlugin("gpnl-sidebar", {
   icon: 'editor-customchar',
   render: Sidebar
 });

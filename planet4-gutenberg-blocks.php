@@ -24,6 +24,7 @@ defined( 'ABSPATH' ) || die( 'Direct access is forbidden !' );
 	C O N S T A N T S
 ========================
 */
+
 if ( ! defined( 'P4NL_GB_BKS_REQUIRED_PHP' ) ) {
 	define( 'P4NL_GB_BKS_REQUIRED_PHP', '7.0' );
 }
@@ -51,7 +52,7 @@ if ( ! defined( 'P4NL_GB_BKS_PLUGIN_URL' ) ) {
 	define( 'P4NL_GB_BKS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 }
 if ( ! defined( 'P4NL_GB_BKS_PLUGIN_NAME' ) ) {
-	define( 'P4NL_GB_BKS_PLUGIN_NAME', 'Planet4 - Gutenberg Blocks' );
+	define( 'P4NL_GB_BKS_PLUGIN_NAME', 'Planet4NL - Gutenberg Blocks' );
 }
 if ( ! defined( 'P4NL_GB_BKS_PLUGIN_SHORT_NAME' ) ) {
 	define( 'P4NL_GB_BKS_PLUGIN_SHORT_NAME', 'Blocks' );
@@ -73,7 +74,7 @@ if ( ! defined( 'P4NL_GB_BKS_LANGUAGES' ) ) {
 		'P4NL_GB_BKS_LANGUAGES',
 		[
 			'en_US' => 'English',
-			'el_GR' => 'Ελληνικά',
+			'nl_NL' => 'Nederlands',
 		]
 	);
 }
@@ -209,11 +210,13 @@ add_action( 'init', 'sidebar_plugin_register' );
 #################################################################################################
 
 add_action( 'rest_api_init', function () {
-	register_rest_route( 'myplugin/v1', '/author/(?P<id>\d+)', array(
+	register_rest_route( 'P4NL/v1', '/counter/(?P<id>\d+)',
+		[
 		'methods' => 'GET',
-		'callback' => 'my_awesome_func',
+		'callback' => 'get_counter',
 		'permission_callback' => '__return_true',
-	) );
+		]
+	);
 } );
 
 /**
@@ -222,14 +225,6 @@ add_action( 'rest_api_init', function () {
  * @param array $data Options for the function.
  * @return string|null Post title for the latest, * or null if none.
  */
-function my_awesome_func( $data ) {
-		$posts = get_posts( array(
-			'author' => $data['id'],
-		) );
-
-		if ( empty( $posts ) ) {
-			return '0';
-		}
-
-		return $posts[0]->post_title;
+function get_counter($data ) {
+		return "API request van page: ".$data['id'];
 }
