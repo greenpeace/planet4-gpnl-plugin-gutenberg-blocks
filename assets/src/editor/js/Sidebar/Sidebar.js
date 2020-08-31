@@ -47,6 +47,7 @@ class Sidebar extends React.Component {
   }
 
   handleToggle(){
+    this.handleRefresh();
     this.setState( {actionsTracking: !this.state.actionsTracking});
   }
 
