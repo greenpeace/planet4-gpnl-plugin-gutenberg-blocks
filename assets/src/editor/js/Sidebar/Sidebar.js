@@ -4,8 +4,35 @@ import Toggle from "./Toggle";
 
 const { Fragment } = wp.element;
 const { PluginSidebarMoreMenuItem, PluginSidebar } = wp.editPost;
+const { withSelect, withDispatch } = wp.data;
+const { compose } = wp.compose;
+
 const blockName = "GPNL E-Activism";
 const blockNameHTML = blockName.toLowerCase().replace(" ", "-");
+
+var MetaBlockField = compose(
+  withDispatch( function( dispatch ) {
+    return {
+      setMetaFieldValue: function( value ) {
+        dispatch( 'core/editor' ).editPost(
+          { meta: { sidebar_plugin_meta_block_field: value } }
+        );
+      }
+    };
+  } ),
+  withSelect( function( select ) {
+    let metaFieldValue = select( 'core/editor' ).getEditedPostAttribute( 'meta' )[ 'sidebar_plugin_meta_block_field' ];
+    return { metaFieldValue: metaFieldValue };
+  } )
+)( function( props ) {
+  return el( Text, {
+    label: 'Meta Block Field',
+    value: props.metaFieldValue,
+    onChange: function( content ) {
+      props.setMetaFieldValue( content );
+    },
+  } );
+} );
 
 /**
  * Sidebar component voor the gutenberg editor.
