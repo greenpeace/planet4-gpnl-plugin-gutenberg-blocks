@@ -15,14 +15,14 @@ class Toggle extends React.Component {
 
     render()
     {
-      const toggle = this.props.toggle;
+      const state = this.props.state;
       return (
       <div className="custom-control custom-switch">
         <input type="checkbox" className="custom-control-input" id="customSwitch1"
-               checked={toggle ? 'checked' : ''}
+               checked={state ? 'checked' : ''}
                onChange={this.handleClick}>
         </input>
-          <label className="custom-control-label" htmlFor="customSwitch1">Er worden {toggle ? '' : 'geen'} handelingen op deze pagina geteld</label>
+          <label className="custom-control-label" htmlFor="customSwitch1">Er worden {state ? '' : 'geen'} handelingen op deze pagina geteld</label>
       </div>
       );
     }

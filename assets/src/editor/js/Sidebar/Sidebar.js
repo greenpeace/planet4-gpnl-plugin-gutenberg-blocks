@@ -53,7 +53,7 @@ class Sidebar extends React.Component {
   handleRefresh() {
     console.log("Sidebar: refresh")
     let newContent = this.getCurrentContent();
-    let contentChanged = this.state.content === newContent ? 0 : 1;
+    let contentChanged = this.state.editorContent === newContent ? 0 : 1;
     if (contentChanged) {
       this.setState({
         editorContent: newContent,
@@ -71,17 +71,13 @@ class Sidebar extends React.Component {
     return (
       <Fragment>
 
-        <PluginSidebarMoreMenuItem target="gpnl-sidebar" icon='editor-customchar'>
-        {/*<PluginSidebarMoreMenuItem target={blockNameHTML+"-sidebar-menu"} icon='editor-customchar'>*/}
-          { blockName }
-        </PluginSidebarMoreMenuItem>
+        <PluginSidebarMoreMenuItem target="gpnl-sidebar" icon='editor-customchar'>{ blockName }</PluginSidebarMoreMenuItem>
 
-        {/*<PluginSidebar name={blockNameHTML+"-sidebar"} title={ blockName } >*/}
         <PluginSidebar name="gpnl-sidebar" title={ blockName } >
           <div className={blockNameHTML+"-sidebar-content"}>
 
-            <h2>Links op deze pagina</h2>
-            <Toggle toggle={this.state.actionsTracking} handler={this.handleToggle}></Toggle>
+            <h2>CTA Tracking</h2>
+            <Toggle state={this.state.actionsTracking} handler={this.handleToggle}></Toggle>
 
               <Fragment>
                 <RefreshButton handler={this.handleRefresh}></RefreshButton>
