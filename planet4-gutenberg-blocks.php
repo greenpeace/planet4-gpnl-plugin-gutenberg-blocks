@@ -212,8 +212,11 @@ function sidebar_plugin_register() {
 					'actionsTracking' => [
 						'type' => 'boolean',
 					],
-					'test' => [
-						'type' => 'string',
+					'savedLinks' => [
+						'type' => 'array',
+					],
+					'trackedLinks' => [
+						'type' => 'array',
 					],
 				],
 			],
