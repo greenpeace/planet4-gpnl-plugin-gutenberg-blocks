@@ -100,9 +100,7 @@ class NL_Sidebar_E_activism extends React.Component {
   }
 
   render() {
-    const listItems = this.state.editorLinks.map((href, index) =>
-      <li key={index}><input type="checkbox"></input> {href}</li>
-    );
+    const listItems = this.state.editorLinks.map((href, index) => <li key={index}><input type="checkbox"/> {href}</li> );
     return (
       <Fragment>
 
@@ -112,11 +110,11 @@ class NL_Sidebar_E_activism extends React.Component {
           <div className={blockNameHTML+"-sidebar-content"}>
 
             <h2>CTA Tracking</h2>
-            <Toggle state={this.state.actionsTracking} handler={this.handleToggle}></Toggle>
+            <Toggle state={this.state.actionsTracking} handler={this.handleToggle}/>
 
             { this.state.actionsTracking &&
               <Fragment>
-                <RefreshButton handler={this.handleRefresh}></RefreshButton>
+                <RefreshButton handler={this.handleRefresh}/>
 
                 <div>
                   <h2>Links op pagina:</h2>
