@@ -4,35 +4,9 @@ import Toggle from "./Toggle";
 
 const { Fragment } = wp.element;
 const { PluginSidebarMoreMenuItem, PluginSidebar } = wp.editPost;
-const { withSelect, withDispatch } = wp.data;
-const { compose } = wp.compose;
 
 const blockName = "GPNL E-Activism";
 const blockNameHTML = blockName.toLowerCase().replace(" ", "-");
-
-var MetaBlockField = compose(
-  withDispatch( function( dispatch ) {
-    return {
-      setMetaFieldValue: function( value ) {
-        dispatch( 'core/editor' ).editPost(
-          { meta: { sidebar_plugin_meta_block_field: value } }
-        );
-      }
-    };
-  } ),
-  withSelect( function( select ) {
-    let metaFieldValue = select( 'core/editor' ).getEditedPostAttribute( 'meta' )[ 'sidebar_plugin_meta_block_field' ];
-    return { metaFieldValue: metaFieldValue };
-  } )
-)( function( props ) {
-  return el( Text, {
-    label: 'Meta Block Field',
-    value: props.metaFieldValue,
-    onChange: function( content ) {
-      props.setMetaFieldValue( content );
-    },
-  } );
-} );
 
 /**
  * Sidebar component voor the gutenberg editor.
@@ -42,7 +16,7 @@ class NL_Sidebar_E_activism extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      actionsTracking: false,
+      actionsTracking: this.getMetaFieldValue('actionsTracking'),
       APItest: "initialValue",
       editorContent: '',
       parsedContent: []
@@ -55,13 +29,38 @@ class NL_Sidebar_E_activism extends React.Component {
   componentDidMount() {
     const post_id = wp.data.select("core/editor").getCurrentPostId();
     let editedContent = this.getCurrentContent();
+    this.setState( {
+      editorContent: editedContent,
+      parsedContent: this.parseContent(editedContent)
+      }
+    )
     wp.apiFetch({path: '/P4NL/v1/counter/'+post_id}).then(response => {
       this.setState({
-        APItest: response,
-        editorContent: editedContent,
-        parsedContent: this.parseContent(editedContent)
+        APItest: response
       })
     });
+  }
+
+  setMetaFieldValue( field, value ) { // the 'field' is the current property to be updated
+    let meta = wp.data.select( 'core/editor' ).getEditedPostAttribute( 'meta' ).e_activism;
+
+    // Make sure all props are defined. (and merge with current metadata values)
+    meta = {
+      actionsTracking: '',
+      test: '',
+      ...meta,
+    };
+
+    // Then update the current property.
+    meta[ field ] = value;
+
+    wp.data.dispatch( 'core/editor' ).editPost({ meta: { e_activism: meta } });
+  }
+
+
+  getMetaFieldValue(field){
+    // return wp.data.select( 'core/editor' ).getCurrentPostAttribute( 'meta' )['e_activism'][ field ];
+    return wp.data.select( 'core/editor' ).getEditedPostAttribute( 'meta' )['e_activism'][ field ];
   }
 
   getCurrentContent(){
@@ -75,6 +74,8 @@ class NL_Sidebar_E_activism extends React.Component {
 
   handleToggle(){
     this.handleRefresh();
+    console.log("Actionstracking: "+!this.state.actionsTracking)
+    this.setMetaFieldValue('actionsTracking', !this.state.actionsTracking);
     this.setState( {actionsTracking: !this.state.actionsTracking});
   }
 

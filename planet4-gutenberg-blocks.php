@@ -199,11 +199,26 @@ add_filter( 'allowed_block_types', 'set_child_theme_allowed_block_types', 15, 2 
 
 function sidebar_plugin_register() {
 
-	register_post_meta( 'page', 'sidebar_plugin_meta_block_field', array(
-		'show_in_rest' => true,
-		'single' => true,
-		'type' => 'string',
-	) );
+	register_post_meta( 'page', 'e_activism', [
+		'type'          => 'object',
+		'single'        => true,
+		'auth_callback'     => function() {
+			return current_user_can( 'edit_posts' );
+		},
+		'show_in_rest'  => [
+			'schema' => [
+				'type'       => 'object',
+				'properties' => [
+					'actionsTracking' => [
+						'type' => 'boolean',
+					],
+					'test' => [
+						'type' => 'string',
+					],
+				],
+			],
+		],
+	]);
 }
 add_action( 'init', 'sidebar_plugin_register' );
 
