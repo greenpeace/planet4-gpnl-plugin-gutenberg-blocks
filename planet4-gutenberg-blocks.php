@@ -147,7 +147,7 @@ const BLOCK_WHITELIST = [
 		'planet4-gpnl-blocks/brochure-request',
 		'planet4-gpnl-blocks/testimonial',
 		'planet4-gpnl-blocks/columns',
-		'planet4-gpnl-blocks/column'
+		'planet4-gpnl-blocks/column',
 		'planet4-gpnl-blocks/social-message'
 	],
 	'campaign' => [],
