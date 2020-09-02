@@ -1,6 +1,9 @@
 // All the JS of our blocks have to be imported and instantiated in this file so they can all be used in the Gutenberg editor.
 // Styles of the blocks are imported separately in the 'editor-styles.scss' file.
 
+import '../scss/editor-styles.scss';
+
+
 import { QuoteBlock } from '../../blocks/Quote/js/QuoteBlock';
 new QuoteBlock();
 
@@ -40,14 +43,20 @@ new PdfEmbedBlock();
 import { FacebookCommentsBlock } from '../../blocks/FacebookComments/js/FacebookCommentsBlock';
 new FacebookCommentsBlock();
 
-import { PeriodicDonationBlock } from '../../blocks/PeriodicDonation/js/PeriodicDonationBlock';
-new PeriodicDonationBlock();
+// import { PeriodicDonationBlock } from '../../blocks/PeriodicDonation/js/PeriodicDonationBlock';
+// new PeriodicDonationBlock();
 
-import { BrochureRequestBlock } from '../../blocks/BrochureRequest/js/BrochureRequestBlock';
-new BrochureRequestBlock();
-
+// import { BrochureRequestBlock } from '../../blocks/BrochureRequest/js/BrochureRequestBlock';
+// new BrochureRequestBlock();
+//
 import { TestimonialBlock } from '../../blocks/Testimonial/js/TestimonialBlock';
 new TestimonialBlock();
 
 import { SocialMessageBlock } from '../../blocks/SocialMessage/SocialMessageBlock';
 new SocialMessageBlock();
+
+import { ColumnsBlock } from '../../blocks/Columns/ColumnsBlock';
+new ColumnsBlock();
+
+import { ColumnBlock } from '../../blocks/Column/ColumnBlock';
+new ColumnBlock();

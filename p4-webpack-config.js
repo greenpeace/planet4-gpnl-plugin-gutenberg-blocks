@@ -8,12 +8,12 @@ module.exports = {
   ...defaultConfig,
   entry: {
 
-    // frontendIndex: './assets/src/blocks/frontendIndex.js',
+    columns: './assets/src/blocks/Columns/Frontend.jsx',
     socialMessage: './assets/src/blocks/SocialMessage/render.jsx',
 
     // assets for the editor (backend)
     editorIndex: './assets/src/editor/js/editorIndex.js',
-    'editor-style': './assets/src/editor/scss/editor-styles.scss',
+    // 'editor-style': './assets/src/editor/scss/editor-styles.scss',
 
     // assets that are used in the petition block.
     jaltLanding: './assets/src/blocks/Petition/js/jalt-landing.js',
@@ -51,8 +51,8 @@ module.exports = {
     // Assets for the collapsible block.
     collapsible: './assets/src/blocks/Collapsible/scss/collapsible.scss',
 
-    // periodicDonationForm: './assets/src/blocks/PeriodicDonation/form/index.js',
-    // brochureRequestForm: './assets/src/blocks/BrochureRequest/form/index.js',
+    // periodicDonationForm: './assets/src/blocks/PeriodicDonation/form/ColumnBlock.jsx',
+    // brochureRequestForm: './assets/src/blocks/BrochureRequest/form/ColumnBlock.jsx',
     testimonial: './assets/src/blocks/Testimonial/scss/testimonial.scss'
 
   },
