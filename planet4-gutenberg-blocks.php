@@ -222,6 +222,15 @@ function sidebar_plugin_register() {
 			],
 		],
 	]);
+
+	register_post_meta( 'page', 'counter_test', [
+		'type'          => 'number',
+		'single'        => true,
+		'auth_callback'     => function() {
+			return current_user_can( 'edit_posts' );
+		},
+		'show_in_rest'  => true,
+		]);
 }
 add_action( 'init', 'sidebar_plugin_register' );
 
@@ -244,5 +253,7 @@ add_action( 'rest_api_init', function () {
  * @return array Post title for the latest, * or null if none.
  */
 function get_counter($data ) {
-	return ['unique_count' => $data['id']];
+	$post_id=29612;
+	$db_counter =  get_post_meta($post_id, 'counter_test', true);
+	return ['unique_count' => $db_counter];
 }
