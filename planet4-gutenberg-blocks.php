@@ -241,8 +241,8 @@ add_action( 'rest_api_init', function () {
  * Grab latest post title by an author!
  *
  * @param array $data Options for the function.
- * @return string|null Post title for the latest, * or null if none.
+ * @return array Post title for the latest, * or null if none.
  */
 function get_counter($data ) {
-		return "API request van page: ".$data['id'];
+	return ['unique_count' => $data['id']];
 }
