@@ -52,8 +52,14 @@ new FacebookCommentsBlock();
 import { TestimonialBlock } from '../../blocks/Testimonial/js/TestimonialBlock';
 new TestimonialBlock();
 
-new ColumnsBlock();
 import { SocialMessageBlock } from '../../blocks/SocialMessage/SocialMessageBlock';
+new SocialMessageBlock();
+
+import { ColumnsBlock } from '../../blocks/Columns/ColumnsBlock';
+new ColumnsBlock();
+
+import { ColumnBlock } from '../../blocks/Column/ColumnBlock';
+new ColumnBlock();
 
 /**
  * WordPress dependencies.
@@ -61,7 +67,8 @@ import { SocialMessageBlock } from '../../blocks/SocialMessage/SocialMessageBloc
 const { registerPlugin } = wp.plugins;
 import NL_Sidebar_E_activism from './Sidebar/Sidebar.js';
 
-registerPlugin("gpnl-sidebar", {
+
+registerPlugin('gpnl-sidebar', {
   icon: 'editor-customchar',
   render: NL_Sidebar_E_activism
 });
