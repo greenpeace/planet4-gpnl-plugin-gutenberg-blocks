@@ -13,7 +13,7 @@ module.exports = {
 
     // assets for the editor (backend)
     editorIndex: './assets/src/editor/js/editorIndex.js',
-    // 'editor-style': './assets/src/editor/scss/editor-styles.scss',
+    'editor-style': './assets/src/editor/scss/editor-styles.scss',
 
     // assets that are used in the petition block.
     jaltLanding: './assets/src/blocks/Petition/js/jalt-landing.js',
