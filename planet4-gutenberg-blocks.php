@@ -244,6 +244,13 @@ add_action( 'rest_api_init', function () {
 		'permission_callback' => '__return_true',
 		]
 	);
+	register_rest_route( 'P4NL/v1', '/counter/(?P<id>\d+)',
+		[
+			'methods' => 'PATCH',
+			'callback' => 'set_counter',
+			'permission_callback' => '__return_true',
+		]
+	);
 } );
 
 /**
@@ -256,4 +263,17 @@ function get_counter($data ) {
 	$post_id=29612;
 	$db_counter =  get_post_meta($post_id, 'counter_test', true);
 	return ['unique_count' => $db_counter];
+}
+
+/**
+ * Increment the specified counter
+ *
+ * @param array $data Options for the function.
+ * @return boolean Post title for the latest, * or null if none.
+ */
+function set_counter($data ) {
+	$post_id=29612;
+	$db_counter =  get_post_meta($post_id, 'counter_test', true);
+	$db_counter++;
+	return update_post_meta($post_id, 'counter_test', $db_counter);
 }
