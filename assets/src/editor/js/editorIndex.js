@@ -60,3 +60,6 @@ new ColumnsBlock();
 
 import { ColumnBlock } from '../../blocks/Column/ColumnBlock';
 new ColumnBlock();
+
+import { ModalBlock } from '../../blocks/Modal/ModalBlock';
+new ModalBlock();
