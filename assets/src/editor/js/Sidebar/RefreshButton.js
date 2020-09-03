@@ -18,4 +18,4 @@ class RefreshButton extends React.Component {
   }
 }
 
-export default RefreshButton
+export default RefreshButton;

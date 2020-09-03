@@ -254,7 +254,7 @@ add_action( 'rest_api_init', function () {
 } );
 
 /**
- * Grab latest post title by an author!
+ * Get the count from the specified counter
  *
  * @param array $data Options for the function.
  * @return array Post title for the latest, * or null if none.

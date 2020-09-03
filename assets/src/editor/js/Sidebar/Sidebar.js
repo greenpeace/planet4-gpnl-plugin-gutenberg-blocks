@@ -1,12 +1,12 @@
-import React from 'react'
+import React from 'react';
 import RefreshButton from './RefreshButton';
-import Toggle from "./Toggle";
+import Toggle from './Toggle';
 
 const { Fragment } = wp.element;
 const { PluginSidebarMoreMenuItem, PluginSidebar } = wp.editPost;
 
-const blockName = "GPNL E-Activism";
-const blockNameHTML = blockName.toLowerCase().replace(" ", "-");
+const blockName = 'GPNL E-Activism';
+const blockNameHTML = blockName.toLowerCase().replace(' ', '-');
 
 /**
  * Sidebar component voor the gutenberg editor.
@@ -14,14 +14,14 @@ const blockNameHTML = blockName.toLowerCase().replace(" ", "-");
 class NL_Sidebar_E_activism extends React.Component {
 
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       // APItest: "initialValue",
       actionsTracking: false,
       editorContent: '',
       editorLinks: [],
       savedLinks: []
-    }
+    };
     this.handleRefresh = this.handleRefresh.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
 
@@ -36,7 +36,7 @@ class NL_Sidebar_E_activism extends React.Component {
       editorLinks: this.extractLinks(currentContent),
       savedLinks: this.getMetaFieldValue('savedLinks'),
       }
-    )
+    );
     // wp.apiFetch({path: '/P4NL/v1/counter/'+post_id}).then(response => {
     //   this.setState({
     //     APItest: response
@@ -66,12 +66,12 @@ class NL_Sidebar_E_activism extends React.Component {
       return wp.data.select( 'core/editor' ).getCurrentPostAttribute( 'meta' )['e_activism'][ field ];
     }
     catch (e) {
-      return ''
+      return '';
     }
   }
 
   getCurrentContent(){
-    return wp.data.select( "core/editor" ).getEditedPostContent();
+    return wp.data.select( 'core/editor' ).getEditedPostContent();
   }
 
   extractLinks(data) {
@@ -96,7 +96,7 @@ class NL_Sidebar_E_activism extends React.Component {
       } );
       return;
     }
-    this.setMetaFieldValue('savedLinks', this.extractLinks(newContent))
+    this.setMetaFieldValue('savedLinks', this.extractLinks(newContent));
   }
 
   render() {
@@ -107,7 +107,7 @@ class NL_Sidebar_E_activism extends React.Component {
         <PluginSidebarMoreMenuItem target="gpnl-sidebar" icon='editor-customchar'>{ blockName }</PluginSidebarMoreMenuItem>
 
         <PluginSidebar name="gpnl-sidebar" title={ blockName } >
-          <div className={blockNameHTML+"-sidebar-content"}>
+          <div className={blockNameHTML+'-sidebar-content'}>
 
             <h2>CTA Tracking</h2>
             <Toggle state={this.state.actionsTracking} handler={this.handleToggle}/>
@@ -127,10 +127,10 @@ class NL_Sidebar_E_activism extends React.Component {
         </PluginSidebar>
 
       </Fragment>
-    )
+    );
 
   }
 
 }
 
-export default NL_Sidebar_E_activism
+export default NL_Sidebar_E_activism;
