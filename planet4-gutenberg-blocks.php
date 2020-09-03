@@ -277,3 +277,15 @@ function set_counter($data ) {
 	$db_counter++;
 	return update_post_meta($post_id, 'counter_test', $db_counter);
 }
+
+function e_activism_clicktracking() {
+	$post_id = get_the_ID();
+//	$post_meta = get_post_meta($post_id, 'e_activism');
+	$actionsTracking = get_post_meta($post_id, 'e_activism')[0]['actionsTracking'];
+	if ( $actionsTracking ) {
+		$filename = 'clickTracking';
+		wp_enqueue_script( $filename, P4NL_GB_BKS_PLUGIN_URL . 'assets/src/editor/js/Sidebar/' . $filename . '.js' );
+		return;
+	}
+}
+add_action( 'template_redirect', 'e_activism_clicktracking' );
