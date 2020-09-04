@@ -42,6 +42,10 @@ export class ModalBlock extends BaseBlock {
 			showCancel: {
 				type: 'boolean',
 				default: true
+			},
+			uniqueId: {
+				type: 'string',
+				default: ''
 			}
 		};
 
