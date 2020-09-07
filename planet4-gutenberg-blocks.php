@@ -275,7 +275,7 @@ function set_counter($data ) {
 	$post_id=29612;
 	$db_counter =  get_post_meta($post_id, 'counter_test', true);
 	$db_counter++;
-	return update_post_meta($post_id, 'counter_test', $db_counter);
+	return update_post_meta($post_id, 'counter_test', $db_counter) ? $db_counter : false;
 }
 
 function e_activism_clicktracking() {
