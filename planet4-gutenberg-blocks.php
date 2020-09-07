@@ -284,7 +284,7 @@ function e_activism_clicktracking() {
 	$actionsTracking = get_post_meta($post_id, 'e_activism')[0]['actionsTracking'];
 	if ( $actionsTracking ) {
 		$filename = 'clickTracking';
-		wp_enqueue_script( $filename, P4NL_GB_BKS_PLUGIN_URL . 'assets/src/editor/js/Sidebar/' . $filename . '.js' );
+		wp_enqueue_script( $filename, P4NL_GB_BKS_PLUGIN_URL . 'assets/build/' . $filename . '.min.js', ['jquery'], null, true );
 		return;
 	}
 }
