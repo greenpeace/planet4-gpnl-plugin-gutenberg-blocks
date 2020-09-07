@@ -1,5 +1,1 @@
-<<<<<<< refs/remotes/composer/develop
-<?php return array('dependencies' => array(), 'version' => 'cb2bd5922f91c6083df4621b739a20b8');
-=======
-<?php return array('dependencies' => array(), 'version' => '6d9e1d1c0ee5d2b93636c427b4271799');
->>>>>>> Include build files
+<?php return array('dependencies' => array(), 'version' => '4b0c0e285f5267542c7f22a9de7b86ea');
