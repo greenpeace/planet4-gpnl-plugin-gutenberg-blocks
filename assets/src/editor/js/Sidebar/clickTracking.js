@@ -2,7 +2,13 @@ import $ from 'jquery';
 
 $( '.page-template a' ).each(function( index ) {
   this.addEventListener('click', function(e){
-    fetch('https://www.planet4.test/wp-json/P4NL/v1/counter/590', {
+    console.log( e );
+    if (e.target.classList.contains('external-link')){
+
+      console.log(e.target.children.item(0));
+      e.target.removeChild(e.target.children.item(0));
+    }
+    console.log( e.target.outerHTML );
     const post_id = window['e_activism']['post_id'];
     const counter_id = window['e_activism']['links'].indexOf( e.target.outerHTML );
     // const counter_id = 1;
