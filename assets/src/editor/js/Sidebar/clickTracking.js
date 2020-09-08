@@ -11,8 +11,8 @@ $( '.page-template a' ).each(function( index ) {
     console.log( e.target.outerHTML );
     const post_id = window['e_activism']['post_id'];
     const counter_id = window['e_activism']['links'].indexOf( e.target.outerHTML );
-    // const counter_id = 1;
-    fetch('/nl/wp-json/P4NL/v1/counter/', {
+    const url = (document.location.host.includes('greenpeace.org') ? '/nl' : '') + '/wp-json/P4NL/v1/counter/';
+    fetch(url, {
       method: 'PATCH',
       body: JSON.stringify({
         'post_id': post_id,
