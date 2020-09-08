@@ -257,7 +257,7 @@ add_action( 'rest_api_init', function () {
  * Get the count from the specified counter
  *
  * @param array $data Options for the function.
- * @return array Post title for the latest, * or null if none.
+ * @return WP_REST_Response Post title for the latest, * or null if none.
  */
 function get_counter($data ) {
 	$post_id = $data['post_id'];
@@ -265,7 +265,9 @@ function get_counter($data ) {
 	$db_counter = intval(get_post_meta($post_id, 'counter_test', true));
 	$response =  ['unique_count' => $db_counter];
 
-	return $response;
+	$result = new WP_REST_Response($response, 200);
+	$result->set_headers(wp_get_nocache_headers());
+	return $result;
 }
 
 /**
