@@ -13,6 +13,7 @@ module.exports = {
 
     // assets for the editor (backend)
     editorIndex: './assets/src/editor/js/editorIndex.js',
+    clickTracking: './assets/src/editor/js/Sidebar/clickTracking.js',
     'editor-style': './assets/src/editor/scss/editor-styles.scss',
 
     // assets that are used in the petition block.

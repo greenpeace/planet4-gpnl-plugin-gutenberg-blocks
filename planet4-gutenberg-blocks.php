@@ -24,6 +24,7 @@ defined( 'ABSPATH' ) || die( 'Direct access is forbidden !' );
 	C O N S T A N T S
 ========================
 */
+
 if ( ! defined( 'P4NL_GB_BKS_REQUIRED_PHP' ) ) {
 	define( 'P4NL_GB_BKS_REQUIRED_PHP', '7.0' );
 }
@@ -51,7 +52,7 @@ if ( ! defined( 'P4NL_GB_BKS_PLUGIN_URL' ) ) {
 	define( 'P4NL_GB_BKS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 }
 if ( ! defined( 'P4NL_GB_BKS_PLUGIN_NAME' ) ) {
-	define( 'P4NL_GB_BKS_PLUGIN_NAME', 'Planet4 - Gutenberg Blocks' );
+	define( 'P4NL_GB_BKS_PLUGIN_NAME', 'Planet4NL - Gutenberg Blocks' );
 }
 if ( ! defined( 'P4NL_GB_BKS_PLUGIN_SHORT_NAME' ) ) {
 	define( 'P4NL_GB_BKS_PLUGIN_SHORT_NAME', 'Blocks' );
@@ -73,7 +74,7 @@ if ( ! defined( 'P4NL_GB_BKS_LANGUAGES' ) ) {
 		'P4NL_GB_BKS_LANGUAGES',
 		[
 			'en_US' => 'English',
-			'el_GR' => 'Ελληνικά',
+			'nl_NL' => 'Nederlands',
 		]
 	);
 }
@@ -97,11 +98,6 @@ if ( ! defined( 'P4NL_GB_BKS_PUBLIC_DIR' ) ) {
 
 
 require_once __DIR__ . '/classes/class-loader.php';
-$api_loader = __DIR__ ."/../gpnl-database-interface/ApiConnector.php";
-if (file_exists( $api_loader )) {
-	require_once $api_loader;
-};
-
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
 
@@ -198,11 +194,120 @@ function set_child_theme_allowed_block_types( $allowed_block_types, $post ) {
 	return array_values( $allowed_block_types );
 }
 add_filter( 'allowed_block_types', 'set_child_theme_allowed_block_types', 15, 2 );
-//
-//require_once('vendor/greenpeace/gpnl-database-interface/ApiConnector.php');
-//use P4NL_DATABASE_INTERFACE\Api\ApiConnector;
-//$conn = new ApiConnector();
-//var_dump($conn->call("Contact", 'getContactByGuid', "C9231ADC-F7D7-4014-BB5E-EAAD10F41809"));
 
-//$dir_path = plugin_dir_path( __FILE__ );
+#################################################################################################
 
+function sidebar_plugin_register() {
+
+	register_post_meta( 'page', 'e_activism', [
+		'type'          => 'object',
+		'single'        => true,
+		'auth_callback'     => function() {
+			return current_user_can( 'edit_posts' );
+		},
+		'show_in_rest'  => [
+			'schema' => [
+				'type'       => 'object',
+				'properties' => [
+					'actionsTracking' => [
+						'type' => 'boolean',
+					],
+					'savedLinks' => [
+						'type' => 'array',
+					],
+					'trackedLinks' => [
+						'type' => 'array',
+					],
+				],
+			],
+		],
+	]);
+
+	register_post_meta( 'page', 'counter_test', [
+		'type'          => 'number',
+		'single'        => true,
+		'auth_callback'     => function() {
+			return current_user_can( 'edit_posts' );
+		},
+		'show_in_rest'  => true,
+		]);
+}
+add_action( 'init', 'sidebar_plugin_register' );
+
+#################################################################################################
+
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'P4NL/v1', '/counter/(?P<post_id>\d+)/(?P<counter_id>\d+)',
+		[
+		'methods' => 'GET',
+		'callback' => 'get_counter',
+		'permission_callback' => '__return_true',
+		]
+	);
+	register_rest_route( 'P4NL/v1', '/counter/',
+		[
+			'methods' => 'PATCH',
+			'callback' => 'set_counter',
+			'permission_callback' => '__return_true',
+		]
+	);
+} );
+
+/**
+ * Get the count from the specified counter
+ *
+ * @param array $data Options for the function.
+ * @return WP_REST_Response Post title for the latest, * or null if none.
+ */
+function get_counter($data ) {
+	$post_id = $data['post_id'];
+	$counter_id = $data['counter_id'];
+	$db_counter = intval(get_post_meta($post_id, 'counter_test', true));
+	$response =  ['unique_count' => $db_counter];
+
+	$result = new WP_REST_Response($response, 200);
+	$result->set_headers(wp_get_nocache_headers());
+	return $result;
+}
+
+/**
+ * Increment the specified counter
+ *
+ * @param $request
+ * @return boolean Post title for the latest, * or null if none.
+ */
+function set_counter( $request ) {
+	$data       = $request->get_json_params();
+	$post_id    = $data['post_id'];
+	$counter_id = $data['counter_id'];
+
+	$db_counter =  get_post_meta($post_id, 'counter_test', true);
+	$db_counter++;
+	return update_post_meta($post_id, 'counter_test', $db_counter) ? $db_counter : false;
+}
+
+function e_activism_clicktracking() {
+	$post_id = get_the_ID();
+//	$post_meta = get_post_meta($post_id, 'e_activism');
+	$actionsTracking = get_post_meta($post_id, 'e_activism')[0]['actionsTracking'];
+	if ( $actionsTracking ) {
+		$filename = 'clickTracking';
+		wp_enqueue_script( $filename, P4NL_GB_BKS_PLUGIN_URL . 'assets/build/' . $filename . '.min.js', ['jquery'], null, true );
+
+		$links = [
+			"<a href=\"http://act.gp/blabla\" target=\"_blank\" class=\"external-link\">http://act.gp/blabla</a>",
+			"<a class=\"wp-block-button__link\" href=\"#\" rel=\"#\">Klik</a>",
+			"<a class=\"wp-block-button__link has-text-color has-background\" href=\"#\" style=\"background-color:#f36d3a;color:#ffffff\" rel=\"#\">ONLINE ACTIE</a>"
+		];
+		wp_localize_script(
+			$filename,
+			'e_activism',
+			[
+				'post_id' => $post_id,
+				'links'	  => $links
+			]
+		);
+		return;
+	}
+}
+add_action( 'template_redirect', 'e_activism_clicktracking' );

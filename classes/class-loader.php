@@ -91,7 +91,8 @@ final class Loader {
 		$this->check_requirements();
 
 		$this->services = [
-			new Services\Twig_helper()
+			new Services\Twig_helper(),
+//			new Services\API_endpoint(),
 		];
 
 		// Load Blocks.

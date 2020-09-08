@@ -60,3 +60,15 @@ new ColumnsBlock();
 
 import { ColumnBlock } from '../../blocks/Column/ColumnBlock';
 new ColumnBlock();
+
+/**
+ * WordPress dependencies.
+ */
+const { registerPlugin } = wp.plugins;
+import NL_Sidebar_E_activism from './Sidebar/Sidebar.js';
+
+
+registerPlugin('gpnl-sidebar', {
+  icon: 'editor-customchar',
+  render: NL_Sidebar_E_activism
+});
