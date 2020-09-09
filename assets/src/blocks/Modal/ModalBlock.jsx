@@ -29,7 +29,15 @@ export class ModalBlock extends BaseBlock {
 			},
 			ctaTitle: {
 				type: 'string',
-				default: 'Ga!'
+				default: 'open'
+			},
+			ctaUrl: {
+				type: 'string',
+				default: ''
+			},
+			ctaUrlInNewTab: {
+				type: 'boolean',
+				default: false,
 			},
 			cancelTitle: {
 				type: 'string',
@@ -44,8 +52,8 @@ export class ModalBlock extends BaseBlock {
 				default: true
 			},
 			uniqueId: {
-				type: 'string',
-				default: ''
+				type: 'integer',
+				default: 0
 			}
 		};
 

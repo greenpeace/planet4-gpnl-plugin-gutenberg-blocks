@@ -8,37 +8,50 @@ export default function Save(props) {
 		openTitle,
 		openButton,
 		modalTitle,
-		ctaTitle,
-		cancelTitle,
 		showCta,
+		ctaTitle,
+		ctaUrl,
+		ctaUrlInNewTab,
+		cancelTitle,
 		showCancel,
 		uniqueId
 	} = props.attributes;
 
-	console.log(props.attributes);
+
+	const showButtonRow = () => {
+		return (showCancel || showCta);
+	};
 
 	return (
 			<>
-				<button type="button" className="btn btn-primary" data-toggle="modal" data-target={'#' + uniqueId}>
+				<a type="button" href="#" className={openButton && 'btn btn-primary'} data-toggle="modal" data-target={'#' + uniqueId}>
 					{openTitle}
-				</button>
+				</a>
 
 				<div className="modal fade" id={uniqueId} tabIndex="-1" role="dialog" aria-labelledby={uniqueId + 'Label'} aria-hidden="true">
 					<div className="modal-dialog" role="document">
 						<div className="modal-content">
-							<div className="modal-header">
-								<h5 className="modal-title" id={uniqueId + 'Label'}>title</h5>
-								<button type="button" className="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
+							{modalTitle &&
+								<div className="modal-header">
+									<h5 className="modal-title" id={uniqueId + 'Label'}>{modalTitle}</h5>
+									<button type="button" className="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+							}
 							<div className="modal-body">
 								<InnerBlocks.Content/>
 							</div>
+							{showButtonRow() &&
 							<div className="modal-footer">
-								<button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-								<button type="button" className="btn btn-primary">Save changes</button>
+								{showCancel &&
+								<button type="button" className="btn btn-secondary" data-dismiss="modal">{cancelTitle}</button>
+								}
+								{showCta &&
+								<a href={ctaUrl} target={ctaUrlInNewTab && '_blank'} className="btn btn-primary">{ctaTitle}</a>
+								}
 							</div>
+							}
 						</div>
 					</div>
 				</div>
