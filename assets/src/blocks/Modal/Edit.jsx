@@ -1,18 +1,15 @@
 import React from 'react';
 import {Component} from '@wordpress/element';
 import {InnerBlocks, RichText} from '@wordpress/block-editor';
-import {InspectorControls, BlockControls} from '@wordpress/editor';
+import {InspectorControls, BlockControls, URLInput} from '@wordpress/editor';
 import {SelectControl, PanelBody, TextControl, ToggleControl} from '@wordpress/components';
 
 export default class Edit extends Component {
-	constructor() {
+	constructor(props) {
 		super();
-	}
 
-	componentDuniqueIdMount() {
-		// Set a unique uniqueId on the block based on the current time.
-		if (this.props.attributes.uniqueId === '') {
-			this.props.setAttributes({uniqueId: new Date().getTime()});
+		if (props.attributes.uniqueId < 1) {
+			props.setAttributes({uniqueId: new Date().getTime()});
 		}
 	}
 
@@ -24,10 +21,11 @@ export default class Edit extends Component {
 			openButton,
 			modalTitle,
 			ctaTitle,
+			ctaUrl,
+			ctaUrlInNewTab,
 			cancelTitle,
 			showCta,
 			showCancel,
-			uniqueId,
 		} = attributes;
 
 		return (
@@ -36,7 +34,7 @@ export default class Edit extends Component {
 							tagName={'a'}
 							className={'btn btn-priary'}
 							placeholder={'Text to click for opening the modal'}
-							value={attributes.openTitle}
+							value={openTitle}
 							onChange={(value) => setAttributes({openTitle: value})}
 							keepPlaceholderOnFocus={true}
 					/>
@@ -47,29 +45,51 @@ export default class Edit extends Component {
 						/>
 					</div>
 					<InspectorControls>
-						<PanelBody title={'Options'}>
-
+						<PanelBody title={'Options for opening modal'} initialOpen={false}>
 							<ToggleControl
 									label={'Button to open modal'}
 									value={openButton}
-									help={'If unselected, the link to open the modal will be a regular link.'}
+									help={'Button to open the modal (otherwise a regular link).'}
 									checked={openButton}
-									onChange={() => setAttributes({openButton: !attributes.openButton})}
-									options={[
-										{value: true, label: 'Yes'},
-										{value: false, label: 'No'},
-									]}
+									onChange={() => setAttributes({openButton: !openButton})}
 							/>
-
+						</PanelBody>
+						<PanelBody title={'Options for inside of modal'}>
+							<TextControl
+									label={'Modal title'}
+									value={modalTitle}
+									onChange={(value) => setAttributes({modalTitle: value})}
+							/>
 							<SelectControl
 									label={'Show CTA button'}
-									value={attributes.showCta}
+									value={showCta}
 									onChange={() => setAttributes({showCta: !attributes.showCta})}
 									options={[
 										{value: true, label: 'Yes'},
 										{value: false, label: 'No'},
 									]}
 							/>
+							{showCta &&
+							<>
+								<TextControl
+										label={'Text for call to action button'}
+										value={ctaTitle}
+										onChange={(value) => setAttributes({ctaTitle: value})}
+								/>
+								<URLInput
+										label={'Call to action url'}
+										value={ctaUrl}
+										onChange={(value) => setAttributes({ctaUrl: value})}
+								/>
+								<ToggleControl
+										label={'Open URL in new tab'}
+										value={ctaUrlInNewTab}
+										checked={ctaUrlInNewTab}
+										onChange={() => setAttributes({ctaUrlInNewTab: !ctaUrlInNewTab})}
+										ctaUrlInNewTab
+								/>
+							</>
+							}
 							<SelectControl
 									label={'Show cancel button'}
 									value={attributes.showCancel}
@@ -79,6 +99,15 @@ export default class Edit extends Component {
 										{value: false, label: 'No'},
 									]}
 							/>
+							{showCancel &&
+							<>
+								<TextControl
+										label={'Cancel text in modal'}
+										value={cancelTitle}
+										onChange={(value) => setAttributes({cancelTitle: value})}
+								/>
+							</>
+							}
 						</PanelBody>
 					</InspectorControls>
 
