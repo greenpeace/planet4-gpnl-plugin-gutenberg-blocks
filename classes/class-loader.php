@@ -68,7 +68,7 @@ final class Loader {
 	 *
 	 * @return Loader
 	 */
-	public static function get_instance( $services, $view_class ): Loader {
+	public static function get_instance(array $services, $view_class): Loader {
 		if ( ! isset( self::$instance ) ) {
 			self::$instance = new self( $services, $view_class );
 		}
@@ -92,7 +92,7 @@ final class Loader {
 
 		$this->services = [
 			new Services\Twig_helper(),
-//			new Services\API_endpoint(),
+			new Controllers\API_controller(),
 		];
 
 		// Load Blocks.
