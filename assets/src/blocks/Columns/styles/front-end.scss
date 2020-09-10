@@ -36,7 +36,6 @@
 
   // Please note this is a selector for the inner blocks (column).
   .wp-block-planet4-gpnl-blocks-column {
-    padding-bottom: 16px;
 
     &[class*=" col-md"] {
       @include medium-and-up {
@@ -54,10 +53,8 @@
       margin-bottom: 0; // intentional.
     }
 
-    p {
-      &:not(:last-child) {
-        margin-bottom: 16px;
-      }
+    * + * {
+      margin-top: 1em;
     }
   }
 
