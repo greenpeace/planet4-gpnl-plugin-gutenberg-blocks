@@ -75,3 +75,6 @@ registerPlugin('gpnl-sidebar', {
 
 import { ModalBlock } from '../../blocks/Modal/ModalBlock';
 new ModalBlock();
+
+import { ModalBlock } from '../../blocks/Modal/ModalBlock';
+new ModalBlock();
