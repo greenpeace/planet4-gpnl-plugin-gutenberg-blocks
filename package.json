@@ -57,7 +57,7 @@
 		"react": "^16.13.1",
 		"react-datepicker": "^2.16.0",
 		"react-dom": "^16.13.1",
-		"vue": "^2.6.11",
+		"vue": "^2.6.12",
 		"vue-form-wizard": "^0.8.4",
 		"vuelidate": "^0.7.5"
 	}
