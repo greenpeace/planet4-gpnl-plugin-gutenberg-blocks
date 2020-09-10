@@ -8,22 +8,7 @@ use WP_REST_Response;
 class API_Controller {
 
 	public function __construct(){
-		add_action( 'rest_api_init', function () {
-			register_rest_route( 'P4NL/v1', '/counter/(?P<post_id>\d+)/(?P<counter_id>\d+)',
-				[
-					'methods' => 'GET',
-					'callback' => [ $this, 'get_counter'],
-					'permission_callback' => '__return_true',
-				]
-			);
-			register_rest_route( 'P4NL/v1', '/counter/',
-				[
-					'methods' => 'PATCH',
-					'callback' => [ $this, 'set_counter' ],
-					'permission_callback' => '__return_true',
-				]
-			);
-		} );
+		$this->register_routes();
 	}
 
 	/**
@@ -59,7 +44,24 @@ class API_Controller {
 		return update_post_meta($post_id, 'counter_test', $db_counter) ? $db_counter : false;
 	}
 
-
+	private function register_routes() {
+		add_action( 'rest_api_init', function () {
+			register_rest_route( 'P4NL/v1', '/counter/(?P<post_id>\d+)/(?P<counter_id>\d+)',
+				[
+					'methods' => 'GET',
+					'callback' => [ $this, 'get_counter'],
+					'permission_callback' => '__return_true',
+				]
+			);
+			register_rest_route( 'P4NL/v1', '/counter/',
+				[
+					'methods' => 'PATCH',
+					'callback' => [ $this, 'set_counter' ],
+					'permission_callback' => '__return_true',
+				]
+			);
+		} );
+	}
 
 
 }
