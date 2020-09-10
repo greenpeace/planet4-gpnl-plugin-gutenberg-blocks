@@ -72,3 +72,9 @@ registerPlugin('gpnl-sidebar', {
   icon: 'editor-customchar',
   render: NL_Sidebar_E_activism
 });
+
+import { ModalBlock } from '../../blocks/Modal/ModalBlock';
+new ModalBlock();
+
+import { ModalBlock } from '../../blocks/Modal/ModalBlock';
+new ModalBlock();
