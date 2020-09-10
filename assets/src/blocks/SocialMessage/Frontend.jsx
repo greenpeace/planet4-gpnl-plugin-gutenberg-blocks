@@ -80,7 +80,16 @@ export class Frontend extends Component {
 					<section>
 						{this.state.showThankYouMessage === true ?
 								<div className={'thank-you-message'}>
-									{this.props.thanksText}
+
+									<button type="button" className="close" aria-label="Close" onClick={() => this.toggleThankYouMessage()}>
+										<span aria-hidden="true">&times;</span>
+									</button>
+
+									<div
+											dangerouslySetInnerHTML={{
+												__html: this.props.thanksText
+											}}/>
+
 								</div>
 								: <>
 									<form>
