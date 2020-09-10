@@ -42,6 +42,12 @@ export class Frontend extends Component {
 		this.setState({showThankYouMessage: true});
 	}
 
+	toggleThankYouMessage() {
+		this.setState(prevState => ({
+			showThankYouMessage: !prevState.showThankYouMessage
+		}));
+	}
+
 
 	render() {
 
