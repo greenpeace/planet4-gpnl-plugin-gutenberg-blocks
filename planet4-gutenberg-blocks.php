@@ -236,7 +236,7 @@ add_action( 'init', 'sidebar_plugin_register' );
 
 #################################################################################################
 
-function e_activism_clicktracking() {
+function enqueue_eactivism_assets() {
 	$post_id = get_the_ID();
 //	$post_meta = get_post_meta($post_id, 'e_activism');
 	$actionsTracking = get_post_meta($post_id, 'e_activism') ? get_post_meta($post_id, 'e_activism')[0]['actionsTracking'] : false;
@@ -249,6 +249,7 @@ function e_activism_clicktracking() {
 			"<a class=\"wp-block-button__link\" href=\"#\" rel=\"#\">Klik</a>",
 			"<a class=\"wp-block-button__link has-text-color has-background\" href=\"#\" style=\"background-color:#f36d3a;color:#ffffff\" rel=\"#\">ONLINE ACTIE</a>"
 		];
+
 		wp_localize_script(
 			$filename,
 			'e_activism',
@@ -260,4 +261,4 @@ function e_activism_clicktracking() {
 		return;
 	}
 }
-add_action( 'template_redirect', 'e_activism_clicktracking' );
+add_action( 'template_redirect', 'enqueue_eactivism_assets');
