@@ -1,8 +1,6 @@
 import {Component, Fragment} from '@wordpress/element';
 import TextareaAutosize from 'react-autosize-textarea';
 
-import WhatsAppIcon from './styles/icons/whatsapp.svg';
-
 export class Frontend extends Component {
 	constructor(props) {
 		super();
@@ -31,7 +29,7 @@ export class Frontend extends Component {
 		this.setState({textareaValue: event.target.value});
 	}
 
-	// Update the textfield with a tweet different from the current one.
+	// Update the text field with a tweet different from the current one.
 	getAnotherRandomTweet(e) {
 		e.preventDefault();
 		const arrayWithoutCurrentTweet = this.allTweets.filter((item) => item !== this.state.textareaValue);
@@ -69,7 +67,7 @@ export class Frontend extends Component {
 		let shareURL = () => {
 			if (this.props.medium === 'twitter') {
 				sendButtonText = 'DEEL OP TWITTER';
-				return ('https://twitter.com/intent/tweet?text=' + message + (this.props.url && '&url=' + this.props.url ));
+				return ('https://twitter.com/intent/tweet?text=' + message + (this.props.url && '&url=' + this.props.url));
 			}
 			if (this.props.medium === 'facebook') {
 				sendButtonText = 'DEEL OP FACEBOOK';
@@ -86,16 +84,13 @@ export class Frontend extends Component {
 					<section>
 						{this.state.showThankYouMessage === true ?
 								<div className={'thank-you-message'}>
-
 									<button type="button" className="close" aria-label="Close" onClick={() => this.toggleThankYouMessage()}>
 										<span aria-hidden="true">&times;</span>
 									</button>
-
 									<div
 											dangerouslySetInnerHTML={{
 												__html: this.props.thanksText
 											}}/>
-
 								</div>
 								: <>
 									<form>
