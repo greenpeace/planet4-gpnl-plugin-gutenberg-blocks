@@ -54,10 +54,12 @@ class API_Controller {
 		$data       = $request->get_json_params();
 		$post_id    = $data['post_id'];
 		$counter_id = $data['counter_id'];
+		if ($counter_id < 0) return false;
 
 		$select_sql       = "SELECT count, id FROM {$table_name} WHERE page_id= '%d' AND counter_id = '%d' ;";
 		$select_sql       = $wpdb->prepare( $select_sql, [$post_id, $counter_id] );
 		$results   = $wpdb->get_results( $select_sql );
+		if ($results === NULL) return false;
 
 		$count     = $results[0]->count;
 		$row_id    = $results[0]->id;;
