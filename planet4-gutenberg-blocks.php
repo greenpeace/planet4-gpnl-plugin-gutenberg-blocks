@@ -223,15 +223,6 @@ function sidebar_plugin_register() {
 			],
 		],
 	]);
-
-	register_post_meta( 'page', 'counter_test', [
-		'type'          => 'number',
-		'single'        => true,
-		'auth_callback'     => function() {
-			return current_user_can( 'edit_posts' );
-		},
-		'show_in_rest'  => true,
-		]);
 }
 add_action( 'init', 'sidebar_plugin_register' );
 
@@ -246,7 +237,7 @@ function enqueue_eactivism_assets() {
 		wp_enqueue_script( $filename, P4NL_GB_BKS_PLUGIN_URL . 'assets/build/' . $filename . '.min.js', ['jquery'], null, true );
 
 		$links = [
-			"<a href=\"http://act.gp/blabla\" target=\"_blank\" class=\"external-link\">http://act.gp/blabla</a>",
+			"<a href=\"http://act.gp/blabla\">http://act.gp/blabla</a>",
 			"<a class=\"wp-block-button__link\" href=\"#\" rel=\"#\">Klik</a>",
 			"<a class=\"wp-block-button__link has-text-color has-background\" href=\"#\" style=\"background-color:#f36d3a;color:#ffffff\" rel=\"#\">ONLINE ACTIE</a>"
 		];

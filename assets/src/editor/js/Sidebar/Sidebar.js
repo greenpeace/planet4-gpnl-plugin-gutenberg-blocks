@@ -37,11 +37,6 @@ class NL_Sidebar_E_activism extends React.Component {
       savedLinks: this.getMetaFieldValue('savedLinks'),
       }
     );
-    // wp.apiFetch({path: '/P4NL/v1/counter/'+post_id}).then(response => {
-    //   this.setState({
-    //     APItest: response
-    //   })
-    // });
   }
 
   setMetaFieldValue( field, value ) {
