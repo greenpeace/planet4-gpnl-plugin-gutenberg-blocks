@@ -56,20 +56,24 @@ class API_Controller {
 		$counter_id = $data['counter_id'];
 		if ($counter_id < 0) return false;
 
-		$select_sql       = "SELECT count, id FROM {$table_name} WHERE page_id= '%d' AND counter_id = '%d' ;";
+		$select_sql       = "SELECT count, id FROM {$table_name} WHERE page_id= '%d' AND counter_id = '%d'";
 		$select_sql       = $wpdb->prepare( $select_sql, [$post_id, $counter_id] );
 		$results   = $wpdb->get_results( $select_sql );
-		if ($results === NULL) return false;
+		if ($results == NULL) {
+			$row_id = $wpdb->get_var("SELECT MAX(id) FROM {$table_name}")+1;
+			$new_count = 1;
+		}
+		else{
+			$count     = $results[0]->count;
+			$row_id    = $results[0]->id;;
+			$new_count = $count + 1;
+		}
 
-		$count     = $results[0]->count;
-		$row_id    = $results[0]->id;;
-		$new_count = $count + 1;
-
-		$insert_sql = "INSERT INTO {$table_name} (id,page_id,count) VALUES (%d,%d,%d) ON DUPLICATE KEY UPDATE count = %d";
-		$insert_sql = $wpdb->prepare($insert_sql,$row_id,$post_id,$new_count, $new_count);
+		$insert_sql = "INSERT INTO {$table_name} (id,page_id,counter_id,count) VALUES (%d,%d,%d,%d) ON DUPLICATE KEY UPDATE count = %d";
+		$insert_sql = $wpdb->prepare($insert_sql,$row_id,$post_id,$counter_id,$new_count, $new_count);
 		$updated = $wpdb->query($insert_sql);
 		// TODO query returns 2 affected rows on update, why?
-		
+
 		return $updated > 0 ? $new_count : false;
 	}
 
