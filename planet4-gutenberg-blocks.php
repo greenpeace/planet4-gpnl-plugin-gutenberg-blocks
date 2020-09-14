@@ -223,83 +223,25 @@ function sidebar_plugin_register() {
 			],
 		],
 	]);
-
-	register_post_meta( 'page', 'counter_test', [
-		'type'          => 'number',
-		'single'        => true,
-		'auth_callback'     => function() {
-			return current_user_can( 'edit_posts' );
-		},
-		'show_in_rest'  => true,
-		]);
 }
 add_action( 'init', 'sidebar_plugin_register' );
 
 #################################################################################################
 
-add_action( 'rest_api_init', function () {
-	register_rest_route( 'P4NL/v1', '/counter/(?P<post_id>\d+)/(?P<counter_id>\d+)',
-		[
-		'methods' => 'GET',
-		'callback' => 'get_counter',
-		'permission_callback' => '__return_true',
-		]
-	);
-	register_rest_route( 'P4NL/v1', '/counter/',
-		[
-			'methods' => 'PATCH',
-			'callback' => 'set_counter',
-			'permission_callback' => '__return_true',
-		]
-	);
-} );
-
-/**
- * Get the count from the specified counter
- *
- * @param array $data Options for the function.
- * @return WP_REST_Response Post title for the latest, * or null if none.
- */
-function get_counter($data ) {
-	$post_id = $data['post_id'];
-	$counter_id = $data['counter_id'];
-	$db_counter = intval(get_post_meta($post_id, 'counter_test', true));
-	$response =  ['unique_count' => $db_counter];
-
-	$result = new WP_REST_Response($response, 200);
-	$result->set_headers(wp_get_nocache_headers());
-	return $result;
-}
-
-/**
- * Increment the specified counter
- *
- * @param $request
- * @return boolean Post title for the latest, * or null if none.
- */
-function set_counter( $request ) {
-	$data       = $request->get_json_params();
-	$post_id    = $data['post_id'];
-	$counter_id = $data['counter_id'];
-
-	$db_counter =  get_post_meta($post_id, 'counter_test', true);
-	$db_counter++;
-	return update_post_meta($post_id, 'counter_test', $db_counter) ? $db_counter : false;
-}
-
-function e_activism_clicktracking() {
+function enqueue_eactivism_assets() {
 	$post_id = get_the_ID();
 //	$post_meta = get_post_meta($post_id, 'e_activism');
-	$actionsTracking = get_post_meta($post_id, 'e_activism')[0]['actionsTracking'];
+	$actionsTracking = get_post_meta($post_id, 'e_activism') ? get_post_meta($post_id, 'e_activism')[0]['actionsTracking'] : false;
 	if ( $actionsTracking ) {
 		$filename = 'clickTracking';
 		wp_enqueue_script( $filename, P4NL_GB_BKS_PLUGIN_URL . 'assets/build/' . $filename . '.min.js', ['jquery'], null, true );
 
 		$links = [
-			"<a href=\"http://act.gp/blabla\" target=\"_blank\" class=\"external-link\">http://act.gp/blabla</a>",
+			"<a href=\"http://act.gp/blabla\">http://act.gp/blabla</a>",
 			"<a class=\"wp-block-button__link\" href=\"#\" rel=\"#\">Klik</a>",
 			"<a class=\"wp-block-button__link has-text-color has-background\" href=\"#\" style=\"background-color:#f36d3a;color:#ffffff\" rel=\"#\">ONLINE ACTIE</a>"
 		];
+
 		wp_localize_script(
 			$filename,
 			'e_activism',
@@ -311,4 +253,4 @@ function e_activism_clicktracking() {
 		return;
 	}
 }
-add_action( 'template_redirect', 'e_activism_clicktracking' );
+add_action( 'template_redirect', 'enqueue_eactivism_assets');
