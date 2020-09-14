@@ -55,13 +55,20 @@ class API_Controller {
 		$post_id    = $data['post_id'];
 		$counter_id = $data['counter_id'];
 
-		$sql       = "SELECT count FROM {$table_name} WHERE page_id= '%d' AND counter_id = '%d' ;";
-		$sql       = $wpdb->prepare( $sql, [$post_id, $counter_id] );
-		$count	   = $wpdb->get_var( $sql );
+		$select_sql       = "SELECT count, id FROM {$table_name} WHERE page_id= '%d' AND counter_id = '%d' ;";
+		$select_sql       = $wpdb->prepare( $select_sql, [$post_id, $counter_id] );
+		$results   = $wpdb->get_results( $select_sql );
 
-		$updated = $wpdb->update( $table_name, ['count' => $count + 1], ['page_id'=>$post_id, 'counter_id'=>$counter_id] );
+		$count     = $results[0]->count;
+		$row_id    = $results[0]->id;;
+		$new_count = $count + 1;
 
-		return $updated;
+		$insert_sql = "INSERT INTO {$table_name} (id,page_id,count) VALUES (%d,%d,%d) ON DUPLICATE KEY UPDATE count = %d";
+		$insert_sql = $wpdb->prepare($insert_sql,$row_id,$post_id,$new_count, $new_count);
+		$updated = $wpdb->query($insert_sql);
+		// TODO query returns 2 affected rows on update, why?
+		
+		return $updated > 0 ? $new_count : false;
 	}
 
 	private function register_routes() {
