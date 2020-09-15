@@ -3,10 +3,18 @@
 	{% if ( fields ) %}
 
 		<section class="hero {% if ( fields.small ) %}hero__small{% endif %}"
-				 style="background-image: url('{{ fields.image_url }}');
-					 background-position: {{ fields.focus_image | default }}; ">
+{#				 style="background-image: url('{{ fields.image_url }}');#}
+{#					 background-position: {{ fields.focus_image | default }}; "#}
+		>
 
-			<div class="page-template hero__wrapper ">
+			<div class="page-template hero__wrapper">
+
+				<img srcset="{{ fields.image_srcset }}"
+				     src="{{ fields.image_url }}"
+				     alt="{{ fields.alt_text }}"
+				style="object-fit: cover; object-position: {{ fields.focus_image | default }}"
+				>
+
 				<div class="hero__text">
 					{% if not fields.image_url | default %}
 						<div class="d-none d-editor-only">
