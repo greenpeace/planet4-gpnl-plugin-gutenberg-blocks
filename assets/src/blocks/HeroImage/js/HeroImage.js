@@ -92,16 +92,16 @@ export default class HeroImage extends Component {
 
           {link_text &&
           <div>
-            <label>URL van knop (optioneel tenzij de knop wordt gebruikt):</label>
+            <span style={{backgroundColor: 'white', padding: '3px', color: '#666'}}
+            ><strong>URL van knop: </strong></span>
             <div style={{width: '380px'}}>
               <URLInput
-                label={'test'}
                 autoFocus={false}
                 onChange={onValueChange.bind('link_url')}
                 value={link_url}
                 tagName={'p'}
                 placeholder={'URL van knop (kan een interne of externe link zijn)'}
-                style={{backgroundColor: 'white', padding: '3px 30px', color: '#666'}}
+                style={{backgroundColor: 'white', padding: '3px', color: '#666'}}
               />
             </div>
           </div>
