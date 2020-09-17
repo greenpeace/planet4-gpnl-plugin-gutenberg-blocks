@@ -29,7 +29,7 @@ export default function Save(props) {
 				</a>
 
 				<div className="modal fade" id={uniqueId} tabIndex="-1" role="dialog" aria-labelledby={uniqueId + 'Label'} aria-hidden="true">
-					<div className="modal-dialog" role="document">
+					<div className="modal-dialog modal-dialog-centered" role="document">
 						<div className="modal-content">
 							{modalTitle &&
 								<div className="modal-header">
