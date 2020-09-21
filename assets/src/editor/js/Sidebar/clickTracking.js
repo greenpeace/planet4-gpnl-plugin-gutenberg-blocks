@@ -33,6 +33,8 @@ $( '.page-template a' ).each(function( index ) {
       .then(response => response.json())
       .then(result => {
         console.log('Success:', result);
+        const event = new CustomEvent('updateCounter', { detail: result });
+        window.dispatchEvent(event);
       })
       .catch(error => {
         console.error('Error:', error);
