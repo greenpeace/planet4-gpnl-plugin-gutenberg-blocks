@@ -94,13 +94,13 @@ export class Frontend extends Component {
 								</div>
 								: <>
 									<form>
-										<TextareaAutosize id="tweetTextarea" name="tweetTextarea" className="form-control" value={this.state.textareaValue} onChange={this.changeTextareaValue} rows={3}/>
+										<TextareaAutosize id="textarea" name="textarea" className="form-control" value={this.state.textareaValue} onChange={this.changeTextareaValue} rows={3}/>
 										<div className={'button-row'} style={this.allTweets.length > 1 ? {justifyContent: 'space-between'} : null}>
 											{this.allTweets.length > 1 ?
-													<button className={'btn btn-change-tweet'} onClick={this.getAnotherRandomTweet}>ANDER BERICHT</button>
+													<button className={'btn btn-change-message'} onClick={this.getAnotherRandomTweet}>ANDER BERICHT</button>
 													: null
 											}
-											<a className="btn btn-primary btn-send-tweet" href={shareURL()} target={'_blank'} onClick={this.showThankYouMessage}>
+											<a className={'btn btn-primary btn-send-message ' + this.props.medium} href={shareURL()} target={'_blank'} onClick={this.showThankYouMessage}>
 												{sendButtonText}
 											</a>
 										</div>

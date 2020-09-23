@@ -17,7 +17,6 @@
 
   .button-row {
     display: flex;
-    //flex-direction: row-reverse;
     justify-content: flex-end;
     flex-wrap: wrap;
   }
@@ -40,43 +39,20 @@
     }
 
     & svg {
-      //display: inline-flex;
-      //align-self: center;
       height: 1em;
       margin-left: .3em;
-      //position: relative;
-      //bottom: .125em;
-      //margin: 0 .5em 0 0;
     }
   }
 
-  .btn-change-tweet {
+  .btn-change-message {
     border-color: $white;
     background-color: transparent;
     color: white;
-
-    //&::after {
-    //  content: "VERANDER";
-    //
-    //  @include medium-and-up {
-    //    content: "VERANDER TWEET";
-    //  }
-    //}
   }
 
-  .btn-send-tweet {
+  .btn-send-message {
     display: flex;
     margin-bottom: 0;
-
-
-    //
-    //&::after {
-    //  content: "VERSTUUR";
-    //
-    //  @include medium-and-up {
-    //    content: "VERSTUUR TWEET";
-    //  }
-    //}
   }
 
   .thank-you-message {
