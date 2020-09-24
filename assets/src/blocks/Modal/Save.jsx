@@ -24,7 +24,7 @@ export default function Save(props) {
 
 	return (
 			<>
-				<a type="button" href="#" className={openButton && 'btn btn-primary'} data-toggle="modal" data-target={'#' + uniqueId}>
+				<a href="#" className={openButton && 'btn btn-primary'} data-toggle="modal" data-target={'#' + uniqueId}>
 					{openTitle}
 				</a>
 
