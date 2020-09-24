@@ -4,11 +4,12 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const DependencyExtractionWebpackPlugin = require('@wordpress/dependency-extraction-webpack-plugin');
 
+
 module.exports = {
   ...defaultConfig,
   entry: {
 
-    columns: './assets/src/blocks/Columns/Frontend.jsx',
+    columns: './assets/src/blocks/Columns/render.jsx',
     socialMessage: './assets/src/blocks/SocialMessage/render.jsx',
 
     // assets for the editor (backend)
