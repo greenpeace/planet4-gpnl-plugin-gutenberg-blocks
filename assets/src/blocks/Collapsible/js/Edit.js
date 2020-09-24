@@ -1,31 +1,59 @@
 import React from 'react';
+import Inspector from './Inspector';
+import Controls from './Controls';
 
-import { RichText, InnerBlocks } from '@wordpress/block-editor';
+/**
+ * WordPress dependencies
+ */
+import { Component, Fragment } from '@wordpress/element';
+import { InnerBlocks, RichText } from '@wordpress/block-editor';
 
-const save = ( { attributes } ) => {
-  const {
-    open,
-    title,
-  } = attributes;
+/**
+ * Constants
+ */
+const TEMPLATE = [ [ 'core/paragraph', { placeholder: 'Voeg content toe (dit gedeelte is zichtbaar als de uitklapper geopend is)…' } ] ];
 
-  return (
-    // By default the className is 'wp-blokcs-{blockName}'. By changing the className this is added to the class.
-    <div>
-      {/* Only saving this block if  a title is set. */}
-      { ! RichText.isEmpty( title ) &&
-      <details open={ open }>
-        <RichText.Content
-          tagName="summary"
-          className={ 'title' }
-          value={ title }
-        />
-        <div className="content">
-          <InnerBlocks.Content />
+
+/**
+ * Block edit function
+ */
+export default class Edit extends Component {
+  render() {
+
+    const { attributes, isSelected, setAttributes } = this.props;
+    const { title } = attributes;
+
+    return (
+      <Fragment>
+        { isSelected && (
+          <Controls
+            { ...this.props }
+          />
+        ) }
+        { isSelected && (
+          <Inspector
+            { ...this.props }
+          />
+        ) }
+        {/* I give this div the className of the block it also gets when saved, so the same styles can be applied. */}
+        <div className={'wp-block-planet4-gpnl-blocks-collapsible'}>
+          <RichText
+            tagName="p"
+            className={'title'}
+            placeholder={ 'Voeg titel toe…' }
+            value={ title }
+            onChange={ ( nextTitle ) => setAttributes( { title: nextTitle } ) }
+            keepPlaceholderOnFocus
+          />
+          {/* TODO: hide content when parent is not selected. Problem: if child is selected parents is no longer selecten. */}
+          <div className={ `content${this.props.isSelected ? ' selected' : ' unselected'}` } >
+            <InnerBlocks
+              template={ TEMPLATE }
+              templateInsertUpdatesSelection={ false }
+            />
+          </div>
         </div>
-      </details>
-      }
-    </div>
-  );
-};
-
-export default save;
+      </Fragment>
+    );
+  }
+}
