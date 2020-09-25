@@ -28,8 +28,8 @@ export class Edit extends Component {
 			return (
 					<div key={index}>
 						<TextareaControl
-								label={'Alternatieve Tweet ' + (index + 1)}
-								placeholder={'Typ hier een alternatieve tweet...'}
+								label={'Alternatieve berichten ' + (index + 1)}
+								placeholder={'Typ hier een alternatief bericht...'}
 								value={value}
 								onChange={(value) => changeAlternativeTweet(index, value)}
 						/>
@@ -42,8 +42,8 @@ export class Edit extends Component {
 		return (
 				<Fragment>
 					<TextareaControl
-							label={'Standaard Bericht'}
-							placeholder={'Typ hier de tweet...'}
+							label={'Standaard bericht'}
+							placeholder={'Typ hier...'}
 							value={attributes.defaultTweet}
 							onChange={updateAttribute('defaultTweet')}
 					/>
@@ -82,14 +82,14 @@ export class Edit extends Component {
 							</p>
 						</PanelBody>
 
-						<PanelBody title={'Alternatieve Tweets'}>
+						<PanelBody title={'Alternatieve berichten'}>
 							{alternativeTweets}
-							<button onClick={this.props.addAlternativeTweet} className={'add'}>voeg alternatieve tweet toe</button>
+							<button onClick={this.props.addAlternativeTweet} className={'add'}>voeg alternatief bericht toe</button>
 							<hr/>
 
 							<ToggleControl
 									label={'Toon willekeurig'}
-									help={'Vink dit aan om elke keer een willekeurige tweet te tonen ipv de standaardtweet.'}
+									help={'Vink dit aan om elke keer een willekeurig bericht te tonen ipv het standaardbericht.'}
 									value={attributes.alwaysRandom}
 									checked={attributes.alwaysRandom}
 									onChange={updateAttribute('alwaysRandom')}
