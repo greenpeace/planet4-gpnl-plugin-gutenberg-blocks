@@ -1,6 +1,6 @@
 import React from 'react';
 import BaseBlock from "../../BaseBlock";
-
+import { Icon } from '@wordpress/components';
 import { Testimonial } from "./Testimonial";
 
 export class TestimonialBlock extends BaseBlock {
@@ -18,6 +18,7 @@ export class TestimonialBlock extends BaseBlock {
 		registerBlockType('planet4-gpnl-blocks/' + this.blockNameLowerCase, {
 			title: this.blockName,
 			category: 'planet4-gpnl-blocks',
+      icon: <Icon icon="buddicons-buddypress-logo" />,
 			keywords: [
 				__(this.blockName),
         __('aanbeveling'),

@@ -1,0 +1,68 @@
+@import "../../../base/base.scss";
+@import "../../../base/variables_gpnl.scss";
+
+.wp-block-planet4-gpnl-blocks-columns {
+
+  // Defaults.
+  color: black;
+  background-color: white;
+  padding: 16px;
+  margin: 32px 0;
+
+  // When there is no background, the padding is removed on displays small and up.
+  &.bg-none {
+    color: unset;
+    background-color: unset;
+
+    @include small-and-up {
+      padding: 0 0;
+    }
+  }
+
+  &.bg-anthracite {
+    color: white;
+    background-color: $anthracite;
+  }
+
+  &.bg-dark-blue {
+    color: white;
+    background-color: $dark-blue;
+  }
+
+  &.bg-sea-blue {
+    background-color: $sea-blue;
+    color: black;
+  }
+
+  // Please note this is a selector for the inner blocks (column).
+  .wp-block-planet4-gpnl-blocks-column {
+
+    &[class*=" col-md"] {
+      @include medium-and-up {
+        padding-bottom: 0;
+      }
+    }
+
+    @include large-and-up {
+      padding-bottom: 0;
+    }
+
+    & > * {
+      margin: 0;
+      margin-top: 0; // intentional to override wordpress defaults!
+      margin-bottom: 0; // intentional.
+    }
+
+    * + * {
+      margin-top: 1em;
+    }
+  }
+
+  // For when the columns are nested in another columns block.
+  .wp-block-planet4-gpnl-blocks-columns {
+    background-color: unset;
+    color: unset;
+    margin: 0;
+    padding: 0;
+  }
+}

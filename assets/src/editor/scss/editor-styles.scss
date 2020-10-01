@@ -1,7 +1,7 @@
 @import "../../base/base.scss";
 // Block styles
 @import "../../blocks/Quote/scss/quote";
-@import "../../blocks/HeroImage/scss/hero-image";
+@import "../../blocks/HeroImage/scss/editor";
 @import "../../blocks/Petition/scss/petition-editor";
 @import "../../blocks/Newsletter/scss/newsletter";
 @import "../../blocks/TwoColumnEmbed/scss/two-column-embed";
@@ -10,6 +10,12 @@
 @import "../../blocks/Inforequest/scss/inforequest";
 @import "../../blocks/Collapsible/scss/collapsible";
 @import "../../blocks/Testimonial/scss/testimonial";
+@import "../../blocks/Columns/styles/editor";
+@import "../../blocks/SocialMessage/styles/editor";
+@import "../../blocks/Modal/styles/editor";
+@import "sidebar";
+@import "../../blocks/Modal/styles/editor";
+
 
 // width of editor same as page width
 .wp-block {
@@ -36,8 +42,7 @@
     font-family: $roboto;
     font-size: 2.2rem;
     //margin: 3rem 0 0;
-    margin: 0;
-    margin-bottom: 40px;
+    margin: 0 0 40px;
     padding: 10px 15px;
     background-color: white;
     border: 1px solid rgb(141, 150, 160);

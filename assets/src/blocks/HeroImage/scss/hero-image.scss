@@ -41,6 +41,16 @@
   .hero__wrapper {
     padding: 0 !important;
 
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      z-index: -1;
+    }
+
     .hero__text {
       padding: 15px;
       max-width: 100%;

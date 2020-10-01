@@ -68,7 +68,7 @@ final class Loader {
 	 *
 	 * @return Loader
 	 */
-	public static function get_instance( $services, $view_class ): Loader {
+	public static function get_instance(array $services, $view_class): Loader {
 		if ( ! isset( self::$instance ) ) {
 			self::$instance = new self( $services, $view_class );
 		}
@@ -91,16 +91,17 @@ final class Loader {
 		$this->check_requirements();
 
 		$this->services = [
-			new Services\Twig_helper()
+			new Services\Twig_helper(),
+			new Controllers\API_controller(),
 		];
 
 		// Load Blocks.
 		$this->blocks = [
 			new Blocks\Quote(),
 			new Blocks\HeroImage(),
-			new Blocks\Newsletter(),
-			new Blocks\Petition(),
-			new Blocks\Donation(),
+//			new Blocks\Newsletter(),
+//			new Blocks\Petition(),
+//			new Blocks\Donation(),
 			new Blocks\TwoColumnEmbed(),
 			new Blocks\Inforequest(),
 			new Blocks\Noindex(),
@@ -110,6 +111,8 @@ final class Loader {
 //			new Blocks\PeriodicDonation(),
 //			new Blocks\BrochureRequest(),
 			new Blocks\Testimonial(),
+			new Blocks\Columns(),
+			new Blocks\SocialMessage(),
 		];
 	}
 

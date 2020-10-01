@@ -1,7 +1,8 @@
 import React from 'react';
-import BaseBlock from "../../BaseBlock";
-import {ServerSideRender} from "@wordpress/components";
-import PdfEmbed from "./PdfEmbed";
+import BaseBlock from '../../BaseBlock';
+import {ServerSideRender} from '@wordpress/components';
+import PdfEmbed from './PdfEmbed';
+import { Icon } from '@wordpress/components';
 
 const {withSelect} = wp.data;
 
@@ -14,11 +15,10 @@ export class PdfEmbedBlock extends BaseBlock {
     const {__} = wp.i18n;
     const {registerBlockType} = wp.blocks;
 
-    // TODO: icon for this block.
     // Register the block
     registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
       title: 'Pdf Embed',
-      // icon: Icon,
+      icon: <Icon icon="embed-generic" />,
       category: 'planet4-gpnl-blocks',
       keywords: [
         __(this.blockName),
@@ -84,14 +84,14 @@ export class PdfEmbedBlock extends BaseBlock {
               onNumberChange={onNumberChange}
               onSelectMedia={onSelectMedia}
             />
-          )
+          );
         } else {
           return (
             <ServerSideRender
               block={'planet4-gpnl-blocks/' + this.blockNameKebabCase}
               attributes={attributes}
             />
-          )
+          );
         }
       })
       ,
