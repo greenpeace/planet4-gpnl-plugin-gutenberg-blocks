@@ -37,16 +37,12 @@ export class SocialMessageBlock extends BaseBlock {
       }
     };
 
-    registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
-      title: 'social message',
-      category: 'planet4-gpnl-blocks',
-      attributes,
-      icon: <Icon icon="share"/>,
-      // eslint-disable-next-line react/display-name
-      edit: ({isSelected, attributes, setAttributes}) => {
-        const updateAttribute = (attributeName) => value => {
-          setAttributes({[attributeName]: value});
-        };
+		registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
+			title: 'social message',
+			category: 'widgets',
+			attributes,
+			icon: <Icon icon="share" />,
+			edit: ({isSelected, attributes, setAttributes}) => {
 
         const addAlternativeTweet = () => {
           // Create a new array of alternative tweets

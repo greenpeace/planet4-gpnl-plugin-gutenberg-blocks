@@ -21,13 +21,14 @@ export class QuoteBlock extends BaseBlock {
     const {registerBlockType} = wp.blocks;
     const blockNameKebabCase = this.blockNameKebabCase;
 
-    // Register the block
-    registerBlockType('planet4-gpnl-blocks/' + this.blockNameLowerCase, {
-      title: this.blockName,
-      icon: Icon,
-      category: 'planet4-gpnl-blocks',
-      keywords: [
-        __(this.blockName),
+
+		// Register the block
+		registerBlockType('planet4-gpnl-blocks/' + this.blockNameLowerCase, {
+			title: this.blockName,
+			icon: Icon,
+			category: 'common',
+			keywords: [
+				__(this.blockName),
         __('citation'),
         __('cite'),
       ],

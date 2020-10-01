@@ -24,13 +24,13 @@ export class ColumnsBlock extends BaseBlock {
       },
     };
 
-    registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
-      title: 'Columns',
-      category: 'planet4-gpnl-blocks',
-      attributes,
-      icon: Icon,
-      edit: Edit,
-      save: Save
-    });
-  }
+		registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
+			title: 'GPNL Columns',
+			category: 'layout',
+			attributes,
+			icon: Icon,
+			edit: Edit,
+			save: Save
+		});
+	}
 }

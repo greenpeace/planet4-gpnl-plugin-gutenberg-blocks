@@ -10,11 +10,12 @@ export class NoindexBlock extends BaseBlock {
     const {__} = wp.i18n;
     const {registerBlockType} = wp.blocks;
 
-    // Register the block
-    registerBlockType('planet4-gpnl-blocks/' + this.blockNameLowerCase, {
-      title: this.blockName,
-      icon: 'hidden',
-      category: 'planet4-gpnl-blocks',
+		// Register the block
+		registerBlockType('planet4-gpnl-blocks/' + this.blockNameLowerCase, {
+			title: this.blockName,
+			icon: 'hidden',
+			category: 'widgets',
+      transforms: Transform,
       keywords: [
         __(this.blockName),
         __('verborgen'),

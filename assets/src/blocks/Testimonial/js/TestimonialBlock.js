@@ -22,13 +22,13 @@ export class TestimonialBlock extends BaseBlock {
     const blockNameKebabCase = this.blockNameKebabCase;
 
 
-    // Register the block
-    registerBlockType('planet4-gpnl-blocks/' + this.blockNameLowerCase, {
-      title: this.blockName,
-      category: 'planet4-gpnl-blocks',
-      icon: <Icon icon="buddicons-buddypress-logo"/>,
-      keywords: [
-        __(this.blockName),
+		// Register the block
+		registerBlockType('planet4-gpnl-blocks/' + this.blockNameLowerCase, {
+			title: this.blockName,
+			category: 'common',
+      icon: <Icon icon="buddicons-buddypress-logo" />,
+			keywords: [
+				__(this.blockName),
         __('aanbeveling'),
         __('citaat'),
       ],

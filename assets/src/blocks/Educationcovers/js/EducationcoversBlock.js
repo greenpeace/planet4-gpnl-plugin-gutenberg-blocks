@@ -11,13 +11,13 @@ export class EducationcoversBlock extends BaseBlock {
     const {__} = wp.i18n;
     const {registerBlockType} = wp.blocks;
 
-    // Register the block
-    registerBlockType('planet4-gpnl-blocks/' + this.blockNameLowerCase, {
-      title: 'lesmateriaal overzicht',
-      icon: 'grid-view',
-      category: 'planet4-gpnl-blocks',
-      keywords: [
-        __(this.blockName),
+		// Register the block
+		registerBlockType('planet4-gpnl-blocks/' + this.blockNameLowerCase, {
+			title: 'lesmateriaal overzicht',
+			icon: 'grid-view',
+			category: 'widgets',
+			keywords: [
+				__(this.blockName),
         __('educatie'),
         __('overzicht'),
       ],

@@ -18,7 +18,7 @@ export class CollapsibleBlock extends BaseBlock {
       title: 'Uitklapper',
       description: 'Gebruik dit blok voor onderdelen waarbij je verschillende kopjes hebt met veel bijbehorende tekst. Bijvoorbeeld goed voor FAQ\'s',
       icon: <Icon icon="align-wide" />,
-      category: 'planet4-gpnl-blocks',
+      category: 'common',
       keywords: [
         __(this.blockName),
         __('uitklapper'),

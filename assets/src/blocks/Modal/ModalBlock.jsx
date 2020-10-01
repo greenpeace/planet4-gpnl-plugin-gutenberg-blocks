@@ -58,13 +58,13 @@ export class ModalBlock extends BaseBlock {
       }
     };
 
-    registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
-      category: 'planet4-gpnl-blocks',
-      title: 'modal',
-      icon: <Icon icon="format-gallery" />,
-      attributes,
-      edit: Edit,
-      save: Save
-    });
-  }
+		registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
+			category: 'widgets',
+			title: 'modal',
+			icon: <Icon icon="format-gallery" />,
+			attributes,
+			edit: Edit,
+			save: Save
+		});
+	}
 }

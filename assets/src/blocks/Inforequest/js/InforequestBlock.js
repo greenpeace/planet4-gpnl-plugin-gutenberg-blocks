@@ -19,7 +19,8 @@ export class InforequestBlock extends BaseBlock {
     registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
       title: 'Docentenaanvraag',
       icon: 'welcome-widgets-menus',
-      category: 'planet4-gpnl-blocks',
+      category: 'widgets',
+      transforms: Transform,
       keywords: [
         __(this.blockName),
         __('docenten'),
