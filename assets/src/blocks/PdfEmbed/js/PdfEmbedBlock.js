@@ -19,7 +19,7 @@ export class PdfEmbedBlock extends BaseBlock {
     registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
       title: 'Pdf Embed',
       icon: <Icon icon="embed-generic" />,
-      category: 'planet4-gpnl-blocks',
+      category: 'embed',
       keywords: [
         __(this.blockName),
       ],

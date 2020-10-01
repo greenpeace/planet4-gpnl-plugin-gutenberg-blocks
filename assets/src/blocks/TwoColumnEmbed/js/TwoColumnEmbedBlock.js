@@ -22,7 +22,7 @@ export class TwoColumnEmbedBlock extends BaseBlock {
     registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
       title: '2 kolommen met iframe of afbeelding',
       icon: Icon,
-      category: 'planet4-gpnl-blocks',
+      category: 'layout',
       transforms: Transform,
       keywords: [
         __(this.blockName),

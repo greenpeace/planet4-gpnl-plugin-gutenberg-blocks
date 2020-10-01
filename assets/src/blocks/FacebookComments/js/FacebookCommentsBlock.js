@@ -30,7 +30,7 @@ export class FacebookCommentsBlock extends BaseBlock {
       title: 'Facebook Commentaar',
       description: 'Geef bezoekers de mogelijkheid tot reageren op deze pagina via Facebook.',
       // icon: Icon,
-      category: 'planet4-gpnl-blocks',
+      category: 'widgets',
       keywords: [
         __(this.blockName),
         __('discussie'),

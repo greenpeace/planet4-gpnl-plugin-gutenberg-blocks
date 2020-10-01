@@ -38,7 +38,7 @@ export class SocialMessageBlock extends BaseBlock {
 
 		registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
 			title: 'social message',
-			category: 'planet4-gpnl-blocks',
+			category: 'widgets',
 			attributes,
 			icon: <Icon icon="share" />,
 			edit: ({isSelected, attributes, setAttributes}) => {

@@ -17,7 +17,7 @@ export class NoindexBlock extends BaseBlock {
 		registerBlockType('planet4-gpnl-blocks/' + this.blockNameLowerCase, {
 			title: this.blockName,
 			icon: 'hidden',
-			category: 'planet4-gpnl-blocks',
+			category: 'widgets',
       transforms: Transform,
       keywords: [
 				__(this.blockName),

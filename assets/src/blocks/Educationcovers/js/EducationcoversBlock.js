@@ -17,7 +17,7 @@ export class EducationcoversBlock extends BaseBlock {
 		registerBlockType('planet4-gpnl-blocks/' + this.blockNameLowerCase, {
 			title: 'lesmateriaal overzicht',
 			icon: 'grid-view',
-			category: 'planet4-gpnl-blocks',
+			category: 'widgets',
 			keywords: [
 				__(this.blockName),
         __('educatie'),

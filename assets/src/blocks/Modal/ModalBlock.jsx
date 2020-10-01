@@ -59,7 +59,7 @@ export class ModalBlock extends BaseBlock {
 		};
 
 		registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
-			category: 'planet4-gpnl-blocks',
+			category: 'widgets',
 			title: 'modal',
 			icon: <Icon icon="format-gallery" />,
 			attributes,

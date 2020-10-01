@@ -20,7 +20,7 @@ export class QuoteBlock extends BaseBlock {
 		registerBlockType('planet4-gpnl-blocks/' + this.blockNameLowerCase, {
 			title: this.blockName,
 			icon: Icon,
-			category: 'planet4-gpnl-blocks',
+			category: 'common',
 			keywords: [
 				__(this.blockName),
         __('citation'),

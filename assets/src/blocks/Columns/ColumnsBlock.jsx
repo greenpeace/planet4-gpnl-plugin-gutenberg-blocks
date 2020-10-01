@@ -25,8 +25,8 @@ export class ColumnsBlock extends BaseBlock {
 		};
 
 		registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
-			title: 'Columns',
-			category: 'planet4-gpnl-blocks',
+			title: 'GPNL Columns',
+			category: 'layout',
 			attributes,
 			icon: Icon,
 			edit: Edit,

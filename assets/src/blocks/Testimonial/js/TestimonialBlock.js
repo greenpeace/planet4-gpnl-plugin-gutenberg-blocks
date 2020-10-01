@@ -17,7 +17,7 @@ export class TestimonialBlock extends BaseBlock {
 		// Register the block
 		registerBlockType('planet4-gpnl-blocks/' + this.blockNameLowerCase, {
 			title: this.blockName,
-			category: 'planet4-gpnl-blocks',
+			category: 'common',
       icon: <Icon icon="buddicons-buddypress-logo" />,
 			keywords: [
 				__(this.blockName),
