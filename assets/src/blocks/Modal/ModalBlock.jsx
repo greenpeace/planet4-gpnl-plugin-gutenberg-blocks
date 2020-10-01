@@ -2,6 +2,7 @@ import Edit from './Edit';
 import Save from './Save';
 import BaseBlock from '../BaseBlock';
 import React from 'react';
+import { Icon } from '@wordpress/components';
 
 /**
  * This block only acts as a wrapper for the InnerBlocks that are used in the 'Columns Block'.
@@ -60,6 +61,7 @@ export class ModalBlock extends BaseBlock {
 		registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
 			category: 'planet4-gpnl-blocks',
 			title: 'modal',
+			icon: <Icon icon="format-gallery" />,
 			attributes,
 			edit: Edit,
 			save: Save
