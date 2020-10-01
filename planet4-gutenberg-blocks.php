@@ -161,7 +161,11 @@ const BLOCK_BLACKLIST = [
 		'core-embed/scribd',
 		'core-embed/videopress',
 		'core/table',
+		'core/shortcode',
 		'planet4-blocks/socialshare',
+		'planet4-blocks/spreadsheet',
+		'planet4-blocks/happypoint',
+		'planet4-blocks/enform',
 	],
 	'page'     => [
 		'core/separator',
@@ -174,7 +178,11 @@ const BLOCK_BLACKLIST = [
 		'core-embed/scribd',
 		'core-embed/videopress',
 		'core/table',
+		'core/shortcode',
 		'planet4-blocks/socialshare',
+		'planet4-blocks/spreadsheet',
+		'planet4-blocks/enform',
+		'planet4-blocks/happypoint',
 	],
 	'campaign' => [],
 ];
