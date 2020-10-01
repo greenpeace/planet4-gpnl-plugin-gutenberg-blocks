@@ -1,8 +1,8 @@
 import React from 'react';
-import BaseBlock from "../../BaseBlock";
-import Icon from './Icon'
-import Edit from "./Edit";
-import Save from "./Save";
+import BaseBlock from '../../BaseBlock';
+import { Icon } from '@wordpress/components';
+import Edit from './Edit';
+import Save from './Save';
 
 export class CollapsibleBlock extends BaseBlock {
 
@@ -16,7 +16,8 @@ export class CollapsibleBlock extends BaseBlock {
     // Register the block
     registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
       title: 'Uitklapper',
-      icon: Icon,
+      description: 'Gebruik dit blok voor onderdelen waarbij je verschillende kopjes hebt met veel bijbehorende tekst. Bijvoorbeeld goed voor FAQ\'s',
+      icon: <Icon icon="align-wide" />,
       category: 'planet4-gpnl-blocks',
       keywords: [
         __(this.blockName),
@@ -24,6 +25,12 @@ export class CollapsibleBlock extends BaseBlock {
         __('uitvouwer'),
         __('faq'),
       ],
+      example: {
+        attributes: {
+          title: 'Voorbeeldtitel',
+          open: false,
+        },
+      },
       attributes: {
         title: {
           type: 'string',
