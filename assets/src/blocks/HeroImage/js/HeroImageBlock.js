@@ -20,6 +20,7 @@ export class HeroImageBlock extends BaseBlock {
     // Register the block
     registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
       title: 'Hero afbeelding',
+      description: 'Pagina brede afbeelding. Kan worden uitgebreid met een titel, korte omschrijving en een knop.',
       icon: Icon,
       category: 'planet4-gpnl-blocks',
       keywords: [
@@ -31,6 +32,16 @@ export class HeroImageBlock extends BaseBlock {
         __('afbeelding'),
         __('held'),
       ],
+      example: {
+        attributes: {
+          title: 'Voorbeeldtitel',
+          description: 'een korte motiverende tekst!',
+          image: 82,
+          link_text: 'Knoptekst',
+          link_url: '#',
+          small: true,
+        },
+      },
       transforms: Transform,
       attributes: {
         title: {
