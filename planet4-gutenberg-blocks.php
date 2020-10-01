@@ -232,22 +232,17 @@ function enqueue_eactivism_assets() {
 	$post_id = get_the_ID();
 //	$post_meta = get_post_meta($post_id, 'e_activism');
 	$actionsTracking = get_post_meta($post_id, 'e_activism') ? get_post_meta($post_id, 'e_activism')[0]['actionsTracking'] : false;
+	$trackedLinks    = get_post_meta($post_id, 'e_activism') ? get_post_meta($post_id, 'e_activism')[0]['savedLinks'] : false;
 	if ( $actionsTracking ) {
 		$filename = 'clickTracking';
 		wp_enqueue_script( $filename, P4NL_GB_BKS_PLUGIN_URL . 'assets/build/' . $filename . '.min.js', ['jquery'], null, true );
-
-		$links = [
-			"<a href=\"http://act.gp/blabla\">http://act.gp/blabla</a>",
-			"<a class=\"wp-block-button__link\" href=\"#\" rel=\"#\">Klik</a>",
-			"<a class=\"wp-block-button__link has-text-color has-background\" href=\"#\" style=\"background-color:#f36d3a;color:#ffffff\" rel=\"#\">ONLINE ACTIE</a>"
-		];
 
 		wp_localize_script(
 			$filename,
 			'e_activism',
 			[
 				'post_id' => $post_id,
-				'links'	  => $links
+				'links' => $trackedLinks,
 			]
 		);
 		return;
