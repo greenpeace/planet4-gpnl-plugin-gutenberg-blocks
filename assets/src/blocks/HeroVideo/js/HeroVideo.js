@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {RichText, MediaUpload, MediaUploadCheck, InspectorControls, BlockControls} from '@wordpress/editor';
-import {Button, PanelBody, ToggleControl, FocalPointPicker} from '@wordpress/components';
+import {Button, PanelBody, ToggleControl, FocalPointPicker, Toolbar} from '@wordpress/components';
 import {URLInput} from '@wordpress/block-editor';
 import variables from '../../../base/_variables_gpnl.scss';
 
 
-export default class HeroImage extends Component {
+export default class HeroVideo extends Component {
 
   render() {
 
@@ -16,10 +16,13 @@ export default class HeroImage extends Component {
       link_url,
       image,
       image_url,
+      video,
+      video_url,
       small,
       focus_image,
       onValueChange,
       onSelectImage,
+      onSelectVideo,
       onFocalPointChange,
     } = this.props;
 
@@ -143,6 +146,16 @@ export default class HeroImage extends Component {
       }
     };
 
+    const getVideoOrButton = (openEvent) => {
+      return (
+        <BlockControls>
+          <div className={'components-toolbar'}>
+          <a className={'components-toolbar-text-button'} onClick={openEvent}>{video ? 'change video' : 'add video'}</a>
+            </div>
+        </BlockControls>
+      );
+    };
+
     let heroClass = 'hero';
     if (small === true) {
       heroClass = 'hero hero__small';
@@ -156,6 +169,14 @@ export default class HeroImage extends Component {
             onSelect={onSelectImage}
             value={image}
             render={({open}) => getImageOrButton(open)}
+          />
+        </MediaUploadCheck>
+        <MediaUploadCheck>
+          <MediaUpload
+            type="video"
+            onSelect={onSelectVideo}
+            value={video}
+            render={({open}) => getVideoOrButton(open)}
           />
         </MediaUploadCheck>
       </div>,

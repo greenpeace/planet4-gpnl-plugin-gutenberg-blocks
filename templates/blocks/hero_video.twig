@@ -3,11 +3,9 @@
 	{% if ( fields ) %}
 
 		<section class="block hero video-container"
-				{# style="background-image: url('{{ fields.image_url }}'); #}
-				{# background-position: {{ fields.focus_image | default }}; " #}
+		         style="background-image: url('{{ fields.image_url }}');
+				         background-position: {{ fields.focus_image | default }}; "
 		>
-
-
 			<div class="image-container d-md-none" style="background-color: #0f6459">
 				<img srcset="{{ fields.image_srcset }}"
 				     src="{{ fields.image_url }}"
@@ -16,45 +14,35 @@
 				>
 			</div>
 
+			<video autoplay muted loop class="contained d-none d-md-block" poster="{{ fields.image_url }}">
+				<source src="{{ fields.video_url }}">
+				Your browser does not support HTML5 video.
+			</video>
 
-
-{#				<video autoplay muted loop class="contained d-none d-md-block" poster="todo">#}
-{#					<source src="https://storage.googleapis.com/planet4-netherlands-stateless/2020/09/f42a9e8c-headerkort_1.mp4">#}
-{#					<!-- <source src="http://content.bitsontherun.com/videos/bkaovAYt-27m5HpIu.webm"> -->#}
-{#					Your browser does not support HTML5 video.#}
-{#				</video>#}
-
-
-				<div class="container">
-
-					<div class="overlay hero__wrapper">
-
-						<div class="hero__text">
-							{# {% if ( fields.title ) %} #}
+			<div class="container">
+				<div class="overlay hero__wrapper">
+					<div class="hero__text">
+						{% if ( fields.title ) %}
 							<h1 class="hero__title">
 					  <span>
-						  TITEL
-{# {{ fields.title|e('wp_kses_post') | raw }} #}
+						  {{ fields.title|e('wp_kses_post') | raw }}
 					  </span>
 							</h1>
-							{# {% endif %} #}
+						{% endif %}
 
-							{# {% if ( fields.description ) %} #}
+						{% if ( fields.description ) %}
 							<p class="hero__description">
-								{# {{ fields.description|e('wp_kses_post') | raw }} #}
-								aosdifj ioasdjfio jasdifj asifj iasjdifj asdijf
+								{{ fields.description|e('wp_kses_post') | raw }}
 							</p>
-							{# {% endif %} #}
+						{% endif %}
 
-							{% if (fields.link_text) %}
-								<a href="{{ fields.link_url }}"
-								   class="btn btn-small btn-medium btn-primary hero__button">{{ fields.link_text | raw }}</a>
-							{% endif %}
-
-						</div>
+						{% if (fields.link_text) %}
+							<a href="{{ fields.link_url }}"
+							   class="btn btn-small btn-medium btn-primary hero__button">{{ fields.link_text | raw }}</a>
+						{% endif %}
 					</div>
 				</div>
+			</div>
 		</section>
-
 	{% endif %}
 {% endblock %}

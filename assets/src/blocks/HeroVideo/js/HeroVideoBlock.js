@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react';
 import BaseBlock from '../../BaseBlock';
 import {ServerSideRender} from '@wordpress/components';
 import {Icon} from './HeroImageIcon';
-import HeroImage from './HeroImage';
+import HeroVideo from './HeroVideo';
 const {withSelect} = wp.data;
 
 
@@ -39,6 +39,9 @@ export class HeroVideoBlock extends BaseBlock {
         image: {
           type: 'number'
         },
+        video: {
+          type: 'number'
+        },
         link_text: {
           type: 'string'
         },
@@ -58,7 +61,7 @@ export class HeroVideoBlock extends BaseBlock {
       edit: withSelect((select, props) => {
 
         const {attributes} = props;
-        const {image} = attributes;
+        const {image, video} = attributes;
 
         let image_url = '';
 
@@ -69,11 +72,20 @@ export class HeroVideoBlock extends BaseBlock {
           }
         }
 
+        let video_url = '';
+
+        if (video && (0 < video)) {
+          const video_object = wp.data.select('core').getMedia(video);
+          if (video_object) {
+            video_url = video_object.source_url;
+          }
+        }
+
         return {
-          image_url
+          image_url, video_url
         };
       })(({
-            attributes, setAttributes, isSelected, image_url
+            attributes, setAttributes, isSelected, image_url, video_url
           }) => {
 
         // Functions we want to call while editing to change attributes.
@@ -87,6 +99,12 @@ export class HeroVideoBlock extends BaseBlock {
           });
         }
 
+        function onSelectVideo(media) {
+          setAttributes({
+            video: media.id
+          });
+        }
+
         function onFocalPointChange({x, y}) {
           x = parseFloat(x).toFixed(2);
           y = parseFloat(y).toFixed(2);
@@ -96,12 +114,13 @@ export class HeroVideoBlock extends BaseBlock {
         // if the block is selected, the block-editor is rendered, otherwise the block is rendered server-side.
         if (isSelected) {
           return (
-            <HeroImage
+            <HeroVideo
               {...attributes}
               image_url={image_url}
               onValueChange={onValueChange}
               onSelectImage={onSelectImage}
               onFocalPointChange={onFocalPointChange}
+              onSelectVideo={onSelectVideo}
             />
           );
         } else {
