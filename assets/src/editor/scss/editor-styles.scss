@@ -124,3 +124,7 @@ input[type="checkbox"], input[type="radio"] {
 .d-editor-only {
   display: inline-block !important;
 }
+
+.block-editor-block-toolbar {
+  width: max-content !important;
+}
