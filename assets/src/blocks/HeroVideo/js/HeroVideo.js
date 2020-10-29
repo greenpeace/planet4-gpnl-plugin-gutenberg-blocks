@@ -20,6 +20,7 @@ export default class HeroVideo extends Component {
       video_url,
       small,
       focus_image,
+      setAttributes,
       onValueChange,
       onSelectImage,
       onSelectVideo,
@@ -126,7 +127,7 @@ export default class HeroVideo extends Component {
           }}>
             <BlockControls>
               <div className={'components-toolbar'}>
-                <a className={'components-toolbar-text-button'} onClick={openEvent}>verander achtergrondafbeelding</a>
+                <a className={'components-toolbar-text-button'} onClick={openEvent}>change image</a>
               </div>
             </BlockControls>
             {fields}
@@ -134,24 +135,54 @@ export default class HeroVideo extends Component {
         );
       } else {
         return (
-          <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-            <Button
-              onClick={openEvent}
-              style={{position: 'absolute', top: '50%', left: '50%', transform: 'translateX(-50%) translateY(-50%)'}}
-              className="btn btn-large btn-primary">
-              selecteer een afbeelding
-            </Button>
-          </div>
+          <>
+            <BlockControls>
+              <div className={'components-toolbar'}>
+                <a className={'components-toolbar-text-button'} onClick={openEvent}>add image</a>
+              </div>
+            </BlockControls>
+            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+              <Button
+                onClick={openEvent}
+                style={{position: 'absolute', top: '50%', left: '50%', transform: 'translateX(-50%) translateY(-50%)'}}
+                className="btn btn-large btn-primary">
+                select image (required)
+              </Button>
+              <p style={{position: 'absolute', top: 'calc(50% + 20px)', width: '80%'}}>
+                <strong>Adding a video is optional</strong> (see the button on top of this block). If you select a video, make sure this is in the MP4-format and the file size does not exceed 5mb. The video will be muted and is only shown on tablets and computers, not on mobile devices. On mobile devices your selected image will be shown instead of the video. An image is always necessary, both for mobile devices and as a fallback solution.
+              </p>
+            </div>
+          </>
         );
       }
     };
 
-    const getVideoOrButton = (openEvent) => {
+    const videoButton = (openEvent) => {
       return (
         <BlockControls>
           <div className={'components-toolbar'}>
-          <a className={'components-toolbar-text-button'} onClick={openEvent}>{video ? 'change video' : 'add video'}</a>
-            </div>
+            <a className={'components-toolbar-text-button'} onClick={openEvent}>{video ? 'change video' : 'add video'}</a>
+          </div>
+        </BlockControls>
+      );
+    };
+
+    const removeImageButton = () => {
+      return (
+        <BlockControls>
+          <div className={'components-toolbar'}>
+            <a className={'components-toolbar-text-button'} onClick={() => setAttributes({image: 0})}>remove image</a>
+          </div>
+        </BlockControls>
+      );
+    };
+
+    const removeVideoButton = () => {
+      return (
+        <BlockControls>
+          <div className={'components-toolbar'}>
+            <a className={'components-toolbar-text-button'} onClick={() => setAttributes({video: 0})}>remove video</a>
+          </div>
         </BlockControls>
       );
     };
@@ -176,9 +207,11 @@ export default class HeroVideo extends Component {
             type="video"
             onSelect={onSelectVideo}
             value={video}
-            render={({open}) => getVideoOrButton(open)}
+            render={({open}) => videoButton(open)}
           />
         </MediaUploadCheck>
+        {image !== 0 ? removeImageButton() : ''}
+        {video !== 0 ? removeVideoButton() : ''}
       </div>,
       <InspectorControls>
         <PanelBody title={'Height'}>

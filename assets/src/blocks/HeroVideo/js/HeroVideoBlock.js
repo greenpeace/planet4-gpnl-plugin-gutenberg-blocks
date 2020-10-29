@@ -37,10 +37,12 @@ export class HeroVideoBlock extends BaseBlock {
           type: 'string',
         },
         image: {
-          type: 'number'
+          type: 'number',
+          default: 0
         },
         video: {
-          type: 'number'
+          type: 'number',
+          default: 0
         },
         link_text: {
           type: 'string'
@@ -116,6 +118,7 @@ export class HeroVideoBlock extends BaseBlock {
           return (
             <HeroVideo
               {...attributes}
+              setAttributes={setAttributes}
               image_url={image_url}
               onValueChange={onValueChange}
               onSelectImage={onSelectImage}

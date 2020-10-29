@@ -44,11 +44,11 @@ class HeroVideo extends Base_Block {
 					],
 					'image'       => [
 						'type'    => 'number',
-						'default' => '',
+						'default' => 0,
 					],
 					'video'       => [
 						'type'    => 'number',
-						'default' => '',
+						'default' => 0,
 					],
 					'link_text'   => [
 						'type'    => 'string',

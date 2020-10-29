@@ -2,44 +2,50 @@
 
 	{% if ( fields ) %}
 
-		<section class="block hero video-container"
-		         style="background-image: url('{{ fields.image_url }}');
-				         background-position: {{ fields.focus_image | default }}; "
-		>
-			<div class="image-container d-md-none" style="background-color: #0f6459">
-				<img srcset="{{ fields.image_srcset }}"
-				     src="{{ fields.image_url }}"
-				     alt="{{ fields.alt_text }}"
-				     style="object-fit: cover; object-position: {{ fields.focus_image | default }}"
+		<section class="block hero">
+			<div class="background">
+
+				<img
+						class="image-background"
+						srcset="{{ fields.image_srcset }}"
+						src="{{ fields.image_url }}"
+						alt="{{ fields.alt_text }}"
+						style="object-fit: cover; object-position: {{ fields.focus_image | default }}"
 				>
+
+			{% if (fields.video) %}
+				<video autoplay muted loop class="video-background d-none d-md-block" poster="{{ fields.image_url }}">
+					<source src="{{ fields.video_url }}">
+					Your browser does not support HTML5 video.
+				</video>
+			{% endif %}
 			</div>
 
-			<video autoplay muted loop class="contained d-none d-md-block" poster="{{ fields.image_url }}">
-				<source src="{{ fields.video_url }}">
-				Your browser does not support HTML5 video.
-			</video>
 
-			<div class="container">
-				<div class="overlay hero__wrapper">
-					<div class="hero__text">
-						{% if ( fields.title ) %}
-							<h1 class="hero__title">
-					  <span>
-						  {{ fields.title|e('wp_kses_post') | raw }}
-					  </span>
-							</h1>
-						{% endif %}
+			<div class="overlay">
+				<div class="container">
+					<div class="hero__wrapper">
+						<div class="hero__text">
 
-						{% if ( fields.description ) %}
-							<p class="hero__description">
-								{{ fields.description|e('wp_kses_post') | raw }}
-							</p>
-						{% endif %}
+							{% if ( fields.title ) %}
+								<h1 class="hero__title">
+								  <span>
+									  {{ fields.title|e('wp_kses_post') | raw }}
+								  </span>
+								</h1>
+							{% endif %}
 
-						{% if (fields.link_text) %}
-							<a href="{{ fields.link_url }}"
-							   class="btn btn-small btn-medium btn-primary hero__button">{{ fields.link_text | raw }}</a>
-						{% endif %}
+							{% if ( fields.description ) %}
+								<p class="hero__description">
+									{{ fields.description|e('wp_kses_post') | raw }}
+								</p>
+							{% endif %}
+
+							{% if (fields.link_text) %}
+								<a href="{{ fields.link_url }}" class="btn btn-small btn-medium btn-primary hero__button">{{ fields.link_text | raw }}</a>
+							{% endif %}
+
+						</div>
 					</div>
 				</div>
 			</div>
