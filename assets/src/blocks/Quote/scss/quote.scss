@@ -22,12 +22,10 @@
   .quote__img {
 
     max-width: none;
-    margin-left: -50%;
     width: auto;
     height: 100%;
 
     @include medium-and-up {
-      margin-left: -50%;
       width: auto;
       height: 100%;
     }
@@ -112,6 +110,7 @@
     overflow: hidden;
     border-radius: 50%;
     max-width: none;
+    padding:0;
 
     @include medium-and-up {
       width: 100px;
@@ -126,14 +125,11 @@
     }
 
     .quote__img {
-
       max-width: none;
-      margin-left: -50%;
       width: auto;
       height: 100%;
 
       @include medium-and-up {
-        margin-left: -50%;
         width: auto;
         height: 100%;
       }
