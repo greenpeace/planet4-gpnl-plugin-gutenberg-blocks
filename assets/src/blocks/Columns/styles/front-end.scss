@@ -53,9 +53,10 @@
       margin-bottom: 0; // intentional.
     }
 
-    * + * {
-      margin-top: 1em;
+    &[class*="col"] {
+      margin-top: 16px;
     }
+
   }
 
   // For when the columns are nested in another columns block.
