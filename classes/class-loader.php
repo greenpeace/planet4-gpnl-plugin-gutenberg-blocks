@@ -113,7 +113,6 @@ final class Loader {
 			new Blocks\Testimonial(),
 			new Blocks\Columns(),
 			new Blocks\SocialMessage(),
-			new Blocks\HeroVideo(),
 		];
 	}
 

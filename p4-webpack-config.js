@@ -29,7 +29,6 @@ module.exports = {
 
     // Separate css files are generated for the blocks so they can be used only when required on public pages.
     'hero-image': './assets/src/blocks/HeroImage/scss/hero-image.scss',
-    'hero-video': './assets/src/blocks/HeroVideo/scss/hero-video.scss',
     quote: './assets/src/blocks/Quote/scss/quote.scss',
 
     // Assets for the collapsible block.
