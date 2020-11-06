@@ -14,7 +14,6 @@
 @import "../../blocks/SocialMessage/styles/editor";
 @import "../../blocks/Modal/styles/editor";
 @import "sidebar";
-@import "../../blocks/Modal/styles/editor";
 
 
 // width of editor same as page width
@@ -123,4 +122,8 @@ input[type="checkbox"], input[type="radio"] {
 // Display in editor. Combine with 'd-none' for hiding outside of the editor.
 .d-editor-only {
   display: inline-block !important;
+}
+
+.block-editor-block-toolbar {
+  width: max-content !important;
 }
