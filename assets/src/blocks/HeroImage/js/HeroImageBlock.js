@@ -102,6 +102,17 @@ export class HeroImageBlock extends BaseBlock {
         }
 
         function onSelectVideo(media) {
+
+          // Make sure the media type is MP4.
+          if (media.subtype !== 'mp4'){
+            return window.alert('Video must be of the file-format MP4. Please select an MP4 file.');
+          }
+
+          // Make sure the filesize is not too big.
+          if (media.filesizeInBytes > 5242880){
+            return window.alert('This video exceeds 5mb, please select a smaller file.');
+          }
+
           setAttributes({
             video: media.id
           });
