@@ -89,8 +89,8 @@ export default class HeroVideo extends Component {
               onChange={onValueChange.bind('link_text')}
               value={link_text}
               tagName={'p'}
+              className={'hero__button'}
               placeholder={'Tekst op knop (optioneel)'}
-              style={{backgroundColor: variables.orange, padding: '0 30px', lineHeight: 3, color: '#fff'}}
             />
           </div>
 
