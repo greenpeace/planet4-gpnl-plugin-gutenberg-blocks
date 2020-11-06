@@ -75,6 +75,3 @@ registerPlugin('gpnl-sidebar', {
 
 import { ModalBlock } from '../../blocks/Modal/ModalBlock';
 new ModalBlock();
-
-import { HeroVideoBlock } from '../../blocks/HeroVideo/js/HeroVideoBlock';
-new HeroVideoBlock();

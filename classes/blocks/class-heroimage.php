@@ -44,7 +44,11 @@ class HeroImage extends Base_Block {
 					],
 					'image'       => [
 						'type'    => 'number',
-						'default' => '',
+						'default' => 0,
+					],
+					'video'       => [
+						'type'    => 'number',
+						'default' => 0,
 					],
 					'link_text'   => [
 						'type'    => 'string',
@@ -71,9 +75,7 @@ class HeroImage extends Base_Block {
 
 		// Check if the block is present on the page that is requested.
 		if ( has_block( 'planet4-gpnl-blocks/' . $this->getKebabCaseClassName() ) ) {
-
 			Asset_Enqueuer::enqueue_asset( 'hero-image', 'style' );
-			Asset_Enqueuer::enqueue_asset( 'heroImageRendering', 'script', [], true );
 		}
 	}
 
@@ -93,6 +95,10 @@ class HeroImage extends Base_Block {
 			$fields['alt_text']     = get_post_meta( $fields['image'], '_wp_attachment_image_alt', true );
 			$fields['image_srcset'] = wp_get_attachment_image_srcset( $fields['image'], 'full', wp_get_attachment_metadata( $fields['image'] ) );
 			$fields['image_sizes']  = wp_calculate_image_sizes( 'full', null, null, $fields['image'] );
+		}
+
+		if ( isset( $fields['video'] ) && $video = wp_get_attachment_url( $fields['video'] ) ) {
+			$fields['video_url']    = $video;
 		}
 
 		$data = [
