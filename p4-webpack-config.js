@@ -34,8 +34,9 @@ module.exports = {
     // Assets for the collapsible block.
     collapsible: './assets/src/blocks/Collapsible/scss/collapsible.scss',
 
-    testimonial: './assets/src/blocks/Testimonial/scss/testimonial.scss'
+    testimonial: './assets/src/blocks/Testimonial/scss/testimonial.scss',
 
+    modal: './assets/src/blocks/Modal/styles/frontend.scss',
   },
   output: {
     filename: '[name].min.js',
