@@ -48,7 +48,7 @@ export default function Save(props) {
 								<button type="button" className="btn btn-secondary" data-dismiss="modal">{cancelTitle}</button>
 								}
 								{showCta &&
-								<a href={ctaUrl} target={ctaUrlInNewTab && '_blank'} className="btn btn-primary">{ctaTitle}</a>
+								<a href={ctaUrl} target={ctaUrlInNewTab && '_blank'} className="btn btn-primary" rel={ctaUrlInNewTab && 'noopener noreferrer'}>{ctaTitle}</a>
 								}
 							</div>
 							}

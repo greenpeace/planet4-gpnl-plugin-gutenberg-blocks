@@ -1,10 +1,8 @@
 import React, {Component, Fragment} from 'react';
-import BaseBlock from "../../BaseBlock";
-import {ServerSideRender} from "@wordpress/components";
+import BaseBlock from '../../BaseBlock';
+import {ServerSideRender} from '@wordpress/components';
 import {Icon} from './HeroImageIcon';
-import HeroImage from "./HeroImage";
-import Transform from "./Transform";
-
+import HeroImage from './HeroImage';
 const {withSelect} = wp.data;
 
 
@@ -19,8 +17,7 @@ export class HeroImageBlock extends BaseBlock {
 
     // Register the block
     registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
-      title: 'Hero afbeelding',
-      description: 'Pagina brede afbeelding. Kan worden uitgebreid met een titel, korte omschrijving en een knop.',
+      title: 'Hero Image/Video',
       icon: Icon,
       category: 'planet4-gpnl-blocks',
       keywords: [
@@ -32,17 +29,6 @@ export class HeroImageBlock extends BaseBlock {
         __('afbeelding'),
         __('held'),
       ],
-      example: {
-        attributes: {
-          title: 'Voorbeeldtitel',
-          description: 'een korte motiverende tekst!',
-          image: 82,
-          link_text: 'Knoptekst',
-          link_url: '#',
-          small: true,
-        },
-      },
-      transforms: Transform,
       attributes: {
         title: {
           type: 'string',
@@ -51,7 +37,12 @@ export class HeroImageBlock extends BaseBlock {
           type: 'string',
         },
         image: {
-          type: 'number'
+          type: 'number',
+          default: 0
+        },
+        video: {
+          type: 'number',
+          default: 0
         },
         link_text: {
           type: 'string'
@@ -72,7 +63,7 @@ export class HeroImageBlock extends BaseBlock {
       edit: withSelect((select, props) => {
 
         const {attributes} = props;
-        const {image} = attributes;
+        const {image, video} = attributes;
 
         let image_url = '';
 
@@ -83,11 +74,20 @@ export class HeroImageBlock extends BaseBlock {
           }
         }
 
+        let video_url = '';
+
+        if (video && (0 < video)) {
+          const video_object = wp.data.select('core').getMedia(video);
+          if (video_object) {
+            video_url = video_object.source_url;
+          }
+        }
+
         return {
-          image_url
+          image_url, video_url
         };
       })(({
-            attributes, setAttributes, isSelected, image_url
+            attributes, setAttributes, isSelected, image_url, video_url
           }) => {
 
         // Functions we want to call while editing to change attributes.
@@ -98,6 +98,23 @@ export class HeroImageBlock extends BaseBlock {
         function onSelectImage(media) {
           setAttributes({
             image: media.id
+          });
+        }
+
+        function onSelectVideo(media) {
+
+          // Make sure the media type is MP4.
+          if (media.subtype !== 'mp4'){
+            return window.alert('Video must be of the file-format MP4. Please select an MP4 file.');
+          }
+
+          // Make sure the filesize is not too big.
+          if (media.filesizeInBytes > 5242880){
+            return window.alert('This video exceeds 5mb, please select a smaller file.');
+          }
+
+          setAttributes({
+            video: media.id
           });
         }
 
@@ -112,10 +129,12 @@ export class HeroImageBlock extends BaseBlock {
           return (
             <HeroImage
               {...attributes}
+              setAttributes={setAttributes}
               image_url={image_url}
               onValueChange={onValueChange}
               onSelectImage={onSelectImage}
               onFocalPointChange={onFocalPointChange}
+              onSelectVideo={onSelectVideo}
             />
           );
         } else {
@@ -124,7 +143,7 @@ export class HeroImageBlock extends BaseBlock {
               block={'planet4-gpnl-blocks/' + this.blockNameKebabCase}
               attributes={attributes}
             />
-          )
+          );
         }
       })
       ,
