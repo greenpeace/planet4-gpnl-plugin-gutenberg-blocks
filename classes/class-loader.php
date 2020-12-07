@@ -105,7 +105,6 @@ final class Loader {
 			new Blocks\Educationcovers(),
 			new Blocks\Collapsible(),
 			new Blocks\PdfEmbed(),
-//			new Blocks\BrochureRequest(),
 			new Blocks\Testimonial(),
 			new Blocks\Columns(),
 			new Blocks\SocialMessage(),
