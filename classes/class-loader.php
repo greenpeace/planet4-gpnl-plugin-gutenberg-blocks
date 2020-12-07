@@ -100,7 +100,6 @@ final class Loader {
 			new Blocks\Quote(),
 			new Blocks\HeroImage(),
 //			new Blocks\Newsletter(),
-//			new Blocks\Petition(),
 			new Blocks\TwoColumnEmbed(),
 			new Blocks\Inforequest(),
 			new Blocks\Noindex(),
