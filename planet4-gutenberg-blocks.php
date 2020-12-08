@@ -135,7 +135,6 @@ const BLOCK_WHITELIST = [
 		'planet4-gpnl-blocks/noindex',
 		'planet4-gpnl-blocks/petition',
 		'planet4-gpnl-blocks/quote',
-		'planet4-gpnl-blocks/two-column-embed',
 		'planet4-gpnl-blocks/collapsible',
 		'planet4-gpnl-blocks/pdf-embed',
 		'planet4-gpnl-blocks/facebook-comments',
