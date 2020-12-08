@@ -42,6 +42,10 @@ class Modal extends Base_Block {
 		if ( has_block( 'planet4-gpnl-blocks/' . $this->getKebabCaseClassName() ) ) {
 
 			Asset_Enqueuer::enqueue_asset( 'modal', 'style' );
+			wp_register_script( 'popper', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"', [], '1.14.7', true );
+			wp_enqueue_script( 'popper' );
+			wp_register_script( 'bootstrap', 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js', [ 'jquery', 'popper' ], '4.1.1', true );
+			wp_enqueue_script( 'bootstrap' );
 		}
 	}
 }
