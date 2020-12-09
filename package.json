@@ -49,6 +49,7 @@
 		"url-loader": "^3.0.0"
 	},
 	"dependencies": {
+		"@wordpress/blocks": "^6.24.2",
 		"@wordpress/components": "^8.5.0",
 		"@wordpress/data": "^4.25.0",
 		"@wordpress/element": "^2.18.0",

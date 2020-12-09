@@ -1,7 +1,8 @@
+import {createBlock, getBlockAttributes} from '@wordpress/blocks';
+
 function Transform() {
 
   return (
-
     {
       from: [
         {
@@ -77,6 +78,29 @@ function Transform() {
               }
             }
           }
+        }
+      ],
+      to: [
+        {
+          type: 'block',
+          blocks: [ 'planet4-gpnl-blocks/columns', 'planet4-gpnl-blocks/column' ],
+          transform: ( content ) => {
+            console.log('Transforming to columns');
+            console.log(content);
+            let heading = createBlock( 'core/heading', {'content':content.title} );
+            let columntext = createBlock( 'core/paragraph', {'content':content.column_description} );
+            let columnLeft = createBlock( 'planet4-gpnl-blocks/column', {}, [columntext] );
+            let image = wp.data.select('core').getMedia(content.image);
+            console.log(image)
+            let columnRight = createBlock( 'planet4-gpnl-blocks/column', {}, [createBlock( 'core/image', {
+              'id':parseInt(content.image),
+              'url':image.source_url
+            } )] );
+            let innerBlocks = [columnLeft, columnRight];
+            let columns = createBlock( 'planet4-gpnl-blocks/columns' , {'numberOfColumns':2,'distributionOfColumns':'even'}, innerBlocks );
+            console.log(columns);
+            return [heading, columns];
+          },
         }
       ]
     }
