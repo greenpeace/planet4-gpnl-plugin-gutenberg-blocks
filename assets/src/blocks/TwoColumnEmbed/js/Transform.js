@@ -120,8 +120,8 @@ function Transform() {
             }
 
 
-            let columnLeft = createBlock( 'planet4-gpnl-blocks/column', {className: 'col-12 col-md-6'}, contentLeft );
-            let columnRight = createBlock( 'planet4-gpnl-blocks/column', {className: 'col-12 col-md-6'}, contentRight );
+            let columnLeft = createBlock( 'planet4-gpnl-blocks/column', {className: 'col-12 col-md-' + content.column_size}, contentLeft );
+            let columnRight = createBlock( 'planet4-gpnl-blocks/column', {className: 'col-12 col-md-' + (12 - content.column_size)}, contentRight );
 
 
             let distribution = (content.column_size == 6) ? 'even' : 'leftBig';
