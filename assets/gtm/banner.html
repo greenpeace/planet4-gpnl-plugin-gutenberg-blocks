@@ -1,0 +1,89 @@
+<script>
+  var cookieText = '<div class="cookie-notice" id="set-cookie" style="display: none;"><div>Ook wij gebruiken cookies om onze website te verbeteren. Als je op "OK!" klikt, ga je akkoord met het plaatsen van deze cookies. Natuurlijk kun je op elk gewenst moment <a href="https://www.greenpeace.org/nl/privacystatement/#cookiesettings">je cookievoorkeuren wijzigen</a>. Alle informatie over ons privacybeleid en de cookies die we plaatsen vind je in ons <a href="https://www.greenpeace.org/nl/privacystatement/" target="_blank" rel="noopener">privacystatement</a>.</div><button class="btn p-0" id="hidecookie">OK!</button></div>';
+
+  if (typeof window.jQuery !== 'undefined') {
+    var body = $("body div.gp-theme");
+    body.after(cookieText);
+    nro = 'https://www.greenpeace.org/nl';
+
+    var cookie = window.readCookie('greenpeace');
+
+    if (cookie == null) {
+      $('.cookie-notice').css('display', 'flex');
+    } else {
+      window.createCookie('gp_nro', nro, 365);
+    }
+
+    $('#hidecookie').click(function () {
+      window.createCookie('greenpeace', '2', 365);
+
+      // Remove the 'no_track' cookie, if user accept the cookies consent.
+      window.createCookie('no_track', '0', -1);
+
+      // Create cookie to store last visited nro.
+      window.createCookie('gp_nro', nro, 365);
+
+      // DataLayer push event on cookies consent.
+      window.dataLayer = window.dataLayer || [];
+      dataLayer.push({
+        'event' : 'cookiesConsent'
+      });
+
+      $('.cookie-notice').fadeOut('slow');
+    });
+  }
+</script>
+
+<style>
+  .cookie-notice {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 16px;
+    background: #323842;
+    height: auto;
+    flex-direction: column;
+    z-index: 1000;
+    box-sizing: border-box;
+    line-height: 1.5rem
+  }
+  .cookie-notice div {
+    color: white;
+    margin-bottom: 32px;
+    padding: 0;
+    font-weight: 500;
+    font-size: 15px;
+  }
+  .cookie-notice a {
+    color: #66cc00;
+    text-decoration: none;
+  }
+  .cookie-notice a:hover {
+    text-decoration: underline;
+  }
+  .cookie-notice button {
+    background-color: #f36d3a;
+    height: 2.4rem;
+    border-radius: .25rem;
+    color: white;
+    align-self: end;
+    width: 150px;
+    padding: 0 32px;
+  }
+  .cookie-notice button:hover {
+    background-color: #f3593c;
+    outline: #f3593c;
+    border: none;
+  }
+  @media all and (min-width: 768px) {
+    .cookie-notice {
+      width: 350px;
+      bottom: 16px;
+      right: 16px;
+      padding: 32px;
+      left: auto;
+      box-shadow: 0 0 10px rgba(0, 0, 0, .35);
+    }
+  }
+</style>
