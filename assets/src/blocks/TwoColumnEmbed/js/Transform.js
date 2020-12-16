@@ -1,4 +1,4 @@
-import {createBlock, getBlockAttributes} from '@wordpress/blocks';
+import {createBlock} from '@wordpress/blocks';
 
 function Transform() {
 
