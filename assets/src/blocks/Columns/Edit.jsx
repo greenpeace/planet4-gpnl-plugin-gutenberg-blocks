@@ -108,30 +108,66 @@ export default function Edit(props) {
 				newInnerBlock.attributes.className = 'col-12 col-md-6';
 			}
 			if (n === 2 && d === 'leftBig') {
-				index === 0 ? newInnerBlock.attributes.className = 'col-12 col-md-8' : '';
-				index === 1 ? newInnerBlock.attributes.className = 'col-12 col-md-4' : '';
+				switch (index) {
+					case 0:
+						newInnerBlock.attributes.className = 'col-12 col-md-8';
+						break;
+					case 1:
+						newInnerBlock.attributes.className = 'col-12 col-md-4';
+						break;
+				}
 			}
 			if (n === 2 && d === 'rightBig') {
-				index === 0 ? newInnerBlock.attributes.className = 'col-12 col-md-4' : '';
-				index === 1 ? newInnerBlock.attributes.className = 'col-12 col-md-8' : '';
+				switch (index) {
+					case 0:
+						newInnerBlock.attributes.className = 'col-12 col-md-4';
+						break;
+					case 1:
+						newInnerBlock.attributes.className = 'col-12 col-md-8';
+						break;
+				}
 			}
 			if (n === 3 && d === 'even') {
 				newInnerBlock.attributes.className = 'col-12 col-lg-4';
 			}
 			if (n === 3 && d === 'leftBig') {
-				index === 0 ? newInnerBlock.attributes.className = 'col-12 col-lg-6' : '';
-				index === 1 ? newInnerBlock.attributes.className = 'col-12 col-lg-3' : '';
-				index === 2 ? newInnerBlock.attributes.className = 'col-12 col-lg-3' : '';
+				switch (index) {
+					case 0:
+						newInnerBlock.attributes.className = 'col-12 col-md-6';
+						break;
+					case 1:
+						newInnerBlock.attributes.className = 'col-12 col-md-3';
+						break;
+					case 2:
+						newInnerBlock.attributes.className = 'col-12 col-md-3';
+						break;
+				}
 			}
 			if (n === 3 && d === 'rightBig') {
-				index === 0 ? newInnerBlock.attributes.className = 'col-12 col-lg-3' : '';
-				index === 1 ? newInnerBlock.attributes.className = 'col-12 col-lg-3' : '';
-				index === 2 ? newInnerBlock.attributes.className = 'col-12 col-lg-6' : '';
+				switch (index) {
+					case 0:
+						newInnerBlock.attributes.className = 'col-12 col-md-3';
+						break;
+					case 1:
+						newInnerBlock.attributes.className = 'col-12 col-md-3';
+						break;
+					case 2:
+						newInnerBlock.attributes.className = 'col-12 col-md-6';
+						break;
+				}
 			}
 			if (n === 3 && d === 'middleBig') {
-				index === 0 ? newInnerBlock.attributes.className = 'col-12 col-lg-3' : '';
-				index === 1 ? newInnerBlock.attributes.className = 'col-12 col-lg-6' : '';
-				index === 2 ? newInnerBlock.attributes.className = 'col-12 col-lg-3' : '';
+				switch (index) {
+					case 0:
+						newInnerBlock.attributes.className = 'col-12 col-md-3';
+						break;
+					case 1:
+						newInnerBlock.attributes.className = 'col-12 col-md-6';
+						break;
+					case 2:
+						newInnerBlock.attributes.className = 'col-12 col-md-3';
+						break;
+				}
 			}
 			if (n === 4) {
 				newInnerBlock.attributes.className = 'col-12 col-lg-3';
