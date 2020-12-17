@@ -9,81 +9,65 @@ export default function Edit(props) {
 	const {attributes, setAttributes, clientId} = props;
 
 	// Templates for the initial rendering of the column.
-	const templates = {
-		one: [
-			['planet4-gpnl-blocks/column', {className: 'col-12'}]
-		],
-		twoEven: [
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-sm-6'}],
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-sm-6'}]
-		],
-		twoLeftBigger: [
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-md-8'}],
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-md-4'}],
-		],
-		twoRightBigger: [
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-md-4'}],
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-md-8'}],
-		],
-		threeEven: [
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-4'}],
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-4'}],
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-4'}],
-		],
-		threeLeftBigger: [
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-6'}],
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-3'}],
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-3'}],
-		],
-		threeRightBigger: [
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-3'}],
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-3'}],
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-6'}],
-		],
-		threeMiddleBigger: [
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-3'}],
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-6'}],
-			['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-3'}],
-		],
-		four: [
+	const templates = [
+		[['planet4-gpnl-blocks/column', {className: 'col-12'}]],
+		{
+			'even': [
+				['planet4-gpnl-blocks/column', {className: 'col-12 col-sm-6'}],
+				['planet4-gpnl-blocks/column', {className: 'col-12 col-sm-6'}]
+			],
+			'leftBig': [
+				['planet4-gpnl-blocks/column', {className: 'col-12 col-md-8'}],
+				['planet4-gpnl-blocks/column', {className: 'col-12 col-md-4'}],
+			],
+			'rightBig': [
+				['planet4-gpnl-blocks/column', {className: 'col-12 col-md-4'}],
+				['planet4-gpnl-blocks/column', {className: 'col-12 col-md-8'}],
+			],
+		},
+		{
+			'even': [
+				['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-4'}],
+				['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-4'}],
+				['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-4'}],
+			],
+			'leftBig': [
+				['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-6'}],
+				['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-3'}],
+				['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-3'}],
+			],
+			'rightBig': [
+				['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-3'}],
+				['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-3'}],
+				['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-6'}],
+			],
+			'middleBig': [
+				['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-3'}],
+				['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-6'}],
+				['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-3'}],
+			],
+		},
+		[
 			['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-3'}],
 			['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-3'}],
 			['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-3'}],
 			['planet4-gpnl-blocks/column', {className: 'col-12 col-lg-3'}],
 		]
-	};
+	];
 
 	const activeTemplate = () => {
 
-		const n = attributes.numberOfColumns;
-		const d = attributes.distributionOfColumns;
+		const numberOfColumns = attributes.numberOfColumns;
+		const distributionOfColumns = attributes.distributionOfColumns;
 
-		if (n === 1) {
-			return templates['one'];
-		}
-
-		if (n === 2) {
-			if (d === 'even') {
-				return templates['twoEven'];
-			} else if (d === 'leftBig') {
-				return templates['twoLeftBigger'];
-			} else if (d === 'rightBig') {
-				return templates['twoRightBigger'];
-			}
-		}
-		if (n === 3) {
-			if (d === 'even') {
-				return templates['threeEven'];
-			} else if (d === 'leftBig') {
-				return templates['threeLeftBigger'];
-			} else if (d === 'rightBig') {
-				return templates['threeRightBigger'];
-			} else if (d === 'middleBig') {
-				return templates['threeMiddleBigger'];
-			}
-		}
-		if (n === 4) {
-			return templates['four'];
+		switch (numberOfColumns) {
+			case 1:
+				return templates[numberOfColumns-1];
+			case 2:
+			case 3:
+				return templates[numberOfColumns-1][distributionOfColumns];
+			case 4:
+				return templates[numberOfColumns-1];
 		}
 	};
 
@@ -95,82 +79,23 @@ export default function Edit(props) {
 
 	// Replaces the inner blocks with new inner blocks that are copies of the current inner blocks, but with updates classes.
 	// As silly as this may seem, this is "the Wordpress/Gutenberg way".
-	const updateInnerBlocks = (d, n) => {
+	const updateInnerBlocks = (distributionOfColumns, numberOfColumns) => {
 
 		const newInnerBlocks = [...currentInnerBlocks];
 
 		// Changing the classes for the current blocks accordingly.
 		for (const [index, newInnerBlock] of newInnerBlocks.entries()) {
-			if (n === 1) {
-				newInnerBlock.attributes.className = 'col-12';
-			}
-			if (n === 2 && d === 'even') {
-				newInnerBlock.attributes.className = 'col-12 col-md-6';
-			}
-			if (n === 2 && d === 'leftBig') {
-				switch (index) {
-					case 0:
-						newInnerBlock.attributes.className = 'col-12 col-md-8';
-						break;
-					case 1:
-						newInnerBlock.attributes.className = 'col-12 col-md-4';
-						break;
-				}
-			}
-			if (n === 2 && d === 'rightBig') {
-				switch (index) {
-					case 0:
-						newInnerBlock.attributes.className = 'col-12 col-md-4';
-						break;
-					case 1:
-						newInnerBlock.attributes.className = 'col-12 col-md-8';
-						break;
-				}
-			}
-			if (n === 3 && d === 'even') {
-				newInnerBlock.attributes.className = 'col-12 col-lg-4';
-			}
-			if (n === 3 && d === 'leftBig') {
-				switch (index) {
-					case 0:
-						newInnerBlock.attributes.className = 'col-12 col-md-6';
-						break;
-					case 1:
-						newInnerBlock.attributes.className = 'col-12 col-md-3';
-						break;
-					case 2:
-						newInnerBlock.attributes.className = 'col-12 col-md-3';
-						break;
-				}
-			}
-			if (n === 3 && d === 'rightBig') {
-				switch (index) {
-					case 0:
-						newInnerBlock.attributes.className = 'col-12 col-md-3';
-						break;
-					case 1:
-						newInnerBlock.attributes.className = 'col-12 col-md-3';
-						break;
-					case 2:
-						newInnerBlock.attributes.className = 'col-12 col-md-6';
-						break;
-				}
-			}
-			if (n === 3 && d === 'middleBig') {
-				switch (index) {
-					case 0:
-						newInnerBlock.attributes.className = 'col-12 col-md-3';
-						break;
-					case 1:
-						newInnerBlock.attributes.className = 'col-12 col-md-6';
-						break;
-					case 2:
-						newInnerBlock.attributes.className = 'col-12 col-md-3';
-						break;
-				}
-			}
-			if (n === 4) {
-				newInnerBlock.attributes.className = 'col-12 col-lg-3';
+			switch (numberOfColumns) {
+				case 1:
+					newInnerBlock.attributes.className = 'col-12';
+					break;
+				case 2:
+				case 3:
+					newInnerBlock.attributes.className = templates[numberOfColumns-1][distributionOfColumns][index];
+					break;
+				case 4:
+					newInnerBlock.attributes.className = 'col-12 col-lg-3';
+					break;
 			}
 		}
 		replaceInnerBlocks(clientId, newInnerBlocks, false);
