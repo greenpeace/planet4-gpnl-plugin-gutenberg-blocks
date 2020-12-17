@@ -54,7 +54,7 @@ class Educationcovers extends Base_Block {
 	 *
 	 * @return array The data to be passed in the View.
 	 */
-	public function prepare_data( $fields ): array {
+	public function prepare_data( ): array {
 
 
 		$args     = array(

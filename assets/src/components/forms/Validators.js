@@ -4,7 +4,7 @@ export function isValidNumber(number, min = null, max = null, removeWhiteSpace =
   // Replace comma with dot.
   number = number.replace(/,/g, '.');
 
-  removeWhiteSpace === true ? number = number.replace(/\s+/g, '') : '';
+  number = fullTrim(number, removeWhiteSpace);
 
   if (isNaN(number) || min && number < min || max && number > max){
     return false;
@@ -14,7 +14,7 @@ export function isValidNumber(number, min = null, max = null, removeWhiteSpace =
 // Check if value is a string (not a number). By default a minimum length of 1 characters is required.
 export function isValidString(value, minLength = 1, maxLength = null, removeWhiteSpace = true) {
 
-  removeWhiteSpace === true ? value = value.replace(/\s+/g, '') : '';
+  value = fullTrim(value, removeWhiteSpace);
 
   if (!isNaN(value) || value.length < minLength || maxLength && value.length > maxLength){
     return false;
@@ -24,7 +24,7 @@ export function isValidString(value, minLength = 1, maxLength = null, removeWhit
 // Check if value is a string or a number. By default a minimum length of 1 characters is required.
 export function isValidAny(value, minLength = 1, maxLength = null, removeWhiteSpace = true) {
 
-  removeWhiteSpace === true ? value = value.replace(/\s+/g, '') : '';
+  value = fullTrim(value, removeWhiteSpace);
 
   if (value.length < minLength || maxLength && value.length > maxLength){
     return false;
@@ -37,6 +37,10 @@ export function isValidNotEmpty(value) {
   if (value.length < 1) {
     return false;
   }
+}
+
+function fullTrim(value, removeWhiteSpace) {
+  return (removeWhiteSpace === true) ? value.replace(/\s+/g, '') : '';
 }
 
 export function isValidEmail(email) {
