@@ -43,5 +43,5 @@ export class CollapsibleBlock extends BaseBlock {
       edit: Edit,
       save: Save,
     });
-  };
+  }
 }

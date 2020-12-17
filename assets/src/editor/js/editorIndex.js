@@ -65,7 +65,7 @@ new ColumnBlock();
  * WordPress dependencies.
  */
 const { registerPlugin } = wp.plugins;
-import NL_Sidebar_E_activism from './Sidebar/Sidebar.js';
+import NL_Sidebar_E_activism from './Sidebar/NL_Sidebar_E_activism.js';
 
 
 registerPlugin('gpnl-sidebar', {

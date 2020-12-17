@@ -35,7 +35,7 @@
 		"no-var": 1
 	},
 	"parserOptions": {
-		"ecmaVersion": 8,
+		"ecmaVersion": 2018,
 		"ecmaFeatures": {
 			"jsx": true,
 			"modules": true
@@ -43,8 +43,10 @@
 		"sourceType": "module"
 	},
 	"globals": {
+		"wp": true,
 		"page": true,
 		"browser": true,
+		"window": true,
 		"$": "writable",
 		"moment": "writable",
 		"L": "writable"

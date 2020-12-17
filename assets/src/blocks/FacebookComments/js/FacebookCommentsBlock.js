@@ -12,11 +12,11 @@ export class FacebookCommentsBlock extends BaseBlock {
         <p className={'page-section-description'}>{attributes.description}</p>
         <div id="fb-root"/>
         <script async="" defer="" crossOrigin="anonymous"
-                src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&amp;version=v5.0"/>
+          src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&amp;version=v5.0"/>
         <div className="fb-comments" data-href={attributes.url} data-width={attributes.width} data-numposts={attributes.numberOfPosts}/>
       </section>
     );
-  };
+  }
 
   constructor() {
     super();
@@ -79,12 +79,12 @@ export class FacebookCommentsBlock extends BaseBlock {
           );
         } else {
           return ([this.getHTML({...attributes}),
-            <div style={{backgroundColor: 'f3f3f3', padding: "10px", marginTop: '-60px'}}><em>Hier worden de reacties via Facebook getoond aan de "voorkant".</em></div>]);
+            <div style={{backgroundColor: 'f3f3f3', padding: '10px', marginTop: '-60px'}}><em>Hier worden de reacties via Facebook getoond aan de "voorkant".</em></div>]);
         }
       },
 
       save: ({attributes}) => this.getHTML({...attributes})
 
     });
-  };
+  }
 }

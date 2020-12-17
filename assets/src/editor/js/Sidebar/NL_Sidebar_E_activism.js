@@ -1,7 +1,6 @@
 import React from 'react';
 import RefreshButton from './RefreshButton';
 import Toggle from './Toggle';
-
 const { Fragment } = wp.element;
 const { PluginSidebarMoreMenuItem, PluginSidebar } = wp.editPost;
 
@@ -35,7 +34,7 @@ class NL_Sidebar_E_activism extends React.Component {
       editorContent: currentContent,
       editorLinks: this.extractLinks(currentContent),
       savedLinks: this.getMetaFieldValue('savedLinks'),
-      }
+    }
     );
   }
 
