@@ -1,41 +1,41 @@
 import React from 'react';
-import BaseBlock from "../../BaseBlock";
-import { ServerSideRender } from "@wordpress/components";
-import Transform from "./Transform";
+import BaseBlock from '../../BaseBlock';
+import { ServerSideRender } from '@wordpress/components';
+import Transform from './Transform';
 
 export class EducationcoversBlock extends BaseBlock {
 
-	constructor() {
-		super();
+  constructor() {
+    super();
 
-		// Setup references to external functions
-		const {__} = wp.i18n;
-		const { registerBlockType } = wp.blocks;
-		const blockNameKebabCase = this.blockNameKebabCase;
+    // Setup references to external functions
+    const {__} = wp.i18n;
+    const { registerBlockType } = wp.blocks;
+    const blockNameKebabCase = this.blockNameKebabCase;
 
-		// Register the block
-		registerBlockType('planet4-gpnl-blocks/' + this.blockNameLowerCase, {
-			title: 'lesmateriaal overzicht',
-			icon: 'grid-view',
-			category: 'planet4-gpnl-blocks',
-			keywords: [
-				__(this.blockName),
+    // Register the block
+    registerBlockType('planet4-gpnl-blocks/' + this.blockNameLowerCase, {
+      title: 'lesmateriaal overzicht',
+      icon: 'grid-view',
+      category: 'planet4-gpnl-blocks',
+      keywords: [
+        __(this.blockName),
         __('educatie'),
         __('overzicht'),
-			],
-			transforms: Transform,
+      ],
+      transforms: Transform,
       attributes: null,
       edit: () => {
 			  return (
-            <ServerSideRender
-              block={'planet4-gpnl-blocks/' + this.blockNameKebabCase}
-            />
-          )
-        }
+          <ServerSideRender
+            block={'planet4-gpnl-blocks/' + this.blockNameKebabCase}
+          />
+        );
+      }
       ,
 
-			save: () => null
+      save: () => null
 
-		});
-	};
+    });
+  }
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 class Toggle extends React.Component {
   constructor(props) {
@@ -7,24 +7,24 @@ class Toggle extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-    handleClick(e)
-    {
-      this.props.handler(e.target.value);
-    }
+  handleClick(e)
+  {
+    this.props.handler(e.target.value);
+  }
 
-    render()
-    {
-      const state = this.props.state;
-      return (
+  render()
+  {
+    const state = this.props.state;
+    return (
       <div className="custom-control custom-switch">
         <input type="checkbox" className="custom-control-input" id="customSwitch1"
-               checked={state ? 'checked' : ''}
-               onChange={this.handleClick}>
+          checked={state ? 'checked' : ''}
+          onChange={this.handleClick}>
         </input>
-          <label className="custom-control-label" htmlFor="customSwitch1">Er worden {state ? '' : 'geen'} handelingen op deze pagina geteld</label>
+        <label className="custom-control-label" htmlFor="customSwitch1">Er worden {state ? '' : 'geen'} handelingen op deze pagina geteld</label>
       </div>
-      );
-    }
+    );
+  }
 }
 
-export default Toggle
+export default Toggle;

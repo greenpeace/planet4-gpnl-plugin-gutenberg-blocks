@@ -237,7 +237,7 @@ add_action( 'init', 'sidebar_plugin_register' );
 
 function enqueue_eactivism_assets() {
 	$post_id = get_the_ID();
-//	$post_meta = get_post_meta($post_id, 'e_activism');
+
 	$actionsTracking = get_post_meta($post_id, 'e_activism') ? get_post_meta($post_id, 'e_activism')[0]['actionsTracking'] : false;
 	$trackedLinks    = get_post_meta($post_id, 'e_activism') ? get_post_meta($post_id, 'e_activism')[0]['savedLinks'] : false;
 	if ( $actionsTracking ) {
@@ -252,7 +252,6 @@ function enqueue_eactivism_assets() {
 				'links' => $trackedLinks,
 			]
 		);
-		return;
 	}
 }
 add_action( 'template_redirect', 'enqueue_eactivism_assets');
