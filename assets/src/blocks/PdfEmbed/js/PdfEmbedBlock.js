@@ -56,8 +56,8 @@ export class PdfEmbedBlock extends BaseBlock {
           document_url
         };
       })(({
-            attributes, setAttributes, isSelected, document_url
-          }) => {
+        attributes, setAttributes, isSelected, document_url
+      }) => {
 
         // Functions we want to call while editing to change attributes.
         function onValueChange(value) {
@@ -100,5 +100,5 @@ export class PdfEmbedBlock extends BaseBlock {
       save: () => null,
 
     });
-  };
+  }
 }

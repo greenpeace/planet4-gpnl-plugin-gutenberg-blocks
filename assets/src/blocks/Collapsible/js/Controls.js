@@ -11,33 +11,33 @@ import { BlockControls } from '@wordpress/block-editor';
 import { Toolbar } from '@wordpress/components';
 
 class Controls extends Component {
-	render() {
-		const {
-			attributes,
-			setAttributes,
-		} = this.props;
+  render() {
+    const {
+      attributes,
+      setAttributes,
+    } = this.props;
 
-		const {
-			open,
-		} = attributes;
+    const {
+      open,
+    } = attributes;
 
-		const customControls = [
-			{
-				icon: Icon,
-				title: 'Toon geopend',
-				onClick: () => setAttributes( { open: ! open } ),
-				isActive: open === true,
-			},
-		];
+    const customControls = [
+      {
+        icon: Icon,
+        title: 'Toon geopend',
+        onClick: () => setAttributes( { open: ! open } ),
+        isActive: open === true,
+      },
+    ];
 
-		return (
-			<Fragment>
-				<BlockControls>
-					<Toolbar controls={ customControls } />
-				</BlockControls>
-			</Fragment>
-		);
-	}
+    return (
+      <Fragment>
+        <BlockControls>
+          <Toolbar controls={ customControls } />
+        </BlockControls>
+      </Fragment>
+    );
+  }
 }
 
 export default Controls;

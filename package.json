@@ -30,6 +30,7 @@
 		"@babel/preset-env": "^7.12.1",
 		"@babel/preset-react": "^7.12.1",
 		"@wordpress/dependency-extraction-webpack-plugin": "^2.8.0",
+		"@wordpress/editor": "^9.25.0",
 		"@wordpress/eslint-plugin": "^3.4.1",
 		"@wordpress/scripts": "^6.2.0",
 		"autoprefixer": "^9.8.6",
