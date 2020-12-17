@@ -1,8 +1,8 @@
 import $ from 'jquery';
 
-var request_form_element = {};
-var check_form_element = {};
-var form_config = 'request_form_object';
+let request_form_element = {};
+let check_form_element = {};
+let form_config = 'request_form_object';
 
 $(document).ready(function() {
   let auth = new URLSearchParams(window.location.search).has('e');
@@ -42,7 +42,7 @@ $('.inforequest_form').on('reset', function () {
 
 $('.gpnl-request__form').on('submit', function () {
   request_form_element = this;
-  var post_form_value = getFormObj(request_form_element);
+  let post_form_value = getFormObj(request_form_element);
   post_form_value.action = 'request_form_process';
   post_form_value.nonce  = window[form_config].nonce;
   post_form_value.literaturecode  = window[form_config].literaturecode;
@@ -84,7 +84,7 @@ $('.gpnl-request__form').on('submit', function () {
 
 $('.gpnl-check__form').on('submit', function () {
   check_form_element = this;
-  var post_form_value = getFormObj(check_form_element);
+  let post_form_value = getFormObj(check_form_element);
   post_form_value.action = 'check_form_process';
   post_form_value.nonce  = window[form_config].nonce;
 
@@ -128,8 +128,8 @@ $('.gpnl-check__form').on('submit', function () {
 
 // Get the key+value from the input fields in the form
 function getFormObj(el) {
-  var formObj = {};
-  var inputs = $(el).serializeArray();
+  let formObj = {};
+  let inputs = $(el).serializeArray();
   $.each(inputs, function (i, input) {
     formObj[input.name] = input.value;
   });
@@ -151,16 +151,16 @@ function toggleDisable(el) {
 }
 
 function createCookie(name, value, days) {
-  var date = new Date();
+  let date = new Date();
   date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
   document.cookie = encodeURI(name) + '=' + encodeURI(value) + ';domain=.' + document.domain + ';path=/;' + '; expires=' + date.toGMTString();
 }
 
 function readCookie(name) {
-  var nameEQ = name + '=';
-  var ca = document.cookie.split(';');
-  for (var i = 0; i < ca.length; i++) {
-    var c = ca[i];
+  let nameEQ = name + '=';
+  let ca = document.cookie.split(';');
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
     while (c.charAt(0) === ' ') {
       c = c.substring(1, c.length);
     }

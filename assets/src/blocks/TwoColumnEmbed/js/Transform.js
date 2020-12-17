@@ -92,18 +92,18 @@ function Transform() {
             console.log(content);
 
             if (content.title !== ''){
-              var mainHeading = createBlock( 'core/heading', {'content':content.title} );
+              let mainHeading = createBlock( 'core/heading', {'content':content.title} );
               columnsBlock.push(mainHeading);
             }
             if (content.column_title !== ''){
-              var columnHeading = createBlock( 'core/heading', {'content':content.column_title} );
+              let columnHeading = createBlock( 'core/heading', {'content':content.column_title} );
               contentLeft.push(columnHeading);
             }
-            var columnText = createBlock( 'core/paragraph', {'content':content.column_description} );
+            let columnText = createBlock( 'core/paragraph', {'content':content.column_description} );
             contentLeft.push(columnText);
 
             if (content.column_cta_text !== '') {
-              var button = createBlock( 'core/button', {
+              let button = createBlock( 'core/button', {
                 'url': content.column_cta_link,
                 'text': content.column_cta_text
               } );
@@ -111,11 +111,11 @@ function Transform() {
             }
 
             if (typeof content.image !== 'undefined'){
-              var image = getImage(content.image);
+              let image = getImage(content.image);
               contentRight = [image];
             }
             else {
-              var iframe = createBlock( 'core/embed', {'url':content.iframe_src} );
+              let iframe = createBlock( 'core/embed', {'url':content.iframe_src} );
               contentRight = [iframe];
             }
 

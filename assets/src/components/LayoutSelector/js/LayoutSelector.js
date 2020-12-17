@@ -43,7 +43,7 @@ export class LayoutSelector extends Component {
                   : null
               }
             </label>
-          )
+          );
         })
       }
     </div>;

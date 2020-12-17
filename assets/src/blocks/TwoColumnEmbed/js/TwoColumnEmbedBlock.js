@@ -1,11 +1,11 @@
 import React from 'react';
-import BaseBlock from "../../BaseBlock";
-import { ServerSideRender } from "@wordpress/components";
+import BaseBlock from '../../BaseBlock';
+import { ServerSideRender } from '@wordpress/components';
 import { Preview } from '../../../components/Preview/js/Preview';
 const { withSelect } = wp.data;
-import TwoColumnEmbed from "./TwoColumnEmbed";
-import { Icon } from "./TwoColumnEmbedIcon";
-import Transform from "./Transform";
+import TwoColumnEmbed from './TwoColumnEmbed';
+import { Icon } from './TwoColumnEmbedIcon';
+import Transform from './Transform';
 
 
 
@@ -113,14 +113,14 @@ export class TwoColumnEmbedBlock extends BaseBlock {
               onNumberChange={onNumberChange}
               onSelectImage={onSelectImage}
             />
-          )
+          );
         } else {
           return (
             <ServerSideRender
               block={'planet4-gpnl-blocks/' + this.blockNameKebabCase}
               attributes={attributes}
             />
-          )
+          );
         }
       }),
 
@@ -128,5 +128,5 @@ export class TwoColumnEmbedBlock extends BaseBlock {
       save: () => null,
 
     });
-  };
+  }
 }

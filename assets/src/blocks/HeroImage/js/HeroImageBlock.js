@@ -87,8 +87,8 @@ export class HeroImageBlock extends BaseBlock {
           image_url, video_url
         };
       })(({
-            attributes, setAttributes, isSelected, image_url, video_url
-          }) => {
+        attributes, setAttributes, isSelected, image_url, video_url
+      }) => {
 
         // Functions we want to call while editing to change attributes.
         function onValueChange(value) {
@@ -152,5 +152,5 @@ export class HeroImageBlock extends BaseBlock {
       save: () => null,
 
     });
-  };
+  }
 }

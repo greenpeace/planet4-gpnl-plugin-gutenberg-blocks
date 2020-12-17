@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
-import BaseBlock from "../../BaseBlock";
-import {Button, DateTimePicker, TimePicker, PanelRow, TextareaControl} from "@wordpress/components";
-import { RawHTML } from "@wordpress/element";
+import BaseBlock from '../../BaseBlock';
+import {Button, DateTimePicker, TimePicker, PanelRow, TextareaControl} from '@wordpress/components';
+import { RawHTML } from '@wordpress/element';
 
 
 const {__} = wp.i18n; // Import __() from wp.i18n
@@ -36,27 +36,27 @@ export class LiveblogBlock extends BaseBlock {
         items: {
           type: 'array',
           default: [],
-          selector: "p.liveblog",
+          selector: 'p.liveblog',
           image: {
-            source: "attribute",
-            selector: "img",
-            attribute: "src"
+            source: 'attribute',
+            selector: 'img',
+            attribute: 'src'
           },
           index: {
-            source: "text",
-            selector: "span.liveblog-index"
+            source: 'text',
+            selector: 'span.liveblog-index'
           },
           content: {
-            source: "html",
-            selector: "span.liveblog-content"
+            source: 'html',
+            selector: 'span.liveblog-content'
           },
           datetime: {
-            source: "text",
-            selector: "span.liveblog-datetime",
-  },
+            source: 'text',
+            selector: 'span.liveblog-datetime',
+          },
           position: {
-            source: "text",
-            selector: "span.liveblog-position"
+            source: 'text',
+            selector: 'span.liveblog-position'
           }
         },
 
@@ -117,7 +117,7 @@ export class LiveblogBlock extends BaseBlock {
                   <a
                     className="remove-liveblog-item"
                     onClick={() => {
-                      var result = confirm("Are you sure you want to delete this item?");
+                      let result = confirm('Are you sure you want to delete this item?');
                       if (!result) {
                         e.preventDefault();
                       } else {
@@ -263,9 +263,9 @@ export class LiveblogBlock extends BaseBlock {
                     ...props.attributes.items,
                     {
                       index: props.attributes.items.length,
-                      content: "",
-                      datetime: "",
-                      position: ""
+                      content: '',
+                      datetime: '',
+                      position: ''
                     }
                   ]
                 })
@@ -291,8 +291,8 @@ export class LiveblogBlock extends BaseBlock {
 
         const itemsList = items.map((liveblog) => {
 
-          var moment;
-          if (liveblog.datetime === ""){
+          let moment;
+          if (liveblog.datetime === ''){
             let currentdate = new Date();
             moment = currentdate.toString();
           } else {
@@ -303,15 +303,15 @@ export class LiveblogBlock extends BaseBlock {
           return (
             <div key={liveblog.index}>
               <div className="liveblog-item">
-                <span className="liveblog-index" style={{display: "none"}}>{liveblog.index}</span>
-                  <img className="liveblog-image" src={liveblog.image}/>
-                  <span className="liveblog-datetime">{moment}</span>
-                  <span className="liveblog-content">
-                    <RawHTML>
+                <span className="liveblog-index" style={{display: 'none'}}>{liveblog.index}</span>
+                <img className="liveblog-image" src={liveblog.image}/>
+                <span className="liveblog-datetime">{moment}</span>
+                <span className="liveblog-content">
+                  <RawHTML>
                     {liveblog.content}
-                    </RawHTML>
-                  </span>
-                  <span className="liveblog-position">{liveblog.position}</span>
+                  </RawHTML>
+                </span>
+                <span className="liveblog-position">{liveblog.position}</span>
               </div>
             </div>
           );
@@ -321,15 +321,15 @@ export class LiveblogBlock extends BaseBlock {
 
             <section className="section liveblog-block">
               <div className="liveblog"
-                   data-t_style={props.attributes.liveblog_style}
-                   data-t_show={props.attributes.items_shown}
+                data-t_style={props.attributes.liveblog_style}
+                data-t_show={props.attributes.items_shown}
               >
                 {itemsList}
               </div>
             </section>
 
           );
-        } else return null;
+        } else {return null;}
       }
     });
   }

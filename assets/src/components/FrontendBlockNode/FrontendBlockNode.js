@@ -10,7 +10,7 @@ import {Component} from '@wordpress/element';
 export class FrontendBlockNode extends Component {
   render() {
     return <div className={this.props.className}
-                data-gpnl-render={this.props.blockName}
-                data-attributes={JSON.stringify(this.props.attributes)}/>;
+      data-gpnl-render={this.props.blockName}
+      data-attributes={JSON.stringify(this.props.attributes)}/>;
   }
 }
