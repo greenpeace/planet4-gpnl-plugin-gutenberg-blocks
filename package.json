@@ -23,7 +23,9 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"start": "wp-scripts start --config p4-webpack-config.js",
 		"build": "wp-scripts build --config p4-webpack-config.js",
-		"lint:css": "wp-scripts lint-style"
+		"lint:css": "wp-scripts lint-style",
+		"postinstall": "ln -s -f ../../githooks/commit-msg .git/hooks/commit-msg && chmod +x githooks/commit-msg",
+		"poststart": "ln -s -f ../../githooks/commit-msg .git/hooks/commit-msg && chmod +x githooks/commit-msg"
 	},
 	"devDependencies": {
 		"@babel/plugin-proposal-class-properties": "^7.12.1",
