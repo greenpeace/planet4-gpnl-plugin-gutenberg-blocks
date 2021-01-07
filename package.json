@@ -51,7 +51,7 @@
 	"dependencies": {
 		"@wordpress/components": "^8.5.0",
 		"@wordpress/data": "^4.25.0",
-		"@wordpress/element": "^2.18.0",
+		"@wordpress/element": "^2.19.0",
 		"bootstrap": "^4.5.3",
 		"jquery": "^3.5.1",
 		"jquery-ui": "^1.12.1",
