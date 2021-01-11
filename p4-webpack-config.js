@@ -25,6 +25,9 @@ module.exports = {
     // assets for the two-column-embed block
     'two-column-embed': './assets/src/blocks/TwoColumnEmbed/scss/two-column-embed.scss',
 
+    // assets for the inforequest block
+    inforequestHelper: './assets/src/blocks/Inforequest/js/InforequestHelper.js',
+
     heroImageRendering: './assets/src/blocks/HeroImage/js/heroImageRendering.js',
 
     // Separate css files are generated for the blocks so they can be used only when required on public pages.
