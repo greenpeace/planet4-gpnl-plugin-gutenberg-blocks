@@ -14,8 +14,8 @@ class Renderer extends Component {
     let loadingTask = pdfjsLib.getDocument(this.props.url);
     loadingTask.promise.then((doc) => {
       console.log(`Document ${this.props.url} loaded ${doc.numPages} page(s)`);
-        this.viewer.setState({
-          doc,
+      this.viewer.setState({
+        doc,
       });
     }, (reason) => {
       console.error(`Error during ${this.props.url} loading: ${reason}`);

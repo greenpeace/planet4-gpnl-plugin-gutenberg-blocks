@@ -1,0 +1,71 @@
+<script>
+  // FormsuiteScript
+  jQuery(document).ready(function() {
+
+    // If not in iframe, do nothing
+    try {
+      if (window.top === window.self) {
+        return;
+      }
+    } catch(e) {}
+
+    var parentOrigin = 'https://www.greenpeace.org';
+    var pollTime = 2000;
+    var pollInterval = 150;
+    var mergedCookie = null;
+    var localCookie = null;
+
+    var childReadyPoller = function() {
+      // If maximum time is reached, stop polling
+      pollTime -= pollInterval;
+      if (pollTime <= 0) {
+        window.clearInterval(childReadyPoll);
+      }
+      // Send message to parent that iframe is ready
+      localCookie = readFullCookie();
+      window.top.postMessage({
+        event: 'cookieLoad',
+        cookie: localCookie
+      }, parentOrigin);
+    };
+    // Start sending the "childReady" message to parent page
+    var childReadyPoll = window.setInterval(childReadyPoller, pollInterval);
+
+    var messagesHandler = function(event) {
+      // Only accept messages from Planet4 domain
+      if (event.origin !== parentOrigin) {
+        return;
+      }
+      if (event.data.event !== 'cookieLoad' && event.data.event !== 'cookieChange') {
+        return;
+      }
+      // If the inital message from parent is received, stop sending childReady
+      if (event.data.event === 'cookieLoad') {
+        window.clearInterval(childReadyPoll);
+      }
+
+      // Handle initial load case
+      if (event.data.event === 'cookieLoad') {
+        localCookie = readFullCookie();
+
+        if (event.data.cookie === localCookie) {
+          return;
+        }
+        mergedCookie = determineCookieValue(event.data.cookie, localCookie);
+        setCookies(mergedCookie);
+      }
+
+      // Handle cookie change case
+      if (event.data.event === 'cookieChange') {
+        localCookie = readFullCookie();
+        var newCookie = event.data.cookie;
+        mergedCookie = determineCookieValue(newCookie, localCookie);
+
+        setCookies(newCookie);
+      }
+    };
+
+    // Start listening for messages from the parent page
+    window.addEventListener('message', messagesHandler);
+  }());
+</script>

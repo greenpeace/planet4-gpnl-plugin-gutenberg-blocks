@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import {RichText, MediaUpload, MediaUploadCheck, InspectorControls, BlockControls} from "@wordpress/editor";
+import {RichText, MediaUpload, MediaUploadCheck, InspectorControls, BlockControls} from '@wordpress/editor';
 import {
   TextControl,
   TextareaControl,
@@ -38,43 +38,43 @@ export default class TwoColumnEmbed extends Component {
     // this will render either the fields for the image in the second column, or the iframe fields.
     const showIframeOrImageFields = () => {
 
-        if (embed_option === 'image') {
-          return (
-            <Fragment>
-              <label>Afbeelding</label>
-              <MediaUploadCheck>
-                <MediaUpload
-                  type="image"
-                  onSelect={onSelectImage}
-                  value={image}
-                  render={({open}) => getImageOrButton(open)}
-                />
-              </MediaUploadCheck>
-            </Fragment>
-          )
-        } else if (embed_option === 'iframe') {
-          return (
-            <Fragment>
-              <TextControl
-                label={'iframe_src'}
-                onChange={onValueChange.bind('iframe_src')}
-                value={iframe_src}
-                placeholder={'iframe_src'}
-                help={'De URL van  de iframe.'}
+      if (embed_option === 'image') {
+        return (
+          <Fragment>
+            <label>Afbeelding</label>
+            <MediaUploadCheck>
+              <MediaUpload
+                type="image"
+                onSelect={onSelectImage}
+                value={image}
+                render={({open}) => getImageOrButton(open)}
               />
-              <TextControl
-                label={'iframe_height'}
-                onChange={onNumberChange.bind('iframe_height')}
-                value={iframe_height}
-                placeholder={'iframe_height'}
-                help={'Hoogte van iframe in px.'}
-              />
-            </Fragment>
-          )
-        } else {
-          console.log("There is something wrong with the code. Please check the code for this block.")
-        }
+            </MediaUploadCheck>
+          </Fragment>
+        );
+      } else if (embed_option === 'iframe') {
+        return (
+          <Fragment>
+            <TextControl
+              label={'iframe_src'}
+              onChange={onValueChange.bind('iframe_src')}
+              value={iframe_src}
+              placeholder={'iframe_src'}
+              help={'De URL van  de iframe.'}
+            />
+            <TextControl
+              label={'iframe_height'}
+              onChange={onNumberChange.bind('iframe_height')}
+              value={iframe_height}
+              placeholder={'iframe_height'}
+              help={'Hoogte van iframe in px.'}
+            />
+          </Fragment>
+        );
+      } else {
+        console.log('There is something wrong with the code. Please check the code for this block.');
       }
+    }
     ;
 
 
@@ -175,6 +175,6 @@ export default class TwoColumnEmbed extends Component {
         </InspectorControls>
 
       </Fragment>
-    )
+    );
   }
 }

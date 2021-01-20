@@ -1,9 +1,9 @@
 import React from 'react';
-import BaseBlock from "../../BaseBlock";
-import { ServerSideRender } from "@wordpress/components";
+import BaseBlock from '../../BaseBlock';
+import { ServerSideRender } from '@wordpress/components';
 import { Preview } from '../../../components/Preview/js/Preview';
-import Inforequest from "./Inforequest";
-import Transform from "./Transform";
+import Inforequest from './Inforequest';
+import Transform from './Transform';
 
 
 
@@ -95,21 +95,21 @@ export class InforequestBlock extends BaseBlock {
               {...attributes}
               onValueChange={onValueChange}
             />,
-              <Preview showBar={isSelected}>
-                <ServerSideRender
-                  block={'planet4-gpnl-blocks/' + this.blockNameKebabCase}
-                  attributes={attributes}
-                />
-              </Preview>
-              ]
-          )
+            <Preview showBar={isSelected}>
+              <ServerSideRender
+                block={'planet4-gpnl-blocks/' + this.blockNameKebabCase}
+                attributes={attributes}
+              />
+            </Preview>
+          ]
+          );
         } else {
           return (
             <ServerSideRender
               block={'planet4-gpnl-blocks/' + this.blockNameKebabCase}
               attributes={attributes}
             />
-          )}
+          );}
       }),
 
 
@@ -117,5 +117,5 @@ export class InforequestBlock extends BaseBlock {
       save: () => null,
 
     });
-  };
+  }
 }

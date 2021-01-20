@@ -25,6 +25,9 @@ module.exports = {
     // assets for the two-column-embed block
     'two-column-embed': './assets/src/blocks/TwoColumnEmbed/scss/two-column-embed.scss',
 
+    // assets for the inforequest block
+    inforequestHelper: './assets/src/blocks/Inforequest/js/InforequestHelper.js',
+
     heroImageRendering: './assets/src/blocks/HeroImage/js/heroImageRendering.js',
 
     // Separate css files are generated for the blocks so they can be used only when required on public pages.
@@ -61,11 +64,13 @@ module.exports = {
       {
         test: /\.(scss|css)$/,
         use: [
-          {
-            loader: MiniCssExtractPlugin.loader
-          },
+          // Extract CSS files from build
+          MiniCssExtractPlugin.loader,
+          // Turn css into CommonJS
           'css-loader',
+          // Autoprefix using postCSS
           'postcss-loader',
+          // Sass -> css
           'sass-loader'
         ]
       }
@@ -76,7 +81,6 @@ module.exports = {
     // extract css into dedicated file
     new MiniCssExtractPlugin({
       chunkFilename: '[id].min.css',
-      ignoreOrder: false, // Enable to remove warnings about conflicting order
       filename: './[name].min.css'
     }),
     new DependencyExtractionWebpackPlugin()

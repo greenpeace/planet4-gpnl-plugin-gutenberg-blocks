@@ -3,17 +3,17 @@ import $ from 'jquery';
 $(document).ready(function () {
 
   // this will get the address object that is inserted with the wp_localize_script() function in the controller
-  var address_object = 'get_address_object';
+  let address_object = 'get_address_object';
 
-  var zipcodeInput = document.getElementById('postal-code');
-  var houseNoInput = document.getElementById('housenumber');
+  let zipcodeInput = document.getElementById('postal-code');
+  let houseNoInput = document.getElementById('housenumber');
 
   $('#housenumber').focusout(function () {
 
-    var zipcodeValue = zipcodeInput.value;
-    var houseNoValue = houseNoInput.value;
+    let zipcodeValue = zipcodeInput.value;
+    let houseNoValue = houseNoInput.value;
 
-    var ajax_values = {
+    let ajax_values = {
       action: 'get_address',
       zipcode: zipcodeValue,
       house_no: houseNoValue,
@@ -21,7 +21,7 @@ $(document).ready(function () {
     };
 
     // validate zipcode and house-number and only make ajax call when valid.
-    var zipRegex = /^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i;
+    let zipRegex = /^[1-9][0-9]{3}[\s]?[A-Za-z]{2}$/i;
     if ( zipRegex.test(zipcodeValue) === true && !isNaN(houseNoValue) ) {
 
       // Do a ajax call to the wp_admin admin_ajax.php,
@@ -32,8 +32,8 @@ $(document).ready(function () {
         data: ajax_values,
         success: function (t) {
 
-          var streetInput = $('#street');
-          var cityInput = $('#city');
+          let streetInput = $('#street');
+          let cityInput = $('#city');
 
           streetInput.val(t.data.cUrlresult.result.straat);
           cityInput.val(t.data.cUrlresult.result.woonplaats);

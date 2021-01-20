@@ -26,11 +26,11 @@ export default class InputField extends Component {
 	handleOnBlur() {
 
 		// Run the onBlur if defined.
-		this.props.onBlur ? this.props.onBlur() : '';
+		this.props.onBlur() ? this.props.onBlur : '';
 
 		// By default validation is done onBlur. If you don't want this use "validateOnBlur={false}"
 		if (this.props.validateOnBlur === true || typeof this.props.validateOnBlur === 'undefined') {
-			this.handleIsValid()
+			this.handleIsValid();
 		}
 	}
 

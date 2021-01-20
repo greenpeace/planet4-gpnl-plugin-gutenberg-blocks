@@ -1,56 +1,56 @@
 import React from 'react';
-import BaseBlock from "../../BaseBlock";
+import BaseBlock from '../../BaseBlock';
 import { Icon } from '@wordpress/components';
-import { Testimonial } from "./Testimonial";
+import { Testimonial } from './Testimonial';
 
 export class TestimonialBlock extends BaseBlock {
 
-	constructor() {
-		super();
+  constructor() {
+    super();
 
-		// Setup references to external functions
-		const {__} = wp.i18n;
-		const { registerBlockType } = wp.blocks;
-		const blockNameKebabCase = this.blockNameKebabCase;
+    // Setup references to external functions
+    const {__} = wp.i18n;
+    const { registerBlockType } = wp.blocks;
+    const blockNameKebabCase = this.blockNameKebabCase;
 
 
-		// Register the block
-		registerBlockType('planet4-gpnl-blocks/' + this.blockNameLowerCase, {
-			title: this.blockName,
-			category: 'planet4-gpnl-blocks',
+    // Register the block
+    registerBlockType('planet4-gpnl-blocks/' + this.blockNameLowerCase, {
+      title: this.blockName,
+      category: 'planet4-gpnl-blocks',
       icon: <Icon icon="buddicons-buddypress-logo" />,
-			keywords: [
-				__(this.blockName),
+      keywords: [
+        __(this.blockName),
         __('aanbeveling'),
         __('citaat'),
-			],
-			attributes: {
+      ],
+      attributes: {
         title: {
           type: 'string',
         },
-				name: {
-					type: 'string',
-				},
+        name: {
+          type: 'string',
+        },
         content: {
           type: 'string',
         },
-				image_id: {
-					type: 'integer'
-				},
-				image_url: {
-					type: 'string',
-				},
+        image_id: {
+          type: 'integer'
+        },
+        image_url: {
+          type: 'string',
+        },
         image_right: {
 				  type: 'boolean', // Reverse the order (set image on right hand side on large displays)
           default: false
         }
-			},
+      },
 
       edit({
-          attributes, 		    // - The block's attributes
-          setAttributes,    	// - Method to set the attributes
-          isSelected        	// - Handy flag to toggle the edit view
-        })
+        attributes, 		    // - The block's attributes
+        setAttributes,    	// - Method to set the attributes
+        isSelected        	// - Handy flag to toggle the edit view
+      })
       {
 
         function handleValueChange(value) {
@@ -73,7 +73,7 @@ export class TestimonialBlock extends BaseBlock {
         />;
       },
 
-			save: () => null,
-		});
-	};
+      save: () => null,
+    });
+  }
 }

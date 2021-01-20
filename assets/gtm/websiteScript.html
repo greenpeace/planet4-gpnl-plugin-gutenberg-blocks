@@ -1,0 +1,67 @@
+<iframe src="https://steun.greenpeace.nl/nieuwsbrief/" style="height:0;width:0;top:0;left:0;border:0;margin:0;" title="formsuiteinclude"></iframe>
+<script>
+  var childOrigin = 'https://steun.greenpeace.nl';
+  var pollTime = 2000;
+  var pollInterval = 150;
+  var sendInitialMessage = true;
+  var localCookie = null;
+  var iframeSource;
+  var mergedCookie = null;
+
+  // P4Script
+  if (typeof window.jQuery !== 'undefined') {
+    jQuery(document).ready(function () {
+      var messagesHandler = function (event) {
+
+        if (event.origin !== childOrigin) {
+          return;
+        }
+        if (event.data.event !== 'cookieLoad' && event.data.event !== 'cookieChange') {
+          return;
+        }
+
+        if (event.data.event === 'cookieLoad') {
+          // Send event that parent is ready
+          iframeSource = event.source;
+
+          localCookie = readFullCookie();
+          if (event.data.cookie === localCookie) {
+            return;
+          }
+
+          mergedCookie = determineCookieValue(localCookie, event.data.cookie);
+          setCookies(mergedCookie);
+
+          //Only start polling the parent localCookie when cookies are not equal
+          var cookieLoadPoller = function () {
+            // Stop polling if pollTime reached
+            pollTime -= pollInterval;
+            if (pollTime <= 0) {
+              window.clearInterval(cookieLoadPoll);
+            }
+
+            localCookie = readFullCookie();
+
+            //  send initial message only once
+            if (sendInitialMessage) {
+              event.source.postMessage({
+                event: 'cookieLoad',
+                cookie: localCookie
+              }, event.origin);
+
+              sendInitialMessage = false;
+              window.clearInterval(cookieLoadPoll);
+            }
+          };
+          // start sending parent cookies
+          var cookieLoadPoll = window.setInterval(cookieLoadPoller, pollInterval);
+        }
+      };
+      // Start listening for messages from child frame
+      window.addEventListener('message', messagesHandler);
+    }());
+    jQuery('#hidecookie').on('click', function(){sendCookieChange()});
+    jQuery('#necessary_cookies').on('change',  function(){sendCookieChange()});
+    jQuery('#all_cookies').on('change', function(){sendCookieChange()});
+  }
+</script>

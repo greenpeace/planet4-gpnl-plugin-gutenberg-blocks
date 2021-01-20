@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {RichText, MediaUpload, MediaUploadCheck, InspectorControls, BlockControls} from "@wordpress/editor";
+import {RichText, MediaUpload, MediaUploadCheck, InspectorControls, BlockControls} from '@wordpress/editor';
 import {Button, PanelBody, RangeControl } from '@wordpress/components';
-import variables from "../../../base/_variables_gpnl.scss";
-import PdfImage from './PdfImage.js'
+import variables from '../../../base/_variables_gpnl.scss';
+import PdfImage from './PdfImage.js';
 
 export default class PdfEmbed extends Component {
 
@@ -44,9 +44,9 @@ export default class PdfEmbed extends Component {
       if (document_id) {
         return (
           <div style={{
-            minHeight: "inherit",
-            overflow: "hidden",
-            backgroundSize: "cover",
+            minHeight: 'inherit',
+            overflow: 'hidden',
+            backgroundSize: 'cover',
           }}>
             <BlockControls>
               <div className={'components-toolbar'}>
@@ -61,7 +61,7 @@ export default class PdfEmbed extends Component {
           <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '400px', backgroundColor: 'grey'}}>
             <Button
               onClick={openEvent}
-              style={{position: "absolute", top: "50%", left: "50%", transform: 'translateX(-50%) translateY(-50%)'}}
+              style={{position: 'absolute', top: '50%', left: '50%', transform: 'translateX(-50%) translateY(-50%)'}}
               className="btn btn-large btn-primary">
               selecteer een pdf
             </Button>
@@ -71,7 +71,7 @@ export default class PdfEmbed extends Component {
     };
 
     return ([
-      <div className={''} style={{maxWidth: "100%", margin: "0"}}>
+      <div className={''} style={{maxWidth: '100%', margin: '0'}}>
         <MediaUploadCheck>
           <MediaUpload
             onSelect={onSelectMedia}
@@ -92,7 +92,7 @@ export default class PdfEmbed extends Component {
           />
         </PanelBody>
       </InspectorControls>
-    ])
+    ]);
   }
 }
 

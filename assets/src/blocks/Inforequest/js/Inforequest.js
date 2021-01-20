@@ -1,6 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import {RichText, MediaUpload, MediaUploadCheck, InspectorControls, BlockControls} from "@wordpress/editor";
-import {TextControl, TextareaControl, SelectControl, CheckboxControl, RangeControl, Button, PanelBody, ToggleControl, FocalPointPicker} from '@wordpress/components';
+import {TextControl, TextareaControl, SelectControl} from '@wordpress/components';
 
 
 export default class Inforequest extends Component {
@@ -28,12 +27,12 @@ export default class Inforequest extends Component {
 
     return ([
       <Fragment>
-          <TextControl
-            label={'Titel van het formulier'}
-            onChange={onValueChange.bind('formtitle')}
-            value={formtitle}
-            placeholder={'Formuliertitel'}
-          />
+        <TextControl
+          label={'Titel van het formulier'}
+          onChange={onValueChange.bind('formtitle')}
+          value={formtitle}
+          placeholder={'Formuliertitel'}
+        />
         <TextControl
           label={'Benaming van het aangevraagde'}
           onChange={onValueChange.bind('itemtitle')}
@@ -123,6 +122,6 @@ export default class Inforequest extends Component {
           ] }
         />
       </Fragment>
-    ])
+    ]);
   }
 }

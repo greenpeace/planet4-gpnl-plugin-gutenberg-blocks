@@ -1,13 +1,13 @@
 ( function( wp ) {
-  var registerPlugin = wp.plugins.registerPlugin;
-  var PluginSidebar = wp.editPost.PluginSidebar;
-  var el = wp.element.createElement;
-  var Text = wp.components.TextControl;
-  var withSelect = wp.data.withSelect;
-  var withDispatch = wp.data.withDispatch;
-  var compose = wp.compose.compose;
+  let registerPlugin = wp.plugins.registerPlugin;
+  let PluginSidebar = wp.editPost.PluginSidebar;
+  let el = wp.element.createElement;
+  let Text = wp.components.TextControl;
+  let withSelect = wp.data.withSelect;
+  let withDispatch = wp.data.withDispatch;
+  let compose = wp.compose.compose;
 
-  var MetaBlockField = compose(
+  let MetaBlockField = compose(
     withDispatch( function( dispatch ) {
       return {
         setMetaFieldValue: function( value ) {

@@ -3,25 +3,17 @@
 		"browser": true,
 		"es6": true,
 		"jquery": true,
-		"amd": true,
-		"node": true
+		"jest": true
 	},
 	"extends": [
-//		"eslint:recommended"
-//		"plugin:@wordpress/eslint-plugin/recommended"
+		"eslint:recommended",
+		"plugin:react/recommended"
 	],
-	"parserOptions": {
-		"ecmaVersion": 2018,
-		"sourceType": "module",
-		"ecmaFeatures": {
-			"jsx": true
-		}
-	},
 	"rules": {
-//		"indent": [
-//			"error",
-//			2
-//		],
+		"indent": [
+			"error",
+			2
+		],
 		"linebreak-style": [
 			"error",
 			"unix"
@@ -42,19 +34,23 @@
 			"error",
 			"always"
 		],
-		"new-cap": "error"
+		"new-cap": "error",
+		"no-var": 1
+	},
+	"parserOptions": {
+		"ecmaVersion": 2018,
+		"ecmaFeatures": {
+			"jsx": true,
+			"modules": true
+		},
+		"sourceType": "module"
 	},
 	"globals": {
+		"wp": true,
+		"page": true,
+		"browser": true,
+		"window": true,
 		"$": "writable",
-		"formconfig": "writable",
-		"form_config": "writable",
-		"Vue": "writable",
-		"fbq": "writable",
-		"VueFormWizard": "writable",
-		"dataLayer": "writable",
-		"gtm_products": "writable",
-		"donationformVue": "writable",
-		"clang": "writable",
 		"moment": "writable",
 		"L": "writable"
 	}
