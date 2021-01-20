@@ -64,11 +64,13 @@ module.exports = {
       {
         test: /\.(scss|css)$/,
         use: [
-          {
-            loader: MiniCssExtractPlugin.loader
-          },
+          // Extract CSS files from build
+          MiniCssExtractPlugin.loader,
+          // Turn css into CommonJS
           'css-loader',
+          // Autoprefix using postCSS
           'postcss-loader',
+          // Sass -> css
           'sass-loader'
         ]
       }
@@ -79,7 +81,6 @@ module.exports = {
     // extract css into dedicated file
     new MiniCssExtractPlugin({
       chunkFilename: '[id].min.css',
-      ignoreOrder: false, // Enable to remove warnings about conflicting order
       filename: './[name].min.css'
     }),
     new DependencyExtractionWebpackPlugin()
