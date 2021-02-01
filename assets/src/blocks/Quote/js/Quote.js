@@ -45,7 +45,7 @@ export class Quote extends Component {
               />
             </MediaUploadCheck>
           </div>
-          <div class="col-10">
+          <div className="col-10">
             <RichText
               formattingControls={ [] }
               onChange={this.props.onQuoteChange}

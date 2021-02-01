@@ -1,6 +1,5 @@
 import React from 'react';
 import BaseBlock from '../../BaseBlock';
-import {ServerSideRender} from '@wordpress/components';
 
 export class NoindexBlock extends BaseBlock {
 
@@ -9,7 +8,7 @@ export class NoindexBlock extends BaseBlock {
 
     // Setup references to external functions
     const {__} = wp.i18n;
-    const { registerBlockType } = wp.blocks;
+    const {registerBlockType} = wp.blocks;
     const blockNameKebabCase = this.blockNameKebabCase;
 
     // Register the block
@@ -27,9 +26,11 @@ export class NoindexBlock extends BaseBlock {
       ],
       attributes: null,
 
-      edit( ) {
+      edit() {
         return <h4 style={{'color': 'red'}}>
-                  Deze pagina wordt met dit blok 'verborgen'. Gebruik dit enkel voor dingen als kopie-pagina's voor petities en speciale pagina's voor mailmarketing. Wat dit doet? Een instructie aan zoekmachines om deze pagina niet te indexeren. Ook worden alle categorieën en tags verwijderd.
+          Deze pagina wordt met dit blok 'verborgen'. Gebruik dit enkel voor dingen als kopie-pagina's voor petities en
+          speciale pagina's voor mailmarketing. Wat dit doet? Een instructie aan zoekmachines om deze pagina niet te
+          indexeren. Ook worden alle categorieën en tags verwijderd.
         </h4>;
       },
 

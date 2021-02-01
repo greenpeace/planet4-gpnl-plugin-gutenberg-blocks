@@ -1,7 +1,7 @@
 import React from 'react';
 import BaseBlock from '../../BaseBlock';
-import { Icon } from '@wordpress/components';
-import { Testimonial } from './Testimonial';
+import {Icon} from '@wordpress/components';
+import {Testimonial} from './Testimonial';
 
 export class TestimonialBlock extends BaseBlock {
 
@@ -10,7 +10,7 @@ export class TestimonialBlock extends BaseBlock {
 
     // Setup references to external functions
     const {__} = wp.i18n;
-    const { registerBlockType } = wp.blocks;
+    const {registerBlockType} = wp.blocks;
     const blockNameKebabCase = this.blockNameKebabCase;
 
 
@@ -18,7 +18,7 @@ export class TestimonialBlock extends BaseBlock {
     registerBlockType('planet4-gpnl-blocks/' + this.blockNameLowerCase, {
       title: this.blockName,
       category: 'planet4-gpnl-blocks',
-      icon: <Icon icon="buddicons-buddypress-logo" />,
+      icon: <Icon icon="buddicons-buddypress-logo"/>,
       keywords: [
         __(this.blockName),
         __('aanbeveling'),
@@ -41,7 +41,7 @@ export class TestimonialBlock extends BaseBlock {
           type: 'string',
         },
         image_right: {
-				  type: 'boolean', // Reverse the order (set image on right hand side on large displays)
+          type: 'boolean', // Reverse the order (set image on right hand side on large displays)
           default: false
         }
       },
@@ -50,8 +50,7 @@ export class TestimonialBlock extends BaseBlock {
         attributes, 		    // - The block's attributes
         setAttributes,    	// - Method to set the attributes
         isSelected        	// - Handy flag to toggle the edit view
-      })
-      {
+      }) {
 
         function handleValueChange(value) {
           setAttributes({[this]: value});

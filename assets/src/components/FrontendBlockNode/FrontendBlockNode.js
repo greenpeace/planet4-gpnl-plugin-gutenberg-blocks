@@ -1,5 +1,5 @@
 import {Component} from '@wordpress/element';
-
+import React from 'react';
 /**
  * This component is used in the `save()` method of `registerBlock`,
  * via the `frontendRendered` function, to render React blocks in the frontend.
