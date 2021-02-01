@@ -1,7 +1,9 @@
-import React, { Component } from 'react';
-import { ServerSideRender } from '@wordpress/components';
-const { RichText, MediaUpload , MediaUploadCheck } = wp.editor;
-const { Button } = wp.components;
+import React, {Component} from 'react';
+import {ServerSideRender} from '@wordpress/components';
+import PropTypes from 'prop-types';
+
+const {RichText, MediaUpload, MediaUploadCheck} = wp.editor;
+const {Button} = wp.components;
 
 export class Quote extends Component {
 
@@ -9,22 +11,35 @@ export class Quote extends Component {
     super(props);
   }
 
+  static get propTypes() {
+    return {
+      'image_id': PropTypes.string,
+      'image_url': PropTypes.string,
+      'onSelectImage': PropTypes.func,
+      'isSelected': PropTypes.bool,
+      'onQuoteChange': PropTypes.func,
+      'onQuoteeChange': PropTypes.func,
+      'quote': PropTypes.string,
+      'quotee': PropTypes.string,
+      'blockNameKebabCase': PropTypes.string
+    };
+  }
+
   renderEdit() {
     const getImageOrButton = (openEvent) => {
-      if(this.props.image_id) {
+      if (this.props.image_id) {
         return (
           <img
-            src={ this.props.image_url }
-            onClick={ openEvent }
+            src={this.props.image_url}
+            onClick={openEvent}
             className="quote__img"
           />
         );
-      }
-      else {
+      } else {
         return (
           <div className="button-container">
             <Button
-              onClick={ openEvent }
+              onClick={openEvent}
               className="button">
               + image
             </Button>
@@ -33,7 +48,7 @@ export class Quote extends Component {
       }
     };
     return (
-		  <div className="container">
+      <div className="container">
         <div className="row quote quote--dark">
           <div className="col-2">
             <MediaUploadCheck>
@@ -41,13 +56,13 @@ export class Quote extends Component {
                 type="image"
                 onSelect={this.props.onSelectImage}
                 value={this.props.image_id}
-                render={ ({ open }) => getImageOrButton(open) }
+                render={({open}) => getImageOrButton(open)}
               />
             </MediaUploadCheck>
           </div>
           <div className="col-10">
             <RichText
-              formattingControls={ [] }
+              formattingControls={[]}
               onChange={this.props.onQuoteChange}
               value={this.props.quote}
               tagName="p"
@@ -55,7 +70,7 @@ export class Quote extends Component {
               placeholder="enter a quote"
             />
             <RichText
-              formattingControls={ [] }
+              formattingControls={[]}
               onChange={this.props.onQuoteeChange}
               value={this.props.quotee}
               tagName="p"

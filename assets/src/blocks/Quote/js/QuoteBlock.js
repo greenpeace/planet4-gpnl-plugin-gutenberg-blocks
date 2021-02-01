@@ -1,10 +1,17 @@
 import React from 'react';
 import BaseBlock from '../../BaseBlock';
-
+import PropTypes from 'prop-types';
 import {Icon} from './QuoteIcon';
 import {Quote} from './Quote';
 
 export class QuoteBlock extends BaseBlock {
+  static get propTypes() {
+    return {
+      attributes: PropTypes.array,
+      setAttributes: PropTypes.func,
+      isSelected: PropTypes.bool,
+    };
+  }
 
   constructor() {
     super();
@@ -13,7 +20,6 @@ export class QuoteBlock extends BaseBlock {
     const {__} = wp.i18n;
     const {registerBlockType} = wp.blocks;
     const blockNameKebabCase = this.blockNameKebabCase;
-
 
     // Register the block
     registerBlockType('planet4-gpnl-blocks/' + this.blockNameLowerCase, {
@@ -25,7 +31,6 @@ export class QuoteBlock extends BaseBlock {
         __('citation'),
         __('cite'),
       ],
-      transforms: Transform,
       attributes: {
         quote: {
           type: 'string',

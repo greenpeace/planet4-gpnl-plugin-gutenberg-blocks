@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import { RadioControl } from '@wordpress/components';
 
@@ -20,7 +21,7 @@ export class LayoutSelector extends Component {
       {
         this.props.options.map(layoutOption => {
           return (
-            <label className='LayoutOption'>
+            <label key={layoutOption.id} className='LayoutOption'>
               <div style={{display: 'flex'}}>
                 <RadioControl
                   name={'layoutOption'}
@@ -49,3 +50,4 @@ export class LayoutSelector extends Component {
     </div>;
   }
 }
+/* eslint-enable */

@@ -1,6 +1,6 @@
 import React from 'react';
 import BaseBlock from '../../BaseBlock';
-import { ServerSideRender } from '@wordpress/components';
+import {ServerSideRender} from '@wordpress/components';
 
 export class EducationcoversBlock extends BaseBlock {
 
@@ -9,8 +9,7 @@ export class EducationcoversBlock extends BaseBlock {
 
     // Setup references to external functions
     const {__} = wp.i18n;
-    const { registerBlockType } = wp.blocks;
-    const blockNameKebabCase = this.blockNameKebabCase;
+    const {registerBlockType} = wp.blocks;
 
     // Register the block
     registerBlockType('planet4-gpnl-blocks/' + this.blockNameLowerCase, {
@@ -22,10 +21,9 @@ export class EducationcoversBlock extends BaseBlock {
         __('educatie'),
         __('overzicht'),
       ],
-      transforms: Transform,
       attributes: null,
       edit: () => {
-			  return (
+        return (
           <ServerSideRender
             block={'planet4-gpnl-blocks/' + this.blockNameKebabCase}
           />

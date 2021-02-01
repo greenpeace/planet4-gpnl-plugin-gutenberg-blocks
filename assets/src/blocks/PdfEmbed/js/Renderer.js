@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import '../scss/App.css';
 import Viewer from './Viewer.js';
 import Toolbar from './Toolbar.js';
@@ -9,6 +9,11 @@ import pdfjsLib from 'pdfjs-dist/webpack';
 
 
 class Renderer extends Component {
+  static get propTypes() {
+    return {
+      'url': PropTypes.string,
+    };
+  }
 
   componentDidMount() {
     let loadingTask = pdfjsLib.getDocument(this.props.url);
@@ -21,12 +26,12 @@ class Renderer extends Component {
       console.error(`Error during ${this.props.url} loading: ${reason}`);
     });
   }
-  zoomIn(e) {
+  zoomIn() {
     this.viewer.setState({
       scale: this.viewer.state.scale * 1.1
     });
   }
-  zoomOut(e) {
+  zoomOut() {
     this.viewer.setState({
       scale: this.viewer.state.scale / 1.1
     });

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {Component} from '@wordpress/element';
 import React from 'react';
 /**
@@ -14,3 +15,4 @@ export class FrontendBlockNode extends Component {
       data-attributes={JSON.stringify(this.props.attributes)}/>;
   }
 }
+/* eslint-enable */

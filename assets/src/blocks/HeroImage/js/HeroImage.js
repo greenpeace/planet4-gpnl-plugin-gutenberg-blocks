@@ -1,11 +1,31 @@
 import React, {Component} from 'react';
 import {RichText, MediaUpload, MediaUploadCheck, InspectorControls, BlockControls} from '@wordpress/editor';
-import {Button, PanelBody, ToggleControl, FocalPointPicker, Toolbar} from '@wordpress/components';
+import {Button, PanelBody, ToggleControl, FocalPointPicker} from '@wordpress/components';
 import {URLInput} from '@wordpress/block-editor';
-import variables from '../../../base/_variables_gpnl.scss';
+// import variables from '../../../base/_variables_gpnl.scss';
+import PropTypes from 'prop-types';
 
 
 export default class HeroImage extends Component {
+
+  static get propTypes() {
+    return {
+      'title': PropTypes.string,
+      'description': PropTypes.string,
+      'link_text': PropTypes.string,
+      'link_url': PropTypes.string,
+      'image': PropTypes.string,
+      'image_url': PropTypes.string,
+      'video': PropTypes.string,
+      'small': PropTypes.string,
+      'focus_image': PropTypes.string,
+      'setAttributes': PropTypes.func,
+      'onValueChange': PropTypes.func,
+      'onSelectImage': PropTypes.func,
+      'onSelectVideo': PropTypes.func,
+      'onFocalPointChange': PropTypes.func,
+    };
+  }
 
   render() {
 
@@ -17,7 +37,6 @@ export default class HeroImage extends Component {
       image,
       image_url,
       video,
-      video_url,
       small,
       focus_image,
       setAttributes,
@@ -192,7 +211,7 @@ export default class HeroImage extends Component {
       heroClass = 'hero hero__small';
     }
     return ([
-      <div className={heroClass}
+      <div key={this.id} className={heroClass}
         style={{maxWidth: '100%', margin: '0'}}>
         <MediaUploadCheck>
           <MediaUpload
@@ -213,7 +232,7 @@ export default class HeroImage extends Component {
         {image !== 0 ? removeImageButton() : ''}
         {video !== 0 ? removeVideoButton() : ''}
       </div>,
-      <InspectorControls>
+      <InspectorControls key={this.id}>
         <PanelBody title={'Height'}>
           <ToggleControl
             label={'small header'}

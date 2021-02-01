@@ -1,6 +1,6 @@
 import {createBlock} from '@wordpress/blocks';
 
-function Transform() {
+function transform() {
 
   return (
     {
@@ -141,4 +141,4 @@ function getImage(imageID){
   return createBlock( 'core/image', {'id':parseInt(imageID),'url':imagedata.source_url} );
 }
 
-export default Transform();
+export default transform();

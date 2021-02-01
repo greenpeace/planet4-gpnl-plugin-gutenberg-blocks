@@ -1,12 +1,12 @@
-import React, {Component, Fragment} from 'react';
+import React, {Fragment} from 'react';
 import BaseBlock from '../../BaseBlock';
-import {Button, DateTimePicker, TimePicker, PanelRow, TextareaControl} from '@wordpress/components';
-import { RawHTML } from '@wordpress/element';
+import {TextareaControl, TimePicker} from '@wordpress/components';
+import {RawHTML} from '@wordpress/element';
 
 
 const {__} = wp.i18n; // Import __() from wp.i18n
-const {MediaUpload, RichText, PlainText, InspectorControls,} = wp.editor;
-const {PanelBody, TextControl, SelectControl, } = wp.components;
+const {MediaUpload, PlainText, InspectorControls,} = wp.editor;
+const {PanelBody, TextControl, SelectControl,} = wp.components;
 
 // I am trying to create a LiveBlog block which contains all items of the blog.
 export class LiveblogBlock extends BaseBlock {
@@ -16,7 +16,6 @@ export class LiveblogBlock extends BaseBlock {
     super();
 
     const {registerBlockType} = wp.blocks;
-    const blockNameKebabCase = this.blockNameKebabCase;
 
     registerBlockType('planet4-gpnl-blocks/' + this.blockNameLowerCase, {
       title: this.blockName,
@@ -107,11 +106,11 @@ export class LiveblogBlock extends BaseBlock {
 
             return (
 
-              <div className="liveblog-item">
+              <div className="liveblog-item" key={this.id}>
                 <p>
-									  <span>
+                  <span>
 										Item {Number(liveblog.index) + 1}
-									  </span>
+                  </span>
                   {' '}
                   (
                   <a
@@ -119,7 +118,7 @@ export class LiveblogBlock extends BaseBlock {
                     onClick={() => {
                       let result = confirm('Are you sure you want to delete this item?');
                       if (!result) {
-                        e.preventDefault();
+                        e.preventDefault(); // eslint-disable-line
                       } else {
                         const newItems = items
                           .filter(item => item.index != liveblog.index)
@@ -254,7 +253,7 @@ export class LiveblogBlock extends BaseBlock {
           });
         return ([
           inspectorControls,
-          <div className={props.className}>
+          <div className={props.className} key={this.id}>
             <button
               // className="add-more-liveblog"
               onClick={() =>
@@ -292,7 +291,7 @@ export class LiveblogBlock extends BaseBlock {
         const itemsList = items.map((liveblog) => {
 
           let moment;
-          if (liveblog.datetime === ''){
+          if (liveblog.datetime === '') {
             let currentdate = new Date();
             moment = currentdate.toString();
           } else {
@@ -329,7 +328,9 @@ export class LiveblogBlock extends BaseBlock {
             </section>
 
           );
-        } else {return null;}
+        } else {
+          return null;
+        }
       }
     });
   }

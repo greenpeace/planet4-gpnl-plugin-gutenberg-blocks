@@ -2,8 +2,16 @@ import React from 'react';
 import BaseBlock from '../../BaseBlock';
 import {Icon} from '@wordpress/components';
 import {Testimonial} from './Testimonial';
+import PropTypes from 'prop-types';
 
 export class TestimonialBlock extends BaseBlock {
+  static get propTypes() {
+    return {
+      attributes: PropTypes.array,
+      setAttributes: PropTypes.func,
+      isSelected: PropTypes.bool,
+    };
+  }
 
   constructor() {
     super();

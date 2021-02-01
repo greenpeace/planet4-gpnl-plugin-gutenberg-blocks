@@ -44,7 +44,7 @@ function fullTrim(value, removeWhiteSpace) {
 }
 
 export function isValidEmail(email) {
-  let regExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  let regExp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return regExp.test(String(email).toLowerCase());
 }
 
@@ -75,7 +75,7 @@ export function isValidIban(input) {
     return letter.charCodeAt(0) - 55;
   });
   // final check
-  let checksum = digits.slice(0, 2), 
+  let checksum = digits.slice(0, 2),
     fragment;
   for (let offset = 2; offset < digits.length; offset += 7) {
     fragment = String(checksum) + digits.substring(offset, offset + 7);

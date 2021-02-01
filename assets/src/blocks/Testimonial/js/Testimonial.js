@@ -1,13 +1,29 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {PanelBody, ServerSideRender, ToggleControl} from '@wordpress/components';
 import {RichText, MediaUpload, MediaUploadCheck, InspectorControls, BlockControls} from '@wordpress/editor';
 
 const {Button} = wp.components;
 
 export class Testimonial extends Component {
-
   constructor(props) {
     super(props);
+  }
+
+  static get propTypes() {
+    return {
+      'title': PropTypes.string,
+      'name': PropTypes.string,
+      'content': PropTypes.string,
+      'image_id': PropTypes.string,
+      'image_url': PropTypes.string,
+      'image_right': PropTypes.string,
+      'handleValueChange': PropTypes.func,
+      'onSelectImage': PropTypes.func,
+      'description': PropTypes.string,
+      'isSelected': PropTypes.bool,
+      'blockNameKebabCase': PropTypes.string,
+    };
   }
 
   renderEdit() {
