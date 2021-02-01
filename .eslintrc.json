@@ -40,9 +40,7 @@
 			"always"
 		],
 		"new-cap": "error",
-		"no-var": 1,
-		"react/prop-types": "warn",
-		"no-unused-vars": "warn"
+		"no-var": 1
 	},
 	"parserOptions": {
 		"ecmaVersion": 2018,
