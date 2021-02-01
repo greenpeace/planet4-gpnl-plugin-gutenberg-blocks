@@ -3,7 +3,6 @@ import BaseBlock from '../../BaseBlock';
 import { ServerSideRender } from '@wordpress/components';
 import { Preview } from '../../../components/Preview/js/Preview';
 import Inforequest from './Inforequest';
-import Transform from './Transform';
 
 
 

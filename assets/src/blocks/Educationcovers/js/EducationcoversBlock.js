@@ -1,7 +1,6 @@
 import React from 'react';
 import BaseBlock from '../../BaseBlock';
 import { ServerSideRender } from '@wordpress/components';
-import Transform from './Transform';
 
 export class EducationcoversBlock extends BaseBlock {
 
