@@ -9,6 +9,11 @@
 		"eslint:recommended",
 		"plugin:react/recommended"
 	],
+	"settings": {
+		"react": {
+			"version": "detect"
+		}
+	},
 	"rules": {
 		"indent": [
 			"error",
@@ -35,7 +40,9 @@
 			"always"
 		],
 		"new-cap": "error",
-		"no-var": 1
+		"no-var": 1,
+		"react/prop-types": "warn",
+		"no-unused-vars": "warn"
 	},
 	"parserOptions": {
 		"ecmaVersion": 2018,
