@@ -1,6 +1,7 @@
 import React from 'react';
 import Inspector from './Inspector';
 import Controls from './Controls';
+import PropTypes from 'prop-types';
 
 /**
  * WordPress dependencies
@@ -18,6 +19,15 @@ const TEMPLATE = [ [ 'core/paragraph', { placeholder: 'Voeg content toe (dit ged
  * Block edit function
  */
 export default class Edit extends Component {
+  static get propTypes() {
+    return {
+      attributes: PropTypes.array,
+      setAttributes: PropTypes.func,
+      isSelected: PropTypes.bool,
+      title: PropTypes.string
+    };
+  }
+
   render() {
 
     const { attributes, isSelected, setAttributes } = this.props;

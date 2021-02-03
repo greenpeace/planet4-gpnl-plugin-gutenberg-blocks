@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, {Component, Fragment} from 'react';
 import {RichText, MediaUpload, MediaUploadCheck, InspectorControls, BlockControls} from '@wordpress/editor';
 import {
@@ -178,3 +179,4 @@ export default class TwoColumnEmbed extends Component {
     );
   }
 }
+/* eslint-enable */

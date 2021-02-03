@@ -1,3 +1,5 @@
+import React from 'react';
+
 /**
  * WordPress dependencies for the SVG
  */

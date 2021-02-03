@@ -79,7 +79,7 @@ export class FacebookCommentsBlock extends BaseBlock {
           );
         } else {
           return ([this.getHTML({...attributes}),
-            <div style={{backgroundColor: 'f3f3f3', padding: '10px', marginTop: '-60px'}}><em>Hier worden de reacties via Facebook getoond aan de "voorkant".</em></div>]);
+            <div key={this.id} style={{backgroundColor: 'f3f3f3', padding: '10px', marginTop: '-60px'}}><em>Hier worden de reacties via Facebook getoond aan de &#34;voorkant&#34;.</em></div>]);
         }
       },
 

@@ -1,5 +1,5 @@
 import { FrontendBlockNode } from '../components/FrontendBlockNode/FrontendBlockNode';
-
+import React from 'react';
 /**
  * This function is used in the `save()` method of `registerBlock` to
  * render React blocks in the frontend.
@@ -9,6 +9,7 @@ import { FrontendBlockNode } from '../components/FrontendBlockNode/FrontendBlock
  *
  * @param {string} block
  */
+// eslint-disable-next-line react/display-name
 export const frontendRendered = ( block ) => ( attributes, className ) => {
 
   return <FrontendBlockNode

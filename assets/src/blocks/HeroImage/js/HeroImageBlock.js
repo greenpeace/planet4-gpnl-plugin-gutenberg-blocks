@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React from 'react';
 import BaseBlock from '../../BaseBlock';
 import {ServerSideRender} from '@wordpress/components';
 import {Icon} from './HeroImageIcon';
@@ -87,7 +87,7 @@ export class HeroImageBlock extends BaseBlock {
           image_url, video_url
         };
       })(({
-        attributes, setAttributes, isSelected, image_url, video_url
+        attributes, setAttributes, isSelected, image_url
       }) => {
 
         // Functions we want to call while editing to change attributes.

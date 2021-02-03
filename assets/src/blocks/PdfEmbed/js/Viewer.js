@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import { PDFJS as PDFJSViewer } from 'pdfjs-dist/web/pdf_viewer.js';
 import '../scss/Viewer.css';
 import 'pdfjs-dist/web/pdf_viewer.css';
-import pdfjsLib from 'pdfjs-dist/webpack';
-
 
 class Viewer extends Component {
   constructor(props) {
@@ -18,7 +16,7 @@ class Viewer extends Component {
   }
   initEventBus() {
     let eventBus = new PDFJSViewer.EventBus();
-    eventBus.on('pagesinit', (e) => {
+    eventBus.on('pagesinit', (e) => { // eslint-disable-line
       this.setState({
         scale: this._pdfViewer.currentScale
       });
@@ -37,13 +35,14 @@ class Viewer extends Component {
     this._eventBus = eventBus;
   }
   componentDidMount() {
-    let viewerContainer = ReactDOM.findDOMNode(this);
+    let viewerContainer = ReactDOM.findDOMNode(this); // eslint-disable-line
     this._pdfViewer = new PDFJSViewer.PDFViewer({
       container: viewerContainer,
       eventBus: this._eventBus,
     });
   }
-  componentWillUpdate(nextProps, nextState) {
+  // TODO This has to be refactored before React 17
+  UNSAFE_componentWillUpdate(nextProps, nextState) {
     if (this.state.doc !== nextState.doc) {
       this._pdfViewer.setDocument(nextState.doc);
     }

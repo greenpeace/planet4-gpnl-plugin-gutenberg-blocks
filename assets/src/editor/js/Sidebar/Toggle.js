@@ -1,6 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Toggle extends React.Component {
+  static get propTypes() {
+    return {
+      handler: PropTypes.func,
+      state: PropTypes.bool,
+    };
+  }
+
   constructor(props) {
     super(props);
     // This binding is necessary to make `this` work in the callback
