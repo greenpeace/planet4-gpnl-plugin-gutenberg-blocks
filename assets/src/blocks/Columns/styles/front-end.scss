@@ -36,8 +36,9 @@
 
   // Please note this is a selector for the inner blocks (column).
   .wp-block-planet4-gpnl-blocks-column {
+    position: relative;
 
-    &[class*=" col-md"] {
+    &[class*="col-md"] {
       @include medium-and-up {
         padding-bottom: 0;
       }
@@ -58,10 +59,22 @@
       margin-top: 1em;
     }
 
-    &[class*="col"] {
-      margin-top: 16px;
+    &[class*="col"] + [class*="col"] {
+      margin-top: 2em;
+
+      @include large-and-up {
+        margin-top: 0;
+      }
     }
 
+    // Add this class to a child to have it aligned on the bottom on large displays.
+    .align-bottom {
+      @include large-and-up {
+        position: absolute;
+        bottom: 0;
+        margin: 1em 0 0 0;
+      }
+    }
   }
 
   // For when the columns are nested in another columns block.
