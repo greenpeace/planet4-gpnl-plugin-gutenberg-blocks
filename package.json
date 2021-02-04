@@ -1,5 +1,5 @@
 {
-  "name": "planet4-plugin-gutenberg-blocks",
+  "name": "planet4-gpnl-plugin-gutenberg-blocks",
   "description": "Gutenberg blocks plugin for the Planet 4 Wordpress project for the Netherlands",
   "homepage": "https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks#readme",
   "repository": "git@github.com:greenpeace/planet4-gpnl-plugin-gutenberg-blocks.git",
@@ -25,7 +25,8 @@
     "build": "wp-scripts build --config p4-webpack-config.js",
     "lint:css": "wp-scripts lint-style",
     "postinstall": "ln -s -f ../../githooks/commit-msg .git/hooks/commit-msg && chmod +x githooks/commit-msg",
-    "poststart": "ln -s -f ../../githooks/commit-msg .git/hooks/commit-msg && chmod +x githooks/commit-msg",
+    "release": "standard-version --no-verify",
+    "dryrelease": "standard-version --dry-run",
     "lint": "eslint assets --ext .js && stylelint \"assets/child-theme-main/styles/*/*.scss\"",
     "lint:fix": "eslint --fix \"assets/src\" --ext .js && stylelint --fix \"assets/src/*/*.scss\""
   },
@@ -51,6 +52,7 @@
     "prop-types": "^15.7.2",
     "resolve-url-loader": "^3.1.2",
     "sass-loader": "^10.1.1",
+    "standard-version": "^9.1.0",
     "stylelint": "^13.8.0",
     "terser-webpack-plugin": "^2.3.8",
     "url-loader": "^4.1.1"
