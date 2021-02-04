@@ -23,7 +23,7 @@ export default function Save(props) {
 	};
 
 	return (
-			<>
+			<div className={props.attributes.className}>
 				<button type={'button'} className={openButton && 'btn btn-primary'} data-toggle="modal" data-target={'#' + 'modal' + uniqueId}>
 					{openTitle}
 				</button>
@@ -55,6 +55,6 @@ export default function Save(props) {
 						</div>
 					</div>
 				</div>
-			</>
+			</div>
 	);
 };
