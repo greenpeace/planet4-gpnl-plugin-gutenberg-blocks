@@ -31,15 +31,15 @@ export default class Edit extends Component {
 		return (
 				<div className={this.props.attributes.className}>
 					<RichText
-							tagName={'a'}
-							className={'btn btn-priary'}
-							placeholder={'Text to click for opening the modal'}
+							tagName={'button'}
+							className={'btn btn-primary'}
+							placeholder={'Click to open'}
 							value={openTitle}
 							onChange={(value) => setAttributes({openTitle: value})}
 							keepPlaceholderOnFocus={true}
 					/>
 					<div className={'modal-inner'}>
-						<em>Everything inside this container will be shown in the modal.</em>
+						<em>Inside the modal:</em>
 						<InnerBlocks
 								templateLock={false}
 						/>
