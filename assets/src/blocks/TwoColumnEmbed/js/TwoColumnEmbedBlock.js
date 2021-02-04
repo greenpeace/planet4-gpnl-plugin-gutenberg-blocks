@@ -1,7 +1,6 @@
 import React from 'react';
 import BaseBlock from '../../BaseBlock';
 import { ServerSideRender } from '@wordpress/components';
-import { Preview } from '../../../components/Preview/js/Preview';
 const { withSelect } = wp.data;
 import TwoColumnEmbed from './TwoColumnEmbed';
 import { Icon } from './TwoColumnEmbedIcon';

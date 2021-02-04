@@ -1,5 +1,5 @@
 import React from 'react';
-import { Path, SVG, G } from '@wordpress/components';
+import { Path, SVG } from '@wordpress/components';
 
 export default <SVG width="17.672mm" height="23.866mm" clip-rule="evenodd" fill-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" version="1.0" viewBox="0 0 427 577" xmlns="http://www.w3.org/2000/svg">
   <Path class="fil0" d="m17 0h290l120 132v426c0 10-8 19-17 19h-393c-9 0-17-9-17-19v-539c0-11 8-19 17-19z"/>

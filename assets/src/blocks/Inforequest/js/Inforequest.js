@@ -1,8 +1,28 @@
 import React, {Component, Fragment} from 'react';
 import {TextControl, TextareaControl, SelectControl} from '@wordpress/components';
-
+import PropTypes from 'prop-types';
 
 export default class Inforequest extends Component {
+  static get propTypes() {
+    return {
+      'formtitle': PropTypes.string,
+      'itemtitle': PropTypes.string,
+      'mcode1_code': PropTypes.string,
+      'mcode1_label': PropTypes.string,
+      'mcode2_code': PropTypes.string,
+      'mcode2_label': PropTypes.string,
+      'mcode3_code': PropTypes.string,
+      'mcode3_label': PropTypes.string,
+      'mcode4_code': PropTypes.string,
+      'mcode4_label': PropTypes.string,
+      'mcode5_code': PropTypes.string,
+      'mcode5_label': PropTypes.string,
+      'consent': PropTypes.string,
+      'sign': PropTypes.string,
+      'hider': PropTypes.bool,
+      'onValueChange': PropTypes.func
+    };
+  }
 
   render() {
 
@@ -26,7 +46,7 @@ export default class Inforequest extends Component {
     } = this.props;
 
     return ([
-      <Fragment>
+      <Fragment key={this.id}>
         <TextControl
           label={'Titel van het formulier'}
           onChange={onValueChange.bind('formtitle')}

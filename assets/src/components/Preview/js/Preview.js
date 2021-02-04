@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export class Preview extends Component {
+  static get propTypes() {
+    return {
+      showBar: PropTypes.bool,
+      children: PropTypes.any,
+    };
+  }
+
   render() {
     return <div className='Preview'>
       {

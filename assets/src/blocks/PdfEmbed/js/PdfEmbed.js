@@ -1,10 +1,24 @@
 import React, {Component} from 'react';
 import {RichText, MediaUpload, MediaUploadCheck, InspectorControls, BlockControls} from '@wordpress/editor';
 import {Button, PanelBody, RangeControl } from '@wordpress/components';
-import variables from '../../../base/_variables_gpnl.scss';
+// import variables from '../../../base/_variables_gpnl.scss';
 import PdfImage from './PdfImage.js';
+import PropTypes from 'prop-types';
 
 export default class PdfEmbed extends Component {
+
+  static get propTypes() {
+    return {
+      'title': PropTypes.string,
+      'description': PropTypes.string,
+      'document_id': PropTypes.string,
+      'height': PropTypes.string,
+      'onSelectMedia': PropTypes.fu,
+      'onValueChange': PropTypes.fu,
+      'onNumberChange': PropTypes.fu,
+    };
+  }
+
 
   render() {
 
@@ -71,7 +85,7 @@ export default class PdfEmbed extends Component {
     };
 
     return ([
-      <div className={''} style={{maxWidth: '100%', margin: '0'}}>
+      <div className={''} style={{maxWidth: '100%', margin: '0'}} key={this.id}>
         <MediaUploadCheck>
           <MediaUpload
             onSelect={onSelectMedia}
@@ -80,7 +94,7 @@ export default class PdfEmbed extends Component {
           />
         </MediaUploadCheck>
       </div>,
-      <InspectorControls>
+      <InspectorControls key={this.id}>
         <PanelBody title={'Height'}>
           <RangeControl
             label={'Height in pixels'}

@@ -1,5 +1,29 @@
 # Changelog
 
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [2.2.0](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/compare/v2.0.2...v2.2.0) (2021-02-04)
+
+
+### Features
+
+* add bottom align option ([d97a871](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/d97a8713866dffd20a093b2893f3913e8c944e64))
+* add release please and conventional commits ([4a97ac1](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/4a97ac11f267f8ddd3646d1c6ff63d578f96a003))
+* wrapper for modal ([c5ed2cc](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/c5ed2cc2b6832a6520f05741a0c1f6362d31dc39))
+
+
+### Bug Fixes
+
+* add again option for subscribing while authenticated ([2ee3ea4](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/2ee3ea4541f8bffe28edf8a5028889fa48a7a740))
+* add again option for subscribing while authenticated ([fd6ba94](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/fd6ba94bea8d7f15f8e9981bf4532ba779951246))
+* center image position in quote block. ([65faa54](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/65faa5454d5eb249012fb016dbe50e3d0e500619))
+* editor component buttons width, fixed with magic. ([b758e10](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/b758e1046e7af21415425c8ccf9c90d95da3be5b))
+* modal block ([f852879](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/f85287942b8e84a2ef062a439af6ec25a11f1667))
+* save rel="noopener noreferrer" in editor to prevent Wordpress error ([be17a1a](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/be17a1ae1bf348e26bd73706858868dd3c169386))
+* top margins inside columns block. ([15bebed](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/15bebed8605e75817765af213f42e17de8f4eac0))
+* update child theme handle ([f0e7d8a](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/f0e7d8a42812ecb1278d837bc5dc00a355bcfed9))
+* z-index issue of shedding light on top of hero image.  ([8e2d90a](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/8e2d90ad4af767a209b1f893bb3b2525226bd95a))
+
 ## [2.1.0](https://www.github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/compare/v2.0.4...v2.1.0) (2021-01-20)
 
 

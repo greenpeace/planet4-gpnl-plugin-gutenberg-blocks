@@ -1,7 +1,8 @@
 import $ from 'jquery';
 
-$( '.page-template a' ).each(function( index ) {
-  this.addEventListener('click', function(e){
+
+$( '.page-template a' ).each(function( index ) { // eslint-disable-line
+  this.addEventListener('click', function(e){ // eslint-disable-line
     let link = this;
     let linkHTML;
     if ($(link).hasClass('external-link')) {

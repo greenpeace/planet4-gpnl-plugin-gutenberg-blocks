@@ -1,20 +1,25 @@
-import React, {Component } from 'react';
+import React from 'react';
 import BaseBlock from '../../BaseBlock';
-
-import { Icon } from './QuoteIcon';
-import { Quote } from './Quote';
-import Transform from './Transform';
+import PropTypes from 'prop-types';
+import {Icon} from './QuoteIcon';
+import {Quote} from './Quote';
 
 export class QuoteBlock extends BaseBlock {
+  static get propTypes() {
+    return {
+      attributes: PropTypes.array,
+      setAttributes: PropTypes.func,
+      isSelected: PropTypes.bool,
+    };
+  }
 
   constructor() {
     super();
 
     // Setup references to external functions
     const {__} = wp.i18n;
-    const { registerBlockType } = wp.blocks;
+    const {registerBlockType} = wp.blocks;
     const blockNameKebabCase = this.blockNameKebabCase;
-
 
     // Register the block
     registerBlockType('planet4-gpnl-blocks/' + this.blockNameLowerCase, {
@@ -26,7 +31,6 @@ export class QuoteBlock extends BaseBlock {
         __('citation'),
         __('cite'),
       ],
-      transforms: Transform,
       attributes: {
         quote: {
           type: 'string',
@@ -43,18 +47,19 @@ export class QuoteBlock extends BaseBlock {
       },
 
       edit({
-					 attributes, 		// - The block's attributes
-					 setAttributes,    	// - Method to set the attributes
-					 isSelected        	// - Handy flag to toggle the edit view
-				 }
-
-				 ) {
+        attributes, 		// - The block's attributes
+        setAttributes,    	// - Method to set the attributes
+        isSelected        	// - Handy flag to toggle the edit view
+      }
+      ) {
         function onQuoteChange(value) {
           setAttributes({quote: value});
         }
+
         function onQuoteeChange(value) {
           setAttributes({quotee: value});
         }
+
         function onSelectImage(media) {
           setAttributes({
             image_url: media.url,

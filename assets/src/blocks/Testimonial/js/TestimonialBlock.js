@@ -1,16 +1,24 @@
 import React from 'react';
 import BaseBlock from '../../BaseBlock';
-import { Icon } from '@wordpress/components';
-import { Testimonial } from './Testimonial';
+import {Icon} from '@wordpress/components';
+import {Testimonial} from './Testimonial';
+import PropTypes from 'prop-types';
 
 export class TestimonialBlock extends BaseBlock {
+  static get propTypes() {
+    return {
+      attributes: PropTypes.array,
+      setAttributes: PropTypes.func,
+      isSelected: PropTypes.bool,
+    };
+  }
 
   constructor() {
     super();
 
     // Setup references to external functions
     const {__} = wp.i18n;
-    const { registerBlockType } = wp.blocks;
+    const {registerBlockType} = wp.blocks;
     const blockNameKebabCase = this.blockNameKebabCase;
 
 
@@ -18,7 +26,7 @@ export class TestimonialBlock extends BaseBlock {
     registerBlockType('planet4-gpnl-blocks/' + this.blockNameLowerCase, {
       title: this.blockName,
       category: 'planet4-gpnl-blocks',
-      icon: <Icon icon="buddicons-buddypress-logo" />,
+      icon: <Icon icon="buddicons-buddypress-logo"/>,
       keywords: [
         __(this.blockName),
         __('aanbeveling'),
@@ -41,7 +49,7 @@ export class TestimonialBlock extends BaseBlock {
           type: 'string',
         },
         image_right: {
-				  type: 'boolean', // Reverse the order (set image on right hand side on large displays)
+          type: 'boolean', // Reverse the order (set image on right hand side on large displays)
           default: false
         }
       },
@@ -50,8 +58,7 @@ export class TestimonialBlock extends BaseBlock {
         attributes, 		    // - The block's attributes
         setAttributes,    	// - Method to set the attributes
         isSelected        	// - Handy flag to toggle the edit view
-      })
-      {
+      }) {
 
         function handleValueChange(value) {
           setAttributes({[this]: value});

@@ -23,21 +23,21 @@ export default function Save(props) {
 	};
 
 	return (
-			<>
-				<a href="#" className={openButton && 'btn btn-primary'} data-toggle="modal" data-target={'#' + uniqueId}>
+			<div className={props.attributes.className}>
+				<button type={'button'} className={openButton && 'btn btn-primary'} data-toggle="modal" data-target={'#' + 'modal' + uniqueId}>
 					{openTitle}
-				</a>
+				</button>
 
-				<div className="modal fade" id={uniqueId} tabIndex="-1" role="dialog" aria-labelledby={uniqueId + 'Label'} aria-hidden="true">
+				<div className="modal fade" id={'modal' + uniqueId} tabIndex="-1" role="dialog" aria-labelledby={'modal' + uniqueId + 'Label'} aria-hidden="true">
 					<div className="modal-dialog modal-dialog-centered" role="document">
 						<div className="modal-content">
 							{modalTitle &&
-								<div className="modal-header">
-									<h5 className="modal-title" id={uniqueId + 'Label'}>{modalTitle}</h5>
-									<button type="button" className="close" data-dismiss="modal" aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-								</div>
+							<div className="modal-header">
+								<h5 className="modal-title" id={'modal' + uniqueId + 'Label'}>{modalTitle}</h5>
+								<button type="button" className="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
 							}
 							<div className="modal-body">
 								<InnerBlocks.Content/>
@@ -55,6 +55,6 @@ export default function Save(props) {
 						</div>
 					</div>
 				</div>
-			</>
+			</div>
 	);
 };

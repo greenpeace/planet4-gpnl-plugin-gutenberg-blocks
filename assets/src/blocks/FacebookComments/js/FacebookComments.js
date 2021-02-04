@@ -1,9 +1,20 @@
 import React, {Component} from 'react';
 import {RichText, InspectorControls} from '@wordpress/editor';
 import {TextControl, PanelBody} from '@wordpress/components';
-
+import PropTypes from 'prop-types';
 
 export default class FacebookComments extends Component {
+  static get propTypes() {
+    return {
+      'title': PropTypes.string,
+      'description': PropTypes.string,
+      'url': PropTypes.string,
+      'width': PropTypes.string,
+      'numberOfPosts': PropTypes.number,
+      'onValueChange': PropTypes.func,
+      'onNumberChange': PropTypes.func,
+    };
+  }
 
   render() {
 
@@ -16,6 +27,8 @@ export default class FacebookComments extends Component {
       onValueChange,
       onNumberChange
     } = this.props;
+
+
 
     return (
       <div>

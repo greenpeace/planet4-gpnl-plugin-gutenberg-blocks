@@ -3,7 +3,6 @@ import BaseBlock from '../../BaseBlock';
 import { ServerSideRender } from '@wordpress/components';
 import { Preview } from '../../../components/Preview/js/Preview';
 import Inforequest from './Inforequest';
-import Transform from './Transform';
 
 
 
@@ -21,7 +20,6 @@ export class InforequestBlock extends BaseBlock {
       title: 'Docentenaanvraag',
       icon: 'welcome-widgets-menus',
       category: 'planet4-gpnl-blocks',
-      transforms: Transform,
       keywords: [
         __(this.blockName),
         __('docenten'),
@@ -92,10 +90,11 @@ export class InforequestBlock extends BaseBlock {
         if (isSelected){
           return ([
             <Inforequest
+              key={this.id}
               {...attributes}
               onValueChange={onValueChange}
             />,
-            <Preview showBar={isSelected}>
+            <Preview showBar={isSelected} key={this.id}>
               <ServerSideRender
                 block={'planet4-gpnl-blocks/' + this.blockNameKebabCase}
                 attributes={attributes}
