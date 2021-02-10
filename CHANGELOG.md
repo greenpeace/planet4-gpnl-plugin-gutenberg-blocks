@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/compare/v2.2.0...v2.3.0) (2021-02-10)
+
+
+### Features
+
+* improve changelog generation ([46c9fbc](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/46c9fbc29ee358d5606dc2e0b1f11ffeadb1cd79))
+
+
+### Bug Fixes
+
+* enable option for small headers ([50f0564](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/50f0564dac1e49ac58248cf1b53bc13afa71979d))
+* upgrade bootstrap from 4.5.3 to 4.6.0 ([720acb2](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/720acb2676839ffdb7730a0da4e9ea5432311355))
+* version mismatches in package files ([7599e7a](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/7599e7a80d917ee09e7d795faaf40c32d308f1a8))
+
 ## [2.2.0](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/compare/v2.0.2...v2.2.0) (2021-02-04)
 
 
