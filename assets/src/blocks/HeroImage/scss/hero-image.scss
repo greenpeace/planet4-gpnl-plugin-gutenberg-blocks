@@ -36,7 +36,6 @@
     width: 100%;
   }
 
-
   .video-background {
     position: relative;
     top: -50%;
@@ -138,7 +137,7 @@
         font-weight: 500;
         border-radius: 0;
         text-transform: uppercase;
-        padding: $sm calc( #{$sm} * 2);
+        padding: $sm calc(#{$sm} * 2);
         display: inline-block;
         color: white;
         transition: background-color 100ms linear;

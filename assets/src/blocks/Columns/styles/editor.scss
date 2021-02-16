@@ -90,10 +90,8 @@
   &.bg-anthracite, .bg-dark-blue {
     .block-editor-default-block-appender textarea.block-editor-default-block-appender__content,
     .block-editor-block-list__empty-block-inserter .block-editor-inserter__toggle:not(:hover),
-    .block-editor-default-block-appender .block-editor-inserter .block-editor-inserter__toggle:not(:hover),
-    {
+    .block-editor-default-block-appender .block-editor-inserter .block-editor-inserter__toggle:not(:hover), {
       color: lightgrey;
     }
   }
-
 }

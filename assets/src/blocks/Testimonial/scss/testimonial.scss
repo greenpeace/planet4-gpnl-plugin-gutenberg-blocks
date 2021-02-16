@@ -21,8 +21,7 @@
     @include small-and-up {
       margin-bottom: 2px;
     }
-    }
-
+  }
 
   .image-container {
     width: 100%;
@@ -34,7 +33,7 @@
       margin-right: 15px;
     }
 
-      @include medium-and-up {
+    @include medium-and-up {
       width: 35%;
     }
 
