@@ -74,10 +74,10 @@
   },
   "standard-version": {
     "scripts": {
-      "prerelease": "git checkout -b release/v2.2.1",
-      "postcommit": "git checkout develop && git merge release/v2.2.1",
-      "pretag": "git checkout master && git merge release/v2.2.1",
-      "posttag": "git branch -d release/v2.2.1"
+      "prerelease": "git checkout -b release",
+      "postcommit": "git checkout develop && git merge release",
+      "pretag": "git checkout master && git merge release",
+      "posttag": "git branch -d release"
     }
   },
   "version": "2.3.0"
