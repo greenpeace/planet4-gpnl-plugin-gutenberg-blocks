@@ -1,39 +1,27 @@
-{#<blockquote style="background-color: green; color: white; padding: 30px">#}
-{#	<p style="width: 100% !important;">{{ quote }}</p>#}
-
-{#	{% if imageUrl.length > 1%}#}
-{#	<img src={{ imageUrl | default }} >#}
-{#		{% else %}#}
-{#		NO IMAGE#}
-{#	{% endif %}#}
-
-{#</blockquote>#}
-{#<pre>#}
-{#{{ dump() }}#}
-{#</pre>#}
-
 {% block gpnl_quote %}
-
-	{% if ( fields  ) %}
-
+	{% if fields %}
 		<section class="container">
 			<div class="row quote quote--dark">
+				{% if fields.image_url %}
 				<div class="col-2">
-					<img
-						class="quote__img"
-						src="{{ fields.image_url }}"
-						srcset="{{ fields.image_srcset }}"
-						sizes="{{ fields.image_sizes }}"
-						alt="{{ fields.alt_text }}"
+					<img height="quote__img"
+						 src="{{ fields.image_url }}"
+						 srcset="{{ fields.image_srcset }}"
+						 sizes="{{ fields.image_sizes }}"
+						 alt="{{ fields.alt_text }}"
 					>
 				</div>
 				<div class="col-10">
-					<p class="quote__text">{{ fields.quote|e('wp_kses_post')|raw }}</p>
-					<p class="quote__author">{{ fields.quotee | default}}</p>
+					{% else %}
+					<div class="col-12">
+						{% endif %}
+						<p class="quote__text">{{ fields.quote|e('wp_kses_post')|raw }}</p>
+						{% if fields.quotee %}
+							<p class="quote__author">{{ fields.quotee | default }}</p>
+						{% endif %}
+					</div>
 				</div>
 			</div>
 		</section>
-
-
 	{% endif %}
 {% endblock %}
