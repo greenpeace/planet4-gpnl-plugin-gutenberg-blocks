@@ -1,26 +1,26 @@
 {% block gpnl_quote %}
 	{% if fields %}
 		<section class="container">
+			<h1>test</h1>
 			<div class="row quote quote--dark">
 				{% if fields.image_url %}
-				<div class="col-2">
-					<img height="quote__img"
-						 src="{{ fields.image_url }}"
-						 srcset="{{ fields.image_srcset }}"
-						 sizes="{{ fields.image_sizes }}"
-						 alt="{{ fields.alt_text }}"
-					>
-				</div>
-				<div class="col-10">
-					{% else %}
+					<div class="col-2">
+						<img height="quote__img"
+							 src="{{ fields.image_url }}"
+							 srcset="{{ fields.image_srcset }}"
+							 sizes="{{ fields.image_sizes }}"
+							 alt="{{ fields.alt_text }}"
+						>
+					</div>
+					<div class="col-10">
+				{% else %}
 					<div class="col-12">
-						{% endif %}
+				{% endif %}
 						<p class="quote__text">{{ fields.quote|e('wp_kses_post')|raw }}</p>
 						{% if fields.quotee %}
 							<p class="quote__author">{{ fields.quotee | default }}</p>
 						{% endif %}
 					</div>
-				</div>
 			</div>
 		</section>
 	{% endif %}
