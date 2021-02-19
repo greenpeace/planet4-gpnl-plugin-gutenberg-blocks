@@ -1,5 +1,14 @@
 @import "hero-image";
 
+#editor {
+  .wp-block[data-type="planet4-gpnl-blocks/hero-image"] {
+    margin: 32px calc(50% - 50%);
+    max-width: 100vw;
+    width: 100%;
+  }
+}
+
+
 .hero {
   width: 100%;
   margin: 0;
