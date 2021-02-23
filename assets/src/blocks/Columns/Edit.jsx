@@ -2,7 +2,7 @@ import React from 'react';
 
 import {InnerBlocks, InspectorControls} from '@wordpress/block-editor';
 import {SelectControl, PanelBody} from '@wordpress/components';
-import {useSelect, useDispatch } from '@wordpress/data';
+import {useSelect, useDispatch} from '@wordpress/data';
 
 export default function Edit(props) {
 
@@ -62,12 +62,12 @@ export default function Edit(props) {
 
     switch (numberOfColumns) {
     case 1:
-      return templates[numberOfColumns-1];
+      return templates[numberOfColumns - 1];
     case 2:
     case 3:
-      return templates[numberOfColumns-1][distributionOfColumns];
+      return templates[numberOfColumns - 1][distributionOfColumns];
     case 4:
-      return templates[numberOfColumns-1];
+      return templates[numberOfColumns - 1];
     }
   };
 
@@ -91,7 +91,7 @@ export default function Edit(props) {
         break;
       case 2:
       case 3:
-        newInnerBlock.attributes.className = templates[numberOfColumns-1][distributionOfColumns][index];
+        newInnerBlock.attributes.className = templates[numberOfColumns - 1][distributionOfColumns][index];
         break;
       case 4:
         newInnerBlock.attributes.className = 'col-12 col-lg-3';
@@ -130,7 +130,10 @@ export default function Edit(props) {
     {value: 'even', label: 'All columns same size'},
   ];
   if (attributes.numberOfColumns > 1 && attributes.numberOfColumns < 4) {
-    distributionOptions.push({value: 'leftBig', label: 'A bigger column on the left'}, {value: 'rightBig', label: 'A bigger column on the right'});
+    distributionOptions.push({value: 'leftBig', label: 'A bigger column on the left'}, {
+      value: 'rightBig',
+      label: 'A bigger column on the right'
+    });
   }
   if (attributes.numberOfColumns === 3) {
     distributionOptions.push({value: 'middleBig', label: 'A bigger column in the middle'});
@@ -159,19 +162,33 @@ export default function Edit(props) {
         if (attributes.numberOfColumns === 2) {
           return (
             <div className={'button-wrapper'}>
-              <button className={'button'} onClick={() => setAttributes({distributionOfColumns: 'even'})}>50% / 50% <br/> (even)</button>
-              <button className={'button'} onClick={() => setAttributes({distributionOfColumns: 'leftBig'})}>66% / 33% <br/> (left big)</button>
-              <button className={'button'} onClick={() => setAttributes({distributionOfColumns: 'rightBig'})}>33% / 66% <br/> (right big)</button>
+              <button className={'button'} onClick={() => setAttributes({distributionOfColumns: 'even'})}>50% /
+                50% <br/> (even)
+              </button>
+              <button className={'button'} onClick={() => setAttributes({distributionOfColumns: 'leftBig'})}>66% /
+                33% <br/> (left big)
+              </button>
+              <button className={'button'} onClick={() => setAttributes({distributionOfColumns: 'rightBig'})}>33% /
+                66% <br/> (right big)
+              </button>
             </div>
           );
         }
         if (attributes.numberOfColumns === 3) {
           return (
             <div className={'button-wrapper'}>
-              <button className={'button'} onClick={() => setAttributes({distributionOfColumns: 'even'})}>33% / 33% / 33% <br/> (even) </button>
-              <button className={'button'} onClick={() => setAttributes({distributionOfColumns: 'leftBig'})}>50% / 25% / 25% <br/> (left big)</button>
-              <button className={'button'} onClick={() => setAttributes({distributionOfColumns: 'middleBig'})}>25% / 50% / 25% <br/> (middle big)</button>
-              <button className={'button'} onClick={() => setAttributes({distributionOfColumns: 'rightBig'})}>25% / 25% / 50% <br/> (right big)</button>
+              <button className={'button'} onClick={() => setAttributes({distributionOfColumns: 'even'})}>33% / 33% /
+                33% <br/> (even)
+              </button>
+              <button className={'button'} onClick={() => setAttributes({distributionOfColumns: 'leftBig'})}>50% / 25% /
+                25% <br/> (left big)
+              </button>
+              <button className={'button'} onClick={() => setAttributes({distributionOfColumns: 'middleBig'})}>25% / 50%
+                / 25% <br/> (middle big)
+              </button>
+              <button className={'button'} onClick={() => setAttributes({distributionOfColumns: 'rightBig'})}>25% / 25%
+                / 50% <br/> (right big)
+              </button>
             </div>
           );
         }
@@ -189,7 +206,8 @@ export default function Edit(props) {
   return (
     <div className={'wp-block-planet4-gpnl-blocks-columns' + ' ' + attributes.background}>
 
-      <div className={'inner-blocks-wrapper ' + 'number-of-columns-' + attributes.numberOfColumns + ' distribution-of-columns-' + attributes.distributionOfColumns}>
+      <div
+        className={'inner-blocks-wrapper ' + 'number-of-columns-' + attributes.numberOfColumns + ' distribution-of-columns-' + attributes.distributionOfColumns}>
         {beforeChoosing()}
 
         <InnerBlocks

@@ -10,26 +10,26 @@ import Icon from './Icon';
  */
 export class ColumnBlock extends BaseBlock {
 
-	constructor() {
-		super();
+  constructor() {
+    super();
 
-		const {registerBlockType} = wp.blocks;
+    const {registerBlockType} = wp.blocks;
 
-		registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
-			title: 'Column',
-			category: 'planet4-gpnl-blocks',
-			parent: [
-				'planet4-gpnl-blocks/columns'
-			],
-			supports: {
-				anchor: true,
-				reusable: false,
-				html: false,
-				lightBlockWrapper: true
-			},
-			icon: Icon,
-			edit: Edit,
-			save: Save
-		});
-	}
+    registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
+      title: 'Column',
+      category: 'planet4-gpnl-blocks',
+      parent: [
+        'planet4-gpnl-blocks/columns'
+      ],
+      supports: {
+        anchor: true,
+        reusable: false,
+        html: false,
+        lightBlockWrapper: true
+      },
+      icon: Icon,
+      edit: Edit,
+      save: Save
+    });
+  }
 }

@@ -1,7 +1,7 @@
 import BaseBlock from '../BaseBlock';
 import {Edit} from './Edit';
 import {frontendRendered} from '../frontendRendered';
-import { Icon } from '@wordpress/components';
+import {Icon} from '@wordpress/components';
 
 export class SocialMessageBlock extends BaseBlock {
 
@@ -40,7 +40,7 @@ export class SocialMessageBlock extends BaseBlock {
       title: 'social message',
       category: 'planet4-gpnl-blocks',
       attributes,
-      icon: <Icon icon="share" />,
+      icon: <Icon icon="share"/>,
       edit: ({isSelected, attributes, setAttributes}) => {
 
         const updateAttribute = (attributeName) => value => {

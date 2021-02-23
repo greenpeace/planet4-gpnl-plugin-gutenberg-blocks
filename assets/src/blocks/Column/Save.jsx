@@ -6,23 +6,23 @@ import classnames from 'classnames';
 /**
  * WordPress dependencies
  */
-import { InnerBlocks } from '@wordpress/block-editor';
+import {InnerBlocks} from '@wordpress/block-editor';
 
-export default function Save( { attributes } ) {
-	const { verticalAlignment, width } = attributes;
+export default function Save({attributes}) {
+  const {verticalAlignment, width} = attributes;
 
-	const wrapperClasses = classnames({
-		[ `is-vertically-aligned-${ verticalAlignment }` ]: verticalAlignment,
-	} );
+  const wrapperClasses = classnames({
+    [`is-vertically-aligned-${verticalAlignment}`]: verticalAlignment,
+  });
 
-	let style;
-	if ( Number.isFinite( width ) ) {
-		style = { flexBasis: width + '%' };
-	}
+  let style;
+  if (Number.isFinite(width)) {
+    style = {flexBasis: width + '%'};
+  }
 
-	return (
-		<div className={ wrapperClasses } style={ style }>
-			<InnerBlocks.Content />
-		</div>
-	);
+  return (
+    <div className={wrapperClasses} style={style}>
+      <InnerBlocks.Content/>
+    </div>
+  );
 }
