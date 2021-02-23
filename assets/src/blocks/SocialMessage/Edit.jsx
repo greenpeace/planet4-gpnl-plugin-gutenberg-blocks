@@ -4,7 +4,6 @@ import {InspectorControls, URLInput} from '@wordpress/block-editor';
 import {TextareaControl, PanelBody, ToggleControl, SelectControl} from '@wordpress/components';
 import {Frontend} from './Frontend';
 
-
 export class Edit extends Component {
   constructor(props) {
     super(props);

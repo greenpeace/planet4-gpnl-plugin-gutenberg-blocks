@@ -44,7 +44,6 @@ export class SocialMessageBlock extends BaseBlock {
       icon: <Icon icon="share"/>,
       // eslint-disable-next-line react/display-name
       edit: ({isSelected, attributes, setAttributes}) => {
-
         const updateAttribute = (attributeName) => value => {
           setAttributes({[attributeName]: value});
         };

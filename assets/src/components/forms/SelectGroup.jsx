@@ -6,7 +6,7 @@ import SelectOption from './SelectOption';
     super(props);
 
     this.state = {
-    error: '',
+      error: '',
     };
 
     this.handleIsValid = this.handleIsValid.bind(this);
@@ -14,45 +14,45 @@ import SelectOption from './SelectOption';
 
   handleIsValid() {
     if (this.props.isValid === false) {
-    this.setState({error: this.props.errorMessage});
-    return false;
+      this.setState({error: this.props.errorMessage});
+      return false;
     } else {
-    this.setState({error: ''});
-    return true;
+      this.setState({error: ''});
+      return true;
     }
   }
 
   handleOnBlur(){
     // By default validation is done onBlur. If you don't want this use "validateOnBlur={false}"
     if (this.props.validateOnBlur === true || typeof this.props.validateOnBlur === 'undefined'){
-    this.handleIsValid();
+      this.handleIsValid();
     }
   }
 
   renderHelpOrError() {
     if (this.state.error === '' && this.props.helpText) {
-    return <small id={this.props.propertyName + 'Help'} className="form-text text-muted">{this.props.helpText}</small>;
+      return <small id={this.props.propertyName + 'Help'} className="form-text text-muted">{this.props.helpText}</small>;
     } else if (this.state.error !== '') {
-    return <span className="error-message">{this.state.error}</span>;
+      return <span className="error-message">{this.state.error}</span>;
     }
   }
 
   renderOptions() {
     const options = [];
     for (const key in this.props.options) {
-    if (this.props.options.hasOwnProperty(key)) {
+      if (Object.prototype.hasOwnProperty.call(this.props.options,key)) {
         let option = this.props.options[key];
         options.push(
-      <SelectOption
+          <SelectOption
             key={option.value}
             propertyName={this.props.propertyName}
             propertyValue={this.props.value}
             onChange={this.props.onChange}
             value={option.value}
             label={option.label}
-      />
+          />
         );
-    }
+      }
     }
     return options;
   }
@@ -60,11 +60,11 @@ import SelectOption from './SelectOption';
 
   render() {
 
-    const {propertyName, label, helpText, errors, onChange, value} = this.props;
+    const {propertyName, label, onChange, value} = this.props;
 
     return (
 
-    <div className="form-group">
+      <div className="form-group">
 
         <label htmlFor={propertyName}>{label ? label : propertyName}</label>
         <select id={propertyName}
@@ -74,10 +74,10 @@ import SelectOption from './SelectOption';
           value={value}
           onBlur={() => this.handleOnBlur()}
         >
-      {this.renderOptions()}
+          {this.renderOptions()}
         </select>
         {this.renderHelpOrError()}
-    </div>
+      </div>
     );
   }
 }
