@@ -1,7 +1,6 @@
 import Edit from './Edit';
 import Save from './Save';
 import BaseBlock from '../BaseBlock';
-import React from 'react';
 import Icon from './Icon';
 
 /**

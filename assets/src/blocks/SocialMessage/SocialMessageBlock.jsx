@@ -1,3 +1,4 @@
+import React from 'react';
 import BaseBlock from '../BaseBlock';
 import {Edit} from './Edit';
 import {frontendRendered} from '../frontendRendered';

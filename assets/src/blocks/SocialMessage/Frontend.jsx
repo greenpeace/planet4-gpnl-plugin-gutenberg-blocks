@@ -1,3 +1,4 @@
+import React from 'react';
 import {Component, Fragment} from '@wordpress/element';
 import TextareaAutosize from 'react-autosize-textarea';
 

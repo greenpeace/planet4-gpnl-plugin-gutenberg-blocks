@@ -1,3 +1,4 @@
+import React from 'react';
 import {Component, Fragment} from '@wordpress/element';
 import {InspectorControls, URLInput} from '@wordpress/block-editor';
 import {TextareaControl, PanelBody, ToggleControl, SelectControl} from '@wordpress/components';
