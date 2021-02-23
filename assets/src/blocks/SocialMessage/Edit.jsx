@@ -17,7 +17,7 @@ export class Edit extends Component {
 
   renderEdit() {
 
-    const {attributes, setAttributes, changeAlternativeTweet, removeAlternativeTweet, updateAttribute} = this.props;
+    const {attributes, changeAlternativeTweet, removeAlternativeTweet, updateAttribute} = this.props;
 
     // const toAttribute = attributeName => value => {
     //   setAttributes({[attributeName]: value});

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Component} from '@wordpress/element';
 import {InnerBlocks, RichText} from '@wordpress/block-editor';
-import {InspectorControls, BlockControls, URLInput} from '@wordpress/editor';
+import {InspectorControls, URLInput} from '@wordpress/editor';
 import {SelectControl, PanelBody, TextControl, ToggleControl} from '@wordpress/components';
 
 export default class Edit extends Component {

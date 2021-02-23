@@ -55,7 +55,7 @@ export default class RadioGroup extends Component {
 
   render() {
 
-    const {propertyName, label, helpText, errors, options, onChange} = this.props;
+    const {propertyName, label, helpText} = this.props;
 
     return (
 
