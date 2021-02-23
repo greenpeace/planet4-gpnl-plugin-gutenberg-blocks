@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import SelectOption from './SelectOption';
 
- default class SelectGroup extends Component {
+export default class SelectGroup extends Component {
   constructor(props) {
     super(props);
 
