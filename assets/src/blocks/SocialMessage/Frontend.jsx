@@ -105,7 +105,7 @@ export class Frontend extends Component {
                     : null
                   }
                   <a className={'btn btn-primary btn-send-message ' + this.props.medium} href={shareURL()}
-                    target={'_blank'} onClick={this.showThankYouMessage}>
+                    target={'_blank'} rel={'noreferrer'} onClick={this.showThankYouMessage}>
                     {sendButtonText}
                   </a>
                 </div>
