@@ -42,6 +42,7 @@ export class SocialMessageBlock extends BaseBlock {
       category: 'planet4-gpnl-blocks',
       attributes,
       icon: <Icon icon="share"/>,
+      // eslint-disable-next-line react/display-name
       edit: ({isSelected, attributes, setAttributes}) => {
 
         const updateAttribute = (attributeName) => value => {
