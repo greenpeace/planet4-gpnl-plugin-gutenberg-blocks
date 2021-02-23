@@ -21,6 +21,7 @@ export class ColumnBlock extends BaseBlock {
         'planet4-gpnl-blocks/columns'
       ],
       supports: {
+        className: true,
         anchor: true,
         reusable: false,
         html: false,

@@ -10,7 +10,7 @@ export default function Save(props) {
     <section className={'block' + ' ' + attributes.background}>
       <div className={'row'}>
         <InnerBlocks.Content/>
-        {attributes.content}
+        {/*{attributes.content}*/}
       </div>
     </section>
   );

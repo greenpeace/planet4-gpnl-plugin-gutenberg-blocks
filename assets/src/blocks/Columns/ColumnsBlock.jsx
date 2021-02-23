@@ -12,7 +12,7 @@ export class ColumnsBlock extends BaseBlock {
     const attributes = {
       numberOfColumns: {
         type: 'number',
-        default: 0
+        default: 2
       },
       background: {
         type: 'string',
@@ -20,7 +20,7 @@ export class ColumnsBlock extends BaseBlock {
       },
       distributionOfColumns: {
         type: 'string',
-        default: ''
+        default: 'even'
       },
     };
 
