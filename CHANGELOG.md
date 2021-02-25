@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.4.0](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/compare/v2.3.0...v2.4.0) (2021-02-25)
+
+
+### Features
+
+* **dx:** Allow WIP as a commit type ([e821f96](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/e821f9616d3223b852589b3ceea4ab1f7ba55e22))
+* make image and quotee optional when rendered ([3a67321](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/3a67321f2ed5961752d3c67d78e7513b1518e579))
+
+
+### Bug Fixes
+
+* make linting run on jsx files ([04b8421](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/04b842198fac4a678e57ebf1317d65fc2e3606a0))
+* remove extra closing of div ([a59c139](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/a59c1395a5049dacbf13adbfd3bccfbfa8107138))
+* remove html for testing ([1885a20](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/1885a207867d20e3c1c94c2c47e73f24e3415e60))
+
 ## [2.3.0](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/compare/v2.2.0...v2.3.0) (2021-02-10)
 
 
