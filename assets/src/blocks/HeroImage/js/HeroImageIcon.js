@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export class Icon extends Component {
   render() {
-    return <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    return <svg viewBox="0 0 16 16" xmlns="https://www.w3.org/2000/svg">
       <g fill="#333">
         <path d="M0,2v12h16V2H0z M15,13H1V3h14V13z"/>
         <circle cx="12.5" cy="5.5" r="1.5"/>
