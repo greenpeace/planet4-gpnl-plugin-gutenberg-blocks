@@ -22,6 +22,7 @@ export class EducationcoversBlock extends BaseBlock {
         __('overzicht'),
       ],
       attributes: null,
+      // eslint-disable-next-line react/display-name
       edit: () => {
         return (
           <ServerSideRender
