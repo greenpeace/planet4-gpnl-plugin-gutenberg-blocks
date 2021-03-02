@@ -1,41 +1,65 @@
-import $ from 'jquery';
-
 let form_config = 'request_form_object';
 
-$(document).ready(function() {
+if ( document.readyState === 'complete' ||  (document.readyState !== 'loading' && !document.documentElement.doScroll) ) {
+  educationSubscribe();
+} else {
+  document.addEventListener('DOMContentLoaded', educationSubscribe,{passive: true});
+}
+
+function educationSubscribe() {
+  let fallback = document.querySelector( '.fallbackbtn' );
+  fallback.addEventListener('click', resetButtons(), {passive: true});
+
   let auth = new URLSearchParams(window.location.search).has('e');
   if ( '1' === window[form_config].hider ) {
-    console.log('hider');
-    $('.inforequest__wrapper').nextAll().hide();
+    let siblings = nextAll(document.querySelector('.inforequest__wrapper'));
+    siblings.forEach((sibling)=>{sibling.style.display = 'none';});
   }
   if (null !== readCookie('gpnl_education') || auth ){
-    console.log('auth');
-    $('.inforequest__title').html('<h3>Welkom terug!</h3>');
-    $('.inforequest__message').html('<p>Je kan nu gebruikmaken van de lesmaterialen.</p>');
-    $('.inforequest__wrapper').nextAll().show(1000);
-    $('.fallbackbtn').show(1000);
+    document.querySelector('.inforequest__title').innerHTML ='<h3>Welkom terug!</h3>';
+    document.querySelector('.inforequest__message').innerHTML ='<p>Je kan nu gebruikmaken van de lesmaterialen.</p>';
+    let siblings = nextAll(document.querySelector('.inforequest__wrapper'));
+    siblings.forEach((sibling)=>{sibling.style.display = 'block';});
+    document.querySelector('.fallbackbtn').style.display = 'block';
     enableDownloadlinks();
     if (null !== readCookie('greenpeace') || null === readCookie('gpnl_education') ) {
       createCookie('gpnl_education', 1, 365);
     }
   }
   else{
-    console.log('not auth');
-    $('.inforequest__buttons').show(1000);
+    document.querySelector('.inforequest__buttons').style.display = 'block';
   }
-});
+}
 
-$('.fallbackbtn').on('click', function () {
-  let btn = $(this);
-  let classname = '.' + btn.attr('class').split(/\s+/).pop();
-  let show  = btn.data('show');
-  let hide  = btn.data('hide');
-  console.log('show');
-  console.log('hide');
-  $(show).show(1000);
-  $(hide).hide(1000);
-  $(classname).hide(1000);
-});
+function resetButtons() {
+  return function () {
+    let classname = '.' + this.getAttribute('class').split(/\s+/).pop();
+    let show = this.dataset.show;
+    let hide = this.dataset.hide.split(', ');
+    document.querySelector(show).style.display = 'block';
+    hide.forEach((hideclass) => {
+      document.querySelector(hideclass).style.display = 'none';
+    });
+    document.querySelector(classname).style.display = 'none';
+  };
+}
+
+function enableDownloadlinks() {
+  let covers = document.querySelectorAll('.cover-card-column');
+  covers = Array.from(covers);
+  covers.forEach((cover) => {
+    let links = cover.querySelectorAll('a');
+    links = Array.from(links);
+    links.forEach((link) => {
+      link.setAttribute('href', link.getAttribute('href') + '?e=1');
+    });
+  });
+  let backBtn = document.querySelector('.educationrequest__button');
+  if (backBtn !== null) {
+    backBtn.setAttribute('href', backBtn.getAttribute('href') + '?e=1');
+
+  }
+}
 
 function createCookie(name, value, days) {
   let date = new Date();
@@ -58,15 +82,16 @@ function readCookie(name) {
   return null;
 }
 
-function enableDownloadlinks() {
-  $('.cover-card-column').each(function(){
-    let cover = this;
-    $(cover).find('a').each(function(){
-      let link = this;
-      let href = $(this).attr('href');
-      $(link).attr('href', href + '?e=1');
-    });
-  });
-  let backBtn = $('.educationrequest__button');
-  backBtn.attr('href', backBtn.attr('href') + '?e=1');
+function nextAll (element) {
+  const nextElements = [];
+  let nextElement = element;
+
+  while(nextElement.nextElementSibling) {
+    nextElements.push(nextElement.nextElementSibling);
+    nextElement = nextElement.nextElementSibling;
+  }
+
+  return nextElements;
 }
+
+

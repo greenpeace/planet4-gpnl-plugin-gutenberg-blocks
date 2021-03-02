@@ -1,21 +1,20 @@
-import $ from 'jquery';
+let links = document.querySelectorAll( '.page-template a' );
 
-
-$( '.page-template a' ).each(function( index ) { // eslint-disable-line
-  this.addEventListener('click', function(e){ // eslint-disable-line
+for (let link of links) {
+  link.addEventListener('click', function(e){ // eslint-disable-line
     let link = this;
     let linkHTML;
-    if ($(link).hasClass('external-link')) {
-      let tmp_link = $(link).clone();
-      $(tmp_link).find('.external-icon').detach();
-      $(tmp_link).removeAttr('target');
-      $(tmp_link).removeAttr('class');
-      linkHTML = $(tmp_link)[0].outerHTML;
+    if (link.classList.contains('external-link')) {
+      let tmp_link = link.cloneNode(true);
+      tmp_link.removeChild(tmp_link.querySelector('.external-icon'));
+      tmp_link.classList.remove('external-link');
+      linkHTML = tmp_link.outerHTML;
     }
     else{
       linkHTML = link.outerHTML;
-    }
+      console.log(linkHTML);
 
+    }
 
     let post_id = window['e_activism']['post_id'];
     let counter_id = window['e_activism']['links'].indexOf( linkHTML );
@@ -40,5 +39,5 @@ $( '.page-template a' ).each(function( index ) { // eslint-disable-line
       .catch(error => {
         console.error('Error:', error);
       });
-  });
-});
+  }, {passive: true});
+}

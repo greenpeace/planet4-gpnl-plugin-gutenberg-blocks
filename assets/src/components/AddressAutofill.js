@@ -1,6 +1,14 @@
-import $ from 'jquery';
+const ready = (callback) => {
+  if ( document.readyState === 'complete' ||  (document.readyState !== 'loading' && !document.documentElement.doScroll) ) {
+    callback();
+  } else {
+    document.addEventListener('DOMContentLoaded', callback, {passive:true});
+  }
+};
 
-$(document).ready(function () {
+ready(addressAutofill());
+
+function addressAutofill () {
 
   // this will get the address object that is inserted with the wp_localize_script() function in the controller
   let address_object = 'get_address_object';
@@ -8,7 +16,7 @@ $(document).ready(function () {
   let zipcodeInput = document.getElementById('postal-code');
   let houseNoInput = document.getElementById('housenumber');
 
-  $('#housenumber').focusout(function () {
+  houseNoInput.addEventListener('focusout', function () {
 
     let zipcodeValue = zipcodeInput.value;
     let houseNoValue = houseNoInput.value;
@@ -26,26 +34,20 @@ $(document).ready(function () {
 
       // Do a ajax call to the wp_admin admin_ajax.php,
       // which triggers processing function in the petition block
-      $.ajax({
-        type: 'POST',
-        url: window[address_object].ajaxUrl,
-        data: ajax_values,
-        success: function (t) {
+      fetch(window[address_object].ajaxUrl,  {
+        method: 'POST',
+        body:JSON.stringify(ajax_values)
+      } )
+        .then(data  => {
+          let streetInput = document.getElementById('street');
+          let cityInput = document.getElementById('city');
 
-          let streetInput = $('#street');
-          let cityInput = $('#city');
-
-          streetInput.val(t.data.cUrlresult.result.straat);
-          cityInput.val(t.data.cUrlresult.result.woonplaats);
-
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-          console.log(thrownError+'. Status code: '+ xhr.status);
-        }
-      });
+          streetInput.val(data.cUrlresult.result.straat);
+          cityInput.val(data.cUrlresult.result.woonplaats);
+        });
 
     }
 
   });
 
-});
+}
