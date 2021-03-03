@@ -2,7 +2,6 @@ let links = document.querySelectorAll( '.page-template a' );
 
 for (let link of links) {
   link.addEventListener('click', function(e){ // eslint-disable-line
-    let link = this;
     let linkHTML;
     if (link.classList.contains('external-link')) {
       let tmp_link = link.cloneNode(true);
