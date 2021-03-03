@@ -1,8 +1,7 @@
 import React from 'react';
 import BaseBlock from '../../BaseBlock';
-import {ServerSideRender} from '@wordpress/components';
+import {Icon, ServerSideRender} from '@wordpress/components';
 import PdfEmbed from './PdfEmbed';
-import { Icon } from '@wordpress/components';
 
 const {withSelect} = wp.data;
 
@@ -18,7 +17,7 @@ export class PdfEmbedBlock extends BaseBlock {
     // Register the block
     registerBlockType('planet4-gpnl-blocks/' + this.blockNameKebabCase, {
       title: 'Pdf Embed',
-      icon: <Icon icon="embed-generic" />,
+      icon: <Icon icon="embed-generic"/>,
       category: 'planet4-gpnl-blocks',
       keywords: [
         __(this.blockName),
@@ -55,9 +54,7 @@ export class PdfEmbedBlock extends BaseBlock {
         return {
           document_url
         };
-      })(({
-        attributes, setAttributes, isSelected, document_url
-      }) => {
+      })(({attributes, setAttributes, isSelected, document_url}) => {
 
         // Functions we want to call while editing to change attributes.
         function onValueChange(value) {
@@ -87,10 +84,13 @@ export class PdfEmbedBlock extends BaseBlock {
           );
         } else {
           return (
-            <ServerSideRender
-              block={'planet4-gpnl-blocks/' + this.blockNameKebabCase}
-              attributes={attributes}
-            />
+            <>
+              <em>Zichtbaar aan de voorkant:</em>
+              <ServerSideRender
+                block={'planet4-gpnl-blocks/' + this.blockNameKebabCase}
+                attributes={attributes}
+              />
+            </>
           );
         }
       })
