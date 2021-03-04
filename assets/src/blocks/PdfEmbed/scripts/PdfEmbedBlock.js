@@ -84,13 +84,12 @@ export class PdfEmbedBlock extends BaseBlock {
           );
         } else {
           return (
-            <>
-              <em>Zichtbaar aan de voorkant:</em>
+            <div style={{margin: '2rem 0'}}>
               <ServerSideRender
                 block={'planet4-gpnl-blocks/' + this.blockNameKebabCase}
                 attributes={attributes}
               />
-            </>
+            </div>
           );
         }
       })

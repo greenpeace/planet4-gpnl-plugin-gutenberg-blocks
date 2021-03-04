@@ -1,0 +1,29 @@
+@import "../../../base/base.scss";
+
+.gpnl-pdf-embed {
+  margin: 2rem 0;
+
+  > * {
+    margin: 0;
+  }
+
+  .embed {
+    display: none;
+  }
+
+  .download {
+    display: inline-block;
+  }
+
+
+  @include large-and-up {
+    .embed {
+      display: block;
+    }
+
+    .download {
+      display: none;
+    }
+  }
+
+}

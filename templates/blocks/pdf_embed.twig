@@ -1,10 +1,10 @@
 {% block pdf_embed %}
 	{% if ( fields ) %}
 		<section class="gpnl-block gpnl-pdf-embed">
-			{{ dump() }}
 			<h2 class="page-section-header">{{ fields.title | default }}</h2>
 			<p class="page-section-description">{{ fields.description | default }}</p>
-			<iframe class="pdf-viewer" src="{{ fields.document_url }}" style="width:100%; height:{{ fields.height }}px"></iframe>
+			<iframe class="embed" src="{{ fields.document_url }}" style="width:100%; height:{{ fields.height }}px"></iframe>
+			<a class="btn btn-primary download" href="{{ fields.document_url }}">download pdf</a>
 		</section>
 	{% endif %}
 {% endblock %}

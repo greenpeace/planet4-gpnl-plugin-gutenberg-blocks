@@ -35,7 +35,7 @@ export default class PdfEmbed extends Component {
     const fields =
       <div className="pdf-embed__wrapper">
         <div className="">
-          <h3 className="" style={{marginBottom: '0'}}>
+          <h3 className="" style={{margin: '0'}}>
             <RichText
               onChange={onValueChange.bind('title')}
               value={title}
