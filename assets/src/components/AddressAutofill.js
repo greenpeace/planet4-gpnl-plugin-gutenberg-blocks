@@ -1,12 +1,10 @@
 const ready = (callback) => {
   if ( document.readyState === 'complete' ||  (document.readyState !== 'loading' && !document.documentElement.doScroll) ) {
-    callback();
+    addressAutofill();
   } else {
-    document.addEventListener('DOMContentLoaded', callback, {passive:true});
+    document.addEventListener('DOMContentLoaded', addressAutofill, {passive:true});
   }
 };
-
-ready(addressAutofill());
 
 function addressAutofill () {
 
