@@ -40,6 +40,7 @@ module.exports = {
     testimonial: './assets/src/blocks/Testimonial/scss/testimonial.scss',
 
     modal: './assets/src/blocks/Modal/styles/frontend.scss',
+    'pdf-embed': './assets/src/blocks/PdfEmbed/styles/public.scss',
   },
   output: {
     filename: '[name].min.js',

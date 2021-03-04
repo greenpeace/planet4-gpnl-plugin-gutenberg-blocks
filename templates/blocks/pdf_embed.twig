@@ -1,8 +1,10 @@
 {% block pdf_embed %}
 	{% if ( fields ) %}
-		<h2 class="page-section-header">{{ fields.title | default }}</h2>
-		<p class="page-section-description">{{ fields.description | default }}</p>
-		<iframe style="width: 100%; height: {{ fields.height }}px;" width="100%" height={{ fields.height }} allowfullscreen
-				src="https://docs.google.com/viewer?embedded=true&url={{ fields.document_url }}" frameborder="0"></iframe>
+		<section class="gpnl-block gpnl-pdf-embed">
+			<h2 class="page-section-header">{{ fields.title | default }}</h2>
+			<p class="page-section-description">{{ fields.description | default }}</p>
+			<iframe class="embed" src="{{ fields.document_url }}" style="width:100%; height:{{ fields.height }}px"></iframe>
+			<a class="btn btn-primary download" href="{{ fields.document_url }}">download pdf</a>
+		</section>
 	{% endif %}
 {% endblock %}
