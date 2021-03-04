@@ -99,7 +99,6 @@ final class Loader {
 		$this->blocks = [
 			new Blocks\Quote(),
 			new Blocks\HeroImage(),
-			new Blocks\TwoColumnEmbed(),
 			new Blocks\Inforequest(),
 			new Blocks\Noindex(),
 			new Blocks\Educationcovers(),

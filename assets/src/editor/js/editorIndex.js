@@ -10,18 +10,6 @@ new QuoteBlock();
 import { HeroImageBlock } from '../../blocks/HeroImage/js/HeroImageBlock';
 new HeroImageBlock();
 
-// import { NewsletterBlock } from '../../blocks/Newsletter/js/NewsletterBlock';
-// new NewsletterBlock();
-
-// import { PetitionBlock } from '../../blocks/Petition/js/PetitionBlock';
-// new PetitionBlock();
-
-// import { DonationBlock } from '../../blocks/Donation/js/DonationBlock';
-// new DonationBlock();
-
-import { TwoColumnEmbedBlock } from '../../blocks/TwoColumnEmbed/js/TwoColumnEmbedBlock';
-new TwoColumnEmbedBlock();
-
 import { NoindexBlock } from '../../blocks/Noindex/js/NoindexBlock';
 new NoindexBlock();
 
@@ -43,12 +31,6 @@ new PdfEmbedBlock();
 import { FacebookCommentsBlock } from '../../blocks/FacebookComments/js/FacebookCommentsBlock';
 new FacebookCommentsBlock();
 
-// import { PeriodicDonationBlock } from '../../blocks/PeriodicDonation/js/PeriodicDonationBlock';
-// new PeriodicDonationBlock();
-
-// import { BrochureRequestBlock } from '../../blocks/BrochureRequest/js/BrochureRequestBlock';
-// new BrochureRequestBlock();
-//
 import { TestimonialBlock } from '../../blocks/Testimonial/js/TestimonialBlock';
 new TestimonialBlock();
 
