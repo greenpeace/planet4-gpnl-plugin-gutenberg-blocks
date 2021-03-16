@@ -10,19 +10,9 @@ import React from 'react';
 import {InnerBlocks} from '@wordpress/block-editor';
 
 export default function Save({attributes}) {
-  const {verticalAlignment, width} = attributes;
-
-  const wrapperClasses = classnames({
-    [`is-vertically-aligned-${verticalAlignment}`]: verticalAlignment,
-  });
-
-  let style;
-  if (Number.isFinite(width)) {
-    style = {flexBasis: width + '%'};
-  }
 
   return (
-    <div className={wrapperClasses} style={style}>
+    <div className={attributes.className}>
       <InnerBlocks.Content/>
     </div>
   );

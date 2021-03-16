@@ -1,8 +1,8 @@
 import React from 'react';
-
-import {InnerBlocks, InspectorControls} from '@wordpress/block-editor';
-import {SelectControl, PanelBody} from '@wordpress/components';
+import {InnerBlocks, InspectorControls } from '@wordpress/block-editor';
+import {SelectControl, PanelBody } from '@wordpress/components';
 import {useSelect, useDispatch} from '@wordpress/data';
+import {createBlocksFromInnerBlocksTemplate} from '@wordpress/blocks';
 
 export default function Edit(props) {
 
@@ -55,21 +55,24 @@ export default function Edit(props) {
     ]
   ];
 
+  /**
+   * Get the template that should be used depending on the number of columns and the distribution.
+   */
   const activeTemplate = () => {
-
-    const numberOfColumns = attributes.numberOfColumns;
+    const numberOfColumns = Number(attributes.numberOfColumns);
     const distributionOfColumns = attributes.distributionOfColumns;
 
     switch (numberOfColumns) {
-    case 1:
-      return templates[numberOfColumns - 1];
-    case 2:
-    case 3:
-      return templates[numberOfColumns - 1][distributionOfColumns];
-    case 4:
-      return templates[numberOfColumns - 1];
+      case 1:
+        return templates[numberOfColumns - 1].className;
+      case 2:
+      case 3:
+        return templates[numberOfColumns - 1][distributionOfColumns];
+      case 4:
+        return templates[3];
     }
   };
+
 
   // Required for updating/replacing the inner blocks.
   const {replaceInnerBlocks} = useDispatch('core/block-editor');
@@ -78,27 +81,27 @@ export default function Edit(props) {
   }));
 
   // Replaces the inner blocks with new inner blocks that are copies of the current inner blocks, but with updates classes.
-  // As silly as this may seem, this is "the Wordpress/Gutenberg way".
   const updateInnerBlocks = (distributionOfColumns, numberOfColumns) => {
 
-    const newInnerBlocks = [...currentInnerBlocks];
+    const copyOfInnerBlocks = [...currentInnerBlocks];
+    const newInnerBlocks = [];
 
-    // Changing the classes for the current blocks accordingly.
-    for (const [index, newInnerBlock] of newInnerBlocks.entries()) {
-      switch (numberOfColumns) {
-      case 1:
-        newInnerBlock.attributes.className = 'col-12';
-        break;
-      case 2:
-      case 3:
-        newInnerBlock.attributes.className = templates[numberOfColumns - 1][distributionOfColumns][index];
-        break;
-      case 4:
-        newInnerBlock.attributes.className = 'col-12 col-lg-3';
-        break;
+    for (let i = 0; i < numberOfColumns; i++) {
+      if (copyOfInnerBlocks[i] === undefined) {
+        console.log('adding a column...');
+      } else {
+        newInnerBlocks[i] = copyOfInnerBlocks[i];
+        if (numberOfColumns == 1) {
+          newInnerBlocks[i].attributes.className = 'col-12';
+        } else if (numberOfColumns == 2 || numberOfColumns == 3) {
+          newInnerBlocks[i].attributes.className = templates[numberOfColumns - 1][distributionOfColumns][i][1].className;
+        } else {
+          newInnerBlocks[i].attributes.className = 'col-12 col-lg-3';
+        }
       }
     }
-    replaceInnerBlocks(clientId, newInnerBlocks, false);
+
+    replaceInnerBlocks(clientId, createBlocksFromInnerBlocksTemplate(newInnerBlocks), true, null);
   };
 
   const changeNumberOfColumns = (value) => {
@@ -177,18 +180,10 @@ export default function Edit(props) {
         if (attributes.numberOfColumns === 3) {
           return (
             <div className={'button-wrapper'}>
-              <button className={'button'} onClick={() => setAttributes({distributionOfColumns: 'even'})}>33% / 33% /
-                33% <br/> (even)
-              </button>
-              <button className={'button'} onClick={() => setAttributes({distributionOfColumns: 'leftBig'})}>50% / 25% /
-                25% <br/> (left big)
-              </button>
-              <button className={'button'} onClick={() => setAttributes({distributionOfColumns: 'middleBig'})}>25% / 50%
-                / 25% <br/> (middle big)
-              </button>
-              <button className={'button'} onClick={() => setAttributes({distributionOfColumns: 'rightBig'})}>25% / 25%
-                / 50% <br/> (right big)
-              </button>
+              <button className={'button'} onClick={() => setAttributes({distributionOfColumns: 'even'})}>33% / 33% / 33% <br/> (even)</button>
+              <button className={'button'} onClick={() => setAttributes({distributionOfColumns: 'leftBig'})}>50% / 25% / 25% <br/> (left big)</button>
+              <button className={'button'} onClick={() => setAttributes({distributionOfColumns: 'middleBig'})}>25% / 50% / 25% <br/> (middle big)</button>
+              <button className={'button'} onClick={() => setAttributes({distributionOfColumns: 'rightBig'})}>25% / 25% / 50% <br/> (right big)</button>
             </div>
           );
         }
@@ -206,10 +201,7 @@ export default function Edit(props) {
   return (
     <div className={'wp-block-planet4-gpnl-blocks-columns' + ' ' + attributes.background}>
 
-      <div
-        className={'inner-blocks-wrapper ' + 'number-of-columns-' + attributes.numberOfColumns + ' distribution-of-columns-' + attributes.distributionOfColumns}>
-        {beforeChoosing()}
-
+      <div className={'inner-blocks-wrapper ' + 'number-of-columns-' + attributes.numberOfColumns + ' distribution-of-columns-' + attributes.distributionOfColumns}>
         <InnerBlocks
           templateLock={'all'}
           template={activeTemplate()}
