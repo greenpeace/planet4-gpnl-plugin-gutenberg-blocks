@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.5.0](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/compare/v2.4.0...v2.5.0) (2021-03-22)
+
+
+### Features
+
+* Include new link to education subscribe form ([f5adf77](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/f5adf77304fedcffb00815e73ab80d61fb371285))
+* pdf embed to use native browser solution ([de1cdcd](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/de1cdcd352dbe3ca8e30e4b4e666d39f0be4e49c))
+* upgrade bootstrap to v5 ([fc3cf52](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/fc3cf52f197ebd075aa536ef65fb13fbaa14b10b))
+* use browser native embed for PDF block ([3fd2a9f](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/3fd2a9f9bdacc9408bbbba8251319fbd11fd4f84))
+* **dx:** add eslint plugin to discourage jquery usage ([9068351](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/90683516a9c61a064c8cd2e089c228d14bdc3ab5))
+
+
+### Bug Fixes
+
+* add class quote__img to quote block ([9bbb9ce](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/9bbb9ce4db41ac24ed8df6db2f50f632677ba663))
+* add eslint-plugin-react as dependency. ([4bfb746](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/4bfb746261ae4a5756f92eb7f0c0a10d8979ee85))
+* add https to w3.org references ([9ed3a8a](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/9ed3a8a9f1ce877dc66c6595c74ffa459477c7e8))
+* get columns block to work in wordpress 5.6 ([448ae48](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/448ae48be664da7eeabde86c5b30a46f2b6ce028))
+* remove loads of dead code ([33cd2db](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/33cd2dbe049ba17fdde68979a4c4c3a9a04eed39))
+* remove unnecessary redeclaration of variable ([c991af7](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/c991af7e198c3e8a9d80944f832f8cd04273206c))
+* simplify code structure for clarity ([5933e20](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/5933e20ebb86f35741b49ca1d771958377583a10))
+* typo in protocol scheme ([6de1599](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/6de15992b6f3874a48db5299c045fd878a4a1d2f))
+
 ## [2.4.0](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/compare/v2.3.0...v2.4.0) (2021-02-25)
 
 
