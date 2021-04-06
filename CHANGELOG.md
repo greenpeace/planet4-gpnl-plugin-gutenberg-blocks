@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.5.1](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/compare/v2.5.0...v2.5.1) (2021-04-06)
+
+
+### Bug Fixes
+
+* temporarily revert new education form ([1c8689c](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/1c8689c5fad7b9115d56aa85a28517f6145f5dbe))
+
 ## [2.5.0](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/compare/v2.4.0...v2.5.0) (2021-03-22)
 
 
