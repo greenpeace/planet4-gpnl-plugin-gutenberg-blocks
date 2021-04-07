@@ -2,14 +2,8 @@ import Croppie from 'croppie';
 
 const wrapper = document.getElementById('profile-picture-overlay');
 
-const canvas = document.createElement('canvas');
-canvas.id     = 'profile-picture-overlay-canvas';
-canvas.width = 1080; // Width of the image
-canvas.height = 1080; // Height of the image
-
 const canvasContainer = document.createElement('div');
 canvasContainer.className = 'canvas_container';
-// canvasContainer.style.display = 'none';
 
 const canvasWrap = document.createElement('div');
 canvasWrap.className = 'canvas_wrap';
@@ -28,8 +22,8 @@ uploadButton.addEventListener('change', handleImageUpload, false);
 
 // The visible upload button that is styled.
 const uploadButtonVisible = document.createElement('button');
-uploadButtonVisible.className = 'btn btn-primary';
-uploadButtonVisible.textContent = 'upload afbeelding';
+uploadButtonVisible.className = 'btn btn-primary upload';
+uploadButtonVisible.textContent = 'upload foto';
 uploadButtonVisible.addEventListener('click', () => uploadButton.click());
 
 const buttonRow = document.createElement('div');
@@ -50,14 +44,12 @@ function handleImageUpload(e){
 
     img.onload = function(){
       canvasContainer.style.display = 'block';
-      uploadButtonVisible.innerText = 'verander afbeelding';
+      uploadButtonVisible.innerText = 'upload andere foto';
+      uploadButtonVisible.className = 'btn btn-link';
       downloadButton.style.display = 'inline-block';
 
-      const ctx = canvas.getContext('2d');
-      ctx.drawImage(img,0,0, img.width, img.height, 0, 0, 1080, 1080);
-      ctx.drawImage(overlay,0,0);
-
-      cropper.bind({
+      // Bind image to croppie.
+      croppie.bind({
         url: event.target.result,
       });
 
@@ -66,112 +58,49 @@ function handleImageUpload(e){
   reader.readAsDataURL(e.target.files[0]);
 }
 
-// This function can be called from the button in HTML.
 function downloadCanvasAsImage() {
-  cropper.result({type: 'rawcanvas', size: 'original'}).then(function(rawcanvas) {
+  croppie.result({type: 'rawcanvas', size: 'original'}).then(function(rawcanvas) {
 
-
-    // var uri = URL.createObjectURL(blob);
-    // var img = new Image();
-
-    // img.src = uri;
-
-
-    console.log(rawcanvas);
-
-
-    // let blobImage = new Image(blob);
-    // const downloadCanvas = document.createElement('canvas');
+    // Draw overlay on the 'raw canvas'.
     const ctx = rawcanvas.getContext('2d');
     ctx.drawImage(overlay,0,0, overlay.width, overlay.height, 0, 0, rawcanvas.width, rawcanvas.height);
 
+    // Download the combined image.
     let dataURL = rawcanvas.toDataURL('image/png');
-
-    // console.log(blob);
     let downloadLink = document.createElement('a');
     downloadLink.setAttribute('download', 'profile-picture.png');
     downloadLink.setAttribute('href', dataURL);
-
-    // downloadLink.setAttribute('href', window.URL.createObjectURL(blob));
-
-
     downloadLink.click();
   });
-  //
-  // let dataURL = canvas.toDataURL('image/png');
-  // let downloadLink = document.createElement('a');
-  // downloadLink.setAttribute('download', 'profile-picture.png');
-  // downloadLink.setAttribute('href', dataURL);
-  // downloadLink.click();
 }
 
 const croppieWrapper = document.createElement('div');
 croppieWrapper.className = 'croppie-wrapper';
 
-
-const cropper = new Croppie(croppieWrapper, {
-  // viewport: { width: 900, height: 900 },
-  // boundary: { width: 1080, height: 1080 },
+const croppie = new Croppie(croppieWrapper, {
   viewport: { width: 100 + '%', height: 100 + '%' },
   boundary: { width: 100 + '%', height: 100 + '%' },
-
-  // viewport: { width: 400, height: 400 },
-  // boundary: { width: 500, height: 500 },
-
   showZoomer: false,
   enableOrientation: true,
   enableExif: true,
+  mouseWheelZoom: 'ctrl'
 });
 
-
-// cropper.bind({
-//   url: overlay.src,
-// });
-//
-
-
-// const cropperCanvas = document.querySelectorAll('.cr-image');
-// console.log(cropperCanvas);
-
-// const viewports = document.getElementsByClassName('cr-viewport');
-// viewports[0].style.backgroundImage = 'url("'+ overlay.src +'");';
-
-// console.log(viewports);
-
-// const ctx = cropperCanvas.getContext('2d');
-// ctx.drawImage(overlay,0,0);
-
-
-
-// Write elements to DOM.
-canvasWrap.appendChild(canvas);
-// canvasContainer.appendChild(canvasWrap);
 canvasContainer.appendChild(croppieWrapper);
-
 buttonRow.appendChild(downloadButton);
-
-
-// buttonRow.appendChild(uploadButton);
-// buttonRow.appendChild(uploadButtonVisible);
-
-wrapper.appendChild(uploadButtonVisible);
 wrapper.appendChild(canvasContainer);
+wrapper.appendChild(uploadButtonVisible);
 wrapper.appendChild(downloadButton);
 
-// wrapper.appendChild(downloadButton);
 
-
-
+// Add <style> to <head>
 function addCss(css) {
-
-  const head = document.head;
-  const link = document.createElement('style');
-
-  link.innerText = css;
-
-  head.appendChild(link);
+  const style = document.createElement('style');
+  style.innerText = css;
+  document.head.appendChild(style);
 }
 
+// Add the overlay image to croppie's '.cr-viewport' for the preview.
 const css = `.cr-viewport{background-image: url(\"${overlay.src}\");background-size: cover;"}`;
 addCss(css);
 
