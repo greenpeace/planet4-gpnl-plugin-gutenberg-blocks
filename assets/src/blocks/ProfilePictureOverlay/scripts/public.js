@@ -10,6 +10,7 @@ canvasWrap.className = 'canvas_wrap';
 
 // Overlay image, of which the source is pulled from the html data attribute.
 const overlay = new Image();
+overlay.crossOrigin = 'anonymous';  // Fix CORS issue
 overlay.src = wrapper.dataset.overlayImage;
 
 // The actual upload button (which is hidden because browsers make it impossible to style it).
@@ -40,6 +41,7 @@ function handleImageUpload(e){
   const reader = new FileReader();
   reader.onload = function(event){
     let img = new Image();
+    img.crossOrigin = 'anonymous';  // Fix CORS issue
     img.src = event.target.result;
 
     img.onload = function(){
@@ -64,6 +66,7 @@ function downloadCanvasAsImage() {
     // Draw overlay on the 'raw canvas'.
     const ctx = rawcanvas.getContext('2d');
     ctx.drawImage(overlay,0,0, overlay.width, overlay.height, 0, 0, rawcanvas.width, rawcanvas.height);
+
 
     // Download the combined image.
     let dataURL = rawcanvas.toDataURL('image/png');
