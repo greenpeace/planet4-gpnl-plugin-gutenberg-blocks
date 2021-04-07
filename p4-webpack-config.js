@@ -38,6 +38,8 @@ module.exports = {
 
     modal: './assets/src/blocks/Modal/styles/frontend.scss',
     'pdf-embed': './assets/src/blocks/PdfEmbed/styles/public.scss',
+    'profile-picture-overlay': './assets/src/blocks/ProfilePictureOverlay/publicIndex.js',
+
   },
   output: {
     filename: '[name].min.js',
