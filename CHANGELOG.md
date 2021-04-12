@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.6.0](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/compare/v2.5.1...v2.6.0) (2021-04-12)
+
+
+### Features
+
+* add profile picture overlay block ([ac59f31](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/ac59f3192e7505127e0164dc964595dde974f187))
+
+
+### Bug Fixes
+
+* image CORS issue ([b810edd](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/b810edd0107e40e223084c086a1061f7b0496334))
+
 ### [2.5.1](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/compare/v2.5.0...v2.5.1) (2021-04-06)
 
 
