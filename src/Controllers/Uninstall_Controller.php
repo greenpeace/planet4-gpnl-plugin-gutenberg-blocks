@@ -6,12 +6,12 @@
  * @since 0.1.0
  */
 
-namespace P4NL_GB_BKS\Controllers;
+namespace GPNL\Plugin\Controllers;
 
 /**
  * Class Uninstall_Controller
  *
- * @package P4NL_GB_BKS\Controllers
+ * @package GPNL\Plugin\Controllers
  */
 class Uninstall_Controller {
 

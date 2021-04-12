@@ -19,6 +19,18 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || die( 'Direct access is forbidden !' );
 
+use GPNL\Plugin\Loader;
+use GPNL\Plugin\Views\View;
+
+if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
+	require_once __DIR__ . '/vendor/autoload.php';
+} else {
+	require_once __DIR__ . '/../../../../vendor/autoload.php';
+}
+require_once __DIR__ . '/src/Loader.php';
+require_once ABSPATH . 'wp-admin/includes/plugin.php';
+
+
 /*
 ========================
 	C O N S T A N T S
@@ -97,22 +109,18 @@ if ( ! defined( 'P4NL_GB_BKS_PUBLIC_DIR' ) ) {
 }
 
 
-require_once __DIR__ . '/classes/class-loader.php';
-require_once ABSPATH . 'wp-admin/includes/plugin.php';
-
-
 /*
 ==========================
 	L O A D  P L U G I N
 ==========================
 */
-P4NL_GB_BKS\Loader::get_instance(
+Loader::get_instance(
 	[
 		// --- Add here your own Block Controller ---
 		// DEPRECATED: Blocks could be registered inside Loader class
-		// 'P4NL_GB_BKS\Controllers\Blocks\NewCovers_Controller',
+		// 'GPNL\Plugin\Blocks\NewCovers_Controller',
 	],
-	'P4NL_GB_BKS\Views\View'
+	View::class
 );
 
 

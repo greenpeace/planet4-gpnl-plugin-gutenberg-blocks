@@ -4,17 +4,17 @@
 /**
  * Petition block class
  *
- * @package P4NL_GB_BKS
+ * @package GPNL\Plugin
  * @since 0.1
  */
 
-namespace P4NL_GB_BKS\Blocks;
+namespace GPNL\Plugin\Blocks;
 
 
-use P4NL_GB_BKS\Services\Asset_Enqueuer;
+use GPNL\Plugin\Services\Asset_Enqueuer;
 
 /**
- * @package P4BKS\Controllers\Blocks
+ * @package GPNL\Plugin\Blocks
  * @since 0.1
  */
 class Inforequest extends Base_Block {

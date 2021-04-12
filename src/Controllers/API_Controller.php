@@ -1,7 +1,7 @@
 <?php
 
 
-namespace P4NL_GB_BKS\Controllers;
+namespace GPNL\Plugin\Controllers;
 
 use WP_REST_Response;
 

@@ -2,16 +2,16 @@
 /**
  * No Index block class
  *
- * @package P4NL_GB_BKS
+ * @package GPNL\Plugin
  * @since 0.1
  */
 
-namespace P4NL_GB_BKS\Blocks;
+namespace GPNL\Plugin\Blocks;
 
 /**
  * Defines the NoIndex Gutenberg block
  *
- * @package P4BKS\Controllers\Blocks
+ * @package GPNL\Plugin\Blocks
  * @since 0.1
  */
 class Noindex extends Base_Block {
@@ -62,7 +62,7 @@ class Noindex extends Base_Block {
 	 */
 	/** @noinspection PhpUnused */
 	public function prepare_data() {
-		
+
 		// nothing has to be rendered, so we return null.
 		return null;
 	}

@@ -6,7 +6,7 @@
  * @since 0.1.0
  */
 
-namespace P4NL_GB_BKS\Services;
+namespace GPNL\Plugin\Services;
 
 class Asset_Enqueuer {
 

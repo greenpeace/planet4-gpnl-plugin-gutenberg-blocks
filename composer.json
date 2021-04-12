@@ -29,5 +29,10 @@
   "scripts": {
     "fixes": "vendor/bin/phpcbf --standard=Wordpress-Core --exclude=Generic.Arrays.DisallowShortArraySyntax --ignore=vendor/,node_modules/,.asset.php --extensions=php ./",
     "sniffs": "vendor/bin/phpcs --standard=Wordpress-Core --exclude=Generic.Arrays.DisallowShortArraySyntax --ignore=vendor/,node_modules/,.asset.php --extensions=php ./"
-  }
+  },
+	"autoload": {
+		"psr-4": {
+			"GPNL\\Plugin\\": "src/"
+		}
+	}
 }
