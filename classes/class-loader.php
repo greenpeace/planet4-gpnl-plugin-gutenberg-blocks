@@ -108,6 +108,7 @@ final class Loader {
 			new Blocks\Columns(),
 			new Blocks\SocialMessage(),
 			new Blocks\Modal(),
+			new Blocks\ProfilePictureOverlay(),
 		];
 	}
 

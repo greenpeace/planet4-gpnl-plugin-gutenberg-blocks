@@ -43,6 +43,9 @@ new ColumnsBlock();
 import { ColumnBlock } from '../../blocks/Column/ColumnBlock';
 new ColumnBlock();
 
+import { ProfilePictureOverlayBlock } from '../../blocks/ProfilePictureOverlay/editorIndex';
+new ProfilePictureOverlayBlock();
+
 /**
  * WordPress dependencies.
  */
