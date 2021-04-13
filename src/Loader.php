@@ -6,8 +6,10 @@
  * @since 0.1.0
  */
 
-namespace P4NL_GB_BKS;
+namespace GPNL\Plugin;
 
+use GPNL\Plugin\Controllers\API_Controller;
+use GPNL\Plugin\Services\Twig_Helper;
 use WP_CLI;
 
 /**
@@ -87,12 +89,12 @@ final class Loader {
 	 */
 	private function __construct( $services, $view_class ) {
 
-		$this->load_files();
+//		$this->load_files();
 		$this->check_requirements();
 
 		$this->services = [
-			new Services\Twig_helper(),
-			new Controllers\API_controller(),
+			new Twig_helper(),
+			new API_controller(),
 		];
 
 		// Load Blocks.
@@ -113,36 +115,6 @@ final class Loader {
 	}
 
 	/**
-	 * Load required files. The plugins namespaces should:
-	 * a. include P4NL_GB_BKS string
-	 * b. follow the names of the sub-directories of the current __DIR__ (classes/)
-	 *    - if not, then proper replacements should be added like below
-	 */
-	private function load_files() {
-		try {
-			spl_autoload_register(
-				function ( $class_name ) {
-					if ( false !== strpos( $class_name, 'P4NL_GB_BKS' ) ) {
-						$class_name_parts = explode( '\\', $class_name );
-						$real_class_name  = array_pop( $class_name_parts );
-						$file_name        = 'class-' . str_ireplace( '_', '-', strtolower( $real_class_name ) );
-
-						$namespace = implode( '\\', $class_name_parts );
-						$path      = str_ireplace(
-							[ 'P4NL_GB_BKS', 'Blocks', 'Controllers', 'Views', 'Services', '_', '\\' ],
-							[ '', 'blocks', 'controller', 'view', 'services', '-', '/' ],
-							strtolower( $namespace )
-						);
-						require_once __DIR__ . '/' . $path . '/' . $file_name . '.php';
-					}
-				}
-			);
-		} catch ( \Exception $e ) {
-			echo esc_html( $e->getMessage() );
-		}
-	}
-
-	/**
 	 * Loads all shortcake blocks registered from within this plugin.
 	 *
 	 * @param array $services The Controller services to inject.
@@ -155,22 +127,6 @@ final class Loader {
 		if ( $this->services ) {
 			foreach ( $this->services as $service ) {
 				( new $service( $this->view ) )->load();
-			}
-		}
-	}
-
-	/**
-	 * Registers commands for Blocks plugin.
-	 */
-	public function load_commands() {
-		if ( defined( 'WP_CLI' ) && WP_CLI ) {
-			try {
-				WP_CLI::add_command(
-					'p4-blocks',
-					'P4NL_GB_BKS\Command\Controller'
-				);
-			} catch ( \Exception $e ) {
-				WP_CLI::log( 'Exception: ' . $e->getMessage() );
 			}
 		}
 	}

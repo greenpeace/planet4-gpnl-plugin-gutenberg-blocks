@@ -6,7 +6,7 @@
  * @since 0.1.0
  */
 
-namespace P4NL_GB_BKS\Views;
+namespace GPNL\Plugin\Views;
 
 use Timber\Timber;
 

@@ -1,11 +1,17 @@
 <?php
 
 
-namespace P4NL_GB_BKS\Services;
+namespace GPNL\Plugin\Services;
 
 use Timber\Twig_Function;
 
 class Twig_Helper {
+
+	public function __construct()
+	{
+		add_filter( 'timber/twig', [ $this, 'add_image_to_twig' ] );
+		add_filter( 'timber/twig', [ $this, 'add_file_to_twig' ] );
+	}
 
 	/**
 	 * A Twig functionality to add the image public path.
@@ -39,5 +45,3 @@ class Twig_Helper {
 
 }
 
-add_filter( 'timber/twig', [ 'P4NL_GB_BKS\Services\Twig_Helper', 'add_image_to_twig' ] );
-add_filter( 'timber/twig', [ 'P4NL_GB_BKS\Services\Twig_Helper', 'add_file_to_twig' ] );
