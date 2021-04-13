@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.7.0](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/compare/v2.6.0...v2.7.0) (2021-04-13)
+
+
+### Features
+
+* **dx:** Implement PSR-4 Autoloading ([27106f9](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/27106f9a47fcb94ab33c870dfbcb0013254443ca))
+
 ## [2.6.0](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/compare/v2.5.1...v2.6.0) (2021-04-12)
 
 
