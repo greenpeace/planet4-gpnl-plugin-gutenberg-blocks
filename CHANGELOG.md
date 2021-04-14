@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.8.0](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/compare/v2.7.0...v2.8.0) (2021-04-14)
+
+
+### Features
+
+* Include new link to education subscribe form ([d7d938c](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/d7d938cddd93803b96c451a3211ac4c48f6d753e))
+* upgrade modal to bs5 ([e121b02](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/e121b02fd2de7f8c2a552be0b4d3fb929fb4ca18))
+
 ## [2.7.0](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/compare/v2.6.0...v2.7.0) (2021-04-13)
 
 
