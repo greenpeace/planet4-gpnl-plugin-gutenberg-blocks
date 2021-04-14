@@ -1,0 +1,36 @@
+{% block ShipCompetition %}
+	{% if ( fields ) %}
+		{% if fields.form_submitted == true %}
+			<div class="thank-you">
+				Beste {{ fields.form_submitter | capitalize }}, bedankt voor jouw inzending! Mocht jouw inzending gekozen worden dan nemen we contact met je op.
+			</div>
+		{% else %}
+			<section class="ship-naming-section">
+				<form class="ship-naming-form" id="ship-naming-form" action="/wp-admin/admin-post.php" method="post">
+
+					<label for="form_first_name">Naam:</label>
+					<input name="firstname" id="form_first_name" type="text">
+
+					<label for="form_last_name">Naam:</label>
+					<input name="lastname" id="form_last_name" type="text">
+
+					<label for="form_email">Email:</label>
+					<input name="email" id="form_email" type="email">
+
+					<label for="form_tel">Telefoonnummer:</label>
+					<input name="tel" id="form_tel" type="tel">
+
+					<label for="form_ship_name">Suggestie:</label>
+					<textarea name="ship_name" id="form_ship_name" type="text" rows="2"></textarea>
+
+					<label for="form_optin">Ik geef mijn gegevens</label>
+					<input type="checkbox" id="form_optin" name="optin">
+
+					<input type="hidden" name="action" value="process_ship_naming_competition_form_data">
+
+					<input class="btn btn-primary" type="submit" name="submit_button" value="Verstuur">
+				</form>
+			</section>
+		{% endif %}
+	{% endif %}
+{% endblock %}

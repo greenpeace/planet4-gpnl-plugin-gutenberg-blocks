@@ -43,8 +43,14 @@ new ColumnsBlock();
 import { ColumnBlock } from '../../blocks/Column/ColumnBlock';
 new ColumnBlock();
 
+import { ModalBlock } from '../../blocks/Modal/ModalBlock';
+new ModalBlock();
+
 import { ProfilePictureOverlayBlock } from '../../blocks/ProfilePictureOverlay/editorIndex';
 new ProfilePictureOverlayBlock();
+
+import { ShipCompetitionBlock } from '../../blocks/ShipCompetition/js/shipCompetitionBlock';
+new ShipCompetitionBlock();
 
 /**
  * WordPress dependencies.
@@ -58,5 +64,3 @@ registerPlugin('gpnl-sidebar', {
   render: NL_Sidebar_E_activism
 });
 
-import { ModalBlock } from '../../blocks/Modal/ModalBlock';
-new ModalBlock();
