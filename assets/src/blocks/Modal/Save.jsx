@@ -23,9 +23,9 @@ export default function Save(props) {
   };
 
   return (
-    <div className={props.attributes.className}>
-      <button type={'button'} className={openButton && 'btn btn-primary'} data-toggle="modal"
-        data-target={'#' + 'modal' + uniqueId}>
+    <div>
+      <button type={'button'} className={openButton && 'btn btn-primary'} data-bs-toggle="modal"
+        data-bs-target={'#' + 'modal' + uniqueId}>
         {openTitle}
       </button>
 
@@ -36,9 +36,7 @@ export default function Save(props) {
             {modalTitle &&
             <div className="modal-header">
               <h5 className="modal-title" id={'modal' + uniqueId + 'Label'}>{modalTitle}</h5>
-              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"/>
             </div>
             }
             <div className="modal-body">
@@ -47,7 +45,7 @@ export default function Save(props) {
             {showButtonRow() &&
             <div className="modal-footer">
               {showCancel &&
-              <button type="button" className="btn btn-secondary" data-dismiss="modal">{cancelTitle}</button>
+              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">{cancelTitle}</button>
               }
               {showCta &&
               <a href={ctaUrl} target={ctaUrlInNewTab && '_blank'} className="btn btn-primary"

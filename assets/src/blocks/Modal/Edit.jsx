@@ -29,7 +29,7 @@ export default class Edit extends Component {
     } = attributes;
 
     return (
-      <div className={this.props.attributes.className}>
+      <div>
         <RichText
           tagName={'button'}
           className={'btn btn-primary'}
