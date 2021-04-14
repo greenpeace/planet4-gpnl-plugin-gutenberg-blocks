@@ -9,6 +9,8 @@ namespace GPNL\Plugin\Blocks;
 
 
 use GPNL\Plugin\Services\Asset_Enqueuer;
+use PDO;
+use PDOException;
 
 class ShipCompetition extends Base_Block
 {
@@ -85,7 +87,38 @@ class ShipCompetition extends Base_Block
 		$lastname  = htmlspecialchars( wp_strip_all_tags( $_POST['lastname'] ));
 		$name= urlencode($firstname . " " . $lastname);
 		$HTTPREFERER = htmlspecialchars( wp_strip_all_tags( $_SERVER['HTTP_REFERER'] ));
+
+		$this->dbconn();
+
 		header('Location: ' . $HTTPREFERER . '?submitted=true&submitter=' . $name);
 		exit;
+	}
+
+	public function dbconn(): void
+	{
+		try {
+			$options = get_option('planet4nl_options');
+			$host = $options['gpnl_db_host'];
+			$db = $options['gpnl_db'];
+			$user = $options['gpnl_db_user'];
+			$pass = $options['gpnl_db_pass'];
+			$ca = '/app/source/public/wp-content/uploads/ca.pem';
+			$trusted_ca = $host === "vmkepler.greenpeace.nl";
+
+			$options = [
+				PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
+				PDO::MYSQL_ATTR_SSL_CA => $ca,
+				PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => $trusted_ca,
+			];
+
+			$conn = new PDO("mysql:host=$host;port=3306;dbname=$db", $user, $pass, $options);
+			// set the PDO error mode to exception
+			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			echo "Connected successfully";
+			$bla = $conn->query("SHOW STATUS LIKE 'Ssl_cipher';")->fetchAll();
+			$conn = null;
+		} catch (PDOException $e) {
+			echo "Connection failed: " . $e->getMessage();
+		}
 	}
 }
