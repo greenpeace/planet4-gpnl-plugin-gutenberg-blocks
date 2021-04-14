@@ -1,3 +1,23 @@
+@import "../../../base/base.scss";
+
 .skewed-overlay {
   z-index: 0;
+}
+.modal {
+  position: fixed !important;
+  z-index: 1150 !important;
+  color: $black;
+
+  .modal-footer {
+    .btn-secondary {
+      background-color: $slate-grey;
+      color: $white;
+      margin: 0 0.25rem;
+
+      &:hover {
+        color: darken($white, 10%);
+        background-color: darken($slate-grey, 10%);
+      }
+    }
+  }
 }
