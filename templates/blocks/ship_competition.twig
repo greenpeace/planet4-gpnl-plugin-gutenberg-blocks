@@ -4,6 +4,10 @@
 			<div class="thank-you">
 				Beste {{ fields.form_submitter | capitalize }}, bedankt voor jouw inzending! Mocht jouw inzending gekozen worden dan nemen we contact met je op.
 			</div>
+		{% elseif fields.form_error == true %}
+			<div class="thank-you">
+				Beste {{ fields.form_submitter | capitalize }}, Sorry, daar ging iets mis... Probeer het nog eens!
+			</div>
 		{% else %}
 			<section class="ship-naming-section">
 				<form class="ship-naming-form" id="ship-naming-form" action="/wp-admin/admin-post.php" method="post">

@@ -70,11 +70,15 @@ class ShipCompetition extends Base_Block
 	 */
 	public function prepare_data( $fields ): array {
 
+		// TODO: Misschien in POST verwerken ipv GET?
 		if(isset($_GET['submitted'])) {
 			$fields['form_submitted'] = true;
 			$fields['form_submitter'] = $_GET['submitter'];
 		}
-
+		if(isset($_GET['error'])) {
+			$fields['form_error'] = true;
+			$fields['form_submitter'] = $_GET['submitter'];
+		}
 		return [
 			'fields' => $fields,
 		];
@@ -95,7 +99,11 @@ class ShipCompetition extends Base_Block
 			'optin'  => htmlspecialchars( wp_strip_all_tags( $_POST['optin'] ))
 		];
 
-		header('Location: ' . $HTTPREFERER . '?submitted=true&submitter=' . $name);
+		if ($this->dbconn($form_data)){
+			header('Location: ' . $HTTPREFERER . '?submitted=true&submitter=' . $name);
+			exit;
+		}
+		header('Location: ' . $HTTPREFERER . '?error=true&submitter=' . $name);
 		exit;
 	}
 
@@ -120,7 +128,6 @@ class ShipCompetition extends Base_Block
 //				PDO::MYSQL_ATTR_SSL_KEY => $client_key,
 //				PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
 			];
-
 			$conn = new PDO("mysql:host=$host;port=3306;dbname=$db", $user, $pass, $options);
 			// set the PDO error mode to exception
 			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
