@@ -43,9 +43,7 @@ export class ShipCompetitionBlock extends BaseBlock {
 
       edit() {
         return <h4 style={{'color': 'red'}}>
-          Deze pagina wordt met dit blok &quot;verborgen&quot;. Gebruik dit enkel voor dingen als kopie-pagina&#39;s voor petities en
-          speciale pagina&#39;s voor mailmarketing. Wat dit doet? Een instructie aan zoekmachines om deze pagina niet te
-          indexeren. Ook worden alle categorieën en tags verwijderd.
+          Hier staat het nieuwe formulier
         </h4>;
       },
 

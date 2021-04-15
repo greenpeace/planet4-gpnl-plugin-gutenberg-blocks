@@ -31,18 +31,6 @@ class ShipCompetition extends Base_Block
 						'type'    => 'string',
 						'default' => '',
 					],
-					'quotee'    => [
-						'type'    => 'string',
-						'default' => '',
-					],
-					'image_url' => [
-						'type'    => 'string',
-						'default' => '',
-					],
-					'image_id'  => [
-						'type'    => 'number',
-						'default' => '',
-					]
 				]
 			]
 		);
@@ -57,7 +45,7 @@ class ShipCompetition extends Base_Block
 	{
 		// Check if the block is present on the page that is requested.
 		if ( has_block( 'planet4-gpnl-blocks/' . $this->getKebabCaseClassName() ) ) {
-			Asset_Enqueuer::enqueue_asset( 'collapsible', 'style' );
+//			Asset_Enqueuer::enqueue_asset( 'collapsible', 'style' );
 		}
 	}
 
