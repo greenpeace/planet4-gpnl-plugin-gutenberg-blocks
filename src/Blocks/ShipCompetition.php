@@ -88,13 +88,18 @@ class ShipCompetition extends Base_Block
 		$name= urlencode($firstname . " " . $lastname);
 		$HTTPREFERER = htmlspecialchars( wp_strip_all_tags( $_SERVER['HTTP_REFERER'] ));
 
-		$this->dbconn();
+		$form_data =[
+			'firstname'  => htmlspecialchars( wp_strip_all_tags( $_POST['firstname'] )),
+			'lastname'  => htmlspecialchars( wp_strip_all_tags( $_POST['lastname'] )),
+			'shipname'  => htmlspecialchars( wp_strip_all_tags( $_POST['ship_name'] )),
+			'optin'  => htmlspecialchars( wp_strip_all_tags( $_POST['optin'] ))
+		];
 
 		header('Location: ' . $HTTPREFERER . '?submitted=true&submitter=' . $name);
 		exit;
 	}
 
-	public function dbconn(): void
+	public function dbconn($form_data): bool
 	{
 		try {
 //			TODO: Fix connection to db server
@@ -119,11 +124,18 @@ class ShipCompetition extends Base_Block
 			$conn = new PDO("mysql:host=$host;port=3306;dbname=$db", $user, $pass, $options);
 			// set the PDO error mode to exception
 			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			echo "Connected successfully";
-			$bla = $conn->query("SHOW STATUS LIKE 'Ssl_cipher';")->fetchAll();
-			$conn = null;
+
+			$sql = "INSERT INTO shipname (first_name, last_name, ship_name, optin)
+					VALUES (:first_name, :last_name, :ship_name, :optin)";
+			$statement = $conn->prepare($sql);
+			if ($statement->execute($form_data)){
+				$conn = null;
+				return true;
+			}
+			return false;
 		} catch (PDOException $e) {
 			echo "Connection failed: " . $e->getMessage();
+			return false;
 		}
 	}
 }
