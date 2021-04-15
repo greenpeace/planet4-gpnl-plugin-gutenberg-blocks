@@ -97,18 +97,23 @@ class ShipCompetition extends Base_Block
 	public function dbconn(): void
 	{
 		try {
+//			TODO: Fix connection to db server
 			$options = get_option('planet4nl_options');
-			$host = $options['gpnl_db_host'];
-			$db = $options['gpnl_db'];
-			$user = $options['gpnl_db_user'];
-			$pass = $options['gpnl_db_pass'];
-			$ca = '/app/source/public/wp-content/uploads/ca.pem';
-			$trusted_ca = $host === "vmkepler.greenpeace.nl";
+			$host        = $options['gpnl_db_host'];
+			$db          = $options['gpnl_db'];
+			$user        = $options['gpnl_db_user'];
+			$pass        = $options['gpnl_db_pass'];
+			$ca          = '/app/source/public/wp-content/uploads/ca.pem';
+			$client_cert = '/app/source/public/wp-content/uploads/client-cert.pem';
+			$client_key  = '/app/source/public/wp-content/uploads/client-key.pem';
+			$trusted_ca  = $host === "vmkepler.greenpeace.nl";
 
 			$options = [
 				PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
-				PDO::MYSQL_ATTR_SSL_CA => $ca,
-				PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => $trusted_ca,
+//				PDO::MYSQL_ATTR_SSL_CA => $ca,
+//				PDO::MYSQL_ATTR_SSL_CERT => $client_cert,
+//				PDO::MYSQL_ATTR_SSL_KEY => $client_key,
+//				PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
 			];
 
 			$conn = new PDO("mysql:host=$host;port=3306;dbname=$db", $user, $pass, $options);
