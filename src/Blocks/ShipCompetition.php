@@ -8,7 +8,6 @@
 namespace GPNL\Plugin\Blocks;
 
 
-use GPNL\Plugin\Services\Asset_Enqueuer;
 use PDO;
 use PDOException;
 
@@ -17,7 +16,8 @@ class ShipCompetition extends Base_Block
 	/**
 	 * Defines the fields and render callback for Gutenberg
 	 */
-	public function __construct() {
+	public function __construct()
+	{
 
 		// - Register the block for the editor
 		// in the PHP side.
@@ -25,17 +25,19 @@ class ShipCompetition extends Base_Block
 			'planet4-gpnl-blocks/' . $this->getKebabCaseClassName(),
 			[
 				'editor_script'   => 'planet4-gpnl-blocks',
-				'render_callback' => [ $this, 'render' ],
+				'render_callback' => [$this, 'render'],
 				'attributes'      => [
-					'quote'     => [
+					'quote' => [
 						'type'    => 'string',
 						'default' => '',
 					],
 				]
 			]
 		);
-		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_if_block_is_present' ] );
+		add_action('wp_enqueue_scripts', [$this, 'enqueue_if_block_is_present']);
 		add_action('admin_post_process_ship_naming_competition_form_data', [$this, 'process_ship_naming_competition_form_data']);
+
+		//		$this->testInsertData();
 	}
 
 	/**
@@ -44,8 +46,8 @@ class ShipCompetition extends Base_Block
 	public function enqueue_if_block_is_present()
 	{
 		// Check if the block is present on the page that is requested.
-		if ( has_block( 'planet4-gpnl-blocks/' . $this->getKebabCaseClassName() ) ) {
-//			Asset_Enqueuer::enqueue_asset( 'collapsible', 'style' );
+		if (has_block('planet4-gpnl-blocks/' . $this->getKebabCaseClassName())) {
+			//			Asset_Enqueuer::enqueue_asset( 'collapsible', 'style' );
 		}
 	}
 
@@ -56,14 +58,15 @@ class ShipCompetition extends Base_Block
 	 *
 	 * @return array The data to be passed in the View.
 	 */
-	public function prepare_data( $fields ): array {
+	public function prepare_data($fields): array
+	{
 
 		// TODO: Misschien in POST verwerken ipv GET?
-		if(isset($_GET['submitted'])) {
+		if (isset($_GET['submitted'])) {
 			$fields['form_submitted'] = true;
 			$fields['form_submitter'] = $_GET['submitter'];
 		}
-		if(isset($_GET['error'])) {
+		if (isset($_GET['error'])) {
 			$fields['form_error'] = true;
 			$fields['form_submitter'] = $_GET['submitter'];
 		}
@@ -74,47 +77,73 @@ class ShipCompetition extends Base_Block
 
 	public function process_ship_naming_competition_form_data(): void
 	{
-		$_POST = wp_unslash( $_POST );
-		$firstname  = htmlspecialchars( wp_strip_all_tags( $_POST['firstname'] ));
-		$lastname  = htmlspecialchars( wp_strip_all_tags( $_POST['lastname'] ));
-		$name= urlencode($firstname . " " . $lastname);
-		$HTTPREFERER = htmlspecialchars( wp_strip_all_tags( $_SERVER['HTTP_REFERER'] ));
+		$_POST = wp_unslash($_POST);
+		$firstname = htmlspecialchars(wp_strip_all_tags($_POST['firstname']));
+		$lastname = htmlspecialchars(wp_strip_all_tags($_POST['lastname']));
+		//		$name= urlencode($firstname . " " . $lastname);
+		//		$HTTPREFERER = htmlspecialchars( wp_strip_all_tags( $_SERVER['HTTP_REFERER'] ));
 
-		$form_data =[
-			'firstname'  => htmlspecialchars( wp_strip_all_tags( $_POST['firstname'] )),
-			'lastname'  => htmlspecialchars( wp_strip_all_tags( $_POST['lastname'] )),
-			'shipname'  => htmlspecialchars( wp_strip_all_tags( $_POST['ship_name'] )),
-			'optin'  => htmlspecialchars( wp_strip_all_tags( $_POST['optin'] ))
+		$form_data = [
+			'first_name' => htmlspecialchars(wp_strip_all_tags($_POST['firstname'])),
+			'last_name'  => htmlspecialchars(wp_strip_all_tags($_POST['lastname'])),
+			'ship_name'  => htmlspecialchars(wp_strip_all_tags($_POST['ship_name'])),
+			'optin'  => htmlspecialchars(wp_strip_all_tags($_POST['optin'] ) === 'on')
 		];
 
-		if ($this->dbconn($form_data)){
-			header('Location: ' . $HTTPREFERER . '?submitted=true&submitter=' . $name);
-			exit;
+		$this->insertDataInDatabase($form_data);
+
+		//		if ($this->dbconn($form_data)){
+		//			header('Location: ' . $HTTPREFERER . '?submitted=true&submitter=' . $name);
+		//			exit;
+		//		}
+		//		header('Location: ' . $HTTPREFERER . '?error=true&submitter=' . $name);
+		//		exit;
+	}
+
+	public function insertDataInDatabase($form_data)
+	{
+		$options = get_option('planet4nl_options');
+		$host = $options['gpnl_db_host'];
+		$db = $options['gpnl_db'];
+		$user = $options['gpnl_db_user'];
+		$pass = $options['gpnl_db_pass'];
+
+		try {
+			$conn = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
+			// set the PDO error mode to exception for testing:
+			 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			$sql = "INSERT INTO shipname (first_name, last_name, ship_name, optin) VALUES (:first_name, :last_name, :ship_name, :optin)";
+			$conn->prepare($sql)->execute($form_data);
+
+			echo "New record created successfully";
+		} catch (PDOException $e) {
+			var_dump($form_data);
+			echo $sql . "<br>" . $e->getMessage();
 		}
-		header('Location: ' . $HTTPREFERER . '?error=true&submitter=' . $name);
-		exit;
+
+		return true;
 	}
 
 	public function dbconn($form_data): bool
 	{
 		try {
-//			TODO: Fix connection to db server
+			//			TODO: Fix connection to db server
 			$options = get_option('planet4nl_options');
-			$host        = $options['gpnl_db_host'];
-			$db          = $options['gpnl_db'];
-			$user        = $options['gpnl_db_user'];
-			$pass        = $options['gpnl_db_pass'];
-			$ca          = '/app/source/public/wp-content/uploads/ca.pem';
+			$host = $options['gpnl_db_host'];
+			$db = $options['gpnl_db'];
+			$user = $options['gpnl_db_user'];
+			$pass = $options['gpnl_db_pass'];
+			$ca = '/app/source/public/wp-content/uploads/ca.pem';
 			$client_cert = '/app/source/public/wp-content/uploads/client-cert.pem';
-			$client_key  = '/app/source/public/wp-content/uploads/client-key.pem';
-			$trusted_ca  = $host === "vmkepler.greenpeace.nl";
+			$client_key = '/app/source/public/wp-content/uploads/client-key.pem';
+			$trusted_ca = $host === "vmkepler.greenpeace.nl";
 
 			$options = [
 				PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
-//				PDO::MYSQL_ATTR_SSL_CA => $ca,
-//				PDO::MYSQL_ATTR_SSL_CERT => $client_cert,
-//				PDO::MYSQL_ATTR_SSL_KEY => $client_key,
-//				PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
+				//				PDO::MYSQL_ATTR_SSL_CA => $ca,
+				//				PDO::MYSQL_ATTR_SSL_CERT => $client_cert,
+				//				PDO::MYSQL_ATTR_SSL_KEY => $client_key,
+				//				PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
 			];
 			$conn = new PDO("mysql:host=$host;port=3306;dbname=$db", $user, $pass, $options);
 			// set the PDO error mode to exception
@@ -123,7 +152,7 @@ class ShipCompetition extends Base_Block
 			$sql = "INSERT INTO shipname (first_name, last_name, ship_name, optin)
 					VALUES (:first_name, :last_name, :ship_name, :optin)";
 			$statement = $conn->prepare($sql);
-			if ($statement->execute($form_data)){
+			if ($statement->execute($form_data)) {
 				$conn = null;
 				return true;
 			}
