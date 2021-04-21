@@ -108,8 +108,14 @@ class ShipCompetition extends Base_Block
 		$user = $options['gpnl_db_user'];
 		$pass = $options['gpnl_db_pass'];
 
+		$PdoOptions = array(
+			PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
+			PDO::MYSQL_ATTR_SSL_CA => true,
+			PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
+		);
+
 		try {
-			$conn = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
+			$conn = new PDO("mysql:host=$host;dbname=$db", $user, $pass, $PdoOptions);
 			// set the PDO error mode to exception for testing:
 			 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$sql = "INSERT INTO shipname (first_name, last_name, ship_name, optin) VALUES (:first_name, :last_name, :ship_name, :optin)";
@@ -117,49 +123,51 @@ class ShipCompetition extends Base_Block
 
 			echo "New record created successfully";
 		} catch (PDOException $e) {
-			var_dump($form_data);
-			echo $sql . "<br>" . $e->getMessage();
+			echo "ERROR....";
+//			echo $sql . "<br>" . $e->getMessage();
+//			var_dump($form_data);
+//			echo $sql . "<br>" . $e->getMessage();
 		}
 
 		return true;
 	}
 
-	public function dbconn($form_data): bool
-	{
-		try {
-			//			TODO: Fix connection to db server
-			$options = get_option('planet4nl_options');
-			$host = $options['gpnl_db_host'];
-			$db = $options['gpnl_db'];
-			$user = $options['gpnl_db_user'];
-			$pass = $options['gpnl_db_pass'];
-			$ca = '/app/source/public/wp-content/uploads/ca.pem';
-			$client_cert = '/app/source/public/wp-content/uploads/client-cert.pem';
-			$client_key = '/app/source/public/wp-content/uploads/client-key.pem';
-			$trusted_ca = $host === "vmkepler.greenpeace.nl";
-
-			$options = [
-				PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
-				//				PDO::MYSQL_ATTR_SSL_CA => $ca,
-				//				PDO::MYSQL_ATTR_SSL_CERT => $client_cert,
-				//				PDO::MYSQL_ATTR_SSL_KEY => $client_key,
-				//				PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
-			];
-			$conn = new PDO("mysql:host=$host;port=3306;dbname=$db", $user, $pass, $options);
-			// set the PDO error mode to exception
-			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-			$sql = "INSERT INTO shipname (first_name, last_name, ship_name, optin)
-					VALUES (:first_name, :last_name, :ship_name, :optin)";
-			$statement = $conn->prepare($sql);
-			if ($statement->execute($form_data)) {
-				$conn = null;
-				return true;
-			}
-			return false;
-		} catch (PDOException $e) {
-			echo "Connection failed: " . $e->getMessage();
-			return false;
-		}
-	}
+//	public function dbconn($form_data): bool
+//	{
+//		try {
+//			//			TODO: Fix connection to db server
+//			$options = get_option('planet4nl_options');
+//			$host = $options['gpnl_db_host'];
+//			$db = $options['gpnl_db'];
+//			$user = $options['gpnl_db_user'];
+//			$pass = $options['gpnl_db_pass'];
+//			$ca = '/app/source/public/wp-content/uploads/ca.pem';
+//			$client_cert = '/app/source/public/wp-content/uploads/client-cert.pem';
+//			$client_key = '/app/source/public/wp-content/uploads/client-key.pem';
+//			$trusted_ca = $host === "vmkepler.greenpeace.nl";
+//
+//			$options = [
+//				PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
+//				//				PDO::MYSQL_ATTR_SSL_CA => $ca,
+//				//				PDO::MYSQL_ATTR_SSL_CERT => $client_cert,
+//				//				PDO::MYSQL_ATTR_SSL_KEY => $client_key,
+//				//				PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
+//			];
+//			$conn = new PDO("mysql:host=$host;port=3306;dbname=$db", $user, $pass, $options);
+//			// set the PDO error mode to exception
+//			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//
+//			$sql = "INSERT INTO shipname (first_name, last_name, ship_name, optin)
+//					VALUES (:first_name, :last_name, :ship_name, :optin)";
+//			$statement = $conn->prepare($sql);
+//			if ($statement->execute($form_data)) {
+//				$conn = null;
+//				return true;
+//			}
+//			return false;
+//		} catch (PDOException $e) {
+//			echo "Connection failed: " . $e->getMessage();
+//			return false;
+//		}
+//	}
 }
