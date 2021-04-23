@@ -1,7 +1,5 @@
 import React from 'react';
 import BaseBlock from '../../BaseBlock';
-import {Icon, ServerSideRender} from '@wordpress/components';
-// import {ShipCompetition} from './ShipCompetition';
 import PropTypes from 'prop-types';
 
 export class ShipCompetitionBlock extends BaseBlock {
