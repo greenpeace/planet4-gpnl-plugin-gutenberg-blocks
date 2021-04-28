@@ -1,0 +1,13 @@
+.ship-naming-form {
+  input, textarea {
+    display: block;
+  }
+
+  input[type='checkbox']{
+    display: inline-block;
+  }
+
+  label:not(:first-child), input[type='submit'] {
+    margin-top: 1em;
+  }
+}

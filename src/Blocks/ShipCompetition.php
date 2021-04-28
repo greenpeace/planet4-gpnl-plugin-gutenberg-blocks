@@ -1,9 +1,4 @@
 <?php
-/**
- * User: oscar
- * Date: 13-04-21
- * Time: 15:54
- */
 
 namespace GPNL\Plugin\Blocks;
 
@@ -19,7 +14,6 @@ class ShipCompetition extends Base_Block
 	 */
 	public function __construct()
 	{
-
 		// - Register the block for the editor
 		// in the PHP side.
 		register_block_type(
@@ -40,8 +34,8 @@ class ShipCompetition extends Base_Block
 	{
 		// Check if the block is present on the page that is requested.
 		if (has_block('planet4-gpnl-blocks/' . $this->getKebabCaseClassName())) {
-						Asset_Enqueuer::enqueue_asset( 'ship-naming-competition', 'style' );
-						Asset_Enqueuer::enqueue_asset( 'ship-naming-competition', 'script' , [], true);
+			Asset_Enqueuer::enqueue_asset('ship-naming-competition', 'style');
+			Asset_Enqueuer::enqueue_asset('ship-naming-competition', 'script', [], true);
 		}
 	}
 
@@ -54,8 +48,6 @@ class ShipCompetition extends Base_Block
 	 */
 	public function prepare_data($fields)
 	{
-
-//		// TODO: Misschien in POST verwerken ipv GET?
 		if (isset($_GET['submitter'])) {
 			$fields['form_submitted'] = true;
 			$fields['form_submitter'] = $_GET['submitter'];
@@ -100,14 +92,13 @@ class ShipCompetition extends Base_Block
 		try {
 			$conn = new PDO("mysql:host=$host;dbname=$db", $user, $pass, $PdoOptions);
 			// set the PDO error mode to exception for testing:
-			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			// $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$sql = "INSERT INTO shipname (first_name, last_name, email, ship_name, optin) VALUES (:first_name, :last_name, :email, :ship_name, :optin)";
 			$conn->prepare($sql)->execute($form_data);
-
-			header('Location: ' . $HTTP_REFERER . '?submitted=true&submitter=' . $form_data['first_name']);
+			header('Location: ' . $HTTP_REFERER . '?submitter=' . $form_data['first_name']);
 			exit;
 		} catch (PDOException $e) {
- 			header('Location: ' . $HTTP_REFERER . '?form_error=true&submitter=' . $form_data['first_name']);
+			header('Location: ' . $HTTP_REFERER . '?form_error=true' . $form_data['first_name']);
 			exit;
 		}
 	}
