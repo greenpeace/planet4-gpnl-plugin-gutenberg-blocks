@@ -1,1 +1,1 @@
-.ship-naming-form input,.ship-naming-form textarea{display:block}.ship-naming-form input[type=checkbox]{display:inline-block}.ship-naming-form input[type=submit],.ship-naming-form label:not(:first-child){margin-top:1em}
+.ship-naming-form input,.ship-naming-form textarea{display:block}.ship-naming-form input[type=checkbox]{display:inline-block;margin-top:1em}.ship-naming-form input[type=checkbox]+label{display:inline}.ship-naming-form input[type=submit],.ship-naming-form label:not(:first-child){margin-top:1em}
