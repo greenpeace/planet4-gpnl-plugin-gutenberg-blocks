@@ -5,6 +5,11 @@
 
   input[type='checkbox']{
     display: inline-block;
+    margin-top: 1em;
+
+    + label {
+      display: inline;
+    }
   }
 
   label:not(:first-child), input[type='submit'] {
