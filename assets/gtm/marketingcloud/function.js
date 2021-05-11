@@ -60,3 +60,16 @@ window.determineCookieValue = function( cookieP4, cookieFS) {
   };
   return truthTable[cookieP4][cookieFS];
 };
+
+window.hashCode = function(string) {
+  var hash = 0;
+  var i = 0;
+  var chr = 0;
+  if (string.length === 0) {return hash;}
+  for (i = 0; i < string.length; i++) {
+    chr   = string.charCodeAt(i);
+    hash  = ((hash << 5) - hash) + chr;
+    hash |= 0; // Convert to 32bit integer
+  }
+  return Math.abs(hash);
+};

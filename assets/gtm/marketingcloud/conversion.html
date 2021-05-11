@@ -8,42 +8,41 @@
 <p>Test for conversions</p>
 
 <script>
-	//Set the following parameters for your conversion parameters
-	var convid = "{{DLV - transactionId}}";
-	var displayorder = "1";
-	var linkalias = "{{Page Hostname}}"+"{{Page Path}}";
-	var dataset = "<data amt=\"{{transactionTotal}}\" unit=\"Euro\" accumulate=\"true\"/>";
-	//dataset=dataset+"<data amt=\"500.00\" unit=\"Dollars\" accumulate=\"true\">
+  //Set the following parameters for your conversion parameters
+  var hostpath = '{{Page Hostname}}{{Page Path}}'
+  var convid = hashCode(hostpath);
+  var displayorder = 1;
+  var linkalias = hostpath;
+  var transactionValue = {{Debug Mode}} ? 10 : {{transactionTotal}}
+  var dataset = '<data amt="'+ transactionValue +'" unit="Euro" accumulate="true"/>';
 
-	var MemberID     = readCookie("MemberID");
-	var JobID        = readCookie("JobID");
-	var SubscriberID = readCookie("SubscriberID");
-	var EmailAddress = readCookie("EmailAddress");
-	var ListID       = readCookie("ListID");
-	var BatchID      = readCookie("BatchID");
-	var UrlID        = readCookie("UrlID");
+  var MemberID     = readCookie("MemberID");
+  var JobID        = readCookie("JobID");
+  var SubscriberID = readCookie("SubscriberID");
+  var EmailAddress = readCookie("EmailAddress");
+  var ListID       = readCookie("ListID");
+  var BatchID      = readCookie("BatchID");
+  var UrlID        = readCookie("UrlID");
 
-	SubscriberID = (SubscriberID !== undefined) ? SubscriberID : '';
-	EmailAddress = (EmailAddress !== undefined) ? EmailAddress : '';
+  SubscriberID = (SubscriberID !== null) ? SubscriberID : '';
+  EmailAddress = (EmailAddress !== null) ? EmailAddress : '';
 
-	let xml = "<system><system_name>tracking</system_name><action>conversion</action>";
-	xml += "<member_id>" + MemberID + "</member_id>";
-	xml += "<job_id>" + JobID + "</job_id>";
-	xml += "<sub_id>" + SubscriberID + "</sub_id>";
-	xml += "<email>" + EmailAddress + "</email>";
-	xml += "<list>" + ListID + "</list>";
-	xml += "<BatchID>" + BatchID + "</BatchID>";
-	xml += "<original_link_id>" + UrlID + "</original_link_id>";
-	xml += "<conversion_link_id>" + convid + "</conversion_link_id>";
-	xml += "<link_alias>" + linkalias + "</link_alias>";
-	xml += "<display_order>" + displayorder + "</display_order>";
-	xml += "<data_set>" + dataset + "</data_set>";
-	xml += "</system>";
+  var xml = "<system><system_name>tracking</system_name><action>conversion</action>";
+  xml += "<member_id>" + MemberID + "</member_id>";
+  xml += "<job_id>" + JobID + "</job_id>";
+  xml += "<sub_id>" + SubscriberID + "</sub_id>";
+  xml += "<email>" + EmailAddress + "</email>";
+  xml += "<list>" + ListID + "</list>";
+  xml += "<BatchID>" + BatchID + "</BatchID>";
+  xml += "<original_link_id>" + UrlID + "</original_link_id>";
+  xml += "<conversion_link_id>" + convid + "</conversion_link_id>";
+  xml += "<link_alias>" + linkalias + "</link_alias>";
+  xml += "<display_order>" + displayorder + "</display_order>";
+  xml += "<data_set>" + dataset + "</data_set>";
+  xml += "</system>";
 
+  document.write("<img src='https://click.s50.exacttarget.com/conversion.aspx?xml=" +xml+ "' width='1' height='1'>");
 
-	document.write("<textarea rows=10 cols=100>"); //Debug
-	document.write("<img src='https://click.s50.exacttarget.com/conversion.aspx?xml=" +xml+ "' width='1' height='1'>");
-	document.write("</textarea>"); 	// Debug
 </script>
 </body>
 </html>

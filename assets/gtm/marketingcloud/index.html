@@ -12,7 +12,7 @@
 	var ExpireDays = 90;
 
 	// extract identifiers from the querystring
-	let params = new URLSearchParams(document.location.search.slice(1));
+	var params = new URLSearchParams(document.location.search.slice(1));
 
 	// create a cookie for each possible identifier
 	params.forEach(function(value, key) {
