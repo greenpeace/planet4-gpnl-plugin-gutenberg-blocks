@@ -54,7 +54,6 @@ class ShipCompetition extends Base_Block
 		}
 		if (isset($_GET['form_error'])) {
 			$fields['form_error'] = true;
-			$fields['form_submitter'] = $_GET['submitter'];
 		}
 		return ['fields' => $fields];
 	}
@@ -62,13 +61,13 @@ class ShipCompetition extends Base_Block
 	public function process_ship_naming_competition_form_data(): void
 	{
 		$_POST = wp_unslash($_POST);
-		$form_data = [
-			'first_name' => htmlspecialchars(wp_strip_all_tags($_POST['firstname'])),
-			'last_name'  => htmlspecialchars(wp_strip_all_tags($_POST['lastname'])),
+		$form_data = array(
+			'first_name' => htmlspecialchars(wp_strip_all_tags($_POST['first_name'])),
+			'last_name'  => htmlspecialchars(wp_strip_all_tags($_POST['last_name'])),
 			'email'      => htmlspecialchars(wp_strip_all_tags($_POST['email'])),
 			'ship_name'  => htmlspecialchars(wp_strip_all_tags($_POST['ship_name'])),
-			'optin'      => htmlspecialchars(wp_strip_all_tags($_POST['optin']) === 'on')
-		];
+			'optin'      => isset($_POST['optin']) ? 1 : 0
+		);
 
 		$this->insertDataInDatabase($form_data);
 	}
@@ -92,13 +91,15 @@ class ShipCompetition extends Base_Block
 		try {
 			$conn = new PDO("mysql:host=$host;dbname=$db", $user, $pass, $PdoOptions);
 			// set the PDO error mode to exception for testing:
-			// $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//			 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$sql = "INSERT INTO shipname (first_name, last_name, email, ship_name, optin) VALUES (:first_name, :last_name, :email, :ship_name, :optin)";
 			$conn->prepare($sql)->execute($form_data);
 			header('Location: ' . $HTTP_REFERER . '?submitter=' . $form_data['first_name']);
 			exit;
 		} catch (PDOException $e) {
-			header('Location: ' . $HTTP_REFERER . '?form_error=true' . $form_data['first_name']);
+//			var_dump($e->getMessage());
+//			die();
+			header('Location: ' . $HTTP_REFERER . '?form_error=true');
 			exit;
 		}
 	}
