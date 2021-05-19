@@ -25,6 +25,7 @@ class ShipCompetition extends Base_Block
 		);
 		add_action('wp_enqueue_scripts', [$this, 'enqueue_if_block_is_present']);
 		add_action('admin_post_process_ship_naming_competition_form_data', [$this, 'process_ship_naming_competition_form_data']);
+		add_action('admin_post_nopriv_process_ship_naming_competition_form_data', [$this, 'process_ship_naming_competition_form_data']);
 	}
 
 	/**
@@ -95,12 +96,10 @@ class ShipCompetition extends Base_Block
 			$sql = "INSERT INTO shipname (first_name, last_name, email, ship_name, optin) VALUES (:first_name, :last_name, :email, :ship_name, :optin)";
 			$conn->prepare($sql)->execute($form_data);
 			header('Location: ' . $HTTP_REFERER . '?submitter=' . $form_data['first_name']);
-			exit;
+			exit();
 		} catch (PDOException $e) {
-//			var_dump($e->getMessage());
-//			die();
 			header('Location: ' . $HTTP_REFERER . '?form_error=true');
-			exit;
+			exit();
 		}
 	}
 }
