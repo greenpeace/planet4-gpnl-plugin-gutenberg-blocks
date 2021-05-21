@@ -1,3 +1,5 @@
+@import "../../../base/base.scss";
+
 .ship-naming-form {
   input, textarea {
     display: block;
@@ -15,4 +17,19 @@
   label:not(:first-child), input[type='submit'] {
     margin-top: 1em;
   }
+}
+
+.loader {
+  border: .6rem, solid $light-grey;
+  border-top: .6rem solid $orange;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  animation: spin 1.2s linear infinite;
+  margin-top: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
