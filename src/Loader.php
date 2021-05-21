@@ -111,6 +111,7 @@ final class Loader {
 			new Blocks\SocialMessage(),
 			new Blocks\Modal(),
 			new Blocks\ProfilePictureOverlay(),
+			new Blocks\ShipCompetition(),
 		];
 	}
 

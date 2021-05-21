@@ -1,0 +1,41 @@
+{% block ShipCompetition %}
+	{% if fields.form_submitted == true %}
+		<div class="post-submit-message">
+			<h2>Bedankt voor je inzending {{ fields.form_submitter | capitalize }}!</h2>
+			<p>We houden je op de hoogte van de reis die onze nieuwe zeilboot nu maakt. Begin juli komt ze aan in Amsterdam.
+				Dan maken we de winnaar van de naamwedstrijd bekend.
+			</p><p>Al bijna 50 jaar bereiken onze schepen de verste uithoeken van de wereld. Zo kunnen we bijzondere ecosystemen en misstanden onderzoeken, vastleggen en onthullen. En dankzij supporters zoals jij kunnen we onafhankelijk in actie blijven komen voor een betere, schone, leefbare wereld. Als je ons extra kunt steunen, zou dat geweldig zijn!</p>
+
+			<a class="btn btn-primary" href="https://steun.greenpeace.nl/doneren/">DONEER</a>
+		</div>
+	{% elseif fields.form_error == true %}
+		<div class="post-submit-message error">
+			<h2>Error</h2>
+			Sorry, daar ging iets mis... Probeer het op een later moment nog een keer.
+		</div>
+	{% else %}
+		<section class="ship-naming-section">
+			<form class="ship-naming-form" id="ship-naming-form" action="/nl/wp-admin/admin-post.php" method="post">
+
+				<label for="form_first_name">Voornaam</label>
+				<input name="first_name" id="form_first_name" type="text" class="form-control">
+
+				<label for="form_last_name">Achternaam</label>
+				<input name="last_name" id="form_last_name" type="text" class="form-control">
+
+				<label for="form_email">Email</label>
+				<input name="email" id="form_email" type="email" class="form-control">
+
+				<label for="form_ship_name">Suggestie (maximaal 20 tekens)</label>
+				<input name="ship_name" id="form_ship_name" type="text" rows="2" class="form-control" maxlength="20">
+
+				<input type="checkbox" id="form_optin" name="optin" value="optin">
+				<label for="form_optin">Ja, ✉️ ik geef toestemming om mij per e-mail op hoogte te houden van deze en andere acties. Hierin vragen we soms ook om je steun. Afmelden kan natuurlijk altijd.</label>
+
+				<input type="hidden" name="action" value="process_ship_naming_competition_form_data">
+
+				<input class="btn btn-primary" type="submit" name="submit_button" value="Verstuur">
+			</form>
+		</section>
+	{% endif %}
+{% endblock %}

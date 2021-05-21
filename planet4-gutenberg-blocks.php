@@ -154,6 +154,7 @@ const BLOCK_WHITELIST = [
 		'planet4-gpnl-blocks/social-message',
 		'planet4-gpnl-blocks/modal',
 		'planet4-gpnl-blocks/profile-picture-overlay',
+		'planet4-gpnl-blocks/ship-competition',
 	],
 	'campaign' => [],
 ];
