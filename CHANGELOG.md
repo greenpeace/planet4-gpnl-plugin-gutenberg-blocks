@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.9.0](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/compare/v2.8.0...v2.9.0) (2021-05-25)
+
+
+### Features
+
+* add new shipcompetition block ([5785626](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/5785626d8aa59613bec33a97d016aa6c5b233a4c))
+
+
+### Bug Fixes
+
+* email emoticon ([5610dc3](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/5610dc36782518d5911fe3cbaddf3b3f8edc3507))
+* make optin optional ([4b6efc7](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/4b6efc7292b5cd7e3de27f2c28a093a523bb8e5c))
+* typo in whitelisting of block ([422d2e0](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/422d2e0798ec3ac3a57d89d1d12037f1de8f664c))
+
 ## [2.8.0](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/compare/v2.7.0...v2.8.0) (2021-04-14)
 
 

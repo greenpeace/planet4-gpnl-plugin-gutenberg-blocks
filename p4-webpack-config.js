@@ -94,7 +94,6 @@ module.exports = {
       new TerserJSPlugin({
         test: /\.js(\?.*)?$/i,
         parallel: true,
-        sourceMap: true,
         terserOptions: {
           keep_fnames: true
         }
