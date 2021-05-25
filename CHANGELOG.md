@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.9.1](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/compare/v2.9.0...v2.9.1) (2021-05-25)
+
+
+### Bug Fixes
+
+* add url param to http referer ([a9ff300](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/a9ff3007397e540b36f65a9e2f000ad79d3d3685))
+
 ## [2.9.0](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/compare/v2.8.0...v2.9.0) (2021-05-25)
 
 
