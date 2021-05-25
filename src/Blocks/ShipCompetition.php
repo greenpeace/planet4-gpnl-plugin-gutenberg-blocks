@@ -92,13 +92,13 @@ class ShipCompetition extends Base_Block
 		try {
 			$conn = new PDO("mysql:host=$host;dbname=$db", $user, $pass, $PdoOptions);
 			// set the PDO error mode to exception for testing:
-//			 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			// $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$sql = "INSERT INTO shipname (first_name, last_name, email, ship_name, optin) VALUES (:first_name, :last_name, :email, :ship_name, :optin)";
 			$conn->prepare($sql)->execute($form_data);
-			header('Location: ' . $HTTP_REFERER . '?submitter=' . $form_data['first_name']);
+			header('Location: ' . add_query_arg( 'submitter', $form_data['first_name'], $HTTP_REFERER ));
 			exit();
 		} catch (PDOException $e) {
-			header('Location: ' . $HTTP_REFERER . '?form_error=true');
+			header('Location: ' . add_query_arg( 'form_error', true, $HTTP_REFERER ));
 			exit();
 		}
 	}
