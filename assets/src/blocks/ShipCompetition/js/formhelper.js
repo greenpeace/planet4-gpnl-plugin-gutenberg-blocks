@@ -4,10 +4,10 @@ shipNamingForm && shipNamingForm.addEventListener('submit', validateForm); // On
 function validateForm(e) {
   e.preventDefault();
   if (
-    isNotEmpty(shipNamingForm, 'first_name', 'Vul je voornaam in aljeblieft!') !== false &&
-    isNotEmpty(shipNamingForm, 'last_name', 'Vul je achternaam in aljeblieft!') !== false &&
-    isNotEmpty(shipNamingForm, 'email', 'Vul je email adres in aljeblieft!') !== false &&
-    isNotEmpty(shipNamingForm, 'ship_name', 'Vul je suggestie voor een naam in aljeblieft!') !== false
+    isNotEmpty(shipNamingForm, 'first_name', 'Vul je voornaam in alsjeblieft!') !== false &&
+    isNotEmpty(shipNamingForm, 'last_name', 'Vul je achternaam in alsjeblieft!') !== false &&
+    isNotEmpty(shipNamingForm, 'email', 'Vul je email adres in alsjeblieft!') !== false &&
+    isNotEmpty(shipNamingForm, 'ship_name', 'Vul je suggestie voor een naam in alsjeblieft!') !== false
   ) {
     shipNamingForm.submit_button.insertAdjacentHTML('afterend', '<div class="loader"></div>');
     shipNamingForm.submit_button.remove();
