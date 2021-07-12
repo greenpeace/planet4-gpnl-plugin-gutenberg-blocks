@@ -4,10 +4,11 @@
 import React from 'react';
 import { Frontend } from './Frontend';
 import './styles/font-end.scss';
+const render = wp.element?.render || preact.render
 
 document.querySelectorAll( '[data-gpnl-render]' ).forEach(
   blockNode => {
     const attributes = JSON.parse( blockNode.dataset.attributes );
-    wp.element.render( <Frontend { ...attributes.attributes } />, blockNode );
+    render( <Frontend { ...attributes.attributes } />, blockNode );
   }
 );
