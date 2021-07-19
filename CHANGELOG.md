@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.10.0](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/compare/v2.9.1...v2.10.0) (2021-07-19)
+
+
+### Features
+
+* adjust for GPI switch to preact ([3372a4b](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/3372a4b8b300ca5634c2474b96d5947b9cf9b20e))
+
+
+### Bug Fixes
+
+* typo in error message ([5ca36b0](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/5ca36b0e881786bcaf584e267e5b0239d6fa4dfb))
+
 ### [2.9.1](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/compare/v2.9.0...v2.9.1) (2021-05-25)
 
 
