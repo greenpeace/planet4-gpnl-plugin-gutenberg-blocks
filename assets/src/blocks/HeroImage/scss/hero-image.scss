@@ -141,6 +141,8 @@
         display: inline-block;
         color: white;
         transition: background-color 100ms linear;
+        --link--color: white;
+        --link--hover--color: white;
 
         &:hover {
           background-color: darken($orange, 5%);
