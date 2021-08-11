@@ -206,10 +206,7 @@ export default class HeroImage extends Component {
       );
     };
 
-    let heroClass = 'hero';
-    if (small === true) {
-      heroClass = 'hero hero__small';
-    }
+    let heroClass = (small === true) ? 'hero hero__small' : 'hero';
     return ([
       <div key={this.id} className={heroClass}
         style={{maxWidth: '100%', margin: '0'}}>
@@ -254,7 +251,6 @@ export default class HeroImage extends Component {
       </InspectorControls>
     ]);
   }
-
 }
 
 
