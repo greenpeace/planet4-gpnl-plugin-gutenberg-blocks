@@ -69,7 +69,7 @@ class NL_Sidebar_E_activism extends React.Component {
   }
 
   extractLinks(data) {
-    const regex = /<a .*?<\/a>/gi;
+    const regex = /(<a .*?<\/a>)|(<button .*?<\/button>)/gi;
     return data.match(regex) ? data.match(regex) : [];
   }
 
