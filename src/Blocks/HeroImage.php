@@ -9,6 +9,7 @@
 namespace GPNL\Plugin\Blocks;
 
 use GPNL\Plugin\Services\Asset_Enqueuer;
+use JsonException;
 
 
 /**
@@ -41,6 +42,18 @@ class HeroImage extends Base_Block {
 					'small'       => [
 						'type'    => 'boolean',
 						'default' => false,
+					],
+					'experiments'       => [
+						'type'    => 'boolean',
+						'default' => false,
+					],
+					'experimentTimestamp'       => [
+						'type'    => 'number',
+						'default' => false,
+					],
+					'variants'       => [
+						'type'    => 'array',
+						'default' => [],
 					],
 					'image'       => [
 						'type'    => 'number',
@@ -76,6 +89,7 @@ class HeroImage extends Base_Block {
 		// Check if the block is present on the page that is requested.
 		if ( has_block( 'planet4-gpnl-blocks/' . $this->getKebabCaseClassName() ) ) {
 			Asset_Enqueuer::enqueue_asset( 'hero-image', 'style' );
+			Asset_Enqueuer::enqueue_asset( 'heroImageRendering', 'script', [], true );
 		}
 	}
 
@@ -86,6 +100,7 @@ class HeroImage extends Base_Block {
 	 * @param array $fields This is the array of fields of this block.
 	 *
 	 * @return array The data to be passed in the View.
+	 * @throws JsonException
 	 */
 	public function prepare_data( $fields ): array {
 
@@ -104,7 +119,19 @@ class HeroImage extends Base_Block {
 		$data = [
 			'fields' => $fields,
 		];
+		$experimentdata = array_merge([$fields], $fields['variants']);
+		$hash = md5(json_encode($experimentdata, JSON_THROW_ON_ERROR));
 
+		if ($fields['experiments']) {
+			wp_localize_script( 'heroImageRendering', 'heroExperiment',
+				[
+					'timestamp' => $fields['experimentTimestamp'],
+					'hash' => $hash,
+					// It's kinda dirty, but at time of writing we're at 7.3 and array spread syntax is not available.
+					'variants' =>  array_merge([$fields], $fields['variants'])
+				]
+			);
+		}
 		return $data;
 	}
 }

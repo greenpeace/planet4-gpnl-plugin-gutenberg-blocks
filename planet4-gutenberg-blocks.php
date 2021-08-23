@@ -251,7 +251,7 @@ function enqueue_eactivism_assets() {
 	$actionsTracking = get_post_meta($post_id, 'e_activism') ? get_post_meta($post_id, 'e_activism')[0]['actionsTracking'] : false;
 	$trackedLinks    = get_post_meta($post_id, 'e_activism') ? get_post_meta($post_id, 'e_activism')[0]['savedLinks'] : false;
 	if ( $actionsTracking ) {
-		$filename = 'clickTracking';
+		$filename = 'eActivismCounter';
 		wp_enqueue_script( $filename, P4NL_GB_BKS_PLUGIN_URL . 'assets/build/' . $filename . '.min.js', ['jquery'], null, true );
 
 		wp_localize_script(

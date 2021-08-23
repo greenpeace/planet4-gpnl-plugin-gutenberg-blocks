@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="nl_NL">
+<head>
+	<title>Set Tracking Cookie</title>
+	<script type="text/javascript" src="function.js"></script>
+</head>
+<body>
+<a href="?j=JobID&l=ListID&sfmc_sub=SubscriberID&u=LinkID&jb=BatchID&mid=MemberID">Set up tracking</a> <br>
+<a href="./conversion.html">Conversion Page</a>
+<script>
+	//Set the number of days before your cookie should expire
+	var ExpireDays = 90;
+
+	// extract identifiers from the querystring
+	var params = new URLSearchParams(document.location.search.slice(1));
+
+	// create a cookie for each possible identifier
+	params.forEach(function(value, key) {
+		switch (key) {
+			case "sfmc_sub":
+				createCookie("SubscriberID", value, ExpireDays);
+				break;
+			case "e":
+				createCookie("EmailAddress", value, ExpireDays);
+				break;
+			case "j":
+				createCookie("JobID", value, ExpireDays);
+				break;
+			case "l":
+				createCookie("ListID", value, ExpireDays);
+				break
+			case "jb":
+				createCookie("BatchID", value, ExpireDays);
+				break;
+			case "u":
+				createCookie("UrlID", value, ExpireDays);
+				break;
+			case "mid":
+				createCookie("MemberID", value, ExpireDays);
+				break;
+			default:
+				break;
+		}
+	});
+</script>
+</body>
+</html>

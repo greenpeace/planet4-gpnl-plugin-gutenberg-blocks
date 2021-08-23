@@ -2,9 +2,8 @@ import React, {Component} from 'react';
 import {RichText, MediaUpload, MediaUploadCheck, InspectorControls, BlockControls} from '@wordpress/editor';
 import {Button, PanelBody, ToggleControl, FocalPointPicker} from '@wordpress/components';
 import {URLInput} from '@wordpress/block-editor';
-// import variables from '../../../base/_variables_gpnl.scss';
 import PropTypes from 'prop-types';
-
+import MyModal from './experimentation/MyModal';
 
 export default class HeroImage extends Component {
 
@@ -14,10 +13,12 @@ export default class HeroImage extends Component {
       'description': PropTypes.string,
       'link_text': PropTypes.string,
       'link_url': PropTypes.string,
-      'image': PropTypes.string,
+      'image': PropTypes.number,
       'image_url': PropTypes.string,
-      'video': PropTypes.string,
-      'small': PropTypes.string,
+      'video': PropTypes.number,
+      'small': PropTypes.boolean,
+      'experiments': PropTypes.boolean,
+      'variants': PropTypes.array,
       'focus_image': PropTypes.string,
       'setAttributes': PropTypes.func,
       'onValueChange': PropTypes.func,
@@ -26,7 +27,6 @@ export default class HeroImage extends Component {
       'onFocalPointChange': PropTypes.func,
     };
   }
-
   render() {
 
     const {
@@ -38,6 +38,8 @@ export default class HeroImage extends Component {
       image_url,
       video,
       small,
+      experiments,
+      variants,
       focus_image,
       setAttributes,
       onValueChange,
@@ -247,6 +249,17 @@ export default class HeroImage extends Component {
             value={focal_point_params}
             onChange={onFocalPointChange}
           />
+        </PanelBody>
+        <PanelBody title={'AB Testen'}>
+          <ToggleControl
+            label={'Enable experimentation'}
+            help={'When enabled, AB testing messages is possible'}
+            value={experiments}
+            checked={experiments}
+            onChange={onValueChange.bind('experiments')}
+          />
+          { experiments!==false ? <MyModal variantsBlock={variants} onValueChange={onValueChange.bind('variants')}/> : '' }
+
         </PanelBody>
       </InspectorControls>
     ]);
