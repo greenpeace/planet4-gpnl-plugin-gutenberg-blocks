@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.11.0](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/compare/v2.10.0...v2.11.0) (2021-08-23)
+
+
+### Features
+
+* add marketing cloud conversion tracking ([667e8af](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/667e8af618a0882b7122a6a3d19d951b758cc28e))
+* allow for more types of links to be tracked ([2bde2ee](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/2bde2eec7f480f31483b0cfe88bed4051ef203bf))
+
+
+### Bug Fixes
+
+* actually track allowed buttons ([98d19ed](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/98d19ed3d21644575a049436f6f0de90f2efc2dc))
+* external link icon color in hero button. ([74c8e47](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/74c8e47499919fb90b2459371100b71e28ad05f7))
+* rename tracking js so it doesn't get blocked ([3b6d87d](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/3b6d87d4fb5153f7c5c3803945f8b562c1dd5464))
+
 ## [2.10.0](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/compare/v2.9.1...v2.10.0) (2021-07-19)
 
 
