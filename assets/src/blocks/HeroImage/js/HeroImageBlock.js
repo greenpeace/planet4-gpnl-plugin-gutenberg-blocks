@@ -54,6 +54,18 @@ export class HeroImageBlock extends BaseBlock {
           type: 'boolean',
           default: false
         },
+        experiments: {
+          type: 'boolean',
+          default: false
+        },
+        variants: {
+          type: 'array',
+          default: []
+        },
+        experimentTimestamp: {
+          type: 'number',
+          default: 0
+        },
         focus_image: {
           type: 'string',
           default: '50% 50%'
@@ -92,6 +104,7 @@ export class HeroImageBlock extends BaseBlock {
 
         // Functions we want to call while editing to change attributes.
         function onValueChange(value) {
+          setAttributes({['experimentTimestamp']: Date.now()});
           setAttributes({[this]: value});
         }
 
