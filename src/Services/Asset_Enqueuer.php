@@ -35,9 +35,9 @@ class Asset_Enqueuer {
 		];
 
 		if ( 'style' === $asset_type ) {
-			// Always adding the child-style and bootstrap as a css depencency.
-			$dependencies = array_merge( [ 'child-theme-main', 'bootstrap' ], $dependencies );
-			wp_enqueue_style( $filename, P4NL_GB_BKS_PLUGIN_URL . 'assets/build/' . $filename . '.min.css', $dependencies, $file_asset['version'] );
+			// Always adding the child-style and bootstrap as a css dependency.
+			// $dependencies = array_merge( [ 'child-theme-main', 'bootstrap' ], $dependencies );
+			wp_enqueue_style( $filename, P4NL_GB_BKS_PLUGIN_URL . 'assets/build/' . $filename . '.min.css', [], $file_asset['version']);
 		} elseif ( 'script' === $asset_type ) {
 			$dependencies = array_merge( $file_asset['dependencies'], $dependencies );
 			wp_enqueue_script( $filename, P4NL_GB_BKS_PLUGIN_URL . 'assets/build/' . $filename . '.min.js',  $dependencies, $file_asset['version'], $in_footer );

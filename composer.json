@@ -34,5 +34,10 @@
 		"psr-4": {
 			"GPNL\\Plugin\\": "src/"
 		}
-	}
+	},
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  }
 }
