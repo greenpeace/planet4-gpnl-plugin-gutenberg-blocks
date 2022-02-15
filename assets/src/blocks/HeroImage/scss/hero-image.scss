@@ -53,12 +53,9 @@
     z-index: 1;
   }
 
-  + .columns-block {
-    margin-top: 0;
-  }
-
   &:first-child {
-    margin-top: 0;
+    // Leave space for the navbar if it's the first element.
+    margin-top: var(--top-navigation--height);
   }
 
   &:last-child {

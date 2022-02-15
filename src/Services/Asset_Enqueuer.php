@@ -31,7 +31,7 @@ class Asset_Enqueuer {
 		$file_asset_path = $build_path . $filename . '.min.asset.php';
 		$file_asset      = file_exists( $file_asset_path ) ? require $file_asset_path : [
 			'dependencies' => [],
-			'version'      => filemtime( $file_path ),
+			'version'      => time(),
 		];
 
 		if ( 'style' === $asset_type ) {
