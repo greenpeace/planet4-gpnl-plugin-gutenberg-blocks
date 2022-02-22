@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.11.1](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/compare/v2.11.0...v2.11.1) (2022-02-22)
+
+
+### Bug Fixes
+
+* **dx:** Remove temporary cache busting. ([f45dc51](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/f45dc5175f212313ee8243f8505768393bdc1356))
+
 ## [2.11.0](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/compare/v2.10.0...v2.11.0) (2021-08-23)
 
 
