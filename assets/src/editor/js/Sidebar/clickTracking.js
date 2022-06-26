@@ -1,4 +1,4 @@
-let links = document.querySelectorAll( '.page-template a, .page-template button[data-bs-toggle], .page-template button .btn-send-message' );
+let links = document.querySelectorAll( '.page-content a, .page-content button[data-bs-toggle], .page-content button .btn-send-message' );
 
 for (let link of links) {
   link.addEventListener('click', function(e){ // eslint-disable-line
