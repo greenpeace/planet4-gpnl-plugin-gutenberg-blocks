@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.11.2](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/compare/v2.11.1...v2.11.2) (2022-06-26)
+
+
+### Bug Fixes
+
+* rename main body selectors ([3a2ba00](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/3a2ba007d2b79b63d73720b0e19a8360e45687aa))
+
 ### [2.11.1](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/compare/v2.11.0...v2.11.1) (2022-02-22)
 
 
