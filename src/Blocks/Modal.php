@@ -44,9 +44,6 @@ class Modal extends Base_Block {
 			Asset_Enqueuer::enqueue_asset( 'modal', 'style' );
 			wp_register_script( 'popper', 'https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js', ['child-theme-main'], '2.9.1', true );
 			wp_enqueue_script( 'popper' );
-			wp_dequeue_script('bootstrap');
-			wp_register_script( 'bootstrap5', 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js', [ 'popper' ], '5.0.0-b3', true );
-			wp_enqueue_script( 'bootstrap5' );
 		}
 	}
 }

@@ -252,8 +252,6 @@ final class Loader {
 	public function enqueue_editor_scripts() {
 
 		wp_enqueue_style( 'wp-components' );
-		wp_enqueue_style( 'bootstrap', 'https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.min.css', array(), '4.1.1' );
-
 		// Enqueueing asset files for the editor.
 		$enque = new Services\Asset_Enqueuer();
 		$enque->enqueue_asset( 'editor-style', 'style' );
