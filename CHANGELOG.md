@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.12.1](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/compare/v2.12.0...v2.12.1) (2022-10-10)
+
+
+### Bug Fixes
+
+* **style:** Fix hero block top margins ([6c6e927](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/6c6e92712ca18b7f822ee19a52b80c54a9af0715))
+
 ## [2.12.0](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/compare/v2.11.2...v2.12.0) (2022-10-10)
 
 
