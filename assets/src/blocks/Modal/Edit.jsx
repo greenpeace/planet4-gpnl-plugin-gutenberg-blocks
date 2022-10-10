@@ -32,7 +32,7 @@ export default class Edit extends Component {
       <div>
         <RichText
           tagName={'button'}
-          className={'btn btn-primary'}
+          className={''}
           placeholder={'Click to open'}
           value={openTitle}
           onChange={(value) => setAttributes({openTitle: value})}
