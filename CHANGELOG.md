@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.12.0](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/compare/v2.11.2...v2.12.0) (2022-10-10)
+
+
+### Features
+
+* locally include needed bootstrap scss ([49cd34f](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/49cd34f3dc7f97b0ca1b4d7df2eb97af9e7f6492))
+
+
+### Bug Fixes
+
+* remove double button classes ([2583139](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/258313994e5672779cf74677698ad82436a7f6ff))
+* rename wp hooks for (un)registering hooks ([5945e5c](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/commit/5945e5cdaa28fbce65f5304d99f38da07e86e064))
+
 ### [2.11.2](https://github.com/greenpeace/planet4-gpnl-plugin-gutenberg-blocks/compare/v2.11.1...v2.11.2) (2022-06-26)
 
 
