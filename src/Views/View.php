@@ -39,9 +39,9 @@ class View {
 	 * @return bool|string The returned output
 	 */
 	public function get_template( $template_name, $data, $relevant_dir = 'blocks/' ) {
-		Timber::$locations = $this->get_template_dir( $template_name, $relevant_dir );
+		$loader = new \Timber\Loader( $this->get_template_dir( $template_name, $relevant_dir ) );
 
-		return Timber::compile( [ $relevant_dir . $template_name . '.twig' ], $data );
+		return \Timber\Timber::compile( $relevant_dir . $template_name . '.twig', $data, [], $loader );
 	}
 
 	/**
@@ -52,8 +52,8 @@ class View {
 	 * @param string       $relevant_dir The path to a subdirectory where the template is located (relative to $template_dir).
 	 */
 	private function view_template( $template_name, $data, $relevant_dir = '' ) {
-		Timber::$locations = $this->get_template_dir( $template_name, $relevant_dir );
-		Timber::render( [ $relevant_dir . $template_name . '.twig' ], $data );
+		$loader = new \Timber\Loader( $this->get_template_dir( $template_name, $relevant_dir ) );
+		\Timber\Timber::render( $relevant_dir . $template_name . '.twig', $data, [], $loader );
 	}
 
 	/**
